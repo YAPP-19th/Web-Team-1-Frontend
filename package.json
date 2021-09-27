@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/YAPP-19th/Web-Team-1-Frontend/issues"
   },
-  "homepage": "https://github.com/YAPP-19th/Web-Team-1-Frontend#readme"
+  "homepage": "https://github.com/YAPP-19th/Web-Team-1-Frontend#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-flow": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@babel/runtime": "^7.15.4",
+    "@babel/runtime-corejs3": "^7.15.4",
+  }
 }
