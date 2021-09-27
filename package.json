@@ -1,0 +1,19 @@
+{
+  "name": "giljob-fe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YAPP-19th/Web-Team-1-Frontend.git"
+  },
+  "author": "raejoonee",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/YAPP-19th/Web-Team-1-Frontend/issues"
+  },
+  "homepage": "https://github.com/YAPP-19th/Web-Team-1-Frontend#readme"
+}
