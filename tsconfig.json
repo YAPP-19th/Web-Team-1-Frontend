@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2021",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "rootDir": "./",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["./src/*"]
+    },
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types", "./@types/custom-types"]
+  },
+  "exclude": ["./node_modules"],
+  "include": ["./src", "./@types"]
+}
