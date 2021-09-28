@@ -1,6 +1,6 @@
 const path = require('path');
-const { webpack } = require('webpack');
 const { merge } = require('webpack-merge');
+const { ProvidePlugin } = require('webpack');
 const baseConfig = require('./webpack.base');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
@@ -42,7 +42,7 @@ module.exports = merge(baseConfig, {
         removeComments: true,
       },
     }),
-    new webpack.ProvidePlugin({
+    new ProvidePlugin({
       React: 'react'
     })
   ],
