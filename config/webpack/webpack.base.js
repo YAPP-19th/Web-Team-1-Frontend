@@ -21,6 +21,17 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.(png|jpg|jpeg|svg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            name: '[name].[ext]?[hash]',
+            outputPath: 'assets',
+            limit: 10000,
+          },
+        },
+      },
     ],
   },
   resolve: {
