@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "rootDir": "./",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["./src/*"]
+    },
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types", "./@types/custom-types"],
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "noImplicitAny": true,
+  },
+  "exclude": ["./node_modules"],
+  "include": ["./src", "./@types"]
+}
