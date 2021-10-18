@@ -42,8 +42,5 @@ module.exports = merge(baseConfig, {
         removeComments: true,
       },
     }),
-    new ProvidePlugin({
-      React: 'react'
-    })
   ],
 });
