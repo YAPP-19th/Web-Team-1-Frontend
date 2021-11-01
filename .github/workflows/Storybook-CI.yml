@@ -1,9 +1,9 @@
-name: "Storybook-Chromatic-CI"
+name: Storybook-Chromatic-CI
 
 on: push
 
 jobs:
-  test:
+  storybook-build:
     runs-on: ubuntu-latest
 
     steps:
