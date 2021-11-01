@@ -8,7 +8,8 @@
     "build": "tsc && webpack --config ./config/webpack/webpack.prod.js",
     "test": "jest --watchAll --coverage",
     "test:ci": "jest",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "babel-loader": "^8.2.2",
+    "chromatic": "^6.0.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.3.0",
     "eslint": "^7.32.0",
