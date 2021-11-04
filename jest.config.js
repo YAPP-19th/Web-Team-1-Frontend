@@ -4,5 +4,8 @@ module.exports = {
     'jest-plugin-context/setup',
     './jest.setup',
   ],
+  moduleNameMapper: {
+    '@src/(.*)$': '<rootDir>/src/$1',
+  },
   testEnvironment: 'jsdom',
 };
