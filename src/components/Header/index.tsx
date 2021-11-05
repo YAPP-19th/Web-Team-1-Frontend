@@ -22,13 +22,11 @@ const Header: React.FC<IHeaderProps> = ({ isLogin = false }) => {
       </div>
       <div className="buttonContainer">
         <ul className="linkButtonList">
-          {headerItems.map(({ name, route }: IHeaderItems) => {
-            return (
-              <li className="linkButton" key={name}>
-                {name}
-              </li>
-            );
-          })}
+          {headerItems.map(({ name, route }: IHeaderItems) => (
+            <li className="linkButton" key={name}>
+              {name}
+            </li>
+          ))}
         </ul>
         <div className="authWrapper">
           {isLogin ? (
