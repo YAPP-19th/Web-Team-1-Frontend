@@ -4,7 +4,7 @@ import Badge from '@src/atoms/Badge';
 import Text from '@src/atoms/Text';
 
 export interface CardProps {
-  step: '입문' | '통달';
+  step: '입문' | '초급' | '중급' | '고급' | '통달';
   category: string;
   name: string;
   exp: number;

@@ -5,7 +5,7 @@ import Text from '@src/atoms/Text';
 
 export interface BadgeProps {
   className?: string;
-  step: '입문' | '통달';
+  step: '입문' | '초급' | '중급' | '고급' | '통달';
   align?: 'start' | 'center' | 'end';
 }
 
