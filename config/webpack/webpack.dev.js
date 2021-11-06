@@ -1,6 +1,5 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
-const { ProvidePlugin } = require('webpack');
 const baseConfig = require('./webpack.base');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
@@ -14,6 +13,7 @@ module.exports = merge(baseConfig, {
     hot: true,
     port: '5050',
     host: '127.0.0.1',
+    historyApiFallback: true,
   },
   module: {
     rules: [
