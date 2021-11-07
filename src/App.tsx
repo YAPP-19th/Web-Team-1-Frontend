@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import {
-  Landing,
-  Quest,
-  Ranking,
-  Community,
-  Profile,
-  Login,
-  NotFound,
-} from '@src/pages';
+const Landing = lazy(() => import('@src/pages/Landing'));
+const Quest = lazy(() => import('@src/pages/Quest'));
+const Profile = lazy(() => import('@src/pages/Profile'));
+const Login = lazy(() => import('@src/pages/Login'));
+const NotFound = lazy(() => import('@src/pages/Landing'));
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/quest" component={Quest} />
-        <Route path="/ranking" component={Ranking} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/community" component={Community} />
-        <Route path="/login" component={Login} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={null}>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/quest" component={Quest} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/login" component={Login} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 };
