@@ -23,7 +23,6 @@ module.exports = merge(baseConfig, {
               sassOptions: {
                 includePaths: [path.join(PROJECT_ROOT, './src/styles')],
               },
-              additionalData: `@import "index";`,
             },
           },
         ],

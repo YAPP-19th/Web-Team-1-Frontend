@@ -24,14 +24,7 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": [
-          "custom-types"
-        ]
-      }
-    ],
+    "import/no-unresolved": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -46,11 +39,13 @@
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
+    "no-shadow": "off",
     "no-param-reassign": "off",
     "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"
@@ -63,8 +58,7 @@
           "node_modules",
           "@types"
         ]
-      },
-      "typescript": "./tsconfig.json"
+      }
     }
   }
 }

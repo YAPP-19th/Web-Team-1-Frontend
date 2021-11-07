@@ -1,0 +1,8 @@
+@import 'font';
+@import 'color';
+@import 'variable';
+
+:root {
+  font-family: $font;
+  font-size: 62.5% !important; // 10px = 1rem
+}
