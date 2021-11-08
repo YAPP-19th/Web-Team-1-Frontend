@@ -1,18 +1,21 @@
+@import '/src/styles/';
+
 .searchContainer {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 460px;
-  height: 44px;
-  background-color: #f3f3f3;
-  border-radius: 30px;
+  width: 46rem;
+  height: 4.4rem;
+  background-color: $main-gray;
+  border-radius: 3rem;
 }
 
 .searchInput {
   width: 85%;
-  height: 22px;
-  font-size: 16px;
+  height: 2.2rem;
+  font-size: $font-size-medium;
+  font-family: $font;
   background: transparent;
   border: none;
 
@@ -20,13 +23,13 @@
     outline: none;
   }
   &::placeholder {
-    color: #0389ff;
+    color: $gil-blue;
   }
 }
 
 .searchButton {
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   outline: none;
 

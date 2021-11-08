@@ -2,12 +2,12 @@ import React, { useState, useCallback } from 'react';
 import './index.scss';
 import searchIcon from '@src/assets/images/search.svg';
 
-export interface ISearchBarProps {
+export interface SearchBarProps {
   placeholder: string;
   onSubmit: () => void;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = ({ placeholder, onSubmit }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
   const [keyword, setKeyword] = useState<string>('');
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
