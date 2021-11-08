@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import './index.scss';
 import searchIcon from '@src/assets/images/search.svg';
+import './index.scss';
 
 export interface SearchBarProps {
   placeholder: string;
