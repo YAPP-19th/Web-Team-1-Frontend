@@ -5,7 +5,7 @@ const Landing = lazy(() => import('@src/pages/Landing'));
 const Quest = lazy(() => import('@src/pages/Quest'));
 const Profile = lazy(() => import('@src/pages/Profile'));
 const Login = lazy(() => import('@src/pages/Login'));
-const NotFound = lazy(() => import('@src/pages/Landing'));
+const NotFound = lazy(() => import('@src/pages/NotFound'));
 
 const App: React.FC = () => {
   return (

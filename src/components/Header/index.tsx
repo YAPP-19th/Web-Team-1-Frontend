@@ -4,7 +4,7 @@ import Text from '@src/atoms/Text';
 import logo from '@src/assets/images/logo.svg';
 import Lv1 from '@src/assets/images/Lv1.svg';
 import headerItems from './headerItems';
-import './index.scss';
+import './style.scss';
 
 export interface HeaderProps {
   isLogin: boolean;
