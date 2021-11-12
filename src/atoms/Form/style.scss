@@ -1,0 +1,13 @@
+@import '/src/styles/';
+
+._FORM_ {
+  display: flex;
+  &.form-flex-direction {
+    &-row {
+      flex-direction: row;
+    }
+    &-column {
+      flex-direction: column;
+    }
+  }
+}
