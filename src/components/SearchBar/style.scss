@@ -1,6 +1,6 @@
 @import '/src/styles/';
 
-.searchContainer {
+.search {
   position: relative;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@
   border-radius: 3rem;
 }
 
-.searchInput {
+.search-input {
   width: 85%;
   height: 2.2rem;
   font-size: $font-size-medium;
@@ -27,7 +27,7 @@
   }
 }
 
-.searchButton {
+.search-button {
   width: 2rem;
   height: 2rem;
   cursor: pointer;

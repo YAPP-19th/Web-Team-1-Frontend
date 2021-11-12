@@ -21,16 +21,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
   }, []);
 
   return (
-    <section className="searchContainer" role="form">
+    <section className="search" role="form">
       <input
-        className="searchInput"
+        className="search-input"
         type="text"
         placeholder={placeholder}
         onChange={handleChange}
         onKeyPress={handleEnter}
       />
       <div
-        className="searchButton"
+        className="search-button"
         role="button"
         tabIndex={0}
         onClick={onSubmit}

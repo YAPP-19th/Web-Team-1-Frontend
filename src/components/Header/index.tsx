@@ -17,28 +17,28 @@ export interface HeaderItems {
 
 const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
   return (
-    <header className="headerContainer">
-      <div className="logoWrapper">
-        <img className="logoImage" src={logo} alt="logoImage" />
+    <header className="header">
+      <div className="logo-wrapper">
+        <img className="logo-image" src={logo} alt="logoImage" />
       </div>
-      <div className="buttonContainer">
-        <ul className="linkButtonList">
+      <div className="button-container">
+        <ul className="button-list">
           {headerItems.map(({ name, route }: HeaderItems) => (
-            <NavLink className="linkButton" key={name} to={route}>
+            <NavLink className="link-button" key={name} to={route}>
               <Text align="center" fontSize="x-large">
                 {name}
               </Text>
             </NavLink>
           ))}
         </ul>
-        <div className="authWrapper">
-          <NavLink className="linkButton" to={isLogin ? '/profile' : '/login'}>
+        <div className="auth-wrapper">
+          <NavLink className="link-button" to={isLogin ? '/profile' : '/login'}>
             {isLogin ? (
-              <button className="profileButton" type="button">
+              <button className="profile" type="button">
                 <img src={Lv1} alt="profileIcon" />
               </button>
             ) : (
-              <button className="authButton" type="button">
+              <button className="auth" type="button">
                 <Text align="center" fontSize="small" fontColor="white">
                   로그인 / 회원가입
                 </Text>

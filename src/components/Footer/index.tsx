@@ -4,16 +4,12 @@ import './style.scss';
 
 const Footer = () => {
   return (
-    <footer className="footerContainer">
-      <div className="footerWrapper">
-        <div className="TextContainer">
-          <Text className="footerText" fontColor="gray">
-            GILJOB
-          </Text>
-          <Text className="footerText" fontColor="gray" fontWeight="regular">
-            YAPP 19TH WEB 1 TEAM
-          </Text>
-        </div>
+    <footer className="footer">
+      <div className="text-wrapper">
+        <Text fontColor="gray">GILJOB</Text>
+        <Text fontColor="gray" fontWeight="regular">
+          YAPP 19TH WEB 1 TEAM
+        </Text>
       </div>
     </footer>
   );

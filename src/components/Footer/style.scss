@@ -1,6 +1,6 @@
 @import '/src/styles/';
 
-.footerContainer {
+.footer {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -13,14 +13,11 @@
   background-color: $footer-gray;
 }
 
-.footerWrapper {
-  width: 60%;
-}
-
-.TextContainer {
+.text-wrapper {
   display: flex;
-}
+  width: 60%;
 
-.footerText {
-  margin: 0 1.5rem;
+  > ._TEXT_ {
+    margin-right: 2rem;
+  }
 }
