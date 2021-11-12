@@ -1,0 +1,17 @@
+@import '/src/styles/';
+
+._PROFILE_ {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;
+}
+._ITEM_:nth-child(1) {
+  grid-row: 1 / span 2;
+}
+._ITEM_:nth-child(2) {
+  grid-column: 2 / span 2;
+}
+._ITEM_:nth-child(5) {
+  grid-column: 1 / span 3;
+}
