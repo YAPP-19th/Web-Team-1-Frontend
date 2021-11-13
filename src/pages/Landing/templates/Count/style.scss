@@ -1,0 +1,42 @@
+@import '/src/styles/';
+
+.count-background {
+  width: 100%;
+  height: 40rem;
+  background-color: $gil-blue;
+}
+
+.count-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1024px;
+  max-width: 1024px;
+  height: 100%;
+  margin: auto;
+}
+
+.count {
+  width: 18rem;
+  list-style: none;
+
+  .upper-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  .lower-wrapper {
+    text-align: right;
+
+    > .number-text {
+      display: inline-block;
+      font-size: 8rem;
+      color: $white;
+      font-weight: $font-weight-light;
+      height: 100%;
+    }
+
+    > .unit-text {
+      display: inline-block;
+    }
+  }
+}

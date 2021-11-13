@@ -1,0 +1,36 @@
+@import '/src/styles/';
+
+.detail-background {
+  width: 100%;
+  background-color: $gil-blue;
+}
+
+.detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1024px;
+  max-width: 1024px;
+  margin: auto;
+}
+
+.detail-title {
+  margin: 2rem 0;
+
+  > ._TEXT_ {
+    &:first-child {
+      line-height: 2.2rem;
+    }
+    &:last-child {
+      line-height: 3.6rem;
+    }
+  }
+
+  .title-line {
+    display: inline-block;
+    width: 100%;
+    height: 0.2rem;
+    margin: 1rem 0;
+    background-color: $white;
+  }
+}
