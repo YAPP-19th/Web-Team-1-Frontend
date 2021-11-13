@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import SearchBar, { ISearchBarProps } from '@src/components/SearchBar';
+import SearchBar, { SearchBarProps } from '@src/components/SearchBar';
 
 export default {
   title: 'Components/SearchBar',
@@ -15,10 +15,15 @@ export default {
     placeholder: {
       description: '검색창 기본 문구',
     },
+    onSubmit: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
-const Template: Story<ISearchBarProps> = (args) => <SearchBar {...args} />;
+const Template: Story<SearchBarProps> = (args) => <SearchBar {...args} />;
 
 export const DefaultSearchBar = Template.bind({});
 DefaultSearchBar.args = {

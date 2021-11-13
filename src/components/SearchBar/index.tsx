@@ -1,13 +1,13 @@
 import React, { useState, useCallback } from 'react';
-import './index.scss';
 import searchIcon from '@src/assets/images/search.svg';
+import './style.scss';
 
-export interface ISearchBarProps {
+export interface SearchBarProps {
   placeholder: string;
   onSubmit: () => void;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = ({ placeholder, onSubmit }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
   const [keyword, setKeyword] = useState<string>('');
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,16 +21,16 @@ const SearchBar: React.FC<ISearchBarProps> = ({ placeholder, onSubmit }) => {
   }, []);
 
   return (
-    <section className="searchContainer" role="form">
+    <section className="search" role="form">
       <input
-        className="searchInput"
+        className="search-input"
         type="text"
         placeholder={placeholder}
         onChange={handleChange}
         onKeyPress={handleEnter}
       />
       <div
-        className="searchButton"
+        className="search-button"
         role="button"
         tabIndex={0}
         onClick={onSubmit}

@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react';
-import Header, { IHeaderProps } from '@src/components/Header';
+import Header, { HeaderProps } from '@src/components/Header';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
   title: 'Components/Header',
@@ -11,10 +12,16 @@ export default {
       },
     },
   },
-  argTypes: {},
+  decorators: [
+    (Story) => (
+      <Router>
+        <Story />
+      </Router>
+    ),
+  ],
 } as Meta;
 
-const Template: Story<IHeaderProps> = (args) => <Header {...args} />;
+const Template: Story<HeaderProps> = (args) => <Header {...args} />;
 
 export const DefaultHeader = Template.bind({});
 DefaultHeader.args = {

@@ -1,19 +1,11 @@
 const headerItems = [
   {
-    name: '소개',
+    name: '길잡 소개',
     route: '/',
   },
   {
-    name: '퀘스트',
-    route: '/',
-  },
-  {
-    name: '랭크',
-    route: '/',
-  },
-  {
-    name: '커뮤니티',
-    route: '/',
+    name: '로드맵•퀘스트',
+    route: '/quest',
   },
 ];
 
