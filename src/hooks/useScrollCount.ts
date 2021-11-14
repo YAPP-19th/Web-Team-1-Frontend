@@ -1,6 +1,6 @@
 import { useRef, useEffect, useCallback } from 'react';
 
-const useScrollCount = (start = 0, end = 0, duration = 2500) => {
+const useScrollCount = (start = 0, end = 0, duration = 2000) => {
   const spanElement = useRef<HTMLSpanElement>(null);
   let observer: IntersectionObserver;
 

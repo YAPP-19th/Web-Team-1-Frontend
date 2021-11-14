@@ -1,7 +1,7 @@
 @import '/src/styles/';
 
 .detail-background {
-  width: 100%;
+  min-width: 1024px;
   background-color: $gil-blue;
 }
 
@@ -9,8 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1024px;
-  max-width: 1024px;
+  width: 100rem;
   margin: auto;
 }
 

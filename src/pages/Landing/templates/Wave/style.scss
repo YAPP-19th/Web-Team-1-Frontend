@@ -1,39 +1,29 @@
 @import '/src/styles/';
 
 .ocean {
-  height: 10rem;
+  height: 20rem;
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
-  background: $gil-blue;
+  overflow: hidden;
+  // background: $gil-blue;
 }
-/* .wave {
-  background: url('data:image/svg+xml,%3C%3Fxml version="1.0" standalone="no"%3F%3E%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%230389ff" fill-opacity="1" d="M0,192L60,208C120,224,240,256,360,234.7C480,213,600,139,720,96C840,53,960,43,1080,48C1200,53,1320,75,1380,85.3L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"%3E%3C/path%3E%3C/svg%3E')
-    repeat-x;
+
+.wave {
   position: absolute;
-  top: -150px;
-  width: 6400px;
-  height: 150px;
-  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-  transform: translate3d(0, 0, 0);
-} */
+  bottom: 0;
+  width: 100%;
+  height: 20rem;
+  /* animation: wave 30s linear infinite;
+  animation-delay: 0; */
+}
 
 @keyframes wave {
   0% {
-    margin-left: 0;
+    background-position-x: 0;
   }
   100% {
-    margin-left: -1600px;
-  }
-}
-
-@keyframes swell {
-  0%,
-  100% {
-    transform: translate3d(0, -25px, 0);
-  }
-  50% {
-    transform: translate3d(0, 5px, 0);
+    background-position-x: 1024px;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Text from '@src/atoms/Text';
 import './style.scss';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="text-wrapper">

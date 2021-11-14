@@ -1,6 +1,8 @@
+@import '/src/styles/';
+
 .footer-background {
-  width: 100%;
-  height: 60rem;
+  min-width: 1024px;
+  height: 40rem;
   background-color: $main-gray;
 }
 
@@ -8,7 +10,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1024px;
-  max-width: 1024px;
+  width: 100rem;
+  height: 100%;
   margin: auto;
+}
+
+.footer-container {
+  width: 40rem;
+  height: 20rem;
+  text-align: center;
+
+  > ._TEXT_ {
+    margin-bottom: 1rem;
+  }
+
+  > ._TEXT_:nth-child(2) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  > ._TEXT_:nth-child(3) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  .start-button {
+    width: 22.4rem;
+    height: 5.2rem;
+    border: none;
+    border-radius: 10rem;
+    background-color: $job-navy;
+    cursor: pointer;
+    > ._TEXT_ {
+      font-size: 3rem;
+    }
+  }
 }

@@ -18,11 +18,11 @@ const CountItems = [
   },
 ];
 
-const Count: React.FC = () => {
-  interface animate {
-    [key: number]: unknown;
-  }
+interface animate {
+  [key: number]: unknown;
+}
 
+const Count: React.FC = () => {
   const animatedCount: animate = {
     0: useScrollCount(0, 10),
     1: useScrollCount(0, 130),
