@@ -31,6 +31,8 @@
 }
 
 .image-wrapper {
+  z-index: 9;
+
   > img {
     width: 58.2rem;
     height: 57.6rem;
