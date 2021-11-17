@@ -2,11 +2,12 @@ import React from 'react';
 import Text from '@src/atoms/Text';
 import './style.scss';
 
-const Footer: React.FC = () => {
+const Sub: React.FC = () => {
   return (
-    <section className="footer-background">
-      <div className="footer-wrapper">
-        <div className="footer-container">
+    <section className="sub-background">
+      <div className="sub-wave" />
+      <div className="sub-wrapper">
+        <div className="sub-container">
           <Text
             align="center"
             fontSize="large"
@@ -34,4 +35,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default Sub;

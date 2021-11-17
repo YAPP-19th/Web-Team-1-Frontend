@@ -9,8 +9,8 @@
 .count-wrapper {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  width: 100rem;
+  padding-top: 10rem;
+  width: 90rem;
   height: 100%;
   margin: auto;
 }
@@ -24,18 +24,17 @@
   }
 
   .lower-wrapper {
-    text-align: right;
+    text-align: center;
 
     > .number-text {
       display: inline-block;
       font-size: 8rem;
-      color: $white;
-      font-weight: $font-weight-light;
-      height: 100%;
+      line-height: 8rem;
     }
 
     > .unit-text {
       display: inline-block;
+      line-height: 3.6rem;
     }
   }
 }

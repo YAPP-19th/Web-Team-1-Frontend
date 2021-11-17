@@ -10,22 +10,20 @@ const Main: React.FC = () => {
       <section className="main-background">
         <div className="main-wrapper">
           <article className="main-title">
-            <div className="main-text">
-              <Text fontSize="xxxx-large" fontWeight="bold">
-                취업의 바다에서
-              </Text>
-              <Text fontSize="xxxx-large" fontWeight="bold">
-                길잡이가 되어주다
-              </Text>
-            </div>
-            <div className="sub-text">
-              <Text fontSize="x-large" fontWeight="regular" lineHeight="wide">
-                취업의 바다에서 길잡이가 되어주다.{'\n'}
-                취업의 바다에서 길잡이가 되어주다.{'\n'}
-                취업의 바다에서 길잡이가 되어주다.{'\n'}
-                취업의 바다에서 길잡이가 되어주다.
-              </Text>
-            </div>
+            <Text className="main-text" fontSize="xxxx-large">
+              취업의 바다에서{'\n'}길잡이가 되어주다
+            </Text>
+            <Text
+              className="sub-text"
+              fontSize="x-large"
+              fontWeight="regular"
+              lineHeight="wide"
+            >
+              취업의 바다에서 길잡이가 되어주다.{'\n'}
+              취업의 바다에서 길잡이가 되어주다.{'\n'}
+              취업의 바다에서 길잡이가 되어주다.{'\n'}
+              취업의 바다에서 길잡이가 되어주다.
+            </Text>
           </article>
           <article className="image-wrapper">
             <img src={character} alt="ship" />

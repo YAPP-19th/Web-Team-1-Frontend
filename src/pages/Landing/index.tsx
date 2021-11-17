@@ -1,13 +1,13 @@
 import React from 'react';
-import { Main, Detail, Count, Footer } from '@src/pages/Landing/templates';
+import { Main, Contents, Count, Sub } from '@src/pages/Landing/templates';
 
 const Landing: React.FC = () => {
   return (
     <>
       <Main />
-      <Detail />
+      <Contents />
       <Count />
-      <Footer />
+      <Sub />
     </>
   );
 };

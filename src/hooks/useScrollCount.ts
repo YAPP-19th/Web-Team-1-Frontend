@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 
 const useScrollCount = (start = 0, end = 0, duration = 2000) => {
-  const spanElement = useRef<HTMLSpanElement>(null);
+  const spanElement = useRef<HTMLDivElement>(null);
   let observer: IntersectionObserver;
 
   const countTime = Math.abs(Math.floor(duration / (end - start)));
@@ -28,7 +28,7 @@ const useScrollCount = (start = 0, end = 0, duration = 2000) => {
   useEffect(() => {
     if (spanElement.current) {
       observer = new IntersectionObserver(handleScroll, {
-        threshold: 0.3,
+        threshold: 0.2,
       });
       observer.observe(spanElement.current);
     }
@@ -36,9 +36,7 @@ const useScrollCount = (start = 0, end = 0, duration = 2000) => {
     return () => observer.disconnect();
   }, [handleScroll]);
 
-  return {
-    ref: spanElement,
-  };
+  return spanElement;
 };
 
 export default useScrollCount;

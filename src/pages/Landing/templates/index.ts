@@ -1,5 +1,5 @@
 export { default as Main } from './Main';
 export { default as Wave } from './Wave';
-export { default as Detail } from './Detail';
+export { default as Contents } from './Contents';
 export { default as Count } from './Count';
-export { default as Footer } from './Footer';
+export { default as Sub } from './Sub';

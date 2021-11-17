@@ -1,11 +1,11 @@
 @import '/src/styles/';
 
-.detail-background {
+.contents-background {
   min-width: 1024px;
   background-color: $gil-blue;
 }
 
-.detail-wrapper {
+.contents-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,8 +13,8 @@
   margin: auto;
 }
 
-.detail-title {
-  margin: 2rem 0;
+.contents-title {
+  margin: 5rem 0;
 
   > ._TEXT_ {
     &:first-child {

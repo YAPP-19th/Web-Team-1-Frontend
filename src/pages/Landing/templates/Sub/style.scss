@@ -1,12 +1,23 @@
 @import '/src/styles/';
 
-.footer-background {
+.sub-background {
+  position: relative;
   min-width: 1024px;
-  height: 40rem;
+  height: 38rem;
   background-color: $main-gray;
 }
 
-.footer-wrapper {
+.sub-wave {
+  position: absolute;
+  top: -10rem;
+  width: 100%;
+  height: 10rem;
+  background: url('@src/assets/images/wave_gray.svg');
+  background-size: cover;
+  z-index: 10;
+}
+
+.sub-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +26,8 @@
   margin: auto;
 }
 
-.footer-container {
-  width: 40rem;
+.sub-container {
+  width: 30rem;
   height: 20rem;
   text-align: center;
 
@@ -24,19 +35,16 @@
     margin-bottom: 1rem;
   }
 
-  > ._TEXT_:nth-child(2) {
+  > ._TEXT_:not(:first-child) {
     font-size: 4rem;
+    font-weight: 700;
     line-height: 4rem;
   }
 
-  > ._TEXT_:nth-child(3) {
-    font-size: 4rem;
-    line-height: 4rem;
-  }
-
-  .start-button {
+  > .start-button {
     width: 22.4rem;
     height: 5.2rem;
+    margin-top: 1.5rem;
     border: none;
     border-radius: 10rem;
     background-color: $job-navy;

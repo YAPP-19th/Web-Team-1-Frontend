@@ -18,7 +18,7 @@ const Content: React.FC<ContentProps> = ({
   direction = 'row',
 }) => {
   return (
-    <div className={cn('content', `direction-${direction}`)}>
+    <article className={cn('content', `direction-${direction}`)}>
       <div className="content-image">
         <img src={image} alt="map" />
       </div>
@@ -43,7 +43,7 @@ const Content: React.FC<ContentProps> = ({
           {sub}
         </Text>
       </div>
-    </div>
+    </article>
   );
 };
 

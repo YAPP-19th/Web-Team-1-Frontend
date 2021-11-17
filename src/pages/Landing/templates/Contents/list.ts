@@ -3,7 +3,7 @@ import lighthouse from '@src/assets/images/lighthouse.svg';
 import ships from '@src/assets/images/ships.svg';
 import profile from '@src/assets/images/profile.svg';
 
-const detailItems = [
+const list = [
   {
     main: '하나, 취업 길잡이의\n로드맵 따라가기',
     sub: '취업의 바다에서 길잡이가 되어주다. 되어주다.\n길잡이가 되어주다. 취업의 바다에서 길잡이가 되어주다.\n되어주다. 길잡이가 되어주다.',
@@ -30,4 +30,4 @@ const detailItems = [
   },
 ];
 
-export default detailItems;
+export default list;

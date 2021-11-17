@@ -1,22 +1,21 @@
 import React from 'react';
 import Text from '@src/atoms/Text';
 import Content from '@src/pages/Landing/templates/Content';
-import detailItems from './detailItems';
+import contentsList from './list';
 import './style.scss';
 
-const Detail: React.FC = () => {
+const Contents: React.FC = () => {
   return (
-    <section className="detail-background">
-      <div className="detail-wrapper">
-        <div className="detail-title">
+    <section className="contents-background">
+      <div className="contents-wrapper">
+        <div className="contents-title">
           <Text
             align="center"
             fontColor="white"
             fontSize="xx-large"
             fontWeight="regular"
           >
-            내가 <b>목표하는 직업</b>을 가지려면 <b>어떤 경험들이 필요</b>
-            할까?
+            내가 <b>목표하는 직업</b>을 가지려면 <b>어떤 경험들이 필요</b>할까?
           </Text>
           <span className="title-line" />
           <Text
@@ -29,7 +28,7 @@ const Detail: React.FC = () => {
           </Text>
         </div>
 
-        {detailItems.map(({ main, sub, image, direction }) => (
+        {contentsList.map(({ main, sub, image, direction }) => (
           <Content
             main={main}
             sub={sub}
@@ -43,4 +42,4 @@ const Detail: React.FC = () => {
   );
 };
 
-export default Detail;
+export default Contents;
