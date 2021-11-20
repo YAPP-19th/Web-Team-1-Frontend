@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, Ref } from 'react';
+import React, { forwardRef, ReactNode, Ref } from 'react';
 import cn from 'classnames';
 import './style.scss';
 import { FontSize } from '@src/utils';
