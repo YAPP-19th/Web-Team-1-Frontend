@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import './style.scss';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 
 export interface BadgeProps {
   className?: string;
