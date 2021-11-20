@@ -14,11 +14,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
     setKeyword(e.target.value);
   }, []);
 
-  const handleEnter = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      onSubmit();
-    }
-  }, []);
+  const handleEnter = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        onSubmit();
+      }
+    },
+    [onSubmit],
+  );
 
   return (
     <section className="search" role="form">
