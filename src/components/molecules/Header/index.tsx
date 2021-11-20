@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 import logo from '@src/assets/images/logo.svg';
 import Lv1 from '@src/assets/images/Lv1.svg';
 import headerList from './list';

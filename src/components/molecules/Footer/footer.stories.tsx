@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Footer from '@src/components/Footer';
+import Footer from '@src/components/molecules/Footer';
 
 export default {
   title: 'Components/Footer',
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<any> = (args) => <Footer {...args} />;
+const Template: Story = (args) => <Footer {...args} />;
 
 export const DefaultFooter = Template.bind({});
 DefaultFooter.args = {};

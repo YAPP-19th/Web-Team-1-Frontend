@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 import icon from '@src/assets/images/icon.svg';
 import cn from 'classnames';
 import './style.scss';

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Card from '@src/components/Card';
+import Card from '@src/components/molecules/Card';
 import { CardProps } from './Card';
 
 export default {

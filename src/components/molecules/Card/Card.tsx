@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
-import Badge from '@src/atoms/Badge';
-import Text from '@src/atoms/Text';
+import Badge from '@src/components/atoms/Badge';
+import Text from '@src/components/atoms/Text';
 
 export interface CardProps {
   step: '입문' | '초급' | '중급' | '고급' | '통달';

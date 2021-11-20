@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Header, { HeaderProps } from '@src/components/Header';
+import Header, { HeaderProps } from '@src/components/molecules/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
