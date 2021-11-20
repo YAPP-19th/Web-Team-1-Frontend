@@ -1,7 +1,7 @@
 import React from 'react';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 import character from '@src/assets/images/character.svg';
-import { Wave } from '@src/pages/Landing/templates';
+import Wave from '@src/pages/Landing/Wave';
 import './style.scss';
 
 const Main: React.FC = () => {

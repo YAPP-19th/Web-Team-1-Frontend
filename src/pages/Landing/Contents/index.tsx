@@ -1,6 +1,6 @@
 import React from 'react';
-import Text from '@src/atoms/Text';
-import Content from '@src/pages/Landing/templates/Content';
+import Text from '@src/components/atoms/Text';
+import Content from '@src/components/molecules/Content';
 import contentsList from './list';
 import './style.scss';
 

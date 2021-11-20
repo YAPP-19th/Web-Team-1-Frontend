@@ -1,14 +1,21 @@
 import React from 'react';
 import useScrollCount from '@src/hooks/useScrollCount';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 import CountItems from './list';
 import './style.scss';
 
+export interface Count {
+  totalQuestCount: number;
+  onProgressQuestCount: number;
+  totalParticipantCount: number;
+}
+
 const Count: React.FC = () => {
+  // const { data } = useGetQuestsCountQuery('');
   const countHooks: { [key: number]: ReturnType<typeof useScrollCount> } = {
-    0: useScrollCount(0, 10),
-    1: useScrollCount(0, 130),
-    2: useScrollCount(0, 80),
+    0: useScrollCount(10),
+    1: useScrollCount(130),
+    2: useScrollCount(80),
   };
 
   return (
