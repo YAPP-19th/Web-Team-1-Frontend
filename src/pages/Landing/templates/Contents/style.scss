@@ -1,0 +1,35 @@
+@import '/src/styles/';
+
+.contents-background {
+  min-width: 1024px;
+  background-color: $gil-blue;
+}
+
+.contents-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rem;
+  margin: auto;
+}
+
+.contents-title {
+  margin: 5rem 0;
+
+  > ._TEXT_ {
+    &:first-child {
+      line-height: 2.2rem;
+    }
+    &:last-child {
+      line-height: 3.6rem;
+    }
+  }
+
+  .title-line {
+    display: inline-block;
+    width: 100%;
+    height: 0.2rem;
+    margin: 1rem 0;
+    background-color: $white;
+  }
+}

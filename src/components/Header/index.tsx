@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Text from '@src/atoms/Text';
 import logo from '@src/assets/images/logo.svg';
 import Lv1 from '@src/assets/images/Lv1.svg';
-import headerItems from './headerItems';
+import headerList from './list';
 import './style.scss';
 
 export interface HeaderProps {
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
       </div>
       <div className="button-container">
         <ul className="button-list">
-          {headerItems.map(({ name, route }: HeaderItems) => (
+          {headerList.map(({ name, route }: HeaderItems) => (
             <NavLink className="link-button" key={name} to={route}>
               <Text align="center" fontSize="x-large">
                 {name}
