@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactElement } from 'react';
+import React, { ReactComponentElement, ReactNode } from 'react';
 import cn from 'classnames';
 import Text from '../Text';
 import './style.scss';
@@ -7,7 +7,7 @@ export interface FormProps {
   title: string;
   align?: 'row' | 'column';
   titleColor?: 'main' | 'gray' | 'white' | 'gil-blue' | 'job-navy';
-  children: ReactElement;
+  children: ReactNode;
 }
 
 const Form: React.FC<FormProps> = ({
