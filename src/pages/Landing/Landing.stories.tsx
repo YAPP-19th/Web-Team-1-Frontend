@@ -1,8 +1,8 @@
 import { Story, Meta } from '@storybook/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Landing from '@src/pages/Landing';
-import Header from '@src/components/Header';
-import Footer from '@src/components/Footer';
+import Header from '@src/components/molecules/Header';
+import Footer from '@src/components/molecules/Footer';
 
 export default {
   title: 'Pages/Landing',
