@@ -1,34 +1,31 @@
 import React from 'react';
-import Based from '@src/pages/Based';
-import Text from '@src/components/atoms/Text';
+import { Text } from '@src/components/atoms';
 import logo from '@src/assets/images/logo.svg';
 import './style.scss';
 
 const Login: React.FC = () => {
   return (
-    <Based hasHeader={false}>
-      <section className="login">
-        <div className="login-wrapper">
-          <div className="box">
-            <img className="logo" src={logo} alt="logo" />
-            <Text
-              className="intro-text"
-              align="center"
-              fontSize="large"
-              fontWeight="bold"
-            >
-              길잡에 오신 것을 환영합니다
+    <section className="login">
+      <div className="login-wrapper">
+        <div className="box">
+          <img className="logo" src={logo} alt="logo" />
+          <Text
+            className="intro-text"
+            align="center"
+            fontSize="large"
+            fontWeight="bold"
+          >
+            길잡에 오신 것을 환영합니다
+          </Text>
+          <button className="login-button" type="button">
+            <Text align="center" fontSize="small" fontWeight="bold">
+              카카오로 1초만에 시작하기
             </Text>
-            <button className="login-button" type="button">
-              <Text align="center" fontSize="small" fontWeight="bold">
-                카카오로 1초만에 시작하기
-              </Text>
-            </button>
-          </div>
+          </button>
         </div>
-        <div className="login-background" />
-      </section>
-    </Based>
+      </div>
+      <div className="login-background" />
+    </section>
   );
 };
 
