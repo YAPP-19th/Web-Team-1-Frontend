@@ -3,7 +3,7 @@ import Text from '@src/components/atoms/Text';
 import { TextProps } from './Text';
 
 export default {
-  title: 'Atoms/Text',
+  title: 'Design System/Atoms/Text',
   component: Text,
   parameters: {
     docs: {

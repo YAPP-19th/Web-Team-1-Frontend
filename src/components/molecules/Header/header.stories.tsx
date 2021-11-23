@@ -3,7 +3,7 @@ import Header, { HeaderProps } from '@src/components/molecules/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
-  title: 'Components/Header',
+  title: 'Design System/Molecules/Header',
   component: Header,
   parameters: {
     docs: {

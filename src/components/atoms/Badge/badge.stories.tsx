@@ -3,7 +3,7 @@ import Badge from '@src/components/atoms/Badge';
 import { BadgeProps } from './Badge';
 
 export default {
-  title: 'Atoms/Badge',
+  title: 'Design System/Atoms/Badge',
   component: Badge,
   parameters: {
     docs: {
