@@ -10,7 +10,7 @@ const Main: React.FC = () => {
       <section className="main-background">
         <div className="main-wrapper">
           <article className="main-title">
-            <Text className="main-text" fontSize="xxxx-large">
+            <Text className="main-text" fontSize="xxxx-large" fontWeight="bold">
               취업의 바다에서{'\n'}길잡이가 되어주다
             </Text>
             <Text

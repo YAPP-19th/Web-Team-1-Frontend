@@ -17,7 +17,6 @@ const Sub: React.FC = () => {
           >
             취업의 바다를 항해하라!
           </Text>
-
           <Text align="center" fontWeight="bold" fontColor="job-navy">
             길잡과 함께
           </Text>
