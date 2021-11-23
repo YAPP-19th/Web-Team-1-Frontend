@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Text from '@src/components/atoms/Text';
+import { useLocation, NavLink } from 'react-router-dom';
+import { Text } from '@src/components/atoms';
 import logo from '@src/assets/images/logo.svg';
 import Lv1 from '@src/assets/images/Lv1.svg';
 import headerList from './list';
 import './style.scss';
 
 export interface HeaderProps {
-  isLogin: boolean;
+  isLogin?: boolean;
 }
 
 export interface HeaderItems {
@@ -16,7 +16,9 @@ export interface HeaderItems {
 }
 
 const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
-  return (
+  const { pathname } = useLocation();
+
+  return pathname !== '/login' ? (
     <header className="header">
       <div className="logo-wrapper">
         <img className="logo-image" src={logo} alt="logoImage" />
@@ -48,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
         </div>
       </div>
     </header>
-  );
+  ) : null;
 };
 
 export default Header;

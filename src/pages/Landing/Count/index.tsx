@@ -1,6 +1,6 @@
 import React from 'react';
 import useScrollCount from '@src/hooks/useScrollCount';
-import Text from '@src/components/atoms/Text';
+import { Text } from '@src/components/atoms';
 import CountItems from './list';
 import './style.scss';
 
