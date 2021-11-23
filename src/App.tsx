@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
     <>
       <Router>
-        <Header isLogin={false} />
+        <Header />
         <Suspense fallback={null}>
           <Switch>
             <Route exact path="/" component={Landing} />
