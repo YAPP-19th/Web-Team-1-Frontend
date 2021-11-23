@@ -1,3 +1,7 @@
+import React from 'react';
+import '../src/index.scss';
+import '../src/normalize.scss';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {

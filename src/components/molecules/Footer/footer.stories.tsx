@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react';
 import Footer from '@src/components/molecules/Footer';
 
 export default {
-  title: 'Components/Footer',
+  title: 'Design System/Molecules/Footer',
   component: Footer,
   parameters: {
     docs: {

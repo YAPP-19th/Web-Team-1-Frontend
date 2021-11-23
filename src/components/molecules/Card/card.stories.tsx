@@ -3,7 +3,7 @@ import Card from '@src/components/molecules/Card';
 import { CardProps } from './Card';
 
 export default {
-  title: 'Components/Card',
+  title: 'Design System/Molecules/Card',
   component: Card,
   parameters: {
     docs: {
