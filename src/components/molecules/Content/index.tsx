@@ -34,12 +34,7 @@ const Content: React.FC<ContentProps> = ({
         >
           {main}
         </Text>
-        <Text
-          fontSize="small"
-          fontWeight="light"
-          fontColor="white"
-          lineHeight="wide"
-        >
+        <Text fontSize="small" fontWeight="light" fontColor="white">
           {sub}
         </Text>
       </div>
