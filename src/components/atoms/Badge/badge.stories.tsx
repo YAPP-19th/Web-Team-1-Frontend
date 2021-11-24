@@ -27,8 +27,24 @@ export default {
 
 const Template: Story<BadgeProps> = (args) => <Badge {...args} />;
 
-export const defaultBadge = Template.bind({});
+export const introductionBadge = Template.bind({});
+export const beginnerBadge = Template.bind({});
+export const intermediateBadge = Template.bind({});
+export const highBadge = Template.bind({});
+export const masterBadge = Template.bind({});
 
-defaultBadge.args = {
+introductionBadge.args = {
   step: '입문',
+};
+beginnerBadge.args = {
+  step: '초급',
+};
+intermediateBadge.args = {
+  step: '중급',
+};
+highBadge.args = {
+  step: '고급',
+};
+masterBadge.args = {
+  step: '통달',
 };
