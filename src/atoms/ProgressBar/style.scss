@@ -2,17 +2,20 @@
 
 ._PROGRESS_BAR_WRAPPER_ {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  gap: 2rem;
+
+  > * {
+    flex-basis: 3rem;
+  }
 
   ._PROGRESS_BAR_ {
-    width: 100%;
     max-width: 70rem;
-    height: 2.6rem;
+    height: 2.5rem;
     background: $main-gray;
     border-radius: 2.5rem;
+    flex-grow: 1;
   }
 }
