@@ -1,0 +1,19 @@
+@import '/src/styles/';
+
+._PAPER_ {
+  width: 20.4rem;
+  height: 20.4rem;
+  padding: 4.6rem 4.2rem;
+  background: url('@src/assets/images/paper.png');
+
+  .paper-contents {
+    width: 20rem;
+    > ._TEXT_ {
+      margin-bottom: 1rem;
+    }
+  }
+
+  ._AUTHOR_ {
+    margin-top: 7rem;
+  }
+}
