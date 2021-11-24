@@ -15,13 +15,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   return (
     <div className="_ACHIEVEMENT_BADGE_">
       {/* <Icon></Icon> */}
-      <img
-        className="Lv1Image"
-        src={achievement}
-        alt="achievementImage"
-        width="200"
-        height="200"
-      />
+      <img className="_IMG_" src={achievement} alt="achievementImage" />
       <Text
         align="center"
         fontColor="gil-blue"
