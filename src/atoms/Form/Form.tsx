@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import cn from 'classnames';
 import Text from '../Text';
 import './style.scss';
@@ -6,6 +6,7 @@ import './style.scss';
 export interface FormProps {
   title: string;
   align?: 'row' | 'column';
+  titleAlign?: 'start' | 'center' | 'end';
   titleColor?: 'main' | 'gray' | 'white' | 'gil-blue' | 'job-navy';
   children: ReactNode;
 }
@@ -14,14 +15,21 @@ const Form: React.FC<FormProps> = ({
   children,
   title,
   align = 'row',
+  titleAlign = 'start',
   titleColor,
 }) => {
   return (
-    <div className={cn('_FORM_', `form-flex-direction-${align}`)}>
-      <Text fontColor={titleColor} fontSize="medium" fontWeight="bold">
+    <div className={cn('_FORM_', `flex-direction-${align}`)}>
+      <Text
+        className="_ITEM_"
+        fontColor={titleColor}
+        align={titleAlign}
+        fontSize="medium"
+        fontWeight="bold"
+      >
         {title}
       </Text>
-      {children}
+      <div className="_ITEM_">{children}</div>
     </div>
   );
 };
