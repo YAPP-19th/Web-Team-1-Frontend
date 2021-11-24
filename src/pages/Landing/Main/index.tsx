@@ -1,7 +1,7 @@
 import React from 'react';
-import Text from '@src/components/atoms/Text';
-import character from '@src/assets/images/character.svg';
+import { Text } from '@src/components/atoms';
 import Wave from '@src/pages/Landing/Wave';
+import character from '@src/assets/images/character.svg';
 import './style.scss';
 
 const Main: React.FC = () => {
@@ -10,7 +10,7 @@ const Main: React.FC = () => {
       <section className="main-background">
         <div className="main-wrapper">
           <article className="main-title">
-            <Text className="main-text" fontSize="xxxx-large">
+            <Text className="main-text" fontSize="xxxx-large" fontWeight="bold">
               취업의 바다에서{'\n'}길잡이가 되어주다
             </Text>
             <Text

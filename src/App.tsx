@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import { Header, Footer } from '@src/components/molecules';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Landing = lazy(() => import('@src/pages/Landing'));
@@ -9,17 +10,21 @@ const NotFound = lazy(() => import('@src/pages/NotFound'));
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Suspense fallback={null}>
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route path="/quest" component={Quest} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/login" component={Login} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
-    </Router>
+    <>
+      <Router>
+        <Header />
+        <Suspense fallback={null}>
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route path="/quest" component={Quest} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/login" component={Login} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Router>
+      <Footer />
+    </>
   );
 };
 

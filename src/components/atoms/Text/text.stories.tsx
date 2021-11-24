@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Text from '@src/components/atoms/Text';
-import { TextProps } from './Text';
+import Text, { TextProps } from '@src/components/atoms/Text';
 
 export default {
   title: 'Design System/Atoms/Text',

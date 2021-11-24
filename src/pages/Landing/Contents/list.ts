@@ -1,6 +1,6 @@
-import map from '@src/assets/images/map.svg';
+import map from '@src/assets/images/map.png';
 import lighthouse from '@src/assets/images/lighthouse.svg';
-import ships from '@src/assets/images/ships.svg';
+import ships from '@src/assets/images/ships.png';
 import profile from '@src/assets/images/profile.svg';
 
 const list = [

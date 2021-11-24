@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Card from '@src/components/molecules/Card';
-import { CardProps } from './Card';
+import Card, { CardProps } from '@src/components/molecules/Card';
 
 export default {
   title: 'Design System/Molecules/Card',

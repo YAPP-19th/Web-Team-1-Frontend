@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Badge from '@src/components/atoms/Badge';
-import { BadgeProps } from './Badge';
+import Badge, { BadgeProps } from '@src/components/atoms/Badge';
 
 export default {
   title: 'Design System/Atoms/Badge',

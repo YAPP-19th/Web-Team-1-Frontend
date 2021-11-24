@@ -1,6 +1,6 @@
 import React from 'react';
-import Text from '@src/components/atoms/Text';
-import Content from '@src/components/molecules/Content';
+import { Text } from '@src/components/atoms';
+import { Content } from '@src/components/molecules';
 import contentsList from './list';
 import './style.scss';
 
