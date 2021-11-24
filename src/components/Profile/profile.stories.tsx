@@ -15,8 +15,13 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<ProfileProps> = () => <Profile />;
+const Template: Story<ProfileProps> = (args) => <Profile {...args} />;
 
 export const defaultProfile = Template.bind({});
 
-defaultProfile.args = {};
+defaultProfile.args = {
+  nickname: '가나다라마바사',
+  level: 1,
+  job: 'Frontend',
+  selfDescription: '아아아',
+};
