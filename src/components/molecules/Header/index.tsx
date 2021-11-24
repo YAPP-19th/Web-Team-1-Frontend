@@ -1,8 +1,7 @@
 import React from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
-import { Text } from '@src/components/atoms';
+import { Button, Icon, Text } from '@src/components/atoms';
 import logo from '@src/assets/images/logo.svg';
-import Lv1 from '@src/assets/images/Lv1.svg';
 import headerList from './list';
 import './style.scss';
 
@@ -36,15 +35,15 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
         <div className="auth-wrapper">
           <NavLink className="link-button" to={isLogin ? '/profile' : '/login'}>
             {isLogin ? (
-              <button className="profile" type="button">
-                <img src={Lv1} alt="profileIcon" />
-              </button>
+              <Icon size="large" level={1} />
             ) : (
-              <button className="auth" type="button">
-                <Text align="center" fontSize="small" fontColor="white">
-                  로그인 / 회원가입
-                </Text>
-              </button>
+              <Button
+                innerText="로그인 / 회원가입"
+                buttonColor="gil-blue"
+                textColor="white"
+                textSize="small"
+                hasBorder
+              />
             )}
           </NavLink>
         </div>

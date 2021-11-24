@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '@src/components/atoms';
+import { Button, Text } from '@src/components/atoms';
 import logo from '@src/assets/images/logo.svg';
 import './style.scss';
 
@@ -17,11 +17,12 @@ const Login: React.FC = () => {
           >
             길잡에 오신 것을 환영합니다
           </Text>
-          <button className="login-button" type="button">
-            <Text align="center" fontSize="small" fontWeight="bold">
-              카카오로 1초만에 시작하기
-            </Text>
-          </button>
+          <Button
+            innerText="카카오로 1초만에 시작하기"
+            buttonColor="kakao"
+            textColor="main"
+            textSize="medium"
+          />
         </div>
       </div>
       <div className="login-background" />
