@@ -5,9 +5,26 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border-radius: 2.5rem;
   box-shadow: 0rem 0.3rem 1.5rem $gray-4;
-  padding: 1rem;
+  padding: 1.5rem;
+
+  &.background-color {
+    &-main {
+      background-color: $text-main;
+    }
+    &-gray {
+      background-color: $text-gray;
+    }
+    &-gil-blue {
+      background-color: $gil-blue;
+    }
+    &-job-navy {
+      background-color: $job-navy;
+    }
+    &-white {
+      background-color: $white;
+    }
+  }
 }

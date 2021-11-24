@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import cn from 'classnames';
 import './style.scss';
 
-export interface BoxProps {}
+export interface BoxProps {
+  backgroundColor?: string;
+  children: ReactNode;
+}
 
-const Box: React.FC<BoxProps> = ({ children }) => {
-  return <div className="_BOX_">{children}</div>;
+const Box: React.FC<BoxProps> = ({ backgroundColor = 'white', children }) => {
+  return (
+    <div className={cn('_BOX_', `background-color-${backgroundColor}`)}>
+      {children}
+    </div>
+  );
 };
 
 export default Box;
