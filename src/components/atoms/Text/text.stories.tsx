@@ -34,9 +34,6 @@ export default {
     fontWeight: {
       options: ['light', 'regular', 'medium', 'bold'],
     },
-    lineHeight: {
-      options: ['narrow', 'wide'],
-    },
     className: {
       table: {
         disable: true,
@@ -56,5 +53,4 @@ defaultText.args = {
   fontColor: 'main',
   fontSize: 'small',
   fontWeight: 'medium',
-  lineHeight: 'narrow',
 };
