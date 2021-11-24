@@ -7,8 +7,7 @@
   flex-direction: column;
   justify-content: space-around;
   border-radius: 2.5rem;
-  box-shadow: 0rem 0.3rem 1.5rem $gray-4;
-  padding: 1.5rem;
+  box-shadow: $box-shadow;
 
   &.background-color {
     &-main {
