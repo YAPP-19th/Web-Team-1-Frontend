@@ -16,13 +16,14 @@ export default {
 
 const Template: Story<CardProps> = (props) => <Card {...props} />;
 
-export const defaultText = Template.bind({});
+export const questCard = Template.bind({});
 
-defaultText.args = {
+questCard.args = {
   step: '입문',
   category: 'Front-End',
-  name: 'React',
+  name: 'React A to Z',
   exp: 100,
   participant: 123,
   author: '호랑이형님',
+  level: 1,
 };
