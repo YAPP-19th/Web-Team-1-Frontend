@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink, Link } from 'react-router-dom';
 import { Button, Icon, Text } from '@src/components/atoms';
 import logo from '@src/assets/images/logo.svg';
 import headerList from './list';
@@ -20,7 +20,9 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
   return pathname !== '/login' ? (
     <header className="header">
       <div className="logo-wrapper">
-        <img className="logo-image" src={logo} alt="logoImage" />
+        <Link to="/">
+          <img className="logo-image" src={logo} alt="logoImage" />
+        </Link>
       </div>
       <div className="button-container">
         <ul className="button-list">
