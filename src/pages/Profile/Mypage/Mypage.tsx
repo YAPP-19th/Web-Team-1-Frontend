@@ -6,6 +6,7 @@ import Form from '@src/components/atoms/Form';
 import Lv1 from '@src/assets/images/Lv1.svg';
 import Text from '@src/components/atoms/Text';
 import ProgressBar from '@src/components/atoms/ProgressBar';
+import { Icon } from '@src/components/atoms';
 
 export interface MypageProps {
   nickname: string;
@@ -25,7 +26,8 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box backgroundColor="gil-blue">
           <div className="privacy-container">
-            <img className="level-img" src={Lv1} alt="LvImage" />
+            {/* TODO: 더미 데이터 삭제*/}
+            <Icon size="profile" level={3}></Icon>
             <div className="form-wrapper">
               <Form title="닉네임" titleAlign="center" titleColor="white">
                 <Text fontColor="white" align="center">
@@ -84,6 +86,7 @@ const Mypage: React.FC<MypageProps> = ({
             경험치 포인트
           </Text>
           <div className="progress-bar-container">
+            {/* TODO: 더미 데이터 삭제*/}
             <ProgressBar title="Backend" value={60} />
             <ProgressBar title="Frontend" value={12} />
           </div>
