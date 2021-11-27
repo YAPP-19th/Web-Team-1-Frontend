@@ -1,12 +1,13 @@
 import React from 'react';
 import './style.scss';
-import Box from '@src/components/atoms/Box';
-import AchievementBadge from '@src/components/atoms/AchievementBadge';
-import Form from '@src/components/atoms/Form';
-import Lv1 from '@src/assets/images/Lv1.svg';
-import Text from '@src/components/atoms/Text';
-import ProgressBar from '@src/components/atoms/ProgressBar';
-import { Icon } from '@src/components/atoms';
+import {
+  Form,
+  Text,
+  ProgressBar,
+  Icon,
+  AchievementBadge,
+  Box,
+} from '@src/components/atoms';
 
 export interface MypageProps {
   nickname: string;

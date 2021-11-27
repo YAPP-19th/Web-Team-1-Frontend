@@ -3,7 +3,7 @@ import cn from 'classnames';
 import './style.scss';
 
 export interface BoxProps {
-  backgroundColor?: string;
+  backgroundColor?: 'main' | 'white' | 'gil-blue' | 'job-navy' | 'gray';
   children: ReactNode;
 }
 

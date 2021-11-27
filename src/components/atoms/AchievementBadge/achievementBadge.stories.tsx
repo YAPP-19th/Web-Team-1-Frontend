@@ -19,6 +19,12 @@ export default {
     description: {
       description: '업적 설명',
     },
+    size: {
+      options: ['profile', 'main'],
+    },
+    id: {
+      type: 'number',
+    },
   },
 } as Meta;
 
@@ -31,4 +37,6 @@ export const defaultAchievementBadge = Template.bind({});
 defaultAchievementBadge.args = {
   title: '5급 항해사',
   description: '길잡 신규가입 시 달성',
+  size: 'profile',
+  id: 1,
 };
