@@ -67,6 +67,7 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
+            id={1}
             title="5급 조타기"
             description="길잡 신규가입 시 달성"
           />
@@ -75,7 +76,8 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
-            title="5급 조타기"
+            id={2}
+            title="5급 항해사"
             description="길잡 신규가입 시 달성"
           />
         </Box>
