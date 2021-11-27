@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Form from '@src/atoms/Form';
+import Form from '@src/components/atoms/Form';
 import { FormProps } from './Form';
 
 export default {

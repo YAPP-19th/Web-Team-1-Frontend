@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text'
 import './style.scss';
 
 export interface ProgressBarProps {

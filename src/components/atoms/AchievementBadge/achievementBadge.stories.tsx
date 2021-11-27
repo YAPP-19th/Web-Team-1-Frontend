@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import AchievementBadge from '@src/components/AchievementBadge';
+import AchievementBadge from '@src/components/atoms/AchievementBadge';
 import { AchievementBadgeProps } from './AchievementBadge';
 
 export default {

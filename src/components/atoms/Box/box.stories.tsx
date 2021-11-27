@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react';
-import Box from '@src/atoms/Box';
+import Box from '@src/components/atoms/Box';
 import { BoxProps } from './Box';
-import AchievementBadge from '@src/components/AchievementBadge';
+import AchievementBadge from '@src/components/atoms/AchievementBadge';
 
 export default {
   title: 'Atoms/Box',

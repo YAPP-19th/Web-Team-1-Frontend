@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Text from '@src/atoms/Text';
+import Text from '@src/components/atoms/Text';
 import achievement from '@src/assets/images/achievement.svg';
 
 export interface AchievementBadgeProps {
