@@ -1,0 +1,91 @@
+@import '/src/styles/';
+
+._TEXT_ {
+  font-size: $font-size-medium;
+  white-space: pre-wrap;
+
+  &.block {
+    display: block;
+  }
+  &.inline {
+    display: inline;
+  }
+
+  &.text-align {
+    &-start {
+      display: block;
+      text-align: start;
+    }
+    &-center {
+      display: block;
+      text-align: center;
+    }
+    &-end {
+      display: block;
+      text-align: end;
+    }
+  }
+
+  &.font-size {
+    &-xx-small {
+      font-size: $font-size-xx-small;
+    }
+    &-x-small {
+      font-size: $font-size-x-small;
+    }
+    &-small {
+      font-size: $font-size-small;
+    }
+    &-medium {
+      font-size: $font-size-medium;
+    }
+    &-large {
+      font-size: $font-size-large;
+    }
+    &-x-large {
+      font-size: $font-size-x-large;
+    }
+    &-xx-large {
+      font-size: $font-size-xx-large;
+    }
+    &-xxx-large {
+      font-size: $font-size-xxx-large;
+    }
+    &-xxxx-large {
+      font-size: $font-size-xxxx-large;
+    }
+  }
+
+  &.font-color {
+    &-main {
+      color: $text-main;
+    }
+    &-gray {
+      color: $text-gray;
+    }
+    &-gil-blue {
+      color: $gil-blue;
+    }
+    &-job-navy {
+      color: $job-navy;
+    }
+    &-white {
+      color: $white;
+    }
+  }
+
+  &.font-weight {
+    &-light {
+      font-weight: $font-weight-light;
+    }
+    &-regular {
+      font-weight: $font-weight-regular;
+    }
+    &-medium {
+      font-weight: $font-weight-medium;
+    }
+    &-bold {
+      font-weight: $font-weight-bold;
+    }
+  }
+}

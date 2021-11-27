@@ -1,0 +1,44 @@
+@import '/src/styles/';
+
+._CARD_ {
+  width: 27.6rem;
+  height: 28.4rem;
+  border-radius: 2.5rem;
+  box-shadow: $box-shadow;
+  background-color: $white;
+
+  .card-main-info {
+    display: flex;
+    flex-direction: column;
+    height: 8.1rem;
+    background-color: black;
+    border-radius: 2.5rem 2.5rem 0rem 0rem;
+    padding: 1.2rem 2.4rem;
+    background: url('@src/assets/images/bg_quest.png');
+    background-size: 100%;
+
+    > ._TEXT_ {
+      margin-top: 0.6rem;
+      width: 22.5rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .card-more-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.2rem 2.4rem;
+  }
+
+  .card-last-info {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 2.4rem;
+    ._AUTHOR_ {
+      margin-bottom: 2rem;
+    }
+  }
+}

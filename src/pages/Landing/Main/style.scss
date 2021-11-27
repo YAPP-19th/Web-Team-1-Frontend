@@ -1,0 +1,39 @@
+@import '/src/styles/';
+
+.main-background {
+  position: relative;
+  min-width: 1024px;
+  height: 65rem;
+  background-color: $main-gray;
+}
+
+.main-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100rem;
+  height: 100%;
+  margin: auto;
+}
+
+.main-title {
+  width: 48rem;
+  height: 25.2rem;
+  margin-right: 3rem;
+
+  > .main-text {
+    line-height: 5rem;
+  }
+
+  > .sub-text {
+    margin-top: 2rem;
+  }
+}
+
+.image-wrapper {
+  z-index: 9;
+
+  > img {
+    width: 58.2rem;
+    height: 57.6rem;
+  }
+}

@@ -1,0 +1,38 @@
+@import '/src/styles/';
+
+.search {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46rem;
+  height: 4.4rem;
+  background-color: $white;
+  border-radius: 3rem;
+}
+
+.search-input {
+  width: 85%;
+  height: 2.2rem;
+  font-size: $font-size-medium;
+  background: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: $gil-blue;
+  }
+}
+
+.search-button {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  outline: none;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,22 @@
+@import '/src/styles/';
+
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  min-width: 1024px;
+  height: 8.8rem;
+  background-color: $footer-gray;
+}
+
+.text-container {
+  display: flex;
+  width: 100rem;
+  margin: auto;
+
+  > ._TEXT_ {
+    margin-right: 2rem;
+  }
+}

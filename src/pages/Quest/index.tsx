@@ -1,7 +1,14 @@
 import React from 'react';
+import QuestList from './QuestList';
+import RoadmapList from './RoadmapList';
 
-const Quest: React.FC = () => {
-  return <div>Quest</div>;
+const Quest = () => {
+  return (
+    <>
+      <RoadmapList />
+      <QuestList />
+    </>
+  );
 };
 
 export default Quest;
