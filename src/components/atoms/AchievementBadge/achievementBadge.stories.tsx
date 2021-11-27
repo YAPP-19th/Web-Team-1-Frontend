@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react';
 import AchievementBadge from '@src/components/atoms/AchievementBadge';
-import { AchievementBadgeProps } from './AchievementBadge';
+import { AchievementBadgeProps } from '@src/components/atoms/AchievementBadge';
 
 export default {
-  title: 'Components/AchievementBadge',
+  title: 'Design System/Atoms/AchievementBadge',
   component: AchievementBadge,
   parameters: {
     docs: {
