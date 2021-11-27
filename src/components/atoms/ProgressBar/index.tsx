@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from '@src/components/atoms/Text'
+import Text from '@src/components/atoms/Text';
 import './style.scss';
 
 export interface ProgressBarProps {
@@ -8,8 +8,12 @@ export interface ProgressBarProps {
   value: number;
 }
 
+interface DegreeProps {
+  value: number;
+}
+
 const Degree = styled.div`
-  width: ${(props: any) => props.value}%;
+  width: ${({ value }: DegreeProps) => value}%;
   height: 100%;
   background: #0389ff;
   border-radius: 2.5rem;
