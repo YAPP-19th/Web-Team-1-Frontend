@@ -1,0 +1,20 @@
+@import '/src/styles/';
+
+._MENUBAR_ {
+  display: flex;
+  align-items: center;
+  width: 122rem;
+  height: 0.8rem;
+  border-radius: 2.5rem;
+  background-color: $gil-blue;
+  padding: 3rem;
+
+  ._TEXT_ {
+    cursor: pointer;
+    display: inline-block !important;
+    margin: 0rem 2.5rem !important;
+    &:first-child {
+      color: $white;
+    }
+  }
+}

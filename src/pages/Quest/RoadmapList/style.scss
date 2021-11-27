@@ -1,0 +1,31 @@
+.quest-page-roadmap {
+  background-color: white;
+}
+
+.quest-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8rem 0rem 2rem;
+}
+
+.intro-wrapper {
+  display: flex;
+  align-items: stretch;
+  min-width: 110rem;
+  height: 100%;
+  flex-direction: column;
+}
+
+.intro-text {
+  width: 50rem;
+}
+
+.intro-button {
+  align-self: flex-end;
+}
+
+.quest-wrapper {
+  display: flex;
+  justify-content: center;
+}

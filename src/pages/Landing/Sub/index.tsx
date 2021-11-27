@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text } from '@src/components/atoms';
+import { Button, Text } from '@src/components/atoms';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const Sub: React.FC = () => {
   return (
@@ -22,11 +23,15 @@ const Sub: React.FC = () => {
           <Text align="center" fontWeight="bold" fontColor="gil-blue">
             취준 레벨업!
           </Text>
-          <button className="start-button" type="button">
-            <Text align="center" fontWeight="bold" fontColor="white">
-              START
-            </Text>
-          </button>
+          <Link to="/quest">
+            <Button
+              innerText="START"
+              buttonColor="job-navy"
+              textColor="white"
+              textSize="large"
+              hasBorder
+            />
+          </Link>
         </div>
       </div>
     </section>

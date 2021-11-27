@@ -1,0 +1,31 @@
+.quest-page-quest-list {
+  background-color: #f3f3f3;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quest-list-tools {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quest-list-wrapper > * {
+  margin: 5rem 0rem;
+}
+
+.quest-card-wrapper {
+  display: flex;
+  width: 128rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  & > * {
+    margin: 2rem;
+  }
+}
+
+.quest-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
