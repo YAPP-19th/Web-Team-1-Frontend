@@ -1,0 +1,117 @@
+@import '/src/styles/';
+
+._BUTTON_ {
+  border: 0rem;
+  border-radius: 10rem;
+  padding: 0rem 4rem;
+  background-color: white;
+  transition: 0.5s;
+  font-weight: $font-weight-medium;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  &.button-color {
+    &-gil-blue {
+      background-color: $gil-blue;
+      &:hover {
+        border-color: $gil-blue;
+        cursor: pointer;
+        color: $gil-blue;
+      }
+    }
+    &-job-navy {
+      background-color: $job-navy;
+      &:hover {
+        border-color: $job-navy;
+        cursor: pointer;
+        color: $job-navy;
+      }
+    }
+    &-white {
+      background-color: $white;
+      &:hover {
+        border-color: $white;
+        cursor: pointer;
+        color: $white;
+      }
+    }
+    &-kakao {
+      background-color: $kakao;
+      &:hover {
+        border-color: $kakao;
+        cursor: pointer;
+        color: $kakao;
+      }
+    }
+  }
+
+  &.text-color {
+    &-gil-blue {
+      color: $gil-blue;
+      border-color: $gil-blue;
+      &:hover {
+        cursor: pointer;
+        background-color: $gil-blue;
+      }
+    }
+    &-job-navy {
+      color: $job-navy;
+      border-color: $job-navy;
+      &:hover {
+        cursor: pointer;
+        background-color: $job-navy;
+      }
+    }
+    &-white {
+      color: $white;
+      border-color: $white;
+      &:hover {
+        cursor: pointer;
+        background-color: $white;
+      }
+    }
+    &-main {
+      color: $text-main;
+      border-color: $text-main;
+      &:hover {
+        cursor: pointer;
+        background-color: $text-main;
+      }
+    }
+  }
+
+  &.text-size {
+    &-small {
+      font-size: $font-size-small;
+      height: 3rem;
+    }
+    &-medium {
+      font-size: $font-size-large;
+      height: 4.4rem;
+    }
+    &-large {
+      font-size: 3rem;
+      height: 5.2rem;
+    }
+  }
+
+  &.hasBorder {
+    border-style: solid;
+    border-width: 0.1rem;
+  }
+
+  &.fixed {
+    &-medium {
+      padding: 0rem 10.6rem;
+    }
+    &-large {
+      padding: 0rem 13rem;
+    }
+  }
+
+  &.hasShadow {
+    box-shadow: $box-shadow;
+  }
+}

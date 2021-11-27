@@ -1,6 +1,7 @@
 import React from 'react';
+import { Badge, Button, Text } from '@src/components/atoms';
+import { Author } from '@src/components/molecules';
 import './style.scss';
-import { Text, Badge } from '@src/components/atoms';
 
 export interface CardProps {
   step: '입문' | '초급' | '중급' | '고급' | '통달';
@@ -9,6 +10,7 @@ export interface CardProps {
   exp: number;
   participant: number;
   author: string;
+  level: 1 | 2 | 3 | 4 | 5;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -18,17 +20,17 @@ const Card: React.FC<CardProps> = ({
   exp,
   participant,
   author,
+  level,
 }) => {
   return (
     <div className="_CARD_">
-      <div className="_TOP_">
+      <div className="card-main-info">
         <Badge step={step} align="end" />
         <Text
           align="start"
           fontColor="gil-blue"
-          fontSize="large"
+          fontSize="x-large"
           fontWeight="bold"
-          lineHeight="wide"
         >
           {category}
         </Text>
@@ -37,18 +39,16 @@ const Card: React.FC<CardProps> = ({
           fontColor="white"
           fontSize="xx-large"
           fontWeight="bold"
-          lineHeight="wide"
         >
           {name}
         </Text>
       </div>
-      <div className="_MIDDLE_">
+      <div className="card-more-info">
         <Text
           align="start"
           fontColor="main"
           fontSize="large"
-          fontWeight="medium"
-          lineHeight="wide"
+          fontWeight="regular"
         >
           {exp} Exp
         </Text>
@@ -57,22 +57,19 @@ const Card: React.FC<CardProps> = ({
           fontColor="main"
           fontSize="small"
           fontWeight="medium"
-          lineHeight="wide"
         >
           {participant} 참여 중
         </Text>
       </div>
-      <div className="_BOTTOM_">
-        <Text
-          align="start"
-          fontColor="main"
-          fontSize="medium"
-          fontWeight="regular"
-          lineHeight="wide"
-        >
-          {author}
-        </Text>
-        {/* 이 아래로 아이콘과 버튼이 들어갑니다. */}
+      <div className="card-last-info">
+        <Author authorName={author} iconSize="small" iconLevel={level} />
+        <Button
+          innerText="퀘스트 상세정보"
+          buttonColor="white"
+          textColor="gil-blue"
+          textSize="medium"
+          hasBorder
+        />
       </div>
     </div>
   );

@@ -13,7 +13,6 @@ const Sub: React.FC = () => {
             fontSize="large"
             fontWeight="bold"
             fontColor="job-navy"
-            lineHeight="wide"
           >
             취업의 바다를 항해하라!
           </Text>

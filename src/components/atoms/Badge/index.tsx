@@ -12,7 +12,12 @@ export interface BadgeProps {
 const Badge: React.FC<BadgeProps> = ({ className, step, align }) => {
   return (
     <div className={cn('_BADGE_', className, `badge-align-${align}`)}>
-      <Text align="center" fontColor="white" fontSize="small" lineHeight="wide">
+      <Text
+        align="center"
+        fontColor="white"
+        fontSize="small"
+        fontWeight="regular"
+      >
         {step}
       </Text>
     </div>

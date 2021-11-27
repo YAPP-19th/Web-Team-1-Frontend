@@ -13,12 +13,7 @@ const Main: React.FC = () => {
             <Text className="main-text" fontSize="xxxx-large" fontWeight="bold">
               취업의 바다에서{'\n'}길잡이가 되어주다
             </Text>
-            <Text
-              className="sub-text"
-              fontSize="x-large"
-              fontWeight="regular"
-              lineHeight="wide"
-            >
+            <Text className="sub-text" fontSize="x-large" fontWeight="regular">
               취업의 바다에서 길잡이가 되어주다.{'\n'}
               취업의 바다에서 길잡이가 되어주다.{'\n'}
               취업의 바다에서 길잡이가 되어주다.{'\n'}

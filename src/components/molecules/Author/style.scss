@@ -1,0 +1,9 @@
+@import '/src/styles/';
+
+._AUTHOR_ {
+  display: flex;
+  align-items: center;
+  > ._TEXT_ {
+    margin-left: 1rem;
+  }
+}

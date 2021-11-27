@@ -10,7 +10,6 @@ export interface TextProps {
   fontColor?: 'main' | 'gray' | 'white' | 'gil-blue' | 'job-navy';
   fontSize?: FontSize;
   fontWeight?: 'light' | 'regular' | 'medium' | 'bold';
-  lineHeight?: 'narrow' | 'wide';
 }
 
 const Text = forwardRef<HTMLDivElement, TextProps>(
@@ -22,7 +21,6 @@ const Text = forwardRef<HTMLDivElement, TextProps>(
       fontColor = 'main',
       fontSize = 'small',
       fontWeight = 'medium',
-      lineHeight = 'narrow',
     }: TextProps,
     ref: Ref<HTMLDivElement>,
   ) => {
@@ -35,7 +33,6 @@ const Text = forwardRef<HTMLDivElement, TextProps>(
           `font-size-${fontSize}`,
           `font-color-${fontColor}`,
           `font-weight-${fontWeight}`,
-          `line-height-${lineHeight}`,
         )}
         ref={ref}
       >
