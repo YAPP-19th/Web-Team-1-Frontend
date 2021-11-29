@@ -9,3 +9,6 @@ export { default as Box } from './Box';
 export { default as Form } from './Form';
 export { default as ProgressBar } from './ProgressBar';
 export { default as AchievementBadge } from './AchievementBadge';
+export { default as List } from './List';
+export { default as Board } from './Board';
+export { default as Input } from './Input';
