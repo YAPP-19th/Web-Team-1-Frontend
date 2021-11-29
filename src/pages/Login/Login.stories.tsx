@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Story, Meta } from '@storybook/react';
 import Login from '@src/pages/Login';
 
@@ -11,7 +12,13 @@ export default {
       },
     },
   },
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <Router>
+        <Story />
+      </Router>
+    ),
+  ]
 } as Meta;
 
 const Template: Story = (args) => <Login {...args} />;

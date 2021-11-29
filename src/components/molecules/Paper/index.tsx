@@ -14,10 +14,20 @@ const Paper: React.FC<PaperProps> = ({ category, name, level, author }) => {
   return (
     <div className="_PAPER_">
       <div className="paper-contents">
-        <Text fontColor="gil-blue" fontSize="large" fontWeight="medium">
+        <Text 
+          className="paper-category"
+          fontColor="gil-blue"
+          fontSize="large"
+          fontWeight="medium"
+        >
           {category}
         </Text>
-        <Text fontColor="main" fontSize="xx-large" fontWeight="bold">
+        <Text
+          className="paper-name"
+          fontColor="main"
+          fontSize="xx-large"
+          fontWeight="bold"
+        >
           {name}
         </Text>
         <Author authorName={author} iconSize="small" iconLevel={level} />
