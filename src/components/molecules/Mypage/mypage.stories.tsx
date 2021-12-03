@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react';
 import Mypage, { MypageProps } from '@src/components/molecules/Mypage';
 
 export default {
-  title: 'Pages/Profile/Mypage',
+  title: 'Design System/Molecules/Mypage',
   component: Mypage,
   parameters: {
     docs: {
