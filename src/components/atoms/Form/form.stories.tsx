@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Form from '@src/components/atoms/Form';
-import { FormProps } from '@src/components/atoms/Form';
+import Form, { FormProps } from '@src/components/atoms/Form';
 
 export default {
   title: 'Design System/Atoms/Form',

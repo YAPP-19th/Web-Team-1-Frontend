@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Text from '@src/components/atoms/Text';
-import AchievementIcon from '../AchievementIcon';
+import { AchievementIcon, Text } from '@src/components/atoms';
 
 export interface AchievementBadgeProps {
   id?: number;

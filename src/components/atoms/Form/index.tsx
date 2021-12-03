@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import cn from 'classnames';
-import Text from '../Text';
 import './style.scss';
+import { Text } from '@src/components/atoms';
 
 export interface FormProps {
   title: string;
