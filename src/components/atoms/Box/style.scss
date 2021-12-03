@@ -1,0 +1,30 @@
+@import '/src/styles/';
+
+._BOX_ {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 2.5rem;
+  box-shadow: $box-shadow;
+  padding: 1rem;
+
+  &.background-color {
+    &-main {
+      background-color: $text-main;
+    }
+    &-gray {
+      background-color: $text-gray;
+    }
+    &-gil-blue {
+      background-color: $gil-blue;
+    }
+    &-job-navy {
+      background-color: $job-navy;
+    }
+    &-white {
+      background-color: $white;
+    }
+  }
+}

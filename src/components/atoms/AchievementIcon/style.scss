@@ -1,0 +1,23 @@
+@import '/src/styles/';
+
+._ACHIVEMENT_ICON_ {
+  &.icon-size {
+    &-profile {
+      width: 12rem;
+      height: 12rem;
+    }
+    &-main {
+      width: 14.4rem;
+      height: 14.4rem;
+    }
+  }
+
+  &.icon-id {
+    &-1 {
+      background: url('@src/assets/images/achievement_1.svg');
+    }
+    &-2 {
+      background: url('@src/assets/images/achievement_2.svg');
+    }
+  }
+}

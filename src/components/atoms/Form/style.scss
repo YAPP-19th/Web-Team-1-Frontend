@@ -1,0 +1,19 @@
+@import '/src/styles/';
+
+._FORM_ {
+  display: flex;
+  width: 100%;
+
+  &.flex-direction {
+    &-row {
+      flex-direction: row;
+      ._ITEM_ {
+        flex-basis: 10rem;
+        flex-grow: 1;
+      }
+    }
+    &-column {
+      flex-direction: column;
+    }
+  }
+}
