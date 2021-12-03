@@ -1,7 +1,7 @@
 export { default as Author } from './Author';
 export { default as Card } from './Card';
 export { default as Content } from './Content';
-import { default as Mypage } from './Mypage';
+export { default as Mypage } from './Mypage';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
 export { default as Paper } from './Paper';

@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Text from '@src/components/atoms/Text';
-import AchievementIcon from '../AchievementIcon';
+import { AchievementIcon, Text } from '@src/components/atoms';
 
 export interface AchievementBadgeProps {
   id?: number;
@@ -14,7 +13,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   id = 1,
   size = 'profile',
   title,
-  description,
+  description = '',
 }) => {
   return (
     <div className="_ACHIEVEMENT_BADGE_">

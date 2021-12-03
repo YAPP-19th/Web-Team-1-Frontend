@@ -27,8 +27,8 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box backgroundColor="gil-blue">
           <div className="privacy-container">
-            {/* TODO: 더미 데이터 삭제*/}
-            <Icon size="profile" level={3}></Icon>
+            {/* TODO: 더미 데이터 삭제 */}
+            <Icon size="profile" level={3} />
             <div className="form-wrapper">
               <Form title="닉네임" titleAlign="center" titleColor="white">
                 <Text fontColor="white" align="center">
@@ -61,7 +61,7 @@ const Mypage: React.FC<MypageProps> = ({
               className="self-description-textarea"
               rows={3}
               defaultValue={selfDescription}
-            ></textarea>
+            />
           </Form>
         </Box>
       </div>
@@ -89,7 +89,7 @@ const Mypage: React.FC<MypageProps> = ({
             경험치 포인트
           </Text>
           <div className="progress-bar-container">
-            {/* TODO: 더미 데이터 삭제*/}
+            {/* TODO: 더미 데이터 삭제 */}
             <ProgressBar title="Backend" value={60} />
             <ProgressBar title="Frontend" value={12} />
           </div>

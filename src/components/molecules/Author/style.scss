@@ -3,7 +3,9 @@
 ._AUTHOR_ {
   display: flex;
   align-items: center;
+
   > ._TEXT_ {
+    width: 14rem;
     margin-left: 1rem;
   }
 }

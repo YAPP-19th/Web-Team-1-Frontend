@@ -8,12 +8,23 @@
 
   .paper-contents {
     width: 20rem;
+
     > ._TEXT_ {
       margin-bottom: 1rem;
+    }
+
+    .paper-category {
+      height: 2rem;
+      overflow: hidden;
+    }
+
+    .paper-name {
+      height: 10rem;
+      overflow: hidden;
     }
   }
 
   ._AUTHOR_ {
-    margin-top: 7rem;
+    margin-top: 2rem;
   }
 }

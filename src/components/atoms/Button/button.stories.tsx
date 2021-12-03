@@ -81,11 +81,11 @@ questInfoButton.args = {
   hasFixedWidth: true,
 };
 kakaoButton.args = {
-  innerText: '카카오로 1초만에 시작하기',
+  innerText: '카카오로 1초만에 시작',
   buttonColor: 'kakao',
   textColor: 'main',
   textSize: 'medium',
   hasBorder: false,
   hasShadow: false,
-  hasFixedWidth: true,
+  hasFixedWidth: false,
 };

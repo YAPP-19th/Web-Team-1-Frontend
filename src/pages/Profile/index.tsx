@@ -1,5 +1,5 @@
 import React from 'react';
-import Mypage from '../../components/molecules/Mypage';
+import { Mypage } from '@src/components/molecules';
 import './style.scss';
 
 const Profile: React.FC = () => {
