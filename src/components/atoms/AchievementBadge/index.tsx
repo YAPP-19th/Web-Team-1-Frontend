@@ -13,7 +13,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   id = 1,
   size = 'profile',
   title,
-  description,
+  description = '',
 }) => {
   return (
     <div className="_ACHIEVEMENT_BADGE_">
