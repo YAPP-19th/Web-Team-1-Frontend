@@ -1,32 +1,17 @@
-import React, { useState, useCallback } from 'react';
-import { Text, Board, List, Input } from '@src/components/atoms';
-import './style.scss';
+import React from 'react';
+import { Text, List, Button } from '@src/components/atoms';
+import { questCreate } from '@src/pages/QuestCreate/quest_data.json';
 import lighthouse from '@src/assets/images/lighthouse.svg';
-import questData from './quest_data.json';
+import QuestMain from './QuestMain';
+import QuestDetail from './QuestDetail';
+import QuestSub from './QuestSub';
+import './style.scss';
 
 const QuestCreate: React.FC = () => {
-  const {
-    questCreate,
-    questTitle,
-    questDetail,
-    questSub,
-    questThumbnail,
-    questHashtag,
-  } = questData;
-  const [quest, setQuest] = useState({
-    title: '',
-  });
-  const handleQuest = useCallback(
-    (e) => {
-      setQuest({ ...quest, [e.target.value.name]: e.target.value });
-    },
-    [quest],
-  );
-
   return (
     <div className="quest-background">
       <section className="quest-wrapper">
-        <div className="quest-title-wrapper">
+        <article className="quest-title-wrapper">
           <div className="title">
             <Text className="title-text" fontWeight="bold">
               퀘스트 생성
@@ -34,27 +19,19 @@ const QuestCreate: React.FC = () => {
             <List listData={questCreate.list} />
           </div>
           <img src={lighthouse} alt="lighthouse" />
-        </div>
-        <Board height="64.2rem">
-          <div className="quest-title">
-            <Text fontWeight="bold" fontSize="large">
-              {questTitle.main}
-              <Text fontWeight="bold" fontSize="large" fontColor="gil-blue">
-                *
-              </Text>
-            </Text>
-            <Text fontColor="gil-blue">{questTitle.sub}</Text>
-            <Input hasCount handleChange={handleQuest} />
-          </div>
-          <div className="quest-detail">
-            <Text fontWeight="bold" fontSize="large">
-              {questDetail.main}
-            </Text>
-            <Text fontColor="gil-blue">{questDetail.sub}</Text>
-          </div>
-        </Board>
-        <Board height="33.8rem" />
-        <Board height="46.5rem" />
+        </article>
+        <QuestMain />
+        <QuestSub />
+        <QuestDetail />
+        <article className="quest-button-wrapper">
+          <Button
+            innerText="등록"
+            buttonColor="white"
+            textColor="gil-blue"
+            textSize="medium"
+            hasShadow
+          />
+        </article>
       </section>
     </div>
   );
