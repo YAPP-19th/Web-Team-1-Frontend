@@ -13,7 +13,7 @@ export default {
   },
   argTypes: {
     placeholder: {
-      options: '',
+      type: 'string',
     },
     placeholderColor: {
       options: ['gray', 'blue'],

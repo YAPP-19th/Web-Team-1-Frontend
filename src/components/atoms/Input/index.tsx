@@ -9,8 +9,7 @@ export interface InputProps {
   inputHeight?: 'narrow' | 'wide';
   placeholder?: string;
   placeholderColor?: 'gray' | 'blue';
-  handleChange: (value: string) => void;
-  onSubmit?: () => void;
+  onSubmit?: (value: string | number) => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,40 +18,34 @@ const Input: React.FC<InputProps> = ({
   inputHeight = 'narrow',
   placeholder,
   placeholderColor = 'gray',
-  handleChange,
   onSubmit,
 }) => {
-  const [count, setCount] = useState(0);
-  const handleCount = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value;
-      setCount(inputValue.length);
-      handleChange(inputValue);
-    },
-    [handleChange],
-  );
+  const [input, setInput] = useState('');
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setInput(inputValue);
+  }, []);
+
+  // Enter 키 인식
   const handleEnter = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter') {
-        if (onSubmit) onSubmit();
+        setInput('');
+        if (onSubmit) onSubmit(input);
       }
     },
-    [onSubmit],
+    [input, onSubmit],
   );
 
   return (
-    <div
-      className={cn(
-        'input-container',
-        className,
-        `input-height-${inputHeight}`,
-      )}
-    >
+    <div className={cn('_INPUT_', className, `input-height-${inputHeight}`)}>
       <input
-        className={cn('input', `input-placeholder-${placeholderColor}`)}
+        className={`input-placeholder-${placeholderColor}`}
         type="text"
+        value={input}
         placeholder={placeholder}
-        onChange={handleCount}
+        onChange={handleChange}
         onKeyPress={handleEnter}
         maxLength={hasCount ? 20 : undefined}
       />
@@ -63,7 +56,7 @@ const Input: React.FC<InputProps> = ({
           fontColor="gray"
           fontWeight="regular"
         >
-          {count} / 20
+          {input.length} / 20
         </Text>
       )}
     </div>

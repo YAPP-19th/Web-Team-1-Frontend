@@ -1,6 +1,6 @@
 @import '/src/styles/';
 
-.input-container {
+._INPUT_ {
   position: relative;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
     }
   }
 
-  > .input {
+  input {
     width: 100%;
     font-size: $font-size-small;
     border: none;
@@ -42,7 +42,7 @@
     }
   }
 
-  > .input-count {
+  .input-count {
     width: 4.5rem;
     color: $text-gray;
   }
