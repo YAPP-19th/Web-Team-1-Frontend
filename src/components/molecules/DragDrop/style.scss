@@ -1,0 +1,58 @@
+@import '/src/styles/';
+
+._DRAGDROP_ {
+  width: 70%;
+
+  .subquest-list {
+    list-style: none;
+    overflow: scroll;
+    height: 22rem;
+    padding: 0;
+  }
+
+  .subquest-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .subquest {
+      display: flex;
+      align-items: center;
+      width: 92%;
+      height: 3.6rem;
+      padding: 0rem 1rem;
+      border: 1px solid $line-gray;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+
+      > ._TEXT_ {
+        margin-left: 1rem;
+      }
+
+      &:hover {
+        background-color: $main-gray;
+      }
+    }
+
+    .delete-button {
+      all: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 1.4rem;
+      margin-left: 1rem;
+      background-color: $gil-blue;
+
+      > span {
+        display: inline-block;
+        width: 2.2rem;
+        height: 0.3rem;
+        border-radius: 1rem;
+        margin: 0;
+        background-color: $white;
+      }
+    }
+  }
+}
