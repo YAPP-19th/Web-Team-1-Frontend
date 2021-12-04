@@ -42,13 +42,7 @@ export default {
   },
 } as Meta;
 
-const MockFunction = () => {
-  console.log('Mock Function');
-};
-
-const Template: Story<InputProps> = (args) => (
-  <Input {...args} handleChange={MockFunction} />
-);
+const Template: Story<InputProps> = (args) => <Input {...args} />;
 
 export const defaultInput = Template.bind({});
 defaultInput.args = {};
