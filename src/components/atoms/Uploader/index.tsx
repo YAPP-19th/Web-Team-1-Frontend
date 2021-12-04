@@ -24,7 +24,7 @@ const Uploader: React.FC = () => {
   );
 
   return (
-    <div className="uploader-wrapper">
+    <div className="_UPLOADER_">
       {loadImage ? (
         <div>loading...</div>
       ) : (
