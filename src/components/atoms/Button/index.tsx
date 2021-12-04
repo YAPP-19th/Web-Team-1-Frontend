@@ -4,8 +4,8 @@ import './style.scss';
 
 export interface ButtonProps {
   innerText: string;
-  buttonColor: 'gil-blue' | 'job-navy' | 'white' | 'kakao';
-  textColor: 'main' | 'white' | 'gil-blue' | 'job-navy';
+  buttonColor: 'gil-blue' | 'job-navy' | 'main-gray' | 'white' | 'kakao';
+  textColor: 'main' | 'white' | 'gil-blue' | 'job-navy' | 'dark-gray';
   textSize?: 'small' | 'medium' | 'large';
   hasBorder?: boolean;
   hasShadow?: boolean;

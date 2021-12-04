@@ -30,6 +30,14 @@
         color: $job-navy;
       }
     }
+    &-main-gray {
+      background-color: $main-gray;
+      &:hover {
+        border-color: $main-gray;
+        cursor: pointer;
+        color: $main-gray;
+      }
+    }
     &-white {
       background-color: $white;
       &:hover {
@@ -63,6 +71,14 @@
       &:hover {
         cursor: pointer;
         background-color: $job-navy;
+      }
+    }
+    &-dark-gray {
+      color: $line-dark-gray;
+      border-color: $line-dark-gray;
+      &:hover {
+        cursor: pointer;
+        background-color: $line-dark-gray;
       }
     }
     &-white {
