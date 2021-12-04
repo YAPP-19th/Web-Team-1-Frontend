@@ -1,0 +1,26 @@
+@import '/src/styles/';
+
+.uploader-wrapper {
+  .preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27.6rem;
+    height: 10.4rem;
+    background-color: $white;
+    border: 0.1rem solid $line-gray;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.5rem;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
