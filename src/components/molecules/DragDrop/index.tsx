@@ -1,7 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { Input, Text } from '@src/components/atoms';
 import './style.scss';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from 'react-beautiful-dnd';
 
 /* 추후 redux 연결시 데이터 연결 구조를 바꿔야 합니다.
 재는 로컬 state를 사용했습니다. */
@@ -14,7 +19,7 @@ const DragDrop: React.FC = () => {
   ]);
 
   const handleChange = useCallback(
-    (result: any) => {
+    (result: DropResult) => {
       // 아이템이 가진 인덱스를 계산해서 새로운 배열을 생성합니다.
       if (!result.destination) return;
       const newSubquests = [...subquests];
@@ -38,7 +43,7 @@ const DragDrop: React.FC = () => {
   );
 
   const handleDelete = useCallback(
-    (index) => {
+    (index: number) => {
       const restSubquests = [...subquests];
       restSubquests.splice(index, 1);
       setSubQuest(restSubquests);

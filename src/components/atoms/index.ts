@@ -13,6 +13,6 @@ export { default as ProgressBar } from './ProgressBar';
 export { default as List } from './List';
 export { default as Board } from './Board';
 export { default as Input } from './Input';
-export { default as DropDown } from './DropDown';
+export { default as Dropdown } from './Dropdown';
 export { default as Uploader } from './Uploader';
 export { default as Editor } from './Editor';

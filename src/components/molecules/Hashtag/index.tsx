@@ -24,7 +24,7 @@ const Hashtag: React.FC = () => {
         placeholder="해시 태그를 입력하세요"
         onSubmit={onSubmit}
       />
-      <article className="hashtag_container">
+      <div className="hashtag_container">
         {hashtags.map((hashtag) => (
           <Button
             key={hashtag}
@@ -34,7 +34,7 @@ const Hashtag: React.FC = () => {
             textSize="small"
           />
         ))}
-      </article>
+      </div>
     </div>
   );
 };

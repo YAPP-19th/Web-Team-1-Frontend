@@ -9,7 +9,7 @@ import {
 
 const QuestDetail: React.FC = () => {
   return (
-    <Board height="46.5rem">
+    <Board height={46.5}>
       <article className="quest-thumbnail">
         <Text fontWeight="bold" fontSize="large">
           {questThumbnail.main}
