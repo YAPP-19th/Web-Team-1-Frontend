@@ -20,21 +20,25 @@
   list-style: none;
 
   .upper-wrapper {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    > ._TEXT_ {
+      width: 100%;
+    }
   }
 
   .lower-wrapper {
-    text-align: center;
+    display: flex;
+    align-items: flex-end;
 
     > .number-text {
-      display: inline-block;
       font-size: 8rem;
-      line-height: 8rem;
+      line-height: 6rem;
+      width: 70%;
     }
 
     > .unit-text {
-      display: inline-block;
       line-height: 3.6rem;
+      width: 30%;
     }
   }
 }
