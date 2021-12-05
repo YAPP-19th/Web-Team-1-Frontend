@@ -5,12 +5,12 @@ import './style.scss';
 
 /*  결과값 저정에 redux hooks을 이용한다면 추후 인터페이스를 바꿔야 합니다. */
 
-export interface DropDownProps {
+export interface DropdownProps {
   placeholder: string;
   selected?: string; // 드롭다운 선택된 결과 값
 }
 
-const DropDown: React.FC<DropDownProps> = ({ placeholder, selected }) => {
+const Dropdown: React.FC<DropdownProps> = ({ placeholder, selected }) => {
   const [isActivate, setIsActivate] = useState(false);
 
   const handleActivate = useCallback(() => {
@@ -50,4 +50,4 @@ const DropDown: React.FC<DropDownProps> = ({ placeholder, selected }) => {
   );
 };
 
-export default DropDown;
+export default Dropdown;

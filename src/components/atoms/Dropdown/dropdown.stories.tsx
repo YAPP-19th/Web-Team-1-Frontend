@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react';
-import DropDown, { DropDownProps } from '@src/components/atoms/DropDown';
+import Dropdown, { DropdownProps } from '@src/components/atoms/Dropdown';
 
 export default {
-  title: 'Design System/Atoms/DropDown',
-  component: DropDown,
+  title: 'Design System/Atoms/Dropdown',
+  component: Dropdown,
   parameters: {
     docs: {
       description: {
@@ -26,9 +26,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story<DropDownProps> = (args) => <DropDown {...args} />;
+const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 
-export const defaultDropDown = Template.bind({});
-defaultDropDown.args = {
+export const defaultDropdown = Template.bind({});
+defaultDropdown.args = {
   placeholder: '난이도 설정',
 };
