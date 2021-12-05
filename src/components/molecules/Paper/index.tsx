@@ -14,7 +14,7 @@ const Paper: React.FC<PaperProps> = ({ category, name, level, author }) => {
   return (
     <div className="_PAPER_">
       <div className="paper-contents">
-        <Text 
+        <Text
           className="paper-category"
           fontColor="gil-blue"
           fontSize="large"

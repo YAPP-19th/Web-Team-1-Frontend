@@ -8,15 +8,20 @@
 .quest-list-tools {
   display: flex;
   justify-content: space-between;
+  min-width: 120rem;
 }
 
-.quest-list-wrapper > * {
+.quest-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
   margin: 5rem 0rem;
 }
 
 .quest-card-wrapper {
   display: flex;
-  width: 128rem;
+  width: 127rem;
   flex-wrap: wrap;
   justify-content: space-around;
   & > * {
