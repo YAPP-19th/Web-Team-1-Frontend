@@ -38,6 +38,7 @@ const Count: React.FC = () => {
                 className="number-text"
                 fontWeight="light"
                 fontColor="white"
+                align="end"
                 ref={countHooks[index]}
               >
                 0
