@@ -7,14 +7,10 @@ import 'react-quill/dist/quill.snow.css';
 Quill.register('modules/ImageResize', ImageResize);
 
 export interface EditorProps {
-  width?: string;
-  height?: string;
+  height: number;
 }
 
-const Editor: React.FC<EditorProps> = ({
-  width = '100%',
-  height = '30rem',
-}) => {
+const Editor: React.FC<EditorProps> = ({ height }) => {
   const [contents, setContents] = useState('');
   const imageHandler = useCallback(() => {
     console.log('서버에 이미지 url로 저장');
@@ -48,7 +44,7 @@ const Editor: React.FC<EditorProps> = ({
 
   return (
     <ReactQuill
-      style={{ height: `${height}`, width: `${width}` }}
+      style={{ height: `${height}rem` }}
       theme="snow"
       modules={modules}
       value={contents}

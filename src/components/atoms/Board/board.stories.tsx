@@ -17,6 +17,10 @@ export default {
         disable: true,
       },
     },
+    height: {
+      description: 'rem 단위로 받습니다.',
+      type: 'number',
+    },
   },
 } as Meta;
 
@@ -24,6 +28,5 @@ const Template: Story<BoardProps> = (args) => <Board {...args} />;
 
 export const defaultBoard = Template.bind({});
 defaultBoard.args = {
-  width: '30rem',
-  height: '20rem',
+  height: 30,
 };

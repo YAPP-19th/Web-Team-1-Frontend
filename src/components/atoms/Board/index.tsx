@@ -4,18 +4,12 @@ import StyledBoard from './style';
 export interface BoardProps {
   children?: ReactNode;
   className?: string;
-  width?: string;
-  height?: string;
+  height: number;
 }
 
-const Board: React.FC<BoardProps> = ({
-  className,
-  children,
-  width = '100%',
-  height = '100%',
-}) => {
+const Board: React.FC<BoardProps> = ({ className, children, height }) => {
   return (
-    <StyledBoard className={className} width={width} height={height}>
+    <StyledBoard className={className} height={height}>
       {children}
     </StyledBoard>
   );

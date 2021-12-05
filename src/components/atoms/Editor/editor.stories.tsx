@@ -12,11 +12,9 @@ export default {
     },
   },
   argTypes: {
-    width: {
-      type: 'string',
-    },
     height: {
-      type: 'string',
+      description: 'rem 단위로 받습니다.',
+      type: 'number',
     },
   },
 } as Meta;
@@ -24,4 +22,6 @@ export default {
 const Template: Story<EditorProps> = (args) => <Editor {...args} />;
 
 export const defaultEditor = Template.bind({});
-defaultEditor.args = {};
+defaultEditor.args = {
+  height: 30,
+};
