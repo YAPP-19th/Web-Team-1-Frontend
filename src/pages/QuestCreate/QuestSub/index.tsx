@@ -6,7 +6,7 @@ import './style.scss';
 
 const QuestSub: React.FC = () => {
   return (
-    <Board height="45rem">
+    <Board height={45}>
       <article className="quest-sub">
         <Text fontWeight="bold" fontSize="large">
           {questSub.main} <span className="blue-star">*</span>
