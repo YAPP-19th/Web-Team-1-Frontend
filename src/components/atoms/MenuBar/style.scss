@@ -8,11 +8,10 @@
   border-radius: 2.5rem;
   background-color: $gil-blue;
   padding: 3rem;
+  gap: 2.5rem;
 
   ._TEXT_ {
     cursor: pointer;
-    display: inline-block !important;
-    margin: 0rem 2.5rem !important;
     &:first-child {
       color: $white;
     }
