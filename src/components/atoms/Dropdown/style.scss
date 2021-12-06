@@ -1,0 +1,53 @@
+@import '/src/styles/';
+
+._DROPDOWN_ {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 15rem;
+  height: 3.5rem;
+  border: 0.1rem solid $line-gray;
+  border-radius: 2.5rem;
+  box-sizing: border-box;
+
+  ._TEXT_ {
+    color: $line-dark-gray;
+  }
+
+  .drop-down-menu {
+    all: unset;
+    width: 13rem;
+    cursor: pointer;
+
+    > .drop-down-arrow {
+      position: absolute;
+      width: 0.7rem;
+      height: 0.7rem;
+      top: 1rem;
+      right: 1.2rem;
+      border-bottom: 0.1rem solid $line-dark-gray;
+      border-right: 0.1rem solid $line-dark-gray;
+      transform: rotate(45deg);
+    }
+  }
+
+  .drop-down-wrapper {
+    position: absolute;
+    width: 12rem;
+    top: 100%;
+    background-color: $white;
+    z-index: 10;
+    border: 0.1rem solid $line-gray;
+  }
+
+  .drop-down-item {
+    all: unset;
+    width: 100%;
+    height: 3rem;
+    cursor: pointer;
+
+    :hover {
+      color: $gil-blue;
+    }
+  }
+}

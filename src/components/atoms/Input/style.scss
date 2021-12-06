@@ -1,0 +1,49 @@
+@import '/src/styles/';
+
+._INPUT_ {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0rem 1rem;
+  border: 1px solid $line-gray;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+
+  &.input-height {
+    &-narrow {
+      height: 3.6rem;
+    }
+    &-wide {
+      height: 4rem;
+    }
+  }
+
+  input {
+    width: 100%;
+    font-size: $font-size-small;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.input-placeholder {
+      &-gray {
+        &::placeholder {
+          color: $line-gray;
+        }
+      }
+      &-blue {
+        &::placeholder {
+          color: $gil-blue;
+        }
+      }
+    }
+  }
+
+  .input-count {
+    width: 4.5rem;
+    color: $text-gray;
+  }
+}

@@ -5,3 +5,5 @@ export { default as Mypage } from './Mypage';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
 export { default as Paper } from './Paper';
+export { default as Hashtag } from './Hashtag';
+export { default as DragDrop } from './DragDrop';

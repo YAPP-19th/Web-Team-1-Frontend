@@ -1,0 +1,52 @@
+@import '/src/styles/';
+
+.quest-background {
+  min-width: 1024px;
+  background-color: $main-gray;
+}
+
+.quest-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rem;
+  height: 100%;
+  margin: auto;
+
+  .blue-star {
+    color: $gil-blue;
+  }
+
+  .quest-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 8.2rem;
+    margin-bottom: 2.5rem;
+
+    > img {
+      width: 16.4rem;
+      height: 12rem;
+    }
+
+    .title-text {
+      font-size: 2.8rem;
+      line-height: 3rem;
+    }
+  }
+
+  .quest-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 8rem;
+    padding-bottom: 2rem;
+
+    ._BUTTON_ {
+      // width: 7.9rem;
+      height: 4.2rem;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.quest-title {
+  > * {
+    margin-bottom: 1.5rem;
+  }
+
+  > .contents {
+    display: flex;
+
+    > ._INPUT_ {
+      width: 50%;
+    }
+    > ._DROPDOWN_ {
+      margin-left: 1.5rem;
+    }
+  }
+  margin-bottom: 3rem;
+}
+
+.quest-editor {
+  > * {
+    margin-bottom: 1.5rem;
+  }
+}

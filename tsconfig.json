@@ -3,6 +3,7 @@
     "target": "es6",
     "jsx": "react-jsx",
     "module": "esnext",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "allowJs": true,
@@ -18,7 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "noImplicitAny": true,
+    "noImplicitAny": true
   },
   "exclude": ["./node_modules"],
   "include": ["./src", "./@types"]

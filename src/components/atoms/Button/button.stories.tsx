@@ -16,10 +16,10 @@ export default {
       type: 'string',
     },
     buttonColor: {
-      options: ['gil-blue', 'job-navy', 'white', 'kakao'],
+      options: ['gil-blue', 'job-navy', 'main-gray', 'white', 'kakao'],
     },
     textColor: {
-      options: ['main', 'white', 'gil-blue', 'job-navy'],
+      options: ['main', 'white', 'gil-blue', 'job-navy', 'dark-gray'],
     },
     textSize: {
       options: ['small', 'medium', 'large'],
@@ -43,6 +43,7 @@ export const startButton = Template.bind({});
 export const createQuestButton = Template.bind({});
 export const questInfoButton = Template.bind({});
 export const kakaoButton = Template.bind({});
+export const hashtagButton = Template.bind({});
 
 loginButton.args = {
   innerText: '로그인 / 회원가입',
@@ -88,4 +89,13 @@ kakaoButton.args = {
   hasBorder: false,
   hasShadow: false,
   hasFixedWidth: false,
+};
+hashtagButton.args = {
+  innerText: '# YAPP',
+  buttonColor: 'main-gray',
+  textColor: 'dark-gray',
+  textSize: 'medium',
+  hasBorder: false,
+  hasShadow: false,
+  hasFixedWidth: true,
 };

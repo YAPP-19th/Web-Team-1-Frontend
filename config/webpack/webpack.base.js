@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: DIST_PATH,
     filename: '[name].js',
+    publicPath: '/',
     clean: true,
   },
   module: {
@@ -23,8 +24,8 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|svg|gif)$/,
-        type: 'asset/resource'
-      }
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
