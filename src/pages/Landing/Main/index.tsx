@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import lottie from 'lottie-web';
 import { Text } from '@src/components/atoms';
 import Wave from '@src/pages/Landing/Wave';
-import character from '@src/assets/images/character.svg';
+import character from './character.json';
 import './style.scss';
 
 const Main: React.FC = () => {
+  const spanElement = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: spanElement.current as Element,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: character,
+    });
+  }, []);
+
   return (
     <>
       <section className="main-background">
@@ -21,7 +34,7 @@ const Main: React.FC = () => {
             </Text>
           </article>
           <article className="image-wrapper">
-            <img src={character} alt="ship" />
+            <span ref={spanElement} />
           </article>
         </div>
         <Wave />
