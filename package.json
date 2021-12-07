@@ -83,6 +83,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "classnames": "^2.3.1",
+    "lottie-web": "^5.8.1",
     "quill-image-resize": "^3.0.9",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
