@@ -1,8 +1,54 @@
+@import '/src/styles/';
+
 .profile {
   display: flex;
   width: 100%;
-  min-width: 1024px;
-  height: calc(100vh - 8.8rem);
-  min-height: 720px;
+  min-width: 102.4rem;
+  // height: calc(100vh - 8.8rem);
+  min-height: 72rem;
   justify-content: center;
+  align-items: center;
+  background: linear-gradient($job-navy 50%, $gil-blue 50%);
+
+  .profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 102rem;
+    height: 105.2rem;
+    background: url('@src/assets/images/profile_box.svg');
+    margin: 5rem 0;
+
+    .profile-tab-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 15%;
+    }
+    .profile-content {
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-link-button {
+      cursor: pointer;
+      text-decoration: none;
+      font-size: x-large;
+      font-weight: $font-weight-regular;
+      text-align: center;
+      width: 15rem;
+      color: $text-main;
+      &:hover {
+        color: $gil-blue;
+      }
+    }
+
+    .profile-link-button:not(:last-child) {
+      border-right: 0.4rem solid $gray-2;
+    }
+
+    .profile-link-button-active {
+      color: $gil-blue;
+    }
+  }
 }
