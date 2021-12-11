@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import lottie from 'lottie-web';
 import { Text } from '@src/components/atoms';
 import icon from '@src/assets/images/icon.svg';
 import cn from 'classnames';
@@ -7,7 +8,7 @@ import './style.scss';
 interface ContentProps {
   main: string;
   sub: string;
-  image: string;
+  image: unknown;
   direction: 'row' | 'reverse';
 }
 
@@ -17,10 +18,22 @@ const Content: React.FC<ContentProps> = ({
   image,
   direction = 'row',
 }) => {
+  const spanElement = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: spanElement.current as Element,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: image,
+    });
+  }, [image]);
+
   return (
     <article className={cn('content', `direction-${direction}`)}>
       <div className="content-image">
-        <img src={image} alt="map" />
+        <span ref={spanElement} />
       </div>
       <div className="content-description">
         <div className="icon">
