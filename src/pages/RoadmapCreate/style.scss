@@ -1,0 +1,59 @@
+@import '/src/styles/';
+
+.roadmap-background {
+  min-width: 1024px;
+  background-color: $main-gray;
+}
+
+.roadmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rem;
+  height: 100%;
+  margin: auto;
+
+  .blue-star {
+    color: $gil-blue;
+  }
+
+  .roadmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 8.2rem;
+    margin-bottom: 2.5rem;
+
+    > img {
+      width: 17rem;
+      height: 8.4rem;
+    }
+
+    .title-text {
+      font-size: 2.8rem;
+      line-height: 3rem;
+    }
+  }
+
+  .roadmap-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 8rem;
+    padding-bottom: 2rem;
+
+    ._BUTTON_ {
+      height: 4.2rem;
+    }
+  }
+
+  ._BOARD_ > article {
+    margin-bottom: 3rem;
+
+    > * {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

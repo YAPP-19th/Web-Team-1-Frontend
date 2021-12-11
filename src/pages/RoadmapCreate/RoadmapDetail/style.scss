@@ -1,0 +1,48 @@
+@import '/src/styles/';
+
+.roadmap-quest {
+  > .contents {
+    height: 73.7rem;
+    background-color: $main-gray;
+    border-radius: 1.5rem;
+    padding: 3rem 1.5rem;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-list {
+    display: flex;
+    width: 100%;
+    height: 68rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: scroll;
+
+    > ._CARD_ {
+      margin: 2.5rem 0;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: 0 0 0 0.3rem $gil-blue;
+      }
+    }
+  }
+}
+
+.roadmap-text {
+  > .contents {
+    width: 70%;
+  }
+}
+
+.roadmap-preview {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60rem;
+  border: 0.5rem $gil-blue solid;
+}

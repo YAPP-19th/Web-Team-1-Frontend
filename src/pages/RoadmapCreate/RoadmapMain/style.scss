@@ -1,0 +1,12 @@
+.roadmap-title {
+  > .contents {
+    display: flex;
+    > ._INPUT_ {
+      width: 50%;
+    }
+
+    > ._DROPDOWN_ {
+      margin-left: 2rem;
+    }
+  }
+}

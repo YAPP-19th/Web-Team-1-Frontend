@@ -1,0 +1,43 @@
+{
+  "roadmapMain": {
+    "main": "로드맵 등록",
+    "sub": null,
+    "list": [
+      "목적지에 도달할 수 있었던 경험들을 로드맵 형식으로 공유해주세요.",
+      "취업 길잡이가 필요한 분들에게 소중한 정보가 됩니다."
+    ]
+  },
+  "roadmapTitle": {
+    "main": "로드맵 제목",
+    "sub": null,
+    "list": null
+  },
+  "roadmapDetail": {
+    "main": "취업 달성 로드맵",
+    "sub": null,
+    "list": [
+      "로드맵 항목을 업로드 된 퀘스트로 등록 할 수 있어요. ",
+      "퀘스트가 존재하지 않을 시 텍스트로 등록해주세요."
+    ]
+  },
+  "roadmapCreateQuest": {
+    "main": "퀘스트로 등록",
+    "sub": null,
+    "list": null
+  },
+  "roadmapCreateText": {
+    "main": "텍스트로 등록",
+    "sub": null,
+    "list": null
+  },
+  "roadmapCreateList": {
+    "main": "로드맵 리스트",
+    "sub": null,
+    "list": null
+  },
+  "roadmapPreview": {
+    "main": "미리보기",
+    "sub": null,
+    "list": null
+  }
+}
