@@ -18,12 +18,13 @@
   ._TEXT_ {
     cursor: pointer;
     width: 15rem;
+
     &:hover {
       color: $gil-blue;
     }
   }
 
-  .divider {
-    border-left: 0.3rem solid $gray-2;
+  ._TEXT_:not(:last-child) {
+    border-right: 0.4rem solid $gray-2;
   }
 }

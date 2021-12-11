@@ -21,20 +21,15 @@ const TabBar: React.FC<TabBarProps> = ({
   return (
     <div className={cn(`_TABBAR_`, `align-${align}`)}>
       {tabList.map((item, index) => (
-        <>
-          <Text
-            fontColor="main"
-            fontSize="x-large"
-            fontWeight="regular"
-            align="center"
-            key={index}
-          >
-            {item.name}
-          </Text>
-          {divider && index < tabList.length - 1 && (
-            <div className="divider"></div>
-          )}
-        </>
+        <Text
+          fontColor="main"
+          fontSize="x-large"
+          fontWeight="regular"
+          align="center"
+          key={index}
+        >
+          {item.name}
+        </Text>
       ))}
     </div>
   );
