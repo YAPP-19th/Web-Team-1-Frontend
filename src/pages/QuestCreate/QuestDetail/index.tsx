@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, Board, List, Uploader } from '@src/components/atoms';
 import { Hashtag } from '@src/components/molecules';
-import './style.scss';
 import {
   questThumbnail,
   questHashtag,

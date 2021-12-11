@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, Board, List } from '@src/components/atoms';
 import { DragDrop } from '@src/components/molecules';
 import { questSub } from '@src/pages/QuestCreate/quest_data.json';
-import './style.scss';
 
 const QuestSub: React.FC = () => {
   return (
