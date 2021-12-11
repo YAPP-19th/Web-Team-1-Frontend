@@ -1,0 +1,29 @@
+@import '/src/styles/';
+
+._TABBAR_ {
+  display: flex;
+
+  &.align {
+    &-start {
+      justify-content: flex-start;
+    }
+    &-center {
+      justify-content: center;
+    }
+    &-end {
+      justify-content: flex-end;
+    }
+  }
+
+  ._TEXT_ {
+    cursor: pointer;
+    width: 15rem;
+    &:hover {
+      color: $gil-blue;
+    }
+  }
+
+  .divider {
+    border-left: 0.3rem solid $gray-2;
+  }
+}
