@@ -1,4 +1,16 @@
-const dropdownItems = [
+export const POSITION_LIST = [
+  {
+    value: '프론트엔드',
+  },
+  {
+    value: '백엔드',
+  },
+  {
+    value: '디자이너',
+  },
+];
+
+export const LEVEL_LIST = [
   {
     value: '입문 (10 Exp)',
   },
@@ -15,5 +27,3 @@ const dropdownItems = [
     value: '통달 (30 Exp)',
   },
 ];
-
-export default dropdownItems;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, Board, Input, Dropdown, Editor } from '@src/components/atoms';
-import './style.scss';
 import {
   questTitle,
   questDetail,
 } from '@src/pages/QuestCreate/quest_data.json';
+import { POSITION_LIST, LEVEL_LIST } from '@src/constants/dropdown';
+import './style.scss';
 
 const QuestMain: React.FC = () => {
   return (
@@ -16,8 +17,8 @@ const QuestMain: React.FC = () => {
         <Text fontColor="gil-blue">{questTitle.sub}</Text>
         <div className="contents">
           <Input hasCount count={10} />
-          <Dropdown placeholder="카테고리 설정" />
-          <Dropdown placeholder="난이도 설정" />
+          <Dropdown placeholder="카테고리 설정" dropdownList={POSITION_LIST} />
+          <Dropdown placeholder="난이도 설정" dropdownList={LEVEL_LIST} />
         </div>
       </article>
 
