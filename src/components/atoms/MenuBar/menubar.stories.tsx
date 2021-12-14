@@ -11,11 +11,6 @@ export default {
       },
     },
   },
-  argTypes: {
-    menuList: {
-      type: 'MenuItem',
-    },
-  },
 } as Meta;
 
 const Template: Story<MenuBarProps> = (args) => <MenuBar {...args} />;
