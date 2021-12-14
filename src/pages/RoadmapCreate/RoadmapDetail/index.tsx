@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
-import { Text, Board, SearchBar, List, Input } from '@src/components/atoms';
+import React, { useState, useCallback } from 'react';
+import toast from 'react-hot-toast';
+import {
+  Text,
+  Board,
+  SearchBar,
+  List,
+  Input,
+  Toast,
+} from '@src/components/atoms';
 import { Card, DragDrop } from '@src/components/molecules';
 import { CardProps } from '@src/components/molecules/Card';
 import {
@@ -102,6 +110,27 @@ const RoadmapDetail: React.FC = () => {
   // 아래 state는 임시입니다.
   const [quest, setQuest] = useState(['']);
 
+  const handleToast = useCallback(
+    () =>
+      toast(<Toast />, {
+        duration: 2000,
+        position: 'bottom-right',
+        style: {
+          background: 'transparent',
+          boxShadow: 'none',
+        },
+      }),
+    [],
+  );
+
+  const handleButtonClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      console.log('card button click');
+    },
+    [],
+  );
+
   return (
     <Board height={205}>
       <article className="roadmap-detail">
@@ -145,6 +174,8 @@ const RoadmapDetail: React.FC = () => {
                   level={level}
                   key={name}
                   hasBorder={quest.includes(name)}
+                  handleCardClick={handleToast}
+                  handleButtonClick={handleButtonClick}
                 />
               ),
             )}
