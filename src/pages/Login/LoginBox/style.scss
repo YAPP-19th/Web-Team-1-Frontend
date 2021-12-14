@@ -1,0 +1,37 @@
+@import '/src/styles';
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 37.6rem;
+  height: 38.4rem;
+  border-radius: 2.5rem;
+  box-shadow: $box-shadow;
+
+  .logo {
+    width: 13.6rem;
+    height: 4.8rem;
+  }
+
+  .intro-text {
+    margin-top: 2.4rem;
+    margin-bottom: 4.8rem;
+  }
+
+  .login-button {
+    width: 27.2rem;
+    height: 4.4rem;
+    background-color: $kakao;
+    border: none;
+    border-radius: 10rem;
+    margin-top: 7.8rem;
+    cursor: pointer;
+  }
+
+  .no-login {
+    margin: 2rem;
+    text-decoration: none;
+  }
+}

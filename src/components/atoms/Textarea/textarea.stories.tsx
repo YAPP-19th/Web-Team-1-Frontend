@@ -17,6 +17,9 @@ export default {
         disable: true,
       },
     },
+    hasLimit: {
+      type: 'boolean',
+    },
     limit: {
       type: 'number',
     },

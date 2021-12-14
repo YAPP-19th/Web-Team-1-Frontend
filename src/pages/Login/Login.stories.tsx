@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Story, Meta } from '@storybook/react';
-import Login from '@src/pages/Login';
+import Login, { LoginProps } from '@src/pages/Login';
 
 export default {
   title: 'Pages/Login',
@@ -12,16 +12,23 @@ export default {
       },
     },
   },
+  argTypes: {
+    isLogin: {
+      type: 'boolean',
+    },
+  },
   decorators: [
     (Story) => (
       <Router>
         <Story />
       </Router>
     ),
-  ]
+  ],
 } as Meta;
 
-const Template: Story = (args) => <Login {...args} />;
+const Template: Story<LoginProps> = (args) => <Login {...args} />;
 
 export const DefaultLogin = Template.bind({});
-DefaultLogin.args = {};
+DefaultLogin.args = {
+  isLogin: false,
+};
