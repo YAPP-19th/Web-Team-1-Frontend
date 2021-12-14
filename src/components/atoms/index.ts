@@ -16,3 +16,4 @@ export { default as Input } from './Input';
 export { default as Dropdown } from './Dropdown';
 export { default as Uploader } from './Uploader';
 export { default as Editor } from './Editor';
+export { default as Toast } from './Toast';
