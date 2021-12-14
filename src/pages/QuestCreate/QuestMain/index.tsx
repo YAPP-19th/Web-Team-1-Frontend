@@ -15,7 +15,7 @@ const QuestMain: React.FC = () => {
         </Text>
         <Text fontColor="gil-blue">{questTitle.sub}</Text>
         <div className="contents">
-          <Input hasCount />
+          <Input hasCount count={10} />
           <Dropdown placeholder="카테고리 설정" />
           <Dropdown placeholder="난이도 설정" />
         </div>

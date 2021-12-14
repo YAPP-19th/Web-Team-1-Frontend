@@ -6,6 +6,7 @@ import './style.scss';
 export interface InputProps {
   className?: string;
   hasCount?: boolean;
+  count?: number;
   inputHeight?: 'narrow' | 'wide';
   placeholder?: string;
   placeholderColor?: 'gray' | 'blue';
@@ -15,6 +16,7 @@ export interface InputProps {
 const Input: React.FC<InputProps> = ({
   className,
   hasCount = true,
+  count = 20,
   inputHeight = 'narrow',
   placeholder,
   placeholderColor = 'gray',
@@ -47,7 +49,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         onChange={handleChange}
         onKeyPress={handleEnter}
-        maxLength={hasCount ? 20 : undefined}
+        maxLength={hasCount ? count : undefined}
       />
       {hasCount && (
         <Text
@@ -56,7 +58,7 @@ const Input: React.FC<InputProps> = ({
           fontColor="gray"
           fontWeight="regular"
         >
-          {input.length} / 20
+          {input.length} / {count}
         </Text>
       )}
     </div>

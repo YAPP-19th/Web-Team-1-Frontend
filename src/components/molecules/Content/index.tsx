@@ -8,7 +8,7 @@ import './style.scss';
 interface ContentProps {
   main: string;
   sub: string;
-  image: unknown;
+  image: Record<string, unknown>;
   direction: 'row' | 'reverse';
 }
 
