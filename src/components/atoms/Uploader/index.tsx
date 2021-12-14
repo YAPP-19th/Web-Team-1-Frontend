@@ -36,9 +36,8 @@ const Uploader: React.FC = () => {
         <div
           className="preview"
           role="button"
-          tabIndex={0}
           onClick={handleImageClick}
-          onKeyDown={handleImageClick}
+          aria-hidden="true"
         >
           {previewImage ? (
             <img alt="preview" src={previewImage} />

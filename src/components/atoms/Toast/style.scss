@@ -1,0 +1,28 @@
+@import '/src/styles/';
+
+._TOAST_ {
+  display: flex;
+  align-items: center;
+  width: 25rem;
+  height: 8.4rem;
+  cursor: default;
+  border-radius: 2.5rem;
+  box-shadow: $box-shadow;
+  background-color: $gil-blue;
+
+  .toast-wrapper {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    > div {
+      display: flex;
+      > img {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

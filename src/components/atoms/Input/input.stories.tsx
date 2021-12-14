@@ -24,6 +24,9 @@ export default {
     hasCount: {
       options: [true, false],
     },
+    count: {
+      type: 'number',
+    },
     className: {
       table: {
         disable: true,

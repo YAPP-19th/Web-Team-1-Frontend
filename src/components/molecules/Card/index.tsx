@@ -1,6 +1,7 @@
 import React from 'react';
 import { Badge, Button, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
+import cn from 'classnames';
 import './style.scss';
 
 export interface CardProps {
@@ -11,6 +12,9 @@ export interface CardProps {
   participant: number;
   author: string;
   level: 1 | 2 | 3 | 4 | 5;
+  hasBorder?: boolean;
+  handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -21,9 +25,16 @@ const Card: React.FC<CardProps> = ({
   participant,
   author,
   level,
+  hasBorder = false,
+  handleCardClick,
+  handleButtonClick,
 }) => {
   return (
-    <div className="_CARD_">
+    <div
+      className={cn('_CARD_', { hasBorder })}
+      onClick={handleCardClick}
+      aria-hidden="true"
+    >
       <div className="card-main-info">
         <Badge step={step} align="end" />
         <Text
@@ -69,6 +80,7 @@ const Card: React.FC<CardProps> = ({
           textColor="gil-blue"
           textSize="medium"
           hasBorder
+          handleClick={handleButtonClick}
         />
       </div>
     </div>

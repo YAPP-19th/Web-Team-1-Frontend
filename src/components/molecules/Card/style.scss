@@ -7,6 +7,10 @@
   box-shadow: $box-shadow;
   background-color: $white;
 
+  &.hasBorder {
+    box-shadow: 0 0 0 0.2rem $gil-blue;
+  }
+
   .card-main-info {
     display: flex;
     flex-direction: column;

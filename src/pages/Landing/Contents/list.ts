@@ -1,13 +1,12 @@
-import map from '@src/assets/images/map.png';
-import lighthouse from '@src/assets/images/lighthouse.svg';
-import ships from '@src/assets/images/ships.png';
-import profile from '@src/assets/images/profile.svg';
+import lighthouse from '@src/assets/lottie/lighthouse.json';
+import profile from '@src/assets/lottie/profile.json';
+import ships from '@src/assets/lottie/ships.json';
 
 const list = [
   {
     main: '하나, 취업 길잡이의\n로드맵 따라가기',
     sub: '취업의 바다에서 길잡이가 되어주다. 되어주다.\n길잡이가 되어주다. 취업의 바다에서 길잡이가 되어주다.\n되어주다. 길잡이가 되어주다.',
-    image: map,
+    image: lighthouse,
     direction: 'row',
   },
   {

@@ -20,6 +20,7 @@ const Hashtag: React.FC = () => {
     <div className="_HASHTAG_">
       <Input
         hasCount
+        count={10}
         inputHeight="wide"
         placeholder="해시 태그를 입력하세요"
         onSubmit={onSubmit}

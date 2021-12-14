@@ -1,5 +1,10 @@
 ._HASHTAG_ {
+  ._INPUT_ {
+    width: 70%;
+  }
   .hashtag_container {
+    height: 12rem;
+    overflow-y: scroll;
     margin: 1rem;
 
     > ._BUTTON_ {

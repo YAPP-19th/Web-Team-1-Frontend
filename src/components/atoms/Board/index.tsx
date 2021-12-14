@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import cn from 'classnames';
 import StyledBoard from './style';
 
 export interface BoardProps {
@@ -9,7 +10,7 @@ export interface BoardProps {
 
 const Board: React.FC<BoardProps> = ({ className, children, height }) => {
   return (
-    <StyledBoard className={className} height={height}>
+    <StyledBoard className={cn(`_BOARD_`, className)} height={height}>
       {children}
     </StyledBoard>
   );
