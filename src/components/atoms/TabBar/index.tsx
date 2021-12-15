@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import cn from 'classnames';
 import './style.scss';
 import { Text } from '@src/components/atoms';
+import { Filtering } from '@src/pages/Profile/QuestList';
 
 interface TabItem {
   name: string;
@@ -10,26 +11,37 @@ interface TabItem {
 export interface TabBarProps {
   tabList: TabItem[];
   align?: 'start' | 'center' | 'end';
-  divider?: boolean;
+  hasDivider?: boolean;
+  selected?: number;
+  setFiltering: Dispatch<SetStateAction<Filtering>>;
 }
 
 const TabBar: React.FC<TabBarProps> = ({
   tabList,
   align = 'center',
-  divider = true,
+  hasDivider = true,
+  selected = 0,
+  setFiltering,
 }) => {
   return (
-    <div className={cn(`_TABBAR_`, `align-${align}`)}>
+    <div className={cn(`_TABBAR_`, `align-${align}`, { hasDivider })}>
       {tabList.map((item, index) => (
-        <Text
-          fontColor="main"
-          fontSize="x-large"
-          fontWeight="regular"
-          align="center"
+        <button
+          className="filtering-button"
           key={index}
+          onClick={() => {
+            setFiltering(index);
+          }}
         >
-          {item.name}
-        </Text>
+          <Text
+            fontColor={index === selected ? 'gil-blue' : 'main'}
+            fontSize="x-large"
+            fontWeight="regular"
+            align="center"
+          >
+            {item.name}
+          </Text>
+        </button>
       ))}
     </div>
   );

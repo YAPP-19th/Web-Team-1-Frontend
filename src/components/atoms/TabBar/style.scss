@@ -24,7 +24,13 @@
     }
   }
 
-  ._TEXT_:not(:last-child) {
-    border-right: 0.4rem solid $gray-2;
+  &.hasDivider {
+    ._TEXT_:not(:last-child) {
+      border-right: 0.4rem solid $gray-2;
+    }
+  }
+
+  .filtering-button {
+    all: unset;
   }
 }

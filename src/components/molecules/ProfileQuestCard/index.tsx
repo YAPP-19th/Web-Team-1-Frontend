@@ -4,6 +4,7 @@ import { Author } from '@src/components/molecules';
 import styled from 'styled-components';
 
 import './style.scss';
+import { Filtering } from '@src/pages/Profile/QuestList';
 
 export interface ProfileQuestCardProps {
   step: '입문' | '초급' | '중급' | '고급' | '통달';
@@ -14,6 +15,7 @@ export interface ProfileQuestCardProps {
   author: string;
   level: 1 | 2 | 3 | 4 | 5;
   progress: number;
+  status: Filtering;
 }
 
 interface DegreeProps {
@@ -36,8 +38,10 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
   author,
   level,
   progress,
+  status,
 }) => {
   return (
+    // TODO: 클릭 시 해당 퀘스트로 이동
     <div className="_PROFILE_QUEST_CARD_">
       <div className="card-main-info">
         <Badge step={step} align="end" />
@@ -92,10 +96,12 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
       <span className="divider"></span>
       <div className="card-last-info">
         <Author authorName={author} iconSize="small" iconLevel={level} />
-        {/* TODO: onClick 이벤트 리스너 추가 */}
-        <button className="delete-button" type="button">
-          <span className="line" />
-        </button>
+        {status === Filtering.Proceeding && (
+          // TODO: 클릭 시 해당 퀘스트 삭제
+          <button className="delete-button" type="button">
+            <span className="line" />
+          </button>
+        )}
       </div>
     </div>
   );
