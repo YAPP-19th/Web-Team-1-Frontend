@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './style.scss';
 
-const Mypage = lazy(() => import('@src/components/molecules/Mypage'));
+const Mypage = lazy(() => import('@src/pages/Profile/Mypage'));
+const QuestList = lazy(() => import('@src/pages/Profile/QuestList'));
 
 const pathname = '/profile';
 
@@ -55,6 +56,8 @@ const Profile: React.FC = () => {
                   />
                 )}
               />
+              <Route path="/profile/quest" component={QuestList}></Route>
+              <Redirect to="/profile/mypage" />
             </Switch>
           </Suspense>
         </div>
