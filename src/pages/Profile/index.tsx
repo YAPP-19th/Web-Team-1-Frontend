@@ -4,6 +4,7 @@ import './style.scss';
 
 const Mypage = lazy(() => import('@src/pages/Profile/Mypage'));
 const QuestList = lazy(() => import('@src/pages/Profile/QuestList'));
+const RoadmapList = lazy(() => import('@src/pages/Profile/RoadmapList'));
 
 const pathname = '/profile';
 
@@ -56,7 +57,8 @@ const Profile: React.FC = () => {
                   />
                 )}
               />
-              <Route path="/profile/quest" component={QuestList}></Route>
+              <Route path="/profile/quest" component={QuestList} />
+              <Route path="/profile/roadmap" component={RoadmapList} />
               <Redirect to="/profile/mypage" />
             </Switch>
           </Suspense>
