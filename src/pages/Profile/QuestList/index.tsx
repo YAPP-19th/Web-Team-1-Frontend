@@ -128,7 +128,7 @@ const completedQuestList: QuestListItems[] = [
 const createdQuestList: QuestListItems[] = [];
 
 // 필터링 기준 열거형
-export enum Filtering {
+export enum QuestFiltering {
   Proceeding,
   Completed,
   Created,
@@ -136,16 +136,16 @@ export enum Filtering {
 
 const QuestList: React.FC = () => {
   // 필터링 기준
-  const [filtering, setFiltering] = useState(Filtering.Proceeding);
+  const [filtering, setFiltering] = useState(QuestFiltering.Proceeding);
   // 퀘스트 리스트
   const [questList, setQuestList] = useState(proceedingQuestList);
 
   useEffect(() => {
-    if (filtering === Filtering.Proceeding) {
+    if (filtering === QuestFiltering.Proceeding) {
       setQuestList(proceedingQuestList);
-    } else if (filtering === Filtering.Completed) {
+    } else if (filtering === QuestFiltering.Completed) {
       setQuestList(completedQuestList);
-    } else if (filtering === Filtering.Created) {
+    } else if (filtering === QuestFiltering.Created) {
       setQuestList(createdQuestList);
     }
   }, [filtering]);

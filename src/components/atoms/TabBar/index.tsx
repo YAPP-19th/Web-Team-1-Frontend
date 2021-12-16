@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import cn from 'classnames';
-import './style.scss';
 import { Text } from '@src/components/atoms';
-import { Filtering } from '@src/pages/Profile/QuestList';
+import './style.scss';
 
 interface TabItem {
   name: string;
@@ -13,7 +12,7 @@ export interface TabBarProps {
   align?: 'start' | 'center' | 'end';
   hasDivider?: boolean;
   selected?: number;
-  setFiltering: Dispatch<SetStateAction<Filtering>>;
+  setFiltering: Dispatch<SetStateAction<number>>;
 }
 
 const TabBar: React.FC<TabBarProps> = ({
