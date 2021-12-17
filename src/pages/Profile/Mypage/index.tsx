@@ -8,6 +8,10 @@ import {
   AchievementBadge,
   Box,
 } from '@src/components/atoms';
+import {
+  exp_achievement,
+  quest_achievement,
+} from '@src/pages/Profile/achievement_data.json';
 
 export interface MypageProps {
   nickname: string;
@@ -68,18 +72,18 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
-            id={1}
-            title="5급 조타기"
-            description="길잡 신규가입 시 달성"
+            id={exp_achievement.list[0].id}
+            title={exp_achievement.list[0].title}
+            description={exp_achievement.list[0].description}
           />
         </Box>
       </div>
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
-            id={2}
-            title="5급 항해사"
-            description="길잡 신규가입 시 달성"
+            id={quest_achievement.list[0].id}
+            title={quest_achievement.list[0].title}
+            description={quest_achievement.list[0].description}
           />
         </Box>
       </div>

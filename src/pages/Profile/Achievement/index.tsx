@@ -3,13 +3,13 @@ import { AchievementIcon, Box, Text } from '@src/components/atoms';
 import {
   exp_achievement,
   quest_achievement,
-} from '@src/pages/Profile/Achievement/achievement_data.json';
+} from '@src/pages/Profile/achievement_data.json';
 import './style.scss';
 
 interface AchievementItem {
   id: number;
   title: string;
-  subscription: string;
+  description: string;
 }
 
 const Achievement: React.FC = () => {
@@ -26,7 +26,7 @@ const Achievement: React.FC = () => {
           {exp_achievement.title}
         </Text>
         <Text fontSize="xx-small" align="center">
-          {exp_achievement.subscription}
+          {exp_achievement.description}
         </Text>
         <div className="achievement-icon-wrapper">
           {exp_achievement.list.map((achievement: AchievementItem) => (
@@ -37,7 +37,7 @@ const Achievement: React.FC = () => {
                   {achievement.title}
                 </Text>
                 <Text fontSize="xx-small" align="center">
-                  {achievement.subscription}
+                  {achievement.description}
                 </Text>
               </Box>
             </div>
@@ -56,7 +56,7 @@ const Achievement: React.FC = () => {
           {quest_achievement.title}
         </Text>
         <Text fontSize="xx-small" align="center">
-          {quest_achievement.subscription}
+          {quest_achievement.description}
         </Text>
         <div className="achievement-icon-wrapper">
           {quest_achievement.list.map((achievement: AchievementItem) => (
@@ -67,7 +67,7 @@ const Achievement: React.FC = () => {
                   {achievement.title}
                 </Text>
                 <Text fontSize="xx-small" align="center">
-                  {achievement.subscription}
+                  {achievement.description}
                 </Text>
               </Box>
             </div>

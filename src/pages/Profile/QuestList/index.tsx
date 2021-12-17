@@ -151,7 +151,7 @@ const QuestList: React.FC = () => {
   }, [filtering]);
 
   return (
-    <div className="quest-page-quest-list">
+    <div className="profile-page-quest-list">
       <TabBar
         tabList={tabList}
         hasDivider={false}
@@ -159,10 +159,10 @@ const QuestList: React.FC = () => {
         selected={filtering}
         setFiltering={setFiltering}
       />
-      <section className="quest-page-list-wrapper">
+      <section className="profile-page-list-wrapper">
         <div
           className={cn(
-            'quest-page-card-wrapper',
+            'profile-page-card-wrapper',
             `${questList.length === 0 ? 'empty-list' : ''}`,
           )}
         >
@@ -202,7 +202,7 @@ const QuestList: React.FC = () => {
             </div>
           )}
         </div>
-        <div className="quest-page-pagination-wrapper">
+        <div className="profile-page-pagination-wrapper">
           <Pagination pageSize={6} currentId={1} totalLength={65} />
         </div>
       </section>

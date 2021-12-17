@@ -2,10 +2,10 @@ import React, { lazy, Suspense } from 'react';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './style.scss';
 
-const Mypage = lazy(() => import('@src/pages/Profile/Mypage'));
-const QuestList = lazy(() => import('@src/pages/Profile/QuestList'));
-const RoadmapList = lazy(() => import('@src/pages/Profile/RoadmapList'));
-const Achievement = lazy(() => import('@src/pages/Profile/Achievement'));
+import Mypage from './Mypage';
+import QuestList from './QuestList';
+import RoadmapList from './RoadmapList';
+import Achievement from './Achievement';
 
 const pathname = '/profile';
 

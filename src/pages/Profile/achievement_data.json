@@ -1,63 +1,63 @@
 {
   "exp_achievement": {
     "title": "조타기",
-    "subscription": "능력치 점수 충족 시 업적을 달성할 수 있습니다",
+    "description": "능력치 점수 충족 시 업적을 달성할 수 있습니다",
     "list": [
       {
         "id": 1,
         "title": "5급 조타기",
-        "subscription": "길잡 신규가입 시 달성"
+        "description": "길잡 신규가입 시 달성"
       },
       {
         "id": 2,
         "title": "4급 조타기",
-        "subscription": "능력치 250P 충족"
+        "description": "능력치 250P 충족"
       },
       {
         "id": 3,
         "title": "3급 조타기",
-        "subscription": "능력치 500P 충족"
+        "description": "능력치 500P 충족"
       },
       {
         "id": 4,
         "title": "2급 조타기",
-        "subscription": "능력치 750P 충족"
+        "description": "능력치 750P 충족"
       },
       {
         "id": 5,
         "title": "1급 조타기",
-        "subscription": "능력치 1,000P 충족"
+        "description": "능력치 1,000P 충족"
       }
     ]
   },
   "quest_achievement": {
     "title": "항해사",
-    "subscription": "퀘스트 일정 개수 충족 시 업적을 달성할 수 있습니다",
+    "description": "퀘스트 일정 개수 충족 시 업적을 달성할 수 있습니다",
     "list": [
       {
         "id": 6,
         "title": "5급 항해사",
-        "subscription": "길잡 신규가입 시 달성"
+        "description": "길잡 신규가입 시 달성"
       },
       {
         "id": 7,
         "title": "4급 항해사",
-        "subscription": "퀘스트 25개 충족"
+        "description": "퀘스트 25개 충족"
       },
       {
         "id": 8,
         "title": "3급 항해사",
-        "subscription": "퀘스트 50개 충족"
+        "description": "퀘스트 50개 충족"
       },
       {
         "id": 9,
         "title": "2급 항해사",
-        "subscription": "퀘스트 75개 충족"
+        "description": "퀘스트 75개 충족"
       },
       {
         "id": 10,
         "title": "1급 항해사",
-        "subscription": "퀘스트 100개 충족"
+        "description": "퀘스트 100개 충족"
       }
     ]
   }
