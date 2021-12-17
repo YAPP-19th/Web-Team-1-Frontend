@@ -15,7 +15,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <List {...args} listData={questData.questCreate.list} />
+  <List {...args} listData={questData.questMain.list} />
 );
 
 export const DefaultList = Template.bind({});

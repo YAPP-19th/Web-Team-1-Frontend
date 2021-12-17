@@ -1,12 +1,12 @@
-.quest-title {
+.roadmap-title {
   > .contents {
     display: flex;
-
     > ._INPUT_ {
       width: 50%;
     }
+
     > ._DROPDOWN_ {
-      margin-left: 1.5rem;
+      margin-left: 2rem;
     }
   }
 }

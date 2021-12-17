@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { Text } from '@src/components/atoms';
-import dropdownItems from './list';
 import './style.scss';
 
 /*  결과값 저정에 redux hooks을 이용한다면 추후 인터페이스를 바꿔야 합니다. */
@@ -8,9 +7,14 @@ import './style.scss';
 export interface DropdownProps {
   placeholder: string;
   selected?: string; // 드롭다운 선택된 결과 값
+  dropdownList: { value: string }[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ placeholder, selected }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  placeholder,
+  selected,
+  dropdownList: dropdownItems,
+}) => {
   const [isActivate, setIsActivate] = useState(false);
 
   const handleActivate = useCallback(() => {

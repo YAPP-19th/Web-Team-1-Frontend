@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, Board, List, Uploader } from '@src/components/atoms';
 import { Hashtag } from '@src/components/molecules';
-import './style.scss';
 import {
   questThumbnail,
   questHashtag,
@@ -9,7 +8,7 @@ import {
 
 const QuestDetail: React.FC = () => {
   return (
-    <Board height={46.5}>
+    <Board height={53}>
       <article className="quest-thumbnail">
         <Text fontWeight="bold" fontSize="large">
           {questThumbnail.main}

@@ -1,0 +1,52 @@
+@import '/src/styles';
+
+.profile-setting {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 48rem;
+  height: 40rem;
+
+  .title {
+    font-size: 2.8rem;
+    width: 100%;
+  }
+
+  .blue-star {
+    color: $gil-blue;
+  }
+
+  .default-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+
+    .nickname {
+      > ._TEXT_ {
+        margin-bottom: 1rem;
+      }
+      flex: 2;
+    }
+
+    .position {
+      > ._TEXT_ {
+        margin-bottom: 1rem;
+      }
+      flex: 1;
+    }
+  }
+
+  .introduce-wrapper {
+    > ._TEXT_ {
+      margin-bottom: 1rem;
+    }
+    width: 100%;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}

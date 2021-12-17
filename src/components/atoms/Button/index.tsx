@@ -10,6 +10,7 @@ export interface ButtonProps {
   hasBorder?: boolean;
   hasShadow?: boolean;
   hasFixedWidth?: boolean;
+  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   hasBorder = false,
   hasShadow = false,
   hasFixedWidth = false,
+  handleClick,
 }) => {
   return (
     <button
@@ -33,6 +35,7 @@ const Button: React.FC<ButtonProps> = ({
         { hasShadow },
       )}
       type="button"
+      onClick={handleClick}
     >
       {innerText}
     </button>

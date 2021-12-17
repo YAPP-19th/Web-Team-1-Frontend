@@ -17,3 +17,5 @@ export { default as Dropdown } from './Dropdown';
 export { default as Uploader } from './Uploader';
 export { default as Editor } from './Editor';
 export { default as TabBar} from './TabBar';
+export { default as Toast } from './Toast';
+export { default as Textarea } from './Textarea';
