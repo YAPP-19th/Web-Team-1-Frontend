@@ -20,10 +20,9 @@
 }
 
 .quest-card-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat((4, 1fr));
   width: 127rem;
-  flex-wrap: wrap;
-  justify-content: space-around;
   & > * {
     margin: 2rem;
   }
