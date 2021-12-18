@@ -97,29 +97,26 @@ const RoadmapList: React.FC = () => {
         setFiltering={setFiltering}
       />
       <section className="quest-page-roadmap-list-wrapper">
-        <div className="quest-page-paper-wrapper">
-          {roadmapList.map(({ category, name, level, author }, index) => (
-            <Paper
-              category={category}
-              name={name}
-              level={level}
-              author={author}
-              key={index}
-            />
-          ))}
-          {roadmapList.length === 0 && (
-            <div className="empty-list-wrapper">
-              <img
-                src={empty_quest_list}
-                alt="empty_quest_list"
-                loading="lazy"
+        {roadmapList.length === 0 ? (
+          <div className="empty-list-wrapper">
+            <img src={empty_quest_list} alt="empty_quest_list" loading="lazy" />
+            <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
+              로드맵이 없습니다
+            </Text>
+          </div>
+        ) : (
+          <div className="quest-page-paper-wrapper">
+            {roadmapList.map(({ category, name, level, author }, index) => (
+              <Paper
+                category={category}
+                name={name}
+                level={level}
+                author={author}
+                key={index}
               />
-              <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
-                로드맵이 없습니다
-              </Text>
-            </div>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
         <div className="quest-page-roadmap-pagination-wrapper">
           <Pagination pageSize={6} currentId={1} totalLength={65} />
         </div>

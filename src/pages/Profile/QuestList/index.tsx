@@ -124,6 +124,16 @@ const completedQuestList: QuestListItems[] = [
     level: 1,
     progress: 100,
   },
+  {
+    step: '입문',
+    category: 'Front-End',
+    name: 'React A to Z',
+    exp: 100,
+    participant: 123,
+    author: '호랑이형님',
+    level: 1,
+    progress: 60,
+  },
 ];
 
 const createdQuestList: QuestListItems[] = [];
@@ -161,48 +171,45 @@ const QuestList: React.FC = () => {
         setFiltering={setFiltering}
       />
       <section className="profile-page-list-wrapper">
-        <div className="profile-page-card-wrapper">
-          {questList.map(
-            (
-              {
-                step,
-                category,
-                name,
-                exp,
-                participant,
-                author,
-                level,
-                progress,
-              }: QuestListItems,
-              index,
-            ) => (
-              <ProfileQuestCard
-                step={step}
-                category={category}
-                name={name}
-                exp={exp}
-                participant={participant}
-                author={author}
-                level={level}
-                key={index}
-                progress={progress}
-                status={filtering}
-              />
-            ),
-          )}
-          {questList.length === 0 && (
-            <div className="empty-list-wrapper">
-              <img
-                src={empty_quest_list}
-                alt="empty_quest_list"
-                loading="lazy"
-              />
-              <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
-                퀘스트가 없습니다
-              </Text>
-            </div>
-          )}
-        </div>
+        {questList.length === 0 ? (
+          <div className="empty-list-wrapper">
+            <img src={empty_quest_list} alt="empty_quest_list" loading="lazy" />
+            <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
+              퀘스트가 없습니다
+            </Text>
+          </div>
+        ) : (
+          <div className="profile-page-card-wrapper">
+            {questList.map(
+              (
+                {
+                  step,
+                  category,
+                  name,
+                  exp,
+                  participant,
+                  author,
+                  level,
+                  progress,
+                }: QuestListItems,
+                index,
+              ) => (
+                <ProfileQuestCard
+                  step={step}
+                  category={category}
+                  name={name}
+                  exp={exp}
+                  participant={participant}
+                  author={author}
+                  level={level}
+                  key={index}
+                  progress={progress}
+                  status={filtering}
+                />
+              ),
+            )}
+          </div>
+        )}
         <div className="profile-page-pagination-wrapper">
           <Pagination pageSize={6} currentId={1} totalLength={65} />
         </div>

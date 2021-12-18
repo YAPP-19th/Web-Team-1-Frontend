@@ -11,24 +11,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.quest-page-paper-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  & > * {
-    margin: 2rem 0;
-  }
+  margin: 2rem 0rem;
 
   .empty-list-wrapper {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+}
+
+.quest-page-paper-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
 }
 
 .quest-page-roadmap-pagination-wrapper {

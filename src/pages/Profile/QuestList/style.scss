@@ -11,27 +11,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
   margin: 2rem 0rem;
-}
-
-.profile-page-card-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-  & > * {
-    margin: 2rem 0;
-  }
 
   .empty-list-wrapper {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+}
+
+.profile-page-card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
 }
 
 .profile-page-pagination-wrapper {
