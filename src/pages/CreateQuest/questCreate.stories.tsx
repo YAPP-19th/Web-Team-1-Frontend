@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react';
-import QuestCreate from '@src/pages/CreateQuest';
+import CreateQuest from '@src/pages/CreateQuest';
 
 export default {
-  title: 'Pages/Quest-Create',
-  component: QuestCreate,
+  title: 'Pages/Create-Quest',
+  component: CreateQuest,
   parameters: {
     docs: {
       description: {
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <QuestCreate {...args} />;
+const Template: Story = (args) => <CreateQuest {...args} />;
 
-export const DefaultQuestCreate = Template.bind({});
-DefaultQuestCreate.args = {};
+export const DefaultCreateQuest = Template.bind({});
+DefaultCreateQuest.args = {};

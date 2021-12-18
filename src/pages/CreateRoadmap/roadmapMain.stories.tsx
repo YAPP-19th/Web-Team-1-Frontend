@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react';
-import RoadmapCreate from '@src/pages/CreateRoadmap';
+import CreateRoadmap from '@src/pages/CreateRoadmap';
 
 export default {
-  title: 'Pages/Roadmap-Create',
-  component: RoadmapCreate,
+  title: 'Pages/Create-Roadmap',
+  component: CreateRoadmap,
   parameters: {
     docs: {
       description: {
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <RoadmapCreate {...args} />;
+const Template: Story = (args) => <CreateRoadmap {...args} />;
 
-export const DefaultRoadmapCreate = Template.bind({});
-DefaultRoadmapCreate.args = {};
+export const DefaultCreateRoadmap = Template.bind({});
+DefaultCreateRoadmap.args = {};
