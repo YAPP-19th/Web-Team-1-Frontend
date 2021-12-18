@@ -123,6 +123,10 @@ const Detail: React.FC = () => {
     [],
   );
 
+  const handleDragDrop = (value: any) => {
+    console.log('Redux mock function');
+  };
+
   const handleButtonClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
@@ -198,7 +202,7 @@ const Detail: React.FC = () => {
           {roadmapCreateList.main}
         </Text>
         <div className="contents">
-          <DragDrop />
+          <DragDrop onDispatch={handleDragDrop} />
         </div>
       </article>
       {/* 미리보기 임시 컴포넌트 */}

@@ -13,7 +13,7 @@ export interface DropdownListType {
 export interface DropdownProps {
   placeholder: string;
   type?: string;
-  selected?: string;
+  selected?: string | number;
   list: DropdownListType[];
   onDispatch: (name: string, value: string | number) => void;
 }

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropdownListType } from '@src/components/atoms/Dropdown';
+import { RootState } from '@src/store';
 
 export interface createRoadmapState {
   title: string;
@@ -28,6 +29,6 @@ export const createRoadmapSlice = createSlice({
   },
 });
 
-export const createRoadmapSelector = (state: any) => state.quest;
+export const createRoadmapSelector = (state: RootState) => state.createRoadmap;
 export const { setTitle, setDropdown } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;
