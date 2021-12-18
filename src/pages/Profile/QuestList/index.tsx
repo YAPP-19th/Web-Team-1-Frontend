@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import ProfileQuestCard from '@src/components/molecules/ProfileQuestCard';
+import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
 import './style.scss';
 
 const tabList = [
@@ -160,12 +161,7 @@ const QuestList: React.FC = () => {
         setFiltering={setFiltering}
       />
       <section className="profile-page-list-wrapper">
-        <div
-          className={cn(
-            'profile-page-card-wrapper',
-            `${questList.length === 0 ? 'empty-list' : ''}`,
-          )}
-        >
+        <div className="profile-page-card-wrapper">
           {questList.map(
             (
               {
@@ -196,6 +192,11 @@ const QuestList: React.FC = () => {
           )}
           {questList.length === 0 && (
             <div className="empty-list-wrapper">
+              <img
+                src={empty_quest_list}
+                alt="empty_quest_list"
+                loading="lazy"
+              />
               <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
                 퀘스트가 없습니다
               </Text>

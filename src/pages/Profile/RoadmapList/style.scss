@@ -22,12 +22,10 @@
   & > * {
     margin: 2rem 0;
   }
-  &.empty-list {
-    background: url('@src/assets/images/empty_quest_list.svg') no-repeat center;
-  }
 
   .empty-list-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

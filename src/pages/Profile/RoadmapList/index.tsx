@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
+import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
 import './style.scss';
 
 const SliderItem = styled.div`
@@ -96,12 +97,7 @@ const RoadmapList: React.FC = () => {
         setFiltering={setFiltering}
       />
       <section className="quest-page-roadmap-list-wrapper">
-        <div
-          className={cn(
-            'quest-page-paper-wrapper',
-            `${roadmapList.length === 0 ? 'empty-list' : ''}`,
-          )}
-        >
+        <div className="quest-page-paper-wrapper">
           {roadmapList.map(({ category, name, level, author }, index) => (
             <Paper
               category={category}
@@ -113,6 +109,11 @@ const RoadmapList: React.FC = () => {
           ))}
           {roadmapList.length === 0 && (
             <div className="empty-list-wrapper">
+              <img
+                src={empty_quest_list}
+                alt="empty_quest_list"
+                loading="lazy"
+              />
               <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
                 로드맵이 없습니다
               </Text>
