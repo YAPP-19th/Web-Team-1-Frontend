@@ -3,11 +3,11 @@ import { Text } from '@src/components/atoms';
 import './style.scss';
 
 export interface UploaderProps {
-  onDispatch: (value: FormData) => void;
+  onDispatch: (url: string) => void;
 }
 
 const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(''); // RTK Query 연동시 삭제
   const [loadImage, setLoadImage] = useState(false);
   const imgInput = useRef<HTMLInputElement>(null);
 
@@ -19,9 +19,10 @@ const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
       const image = (e.target.files as FileList)[0];
       formData.append('file', image); // formData 형식으로 저장
 
-      onDispatch(formData);
-      setPreviewImage(URL.createObjectURL(image));
+      // 서버로 부터 이미지 전환 API
 
+      onDispatch('서버로 부터 받은 이미지 url');
+      setPreviewImage('서버로 부터 받은 이미지 url');
       setLoadImage(false);
     },
     [onDispatch],

@@ -11,8 +11,8 @@ import {
 const Detail: React.FC = () => {
   const dispatch = useDispatch();
   const handleThumbnail = useCallback(
-    (value: FormData) => {
-      dispatch(setThumbnail(value));
+    (url: string) => {
+      dispatch(setThumbnail(url));
     },
     [dispatch],
   );

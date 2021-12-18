@@ -12,7 +12,7 @@ export interface createQuestState {
   position: string;
   difficulty: number;
   detail: string;
-  thumbnail: FormData | null;
+  thumbnail?: string;
   subQuestList: ListType[];
   tagList: ListType[];
 }
@@ -23,7 +23,6 @@ const initialState: createQuestState = {
   position: '',
   difficulty: 0,
   detail: '',
-  thumbnail: null,
   subQuestList: [],
   tagList: [],
 };
@@ -45,7 +44,7 @@ export const createQuestSlice = createSlice({
     setDetail: (state, action: PayloadAction<string>) => {
       state.detail = action.payload;
     },
-    setThumbnail: (state, action: PayloadAction<FormData>) => {
+    setThumbnail: (state, action: PayloadAction<string>) => {
       state.thumbnail = action.payload;
     },
     setSubQuest: (state, action: PayloadAction<DragDropListType[]>) => {
