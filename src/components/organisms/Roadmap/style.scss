@@ -1,0 +1,136 @@
+@import '/src/styles/';
+
+._ROADMAP_ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92rem;
+  height: 62rem;
+  background: url('@src/assets/images/paper_big.png');
+
+  .roadmap-header {
+    display: flex;
+    padding-top: 5rem;
+    justify-content: space-around;
+    align-items: center;
+    gap: 18rem;
+
+    .author-info {
+      display: flex;
+      gap: 1rem;
+
+      .author-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+    }
+
+    .roadmap-title {
+      width: 26rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .roadmap-scrap {
+      display: flex;
+      background-color: #b6b6b6;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      .star {
+        background: url('@src/assets/images/star.svg');
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+  }
+
+  .roadmap-body {
+    margin: 4rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85rem;
+    height: 50rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 17%;
+      background-color: rgba(33, 133, 133, 1);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .ship {
+      background: url('@src/assets/images/ship.svg');
+      width: 6.3rem;
+      height: 8.4rem;
+    }
+
+    .road-wrapper {
+      width: 85rem;
+      display: flex;
+      justify-content: center;
+
+      .road-left,
+      .road-right {
+        width: 50%;
+      }
+
+      .road-middle {
+        position: relative;
+        background: #e3e3e3;
+        height: 5.5rem;
+        width: 0.3rem;
+        display: flex;
+
+        .road-circle {
+          position: absolute;
+          left: -0.3rem;
+          top: 2.3rem;
+          width: 1rem;
+          height: 1rem;
+          border-radius: 10rem;
+          background-color: $gil-blue;
+        }
+      }
+
+      .road-right {
+        display: flex;
+        align-items: center;
+
+        .item-line {
+          width: 3rem;
+          height: 0.3rem;
+          background-color: $gil-blue;
+        }
+
+        .item {
+          background-color: $gil-blue;
+          border-radius: 10rem;
+          padding: 0.5rem 1.2rem;
+        }
+      }
+    }
+
+    .destination {
+      background: url('@src/assets/images/destination.svg');
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}
