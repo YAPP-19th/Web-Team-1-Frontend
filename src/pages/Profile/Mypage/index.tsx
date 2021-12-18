@@ -72,18 +72,18 @@ const Mypage: React.FC<MypageProps> = ({
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
-            id={exp_achievement.list[0].id}
-            title={exp_achievement.list[0].title}
-            description={exp_achievement.list[0].description}
+            id={exp_achievement?.list[0]?.id}
+            title={exp_achievement?.list[0]?.title}
+            description={exp_achievement?.list[0]?.description}
           />
         </Box>
       </div>
       <div className="_ITEM_">
         <Box>
           <AchievementBadge
-            id={quest_achievement.list[0].id}
-            title={quest_achievement.list[0].title}
-            description={quest_achievement.list[0].description}
+            id={quest_achievement?.list[0]?.id}
+            title={quest_achievement?.list[0]?.title}
+            description={quest_achievement?.list[0]?.description}
           />
         </Box>
       </div>
