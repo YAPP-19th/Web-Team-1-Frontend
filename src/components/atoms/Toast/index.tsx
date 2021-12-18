@@ -1,8 +1,9 @@
+import React from 'react';
 import { Text } from '@src/components/atoms';
 import toastArrow from '@src/assets/images/toast_arrow.svg';
 import './style.scss';
 
-const Toast = () => {
+const Toast: React.FC = () => {
   return (
     <div className="_TOAST_">
       <div className="toast-wrapper">

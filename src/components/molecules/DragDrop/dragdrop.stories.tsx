@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import DragDrop from '@src/components/molecules/DragDrop';
+import DragDrop, { DragDropProps } from '@src/components/molecules/DragDrop';
 
 export default {
   title: 'Design System/Molecules/DragDrop',
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <DragDrop {...args} />;
+const Template: Story<DragDropProps> = (args) => <DragDrop {...args} />;
 
 export const DefaultDragDrop = Template.bind({});
 DefaultDragDrop.args = {};

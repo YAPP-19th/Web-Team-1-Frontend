@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Text, List, Button } from '@src/components/atoms';
-import { questMain } from '@src/pages/QuestCreate/quest_data.json';
+import { questMain } from '@src/pages/CreateQuest/quest_data.json';
 import lighthouse from '@src/assets/images/lighthouse.svg';
-import QuestMain from './QuestMain';
-import QuestDetail from './QuestDetail';
-import QuestSub from './QuestSub';
+import Main from './Main';
+import Detail from './Detail';
+import Sub from './Sub';
 import './style.scss';
 
 const QuestCreate: React.FC = () => {
@@ -20,17 +21,19 @@ const QuestCreate: React.FC = () => {
           </div>
           <img src={lighthouse} alt="lighthouse" />
         </div>
-        <QuestMain />
-        <QuestSub />
-        <QuestDetail />
+        <Main />
+        <Sub />
+        <Detail />
         <div className="quest-footer">
-          <Button
-            innerText="등록"
-            buttonColor="white"
-            textColor="gil-blue"
-            textSize="medium"
-            hasShadow
-          />
+          <Link to="/create-roadmap">
+            <Button
+              innerText="등록"
+              buttonColor="white"
+              textColor="gil-blue"
+              textSize="medium"
+              hasShadow
+            />
+          </Link>
         </div>
       </section>
     </div>

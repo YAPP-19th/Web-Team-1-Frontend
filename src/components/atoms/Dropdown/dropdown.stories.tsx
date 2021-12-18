@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import Dropdown, { DropdownProps } from '@src/components/atoms/Dropdown';
-import { LEVEL_LIST } from '@src/constants/dropdown';
+import { DIFFICULTY_LIST } from '@src/constants/dropdown';
 
 export default {
   title: 'Design System/Atoms/Dropdown',
@@ -32,5 +32,5 @@ const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 export const defaultDropdown = Template.bind({});
 defaultDropdown.args = {
   placeholder: '난이도 설정',
-  dropdownList: LEVEL_LIST,
+  list: DIFFICULTY_LIST,
 };

@@ -12,13 +12,6 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <Router>
-        <Story />
-      </Router>
-    ),
-  ],
 } as Meta;
 
 const Template: Story = (args) => <Landing {...args} />;
