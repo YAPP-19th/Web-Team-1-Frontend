@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import RoadmapCreate from '@src/pages/RoadmapCreate';
+import RoadmapCreate from '@src/pages/CreateRoadmap';
 
 export default {
   title: 'Pages/Roadmap-Create',
