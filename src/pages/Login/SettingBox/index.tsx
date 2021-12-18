@@ -4,6 +4,10 @@ import { POSITION_LIST } from '@src/constants/dropdown';
 import './style.scss';
 
 const SettingBox: React.FC = () => {
+  const handleDropdown = (type: string, value: string | number) => {
+    console.log('Redux mock function');
+  };
+
   return (
     <article className="profile-setting">
       <Text
@@ -25,7 +29,11 @@ const SettingBox: React.FC = () => {
           <Text fontSize="large" fontColor="main" fontWeight="bold">
             직군 <span className="blue-star">*</span>
           </Text>
-          <Dropdown placeholder="직군 설정" dropdownList={POSITION_LIST} />
+          <Dropdown
+            placeholder="직군 설정"
+            list={POSITION_LIST}
+            onDispatch={handleDropdown}
+          />
         </div>
       </div>
       <div className="introduce-wrapper">

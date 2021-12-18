@@ -1,29 +1,37 @@
 export const POSITION_LIST = [
   {
-    value: '프론트엔드',
+    name: '프론트엔드',
+    value: 'FRONTEND',
   },
   {
-    value: '백엔드',
+    name: '백엔드',
+    value: 'BACKEND',
   },
   {
-    value: '디자이너',
+    name: '디자이너',
+    value: 'DESIGNER',
   },
 ];
 
-export const LEVEL_LIST = [
+export const DIFFICULTY_LIST = [
   {
-    value: '입문 (10 Exp)',
+    name: '입문 (10 Exp)',
+    value: 10,
   },
   {
-    value: '초급 (15 Exp)',
+    name: '초급 (15 Exp)',
+    value: 15,
   },
   {
-    value: '중급 (20 Exp)',
+    name: '중급 (20 Exp)',
+    value: 20,
   },
   {
-    value: '고급 (25 Exp)',
+    name: '고급 (25 Exp)',
+    value: 25,
   },
   {
-    value: '통달 (30 Exp)',
+    name: '통달 (30 Exp)',
+    value: 30,
   },
 ];

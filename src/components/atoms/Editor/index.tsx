@@ -8,13 +8,22 @@ Quill.register('modules/ImageResize', ImageResize);
 
 export interface EditorProps {
   height: number;
+  onDispatch: (value: string) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ height }) => {
+const Editor: React.FC<EditorProps> = ({ height, onDispatch }) => {
   const [contents, setContents] = useState('');
   const imageHandler = useCallback(() => {
     console.log('서버에 이미지 url로 저장');
   }, []);
+
+  const handleChange = useCallback(
+    (value: string) => {
+      setContents(value);
+      onDispatch(value);
+    },
+    [onDispatch],
+  );
 
   const modules = useMemo(
     () => ({
@@ -39,7 +48,7 @@ const Editor: React.FC<EditorProps> = ({ height }) => {
         parchment: Quill.import('parchment'),
       },
     }),
-    [imageHandler],
+    [],
   );
 
   return (
@@ -48,7 +57,7 @@ const Editor: React.FC<EditorProps> = ({ height }) => {
       theme="snow"
       modules={modules}
       value={contents}
-      onChange={setContents}
+      onChange={handleChange}
     />
   );
 };

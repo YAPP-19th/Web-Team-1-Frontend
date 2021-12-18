@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Hashtag from '@src/components/molecules/Hashtag';
+import Hashtag, { HashtagProps } from '@src/components/molecules/Hashtag';
 
 export default {
   title: 'Design System/Molecules/Hashtag',
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <Hashtag {...args} />;
+const Template: Story<HashtagProps> = (args) => <Hashtag {...args} />;
 
 export const DefaultHashtag = Template.bind({});
 DefaultHashtag.args = {};

@@ -2,7 +2,11 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Text } from '@src/components/atoms';
 import './style.scss';
 
-const Uploader: React.FC = () => {
+export interface UploaderProps {
+  onDispatch: (value: FormData) => void;
+}
+
+const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
   const [previewImage, setPreviewImage] = useState('');
   const [loadImage, setLoadImage] = useState(false);
   const imgInput = useRef<HTMLInputElement>(null);
@@ -10,12 +14,17 @@ const Uploader: React.FC = () => {
   const handleImageChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoadImage(true);
-      /* 현재 미리보기 형식만 지원합니다.
-      redux 연결 후 formData 형식으로 서버에 올려야합니다. */
-      setPreviewImage(URL.createObjectURL((e.target.files as FileList)[0]));
+
+      const formData = new FormData();
+      const image = (e.target.files as FileList)[0];
+      formData.append('file', image); // formData 형식으로 저장
+
+      onDispatch(formData);
+      setPreviewImage(URL.createObjectURL(image));
+
       setLoadImage(false);
     },
-    [],
+    [onDispatch],
   );
 
   const handleImageClick = useCallback(
