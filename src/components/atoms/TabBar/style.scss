@@ -25,8 +25,8 @@
   }
 
   &.hasDivider {
-    ._TEXT_:not(:last-child) {
-      border-right: 0.4rem solid $gray-2;
+    .filtering-button:not(:last-child) {
+      border-right: 0.3rem solid $gray-2;
     }
   }
 

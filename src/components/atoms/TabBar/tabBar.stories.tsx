@@ -15,8 +15,11 @@ export default {
     align: {
       options: ['start', 'center', 'end'],
     },
-    divider: {
+    hasDivider: {
       type: 'boolean',
+    },
+    selected: {
+      type: 'number',
     },
   },
 } as Meta;
@@ -28,16 +31,16 @@ export const defaultTabBar = Template.bind({});
 defaultTabBar.args = {
   tabList: [
     {
-      name: '프로필',
+      name: '진행중 퀘스트',
     },
     {
-      name: '퀘스트',
+      name: '완료된 퀘스트',
     },
     {
-      name: '로드맵',
-    },
-    {
-      name: '항해 업적',
+      name: '생성한 퀘스트',
     },
   ],
+  align: 'center',
+  hasDivider: true,
+  selected: 0,
 };
