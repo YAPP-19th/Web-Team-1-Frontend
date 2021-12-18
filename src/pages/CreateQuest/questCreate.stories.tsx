@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import QuestCreate from '@src/pages/QuestCreate';
+import QuestCreate from '@src/pages/CreateQuest';
 
 export default {
   title: 'Pages/Quest-Create',

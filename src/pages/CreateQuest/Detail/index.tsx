@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { Text, Board, List, Uploader } from '@src/components/atoms';
 import { Hashtag } from '@src/components/molecules';
+import { setThumbnail, setTag } from '@src/slices/createQuestSlice';
 import {
   questThumbnail,
   questHashtag,
-} from '@src/pages/QuestCreate/quest_data.json';
+} from '@src/pages/CreateQuest/quest_data.json';
 
-const QuestDetail: React.FC = () => {
+const Detail: React.FC = () => {
+  const dispatch = useDispatch();
+  const handleThumbnail = useCallback(
+    (value: FormData) => {
+      dispatch(setThumbnail(value));
+    },
+    [dispatch],
+  );
+
+  const handleDropdown = useCallback(
+    (value: string[]) => {
+      dispatch(setTag(value));
+    },
+    [dispatch],
+  );
+
   return (
     <Board height={53}>
       <article className="quest-thumbnail">
@@ -16,7 +33,7 @@ const QuestDetail: React.FC = () => {
         <List listData={questThumbnail.list} />
 
         <div className="contents">
-          <Uploader />
+          <Uploader onDispatch={handleThumbnail} />
         </div>
       </article>
 
@@ -27,11 +44,11 @@ const QuestDetail: React.FC = () => {
         <List listData={questHashtag.list} />
 
         <div className="contents">
-          <Hashtag />
+          <Hashtag onDispatch={handleDropdown} />
         </div>
       </article>
     </Board>
   );
 };
 
-export default QuestDetail;
+export default Detail;
