@@ -6,12 +6,19 @@
   justify-content: center;
   width: 15rem;
   height: 3.5rem;
-  border: 0.1rem solid $line-gray;
-  border-radius: 2.5rem;
   box-sizing: border-box;
 
-  ._TEXT_ {
-    color: $line-dark-gray;
+  &.hasBorder {
+    border: 0.1rem solid $line-gray;
+    border-radius: 2.5rem;
+  }
+
+  &.fontColor {
+    &-gray {
+      ._TEXT_ {
+        color: $line-dark-gray;
+      }
+    }
   }
 
   .drop-down-menu {
@@ -25,9 +32,18 @@
       height: 0.7rem;
       top: 1rem;
       right: 1.2rem;
-      border-bottom: 0.1rem solid $line-dark-gray;
-      border-right: 0.1rem solid $line-dark-gray;
       transform: rotate(45deg);
+
+      &.fontColor {
+        &-gray {
+          border-bottom: 0.1rem solid $line-dark-gray;
+          border-right: 0.1rem solid $line-dark-gray;
+        }
+        &-white {
+          border-bottom: 0.1rem solid $white;
+          border-right: 0.1rem solid $white;
+        }
+      }
     }
   }
 

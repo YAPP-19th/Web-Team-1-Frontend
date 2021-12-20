@@ -1,0 +1,38 @@
+.profile-page-quest-list {
+  width: 89.8rem;
+  height: 72.1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-page-list-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0rem;
+
+  .empty-list-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.profile-page-card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+.profile-page-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

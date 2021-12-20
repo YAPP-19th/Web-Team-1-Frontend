@@ -11,10 +11,17 @@
     padding: 1em;
     resize: none;
     font-size: $font-size-medium;
-    border: 0.1rem solid $line-gray;
     box-sizing: border-box;
-    border-radius: 0.5rem;
-    outline: none;
+
+    &.readWrite {
+      border: 0.1rem solid $line-gray;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+
+    &.readOnly {
+      border: none;
+    }
   }
 
   .limit-count {

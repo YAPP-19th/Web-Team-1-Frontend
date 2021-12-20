@@ -94,15 +94,6 @@ const questList: CardProps[] = [
     author: '호랑이형님',
     level: 1,
   },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-  },
 ];
 
 const Detail: React.FC = () => {

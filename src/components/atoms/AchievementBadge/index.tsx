@@ -11,7 +11,7 @@ export interface AchievementBadgeProps {
 
 const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   id = 1,
-  size = 'profile',
+  size = 'main',
   title,
   description = '',
 }) => {

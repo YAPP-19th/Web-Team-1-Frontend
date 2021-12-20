@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Text } from '@src/components/atoms';
+import cn from 'classnames';
 import './style.scss';
 
 export interface DropdownListType {
@@ -16,6 +17,8 @@ export interface DropdownProps {
   selected?: string | number;
   list: DropdownListType[];
   onDispatch: (name: string, value: string | number) => void;
+  hasBorder?: boolean;
+  fontColor?: 'gray' | 'white' | 'main';
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -24,6 +27,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   selected,
   list,
   onDispatch,
+  hasBorder = true,
+  fontColor = 'gray',
 }) => {
   const [isActivate, setIsActivate] = useState(false);
 
@@ -40,12 +45,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   );
 
   return (
-    <div className="_DROPDOWN_">
+    <div className={cn('_DROPDOWN_', { hasBorder }, `fontColor-${fontColor}`)}>
       <button className="drop-down-menu" type="button" onClick={handleActivate}>
-        <Text fontColor="gray" align="center">
+        <Text fontColor={fontColor} align="center">
           {selected || placeholder}
         </Text>
-        <div className="drop-down-arrow" />
+        <div className={cn('drop-down-arrow', `fontColor-${fontColor}`)} />
       </button>
       {isActivate && (
         <div className="drop-down-wrapper">
