@@ -33,14 +33,16 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
+    align-items: center;
   }
 
   .nickname-input {
-    font-size: $font-size-small;
+    font-size: $font-size-medium;
     border: none;
     color: $white;
     text-align: center;
     background-color: rgba(0, 0, 0, 0);
+    width: 100%;
 
     &.isPrivacyEditMode {
       border: 1px solid $line-gray;

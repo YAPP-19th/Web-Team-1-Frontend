@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Text,
   ProgressBar,
@@ -7,6 +7,7 @@ import {
   Box,
   Textarea,
   Button,
+  Dropdown,
 } from '@src/components/atoms';
 import {
   exp_achievement,
@@ -14,22 +15,18 @@ import {
 } from '@src/pages/Profile/achievement_data.json';
 import cn from 'classnames';
 import './style.scss';
+import { POSITION_LIST } from '@src/constants/dropdown';
 
-export interface MypageProps {
-  nickname: string;
-  level: number;
-  job: 'Frontend' | 'Backend';
-  selfDescription: string;
-}
-
-const Mypage: React.FC<MypageProps> = ({
-  nickname,
-  level,
-  job,
-  selfDescription,
-}) => {
+const Mypage: React.FC = () => {
   const [isIntroduceEditMode, setIsIntroduceEditMode] = useState(false);
   const [isPrivacyEditMode, setIsPrivacyEditMode] = useState(false);
+
+  const [nickname, setNickname] = useState('호랑이형님');
+  const [level, setLevel] = useState<1 | 2 | 3 | 4 | 5>(4);
+  const [position, setPosition] = useState<string | number>('FRONTEND');
+  const [introduce, setIntroduce] = useState(
+    '안녕하세요, 저는 프론트앤드 개발자입니다. 제이쿼리, 자바스크립트 등에 관심이 많습니다. 현재 IT 업계 ABC회사에서 근무하고 있습니다 or 안녕하세요 저는 대학교 4학년 컴퓨터공학과 가나다라마바사입니다.',
+  );
 
   const handlePrivacyEditClick = () => {
     setIsPrivacyEditMode((state) => !state);
@@ -55,10 +52,21 @@ const Mypage: React.FC<MypageProps> = ({
     setIsIntroduceEditMode((state) => !state);
   };
 
+  const handlePositionChange = useCallback(
+    (type: string, value: string | number) => {
+      setPosition(value);
+    },
+    [],
+  );
+
+  const handleNicknameChange = useCallback((e: any) => {
+    setNickname(e.target.value);
+  }, []);
+
   return (
     <div className="_PROFILE_">
       <Box className="privacy-box" backgroundColor="gil-blue">
-        <Icon size="profile" level={3} />
+        <Icon size="profile" level={level} />
         <div className="privacy-wrapper">
           <Text
             fontColor="white"
@@ -78,6 +86,7 @@ const Mypage: React.FC<MypageProps> = ({
             defaultValue={nickname}
             maxLength={7}
             readOnly={!isPrivacyEditMode}
+            onChange={handleNicknameChange}
           />
         </div>
         <div className="privacy-wrapper">
@@ -89,7 +98,7 @@ const Mypage: React.FC<MypageProps> = ({
           >
             레벨
           </Text>
-          <Text fontColor="white" align="center">
+          <Text fontColor="white" align="center" fontSize="medium">
             Lv.{level}
           </Text>
         </div>
@@ -102,9 +111,20 @@ const Mypage: React.FC<MypageProps> = ({
           >
             직군
           </Text>
-          <Text fontColor="white" align="center">
-            {job}
-          </Text>
+          {isPrivacyEditMode ? (
+            <Dropdown
+              fontColor="white"
+              placeholder={String(position)}
+              hasBorder={false}
+              list={POSITION_LIST}
+              selected={position}
+              onDispatch={handlePositionChange}
+            />
+          ) : (
+            <Text fontColor="white" align="center" fontSize="medium">
+              {position}
+            </Text>
+          )}
         </div>
         <div className="button-wrapper">
           {isPrivacyEditMode ? (
@@ -176,7 +196,7 @@ const Mypage: React.FC<MypageProps> = ({
         <Textarea
           hasLimit={isIntroduceEditMode}
           readOnly={!isIntroduceEditMode}
-          defaultValue={selfDescription}
+          defaultValue={introduce}
         />
       </Box>
       <Box className="achievement-box">

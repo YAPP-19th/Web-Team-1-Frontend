@@ -47,17 +47,7 @@ const Profile: React.FC = () => {
         <div className="profile-content">
           <Suspense fallback={null}>
             <Switch>
-              <Route
-                path="/profile/mypage"
-                component={() => (
-                  <Mypage
-                    nickname="호랑이형님"
-                    level={3}
-                    job="Frontend"
-                    selfDescription="안녕하세요, 저는 프론트앤드 개발자입니다. 제이쿼리, 자바스크립트 등에 관심이 많습니다. 현재 IT 업계 ABC회사에서 근무하고 있습니다 or 안녕하세요 저는 대학교 4학년 컴퓨터공학과 가나다라마바사입니다."
-                  />
-                )}
-              />
+              <Route path="/profile/mypage" component={Mypage} />
               <Route path="/profile/quest" component={QuestList} />
               <Route path="/profile/roadmap" component={RoadmapList} />
               <Route path="/profile/achievement" component={Achievement} />
