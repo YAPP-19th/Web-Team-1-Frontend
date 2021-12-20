@@ -1,5 +1,4 @@
 import { Story, Meta } from '@storybook/react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Quest from '@src/pages/Quest';
 
 export default {
@@ -12,13 +11,6 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <Router>
-        <Story />
-      </Router>
-    ),
-  ],
 } as Meta;
 
 const Template: Story = (args) => <Quest {...args} />;

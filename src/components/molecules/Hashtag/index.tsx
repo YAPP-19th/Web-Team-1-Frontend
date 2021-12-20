@@ -2,18 +2,34 @@ import React, { useState, useCallback } from 'react';
 import { Input, Button } from '@src/components/atoms';
 import './style.scss';
 
-const Hashtag: React.FC = () => {
-  const [hashtags, setHashtags] = useState<string[]>([
-    '임시',
-    '해시태그',
-    '입니다',
-  ]);
+export interface HashtagProps {
+  onDispatch: (value: string[]) => void;
+}
+
+const Hashtag: React.FC<HashtagProps> = ({ onDispatch }) => {
+  const [hashtag, setHashtag] = useState<string[]>([]);
 
   const onSubmit = useCallback(
-    (value) => {
-      setHashtags([...hashtags, value]);
+    (newTag) => {
+      if (newTag !== '' && hashtag.length < 10) {
+        const newHashtag = new Set([...hashtag, newTag]);
+        onDispatch([...newHashtag]);
+        setHashtag([...newHashtag]);
+      }
     },
-    [hashtags],
+    [hashtag, onDispatch],
+  );
+
+  const handleDelete = useCallback(
+    (tag) => {
+      const index = hashtag.indexOf(tag);
+      const restHashtag = [...hashtag];
+      restHashtag.splice(index, 1);
+
+      onDispatch(restHashtag);
+      setHashtag(restHashtag);
+    },
+    [hashtag, onDispatch],
   );
 
   return (
@@ -26,13 +42,14 @@ const Hashtag: React.FC = () => {
         onSubmit={onSubmit}
       />
       <div className="hashtag_container">
-        {hashtags.map((hashtag) => (
+        {hashtag.map((hashtag) => (
           <Button
             key={hashtag}
             innerText={`#${hashtag}`}
             buttonColor="main-gray"
             textColor="dark-gray"
             textSize="small"
+            handleClick={() => handleDelete(hashtag)}
           />
         ))}
       </div>

@@ -16,7 +16,7 @@ import {
   roadmapCreateText,
   roadmapCreateList,
   roadmapPreview,
-} from '@src/pages/RoadmapCreate/roadmap_data.json';
+} from '@src/pages/CreateRoadmap/roadmap_data.json';
 import './style.scss';
 
 // 더미 데이터
@@ -96,7 +96,7 @@ const questList: CardProps[] = [
   },
 ];
 
-const RoadmapDetail: React.FC = () => {
+const Detail: React.FC = () => {
   // 현재 컴포넌트의 모든 State는 Redux에 저장해야 합니다.
   // 아래 state는 임시입니다.
   const [quest, setQuest] = useState(['']);
@@ -113,6 +113,10 @@ const RoadmapDetail: React.FC = () => {
       }),
     [],
   );
+
+  const handleDragDrop = (value: any) => {
+    console.log('Redux mock function');
+  };
 
   const handleButtonClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -189,7 +193,7 @@ const RoadmapDetail: React.FC = () => {
           {roadmapCreateList.main}
         </Text>
         <div className="contents">
-          <DragDrop />
+          <DragDrop onDispatch={handleDragDrop} />
         </div>
       </article>
       {/* 미리보기 임시 컴포넌트 */}
@@ -202,4 +206,4 @@ const RoadmapDetail: React.FC = () => {
   );
 };
 
-export default RoadmapDetail;
+export default Detail;

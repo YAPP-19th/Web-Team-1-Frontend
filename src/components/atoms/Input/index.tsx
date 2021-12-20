@@ -10,6 +10,7 @@ export interface InputProps {
   inputHeight?: 'narrow' | 'wide';
   placeholder?: string;
   placeholderColor?: 'gray' | 'blue';
+  onDispatch?: (value: string) => void; // redux 저장 함수
   onSubmit?: (value: string | number) => void;
 }
 
@@ -20,24 +21,32 @@ const Input: React.FC<InputProps> = ({
   inputHeight = 'narrow',
   placeholder,
   placeholderColor = 'gray',
+  onDispatch,
   onSubmit,
 }) => {
   const [input, setInput] = useState('');
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setInput(inputValue);
-  }, []);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.target.value;
+      setInput(inputValue);
 
-  // Enter 키 인식
+      if (onDispatch) {
+        onDispatch(inputValue);
+      }
+    },
+    [onDispatch],
+  );
+
+  // Redux에 Input 컴포넌트를 연결 하지 않을 경우에만 작동합니다.
   const handleEnter = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter') {
+      if (!onDispatch && e.key === 'Enter') {
         setInput('');
         if (onSubmit) onSubmit(input);
       }
     },
-    [input, onSubmit],
+    [input, onSubmit, onDispatch],
   );
 
   return (

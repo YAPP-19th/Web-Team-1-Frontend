@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Text, List, Button } from '@src/components/atoms';
 import { Toaster } from 'react-hot-toast';
-import { roadmapMain } from '@src/pages/RoadmapCreate/roadmap_data.json';
+import { roadmapMain } from '@src/pages/CreateRoadmap/roadmap_data.json';
 import map from '@src/assets/images/map.png';
-import RoadmapMain from './RoadmapMain';
-import RoadmapDetail from './RoadmapDetail';
+import Main from './Main';
+import Detail from './Detail';
 import './style.scss';
 
 const RoadmapCreate: React.FC = () => {
@@ -20,16 +21,18 @@ const RoadmapCreate: React.FC = () => {
           </div>
           <img src={map} alt="map" />
         </div>
-        <RoadmapMain />
-        <RoadmapDetail />
+        <Main />
+        <Detail />
         <div className="roadmap-footer">
-          <Button
-            innerText="등록"
-            buttonColor="white"
-            textColor="gil-blue"
-            textSize="medium"
-            hasShadow
-          />
+          <Link to="quest">
+            <Button
+              innerText="등록"
+              buttonColor="white"
+              textColor="gil-blue"
+              textSize="medium"
+              hasShadow
+            />
+          </Link>
         </div>
       </section>
       <Toaster />

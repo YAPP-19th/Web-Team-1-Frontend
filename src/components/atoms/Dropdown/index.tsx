@@ -2,18 +2,28 @@ import React, { useState, useCallback } from 'react';
 import { Text } from '@src/components/atoms';
 import './style.scss';
 
-/*  결과값 저정에 redux hooks을 이용한다면 추후 인터페이스를 바꿔야 합니다. */
+export interface DropdownListType {
+  /* 드롭다운의 타입 Ex) postition, level
+  type을 통해 Redux에서 value를 원하는 곳에 지정합니다. */
+  type?: string;
+  name?: string; // 드롭다운의 placeholder Ex) 초급 (10Exp)
+  value: string | number; // Redux에 저장될 값
+}
 
 export interface DropdownProps {
   placeholder: string;
-  selected?: string; // 드롭다운 선택된 결과 값
-  dropdownList: { value: string }[];
+  type?: string;
+  selected?: string | number;
+  list: DropdownListType[];
+  onDispatch: (name: string, value: string | number) => void;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   placeholder,
+  type = 'default',
   selected,
-  dropdownList: dropdownItems,
+  list,
+  onDispatch,
 }) => {
   const [isActivate, setIsActivate] = useState(false);
 
@@ -21,10 +31,13 @@ const Dropdown: React.FC<DropdownProps> = ({
     setIsActivate(!isActivate);
   }, [isActivate]);
 
-  const handleSelect = useCallback((value: string) => {
-    // value 를 이용해서 redux에 저장하면 됩니다.
-    setIsActivate(false);
-  }, []);
+  const handleSelect = useCallback(
+    (value) => {
+      onDispatch(type, value);
+      setIsActivate(false);
+    },
+    [type, onDispatch],
+  );
 
   return (
     <div className="_DROPDOWN_">
@@ -36,15 +49,15 @@ const Dropdown: React.FC<DropdownProps> = ({
       </button>
       {isActivate && (
         <div className="drop-down-wrapper">
-          {dropdownItems.map(({ value }) => (
+          {list.map(({ name, value }) => (
             <button
               className="drop-down-item"
               type="button"
-              key={value}
+              key={name}
               onClick={() => handleSelect(value)}
             >
               <Text fontColor="gray" align="center">
-                {value}
+                {name}
               </Text>
             </button>
           ))}

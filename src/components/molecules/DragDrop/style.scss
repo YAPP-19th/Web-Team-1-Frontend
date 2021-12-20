@@ -3,19 +3,19 @@
 ._DRAGDROP_ {
   width: 70%;
 
-  .subquest-list {
+  .list {
     list-style: none;
     overflow: scroll;
     height: 22rem;
     padding: 0;
   }
 
-  .subquest-wrapper {
+  .item-wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
 
-    .subquest {
+    .item {
       display: flex;
       align-items: center;
       width: 92%;

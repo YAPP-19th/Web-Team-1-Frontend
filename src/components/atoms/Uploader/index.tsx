@@ -2,20 +2,30 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Text } from '@src/components/atoms';
 import './style.scss';
 
-const Uploader: React.FC = () => {
-  const [previewImage, setPreviewImage] = useState('');
+export interface UploaderProps {
+  onDispatch: (url: string) => void;
+}
+
+const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
+  const [previewImage, setPreviewImage] = useState(''); // RTK Query 연동시 삭제
   const [loadImage, setLoadImage] = useState(false);
   const imgInput = useRef<HTMLInputElement>(null);
 
   const handleImageChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoadImage(true);
-      /* 현재 미리보기 형식만 지원합니다.
-      redux 연결 후 formData 형식으로 서버에 올려야합니다. */
-      setPreviewImage(URL.createObjectURL((e.target.files as FileList)[0]));
+
+      const formData = new FormData();
+      const image = (e.target.files as FileList)[0];
+      formData.append('file', image); // formData 형식으로 저장
+
+      // 서버로 부터 이미지 전환 API
+
+      onDispatch('서버로 부터 받은 이미지 url');
+      setPreviewImage('서버로 부터 받은 이미지 url');
       setLoadImage(false);
     },
-    [],
+    [onDispatch],
   );
 
   const handleImageClick = useCallback(

@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import { List } from '@src/components/atoms';
-import questData from '@src/pages/QuestCreate/quest_data.json';
+import questData from '@src/pages/CreateQuest/quest_data.json';
 
 export default {
   title: 'Design System/Atoms/List',

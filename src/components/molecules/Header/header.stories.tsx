@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
 import Header, { HeaderProps } from '@src/components/molecules/Header';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 export default {
   title: 'Design System/Molecules/Header',
@@ -12,13 +11,6 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <Router>
-        <Story />
-      </Router>
-    ),
-  ],
 } as Meta;
 
 const Template: Story<HeaderProps> = (args) => <Header {...args} />;

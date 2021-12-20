@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Uploader from '@src/components/atoms/Uploader';
+import Uploader, { UploaderProps } from '@src/components/atoms/Uploader';
 
 export default {
   title: 'Design System/Atoms/Uploader',
@@ -14,7 +14,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story = (args) => <Uploader {...args} />;
+const Template: Story<UploaderProps> = (args) => <Uploader {...args} />;
 
 export const DefaultUploader = Template.bind({});
 DefaultUploader.args = {};
