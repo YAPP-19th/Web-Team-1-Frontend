@@ -7,16 +7,25 @@ export interface TextareaProps {
   className?: string;
   hasLimit: boolean;
   limit?: number;
+  readOnly?: boolean;
+  defaultValue?: string;
 }
 
 const Textarea: React.FC<TextareaProps> = ({
   className,
   hasLimit = true,
   limit = 120,
+  readOnly = false,
+  defaultValue = '',
 }) => {
   return (
     <div className={cn('_TEXTAREA_', className)}>
-      <textarea maxLength={hasLimit ? limit : undefined} />
+      <textarea
+        className={readOnly ? 'readOnly' : 'readWrite'}
+        maxLength={hasLimit ? limit : undefined}
+        readOnly={readOnly}
+        defaultValue={defaultValue}
+      />
       {hasLimit && (
         <div className="limit-count">
           <Text fontColor="gray">{`${limit}자`}</Text>

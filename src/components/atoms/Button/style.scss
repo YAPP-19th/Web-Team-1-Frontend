@@ -16,42 +16,52 @@
   &.button-color {
     &-gil-blue {
       background-color: $gil-blue;
-      &:hover {
-        border-color: $gil-blue;
-        cursor: pointer;
-        color: $gil-blue;
+      &.onHover {
+        &:hover {
+          border-color: $gil-blue;
+          cursor: pointer;
+          color: $gil-blue;
+        }
       }
     }
     &-job-navy {
       background-color: $job-navy;
-      &:hover {
-        border-color: $job-navy;
-        cursor: pointer;
-        color: $job-navy;
+      &.onHover {
+        &:hover {
+          border-color: $job-navy;
+          cursor: pointer;
+          color: $job-navy;
+        }
       }
     }
     &-main-gray {
       background-color: $main-gray;
-      &:hover {
-        border-color: $main-gray;
-        cursor: pointer;
-        color: $main-gray;
+      &.onHover {
+        &:hover {
+          border-color: $main-gray;
+          cursor: pointer;
+          color: $main-gray;
+        }
       }
     }
     &-white {
       background-color: $white;
-      &:hover {
-        border-color: $white;
-        cursor: pointer;
-        color: $white;
+      &.onHover {
+        &:hover {
+          border-color: $white;
+          cursor: pointer;
+          color: $white;
+        }
       }
     }
     &-kakao {
       background-color: $kakao;
-      &:hover {
-        border-color: $kakao;
-        cursor: pointer;
-        color: $kakao;
+      &.onHover {
+        &:hover {
+          border-color: $kakao;
+          cursor: pointer;
+          color: $kakao;
+        }
       }
     }
   }
@@ -60,41 +70,51 @@
     &-gil-blue {
       color: $gil-blue;
       border-color: $gil-blue;
-      &:hover {
-        cursor: pointer;
-        background-color: $gil-blue;
+      &.onHover {
+        &:hover {
+          cursor: pointer;
+          background-color: $gil-blue;
+        }
       }
     }
     &-job-navy {
       color: $job-navy;
       border-color: $job-navy;
-      &:hover {
-        cursor: pointer;
-        background-color: $job-navy;
+      &.onHover {
+        &:hover {
+          cursor: pointer;
+          background-color: $job-navy;
+        }
       }
     }
     &-dark-gray {
       color: $line-dark-gray;
       border-color: $line-dark-gray;
-      &:hover {
-        cursor: pointer;
-        background-color: $line-dark-gray;
+      &.onHover {
+        &:hover {
+          cursor: pointer;
+          background-color: $line-dark-gray;
+        }
       }
     }
     &-white {
       color: $white;
       border-color: $white;
-      &:hover {
-        cursor: pointer;
-        background-color: $white;
+      &.onHover {
+        &:hover {
+          cursor: pointer;
+          background-color: $white;
+        }
       }
     }
     &-main {
       color: $text-main;
       border-color: $text-main;
-      &:hover {
-        cursor: pointer;
-        background-color: $text-main;
+      &.onHover {
+        &:hover {
+          cursor: pointer;
+          background-color: $text-main;
+        }
       }
     }
   }
