@@ -16,7 +16,9 @@ import {
   Quest,
   QuestsCount,
   QuestsInfo,
-  User,
+  Writer,
+  Roadmap,
+  RoadmapListItem,
   UsersProfile,
 } from './types/response';
 
@@ -98,7 +100,9 @@ export const giljobApi = createApi({
       }),
     }),
     // 로드맵 조회: GET /roadmaps/{roadmapId}
-    // TODO
+    getRoadmaps: builder.query<Response<Roadmap>, ProvideRoadmapId>({
+      query: ({ roadmapId }) => `roadmaps/${roadmapId}`,
+    }),
     // 로드맵 스크랩: POST /roadmaps/{roadmapId}/scrap
     postRoadmapsScrap: builder.mutation<
       ProvideRoadmapId,
@@ -109,12 +113,19 @@ export const giljobApi = createApi({
         method: 'POST',
       }),
     }),
+    // 유저가 스크랩한 로드맵 리스트 조회: GET /users/{userId}/roadmaps/scrap
+    getUsersRoadmapsScrap: builder.query<
+      Response<RoadmapListItem[]>,
+      ProvideUserId
+    >({
+      query: ({ userId }) => `users/${userId}/roadmaps/scrap`,
+    }),
     // 회원가입: POST /sign-up
     // TODO
     // 로그인: POST /sign-in
     // TODO
     // 인증된 유저 정보 조회: GET /users/me
-    getUsersMe: builder.query<Response<User>, void>({
+    getUsersMe: builder.query<Response<Writer>, void>({
       query: () => `users/me`,
     }),
     getUsersProfile: builder.query<Response<UsersProfile>, ProvideUserId>({
@@ -141,10 +152,13 @@ export const {
   useGetQuestsSearchQuery,
   useGetQuestsCountQuery,
   useGetQuestsInfoQuery,
+  useGetQuestsParticipationStatusQuery,
   useGetUsersQuestsQuery,
   useGetUsersQuestsParticipationQuery,
   usePostSubquestsMutation,
+  useGetRoadmapsQuery,
   usePostRoadmapsScrapMutation,
+  useGetUsersRoadmapsScrapQuery,
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
   usePatchUsersMeIntroMutation,

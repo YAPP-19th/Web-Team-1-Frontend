@@ -3,16 +3,8 @@ export interface Response<T> {
   message: string;
   data: T;
 }
-
-// TODO: property가 3개인 User는 삭제 예정
-export interface UserTemp {
+export interface Writer {
   id: number;
-  nickname: string;
-  point: number;
-}
-
-export interface User {
-  userId: number;
   nickname: string;
   position: string;
   point: number;
@@ -24,7 +16,7 @@ export interface Quest {
   name: string;
   position: string;
   participantCount: number;
-  user: UserTemp;
+  writer: Writer;
   difficulty: number;
   thumbnail: string;
 }
@@ -38,27 +30,42 @@ export interface QuestsCount {
 export interface QuestsInfo {
   id: number;
   name: string;
-  difficulty: number;
   position: string;
-  detail: string;
-  participantCnt: number;
-  writer: {
-    id: number;
-    nickname: string;
-    point: number;
-  };
+  difficulty: number;
   tagList: {
     name: string;
   }[];
+  detail: string;
+  participantCount: number;
+  writer: Writer;
+}
+
+export interface Roadmap {
+  name: string;
+  writer: Writer;
+  position: string;
+  questList: {
+    id: number;
+    name: string;
+    isRealQuest: boolean;
+  }[];
+  isScraped: boolean;
+}
+
+export interface RoadmapListItem {
+  id: number;
+  name: string;
+  position: string;
+  writer: Writer;
 }
 
 export interface UsersProfile {
-  userInfo: User;
+  writer: Writer;
   abilityList: {
     position: string;
     point: number;
   }[];
-  acheive: {
+  achieve: {
     pointAchieve: number;
     questAchieve: number;
   };
