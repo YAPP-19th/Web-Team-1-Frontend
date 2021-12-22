@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
+  ProvideQuestId,
+  ProvideSubQuestId,
+  ProvideRoadmapId,
+  ProvideUserId,
+  ProvideIntro,
   PostQuests,
   GetQuests,
   GetQuestsSearch,
-  GetQuestsInfo,
   GetUsersQuests,
   GetUsersQuestsParticipation,
-  PostSubquests,
-  PostRoadmapsScrap,
-  GetUsersProfile,
-  PatchUsersMeIntro,
 } from './types/request';
 import {
   Response,
@@ -56,7 +56,7 @@ export const giljobApi = createApi({
       query: () => `quests/count`,
     }),
     // 퀘스트 상세 페이지 정보 조회: GET /quests/{questId}/info/
-    getQuestsInfo: builder.query<Response<QuestsInfo>, GetQuestsInfo>({
+    getQuestsInfo: builder.query<Response<QuestsInfo>, ProvideQuestId>({
       query: ({ questId }) => `quests/${questId}/info`,
     }),
     // 로그인한 유저에 대한 퀘스트의 상태 정보 조회: GET /quests/{questId}/participation/status
@@ -88,7 +88,10 @@ export const giljobApi = createApi({
         }&completed=${completed ? 'true' : 'false'}&size=${size ?? ''}`,
     }),
     // 서브퀘스트 완료: POST /subquests/{subQuestId}
-    postSubquests: builder.mutation<PostSubquests, Partial<PostSubquests>>({
+    postSubquests: builder.mutation<
+      ProvideSubQuestId,
+      Partial<ProvideSubQuestId>
+    >({
       query: ({ subQuestId }) => ({
         url: `subquests/${subQuestId}`,
         method: 'POST',
@@ -98,8 +101,8 @@ export const giljobApi = createApi({
     // TODO
     // 로드맵 스크랩: POST /roadmaps/{roadmapId}/scrap
     postRoadmapsScrap: builder.mutation<
-      PostRoadmapsScrap,
-      Partial<PostRoadmapsScrap>
+      ProvideRoadmapId,
+      Partial<ProvideRoadmapId>
     >({
       query: ({ roadmapId }) => ({
         url: `roadmaps/${roadmapId}/scrap`,
@@ -114,16 +117,13 @@ export const giljobApi = createApi({
     getUsersMe: builder.query<Response<User>, void>({
       query: () => `users/me`,
     }),
-    getUsersProfile: builder.query<Response<UsersProfile>, GetUsersProfile>({
+    getUsersProfile: builder.query<Response<UsersProfile>, ProvideUserId>({
       query: ({ userId }) => `users/${userId}/profile`,
     }),
     // 유저 정보 수정: PATCH /users/me
     // TODO: 500 Error
     // 유저 자기소개 수정: PATCH /users/me/intro
-    patchUsersMeIntro: builder.mutation<
-      PatchUsersMeIntro,
-      Partial<PatchUsersMeIntro>
-    >({
+    patchUsersMeIntro: builder.mutation<ProvideIntro, Partial<ProvideIntro>>({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',

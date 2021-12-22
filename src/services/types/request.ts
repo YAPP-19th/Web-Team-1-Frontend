@@ -1,3 +1,23 @@
+export interface ProvideQuestId {
+  questId: number;
+}
+
+export interface ProvideSubQuestId {
+  subQuestId: number;
+}
+
+export interface ProvideRoadmapId {
+  roadmapId: number;
+}
+
+export interface ProvideUserId {
+  userId: number;
+}
+
+export interface ProvideIntro {
+  intro: string;
+}
+
 export interface PostQuests {
   name: string;
   difficulty: number;
@@ -24,10 +44,6 @@ export interface GetQuestsSearch {
   size?: number;
 }
 
-export interface GetQuestsInfo {
-  questId: number;
-}
-
 export interface GetUsersQuests {
   userId: number;
   cursor?: number;
@@ -36,20 +52,4 @@ export interface GetUsersQuests {
 
 export interface GetUsersQuestsParticipation extends GetUsersQuests {
   completed?: boolean;
-}
-
-export interface PostSubquests {
-  subQuestId: number;
-}
-
-export interface PostRoadmapsScrap {
-  roadmapId: number;
-}
-
-export interface GetUsersProfile {
-  userId: number;
-}
-
-export interface PatchUsersMeIntro {
-  intro: string;
 }
