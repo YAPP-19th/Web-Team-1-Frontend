@@ -1,0 +1,11 @@
+@import '/src/styles/';
+
+.count-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 2rem;
+  padding-top: 10rem;
+  width: 90rem;
+  height: 100%;
+  margin: auto;
+}
