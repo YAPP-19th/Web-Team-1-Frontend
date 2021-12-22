@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, Ref } from 'react';
+import React, { ReactNode } from 'react';
 import cn from 'classnames';
 import './style.scss';
 import { FontSize } from '@src/utils';
@@ -12,35 +12,28 @@ export interface TextProps {
   fontWeight?: 'light' | 'regular' | 'medium' | 'bold';
 }
 
-const Text = forwardRef<HTMLDivElement, TextProps>(
-  (
-    {
-      children,
-      className,
-      align = 'start',
-      fontColor = 'main',
-      fontSize = 'small',
-      fontWeight = 'medium',
-    }: TextProps,
-    ref: Ref<HTMLDivElement>,
-  ) => {
-    return (
-      <div
-        className={cn(
-          '_TEXT_',
-          className,
-          `text-align-${align}`,
-          `font-size-${fontSize}`,
-          `font-color-${fontColor}`,
-          `font-weight-${fontWeight}`,
-        )}
-        ref={ref}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+const Text: React.FC<TextProps> = ({
+  children,
+  className,
+  align = 'start',
+  fontColor = 'main',
+  fontSize = 'small',
+  fontWeight = 'medium',
+}) => {
+  return (
+    <div
+      className={cn(
+        '_TEXT_',
+        className,
+        `text-align-${align}`,
+        `font-size-${fontSize}`,
+        `font-color-${fontColor}`,
+        `font-weight-${fontWeight}`,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
 
-Text.displayName = 'Text';
 export default Text;
