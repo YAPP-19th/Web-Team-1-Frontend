@@ -1,4 +1,4 @@
-const headerItems = [
+const HEADER_LIST = [
   {
     name: '길잡 소개',
     route: '/',
@@ -9,4 +9,4 @@ const headerItems = [
   },
 ];
 
-export default headerItems;
+export default HEADER_LIST;
