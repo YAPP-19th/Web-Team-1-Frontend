@@ -70,3 +70,8 @@ export interface UsersProfile {
     questAchieve: number;
   };
 }
+
+export interface Auth {
+  isSignedUp?: boolean;
+  accessToken: string;
+}

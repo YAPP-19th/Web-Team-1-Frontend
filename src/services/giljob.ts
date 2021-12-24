@@ -5,6 +5,8 @@ import {
   ProvideRoadmapId,
   ProvideUserId,
   ProvideIntro,
+  PostLogin,
+  PostRegister,
   PostQuests,
   GetQuests,
   GetQuestsSearch,
@@ -20,6 +22,7 @@ import {
   Roadmap,
   RoadmapListItem,
   UsersProfile,
+  Auth,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -121,9 +124,21 @@ export const giljobApi = createApi({
       query: ({ userId }) => `users/${userId}/roadmaps/scrap`,
     }),
     // 회원가입: POST /sign-up
-    // TODO
+    postRegister: builder.mutation<Response<Auth>, PostRegister>({
+      query: (body) => ({
+        url: 'sign-up',
+        method: 'POST',
+        body,
+      }),
+    }),
     // 로그인: POST /sign-in
-    // TODO
+    postLogin: builder.mutation<Response<Auth>, PostLogin>({
+      query: (body) => ({
+        url: 'sign-in',
+        method: 'POST',
+        body,
+      }),
+    }),
     // 인증된 유저 정보 조회: GET /users/me
     getUsersMe: builder.query<Response<Writer>, void>({
       query: () => `users/me`,
@@ -138,7 +153,6 @@ export const giljobApi = createApi({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',
-        body,
       }),
     }),
     // 업로드: POST /upload
@@ -162,4 +176,6 @@ export const {
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
   usePatchUsersMeIntroMutation,
+  usePostLoginMutation,
+  usePostRegisterMutation,
 } = giljobApi;

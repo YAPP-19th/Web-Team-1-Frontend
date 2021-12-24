@@ -1,3 +1,13 @@
+export interface PostLogin {
+  kakaoAccessToken: string;
+}
+
+export interface PostRegister extends PostLogin {
+  position: string;
+  nickname: string;
+  intro: string;
+}
+
 export interface ProvideQuestId {
   questId: number;
 }
