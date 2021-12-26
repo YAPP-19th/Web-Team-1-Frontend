@@ -5,6 +5,6 @@ export { default as Header } from './Header';
 export { default as HeaderDropdown } from './HeaderDropdown';
 export { default as Footer } from './Footer';
 export { default as Paper } from './Paper';
-export { default as ProfileQuestCard } from './ProfileQuestCard';
+import { default as ProfileQuestCard } from './ProfileQuestCard';
 export { default as Hashtag } from './Hashtag';
 export { default as DragDrop } from './DragDrop';
