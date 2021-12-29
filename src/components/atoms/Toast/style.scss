@@ -8,7 +8,15 @@
   cursor: default;
   border-radius: 2.5rem;
   box-shadow: $box-shadow;
-  background-color: $gil-blue;
+
+  &.toast-background {
+    &-blue {
+      background-color: $gil-blue;
+    }
+    &-red {
+      background-color: $red-8;
+    }
+  }
 
   .toast-wrapper {
     height: 75%;
