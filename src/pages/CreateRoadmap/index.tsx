@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Text, List, Button } from '@src/components/atoms';
-import { Toaster } from 'react-hot-toast';
 import { roadmapMain } from '@src/pages/CreateRoadmap/roadmap_data.json';
 import map from '@src/assets/images/map.png';
 import Main from './Main';
@@ -35,7 +34,6 @@ const RoadmapCreate: React.FC = () => {
           </Link>
         </div>
       </section>
-      <Toaster />
     </div>
   );
 };

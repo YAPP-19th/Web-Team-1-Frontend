@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Button, Text } from '@src/components/atoms';
+import { Button, Text, Loading } from '@src/components/atoms';
 import { usePostLoginMutation } from '@src/services/giljob';
 import { setAuth, setKakaoToken, setAccessToken } from '@src/slices/authSlice';
 import logo from '@src/assets/images/logo.svg';
@@ -48,35 +48,37 @@ const LoginBox: React.FC = () => {
   );
 
   return (
-    <article className="login-box">
-      {isLoading && <div className="loading">loading...</div>}
-      <img className="logo" src={logo} alt="logo" />
-      <Text
-        className="intro-text"
-        align="center"
-        fontSize="large"
-        fontWeight="bold"
-      >
-        길잡에 오신 것을 환영합니다
-      </Text>
-      <Button
-        innerText="카카오로 1초만에 시작"
-        buttonColor="kakao"
-        textColor="main"
-        textSize="medium"
-        handleClick={() => handleLogin(window.Kakao)}
-      />
-      <Link to="/quest" className="no-login">
+    <>
+      {isLoading && <Loading />}
+      <article className="login-box">
+        <img className="logo" src={logo} alt="logo" />
         <Text
+          className="intro-text"
           align="center"
-          fontColor="gray"
-          fontSize="small"
-          fontWeight="regular"
+          fontSize="large"
+          fontWeight="bold"
         >
-          로그인 없이 둘러보기 ←
+          길잡에 오신 것을 환영합니다
         </Text>
-      </Link>
-    </article>
+        <Button
+          innerText="카카오로 1초만에 시작"
+          buttonColor="kakao"
+          textColor="main"
+          textSize="medium"
+          handleClick={() => handleLogin(window.Kakao)}
+        />
+        <Link to="/quest" className="no-login">
+          <Text
+            align="center"
+            fontColor="gray"
+            fontSize="small"
+            fontWeight="regular"
+          >
+            로그인 없이 둘러보기 ←
+          </Text>
+        </Link>
+      </article>
+    </>
   );
 };
 

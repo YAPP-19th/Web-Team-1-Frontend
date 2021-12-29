@@ -103,14 +103,21 @@ const Detail: React.FC = () => {
 
   const handleToast = useCallback(
     () =>
-      toast(<Toast />, {
-        duration: 2000,
-        position: 'bottom-right',
-        style: {
-          background: 'transparent',
-          boxShadow: 'none',
+      toast(
+        <Toast
+          mainText="해당 퀘스트가 등록되었습니다!"
+          subText="로드맵 리스트 확인"
+          color="blue"
+        />,
+        {
+          duration: 2000,
+          position: 'bottom-center',
+          style: {
+            background: 'transparent',
+            boxShadow: 'none',
+          },
         },
-      }),
+      ),
     [],
   );
 
