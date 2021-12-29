@@ -20,6 +20,21 @@ export interface DragDropProps {
 const DragDrop: React.FC<DragDropProps> = ({ onDispatch }) => {
   const [list, setlist] = useState<DragDropListType[]>([]);
 
+  const handleSubmit = useCallback(
+    (value: string | number) => {
+      if (value) {
+        const newList = {
+          id: (list.length + 1).toString(),
+          name: value as string,
+        };
+
+        onDispatch([...list, newList]);
+        setlist([...list, newList]);
+      }
+    },
+    [list, onDispatch],
+  );
+
   const handleChange = useCallback(
     (result: DropResult) => {
       // 아이템이 가진 인덱스를 계산해서 새로운 배열을 생성합니다.
@@ -30,19 +45,6 @@ const DragDrop: React.FC<DragDropProps> = ({ onDispatch }) => {
 
       onDispatch(newList);
       setlist(newList);
-    },
-    [list, onDispatch],
-  );
-
-  const handleSubmit = useCallback(
-    (value: string | number) => {
-      const newList = {
-        id: (list.length + 1).toString(),
-        name: value as string,
-      };
-
-      onDispatch([...list, newList]);
-      setlist([...list, newList]);
     },
     [list, onDispatch],
   );

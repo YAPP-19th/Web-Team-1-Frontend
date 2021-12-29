@@ -9,9 +9,9 @@ export interface HashtagProps {
 const Hashtag: React.FC<HashtagProps> = ({ onDispatch }) => {
   const [hashtag, setHashtag] = useState<string[]>([]);
 
-  const onSubmit = useCallback(
+  const handleSubmit = useCallback(
     (newTag) => {
-      if (newTag !== '' && hashtag.length < 10) {
+      if (newTag) {
         const newHashtag = new Set([...hashtag, newTag]);
         onDispatch([...newHashtag]);
         setHashtag([...newHashtag]);
@@ -39,7 +39,7 @@ const Hashtag: React.FC<HashtagProps> = ({ onDispatch }) => {
         count={10}
         inputHeight="wide"
         placeholder="해시 태그를 입력하세요"
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       />
       <div className="hashtag_container">
         {hashtag.map((hashtag) => (
