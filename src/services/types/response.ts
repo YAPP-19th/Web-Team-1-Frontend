@@ -75,3 +75,7 @@ export interface Auth {
   isSignedUp?: boolean;
   accessToken: string;
 }
+
+export interface Upload {
+  fileUrl: string;
+}

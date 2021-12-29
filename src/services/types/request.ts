@@ -63,3 +63,5 @@ export interface GetUsersQuests {
 export interface GetUsersQuestsParticipation extends GetUsersQuests {
   completed?: boolean;
 }
+
+export type PostUpload = FormData;
