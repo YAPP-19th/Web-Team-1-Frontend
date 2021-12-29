@@ -23,6 +23,7 @@ const initialState: createQuestState = {
   position: '',
   difficulty: 0,
   detail: '',
+  thumbnail: '',
   subQuestList: [],
   tagList: [],
 };
