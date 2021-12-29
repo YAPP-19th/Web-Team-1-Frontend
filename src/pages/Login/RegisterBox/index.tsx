@@ -42,7 +42,7 @@ const RegisterBox: React.FC = () => {
     () =>
       toast(
         <Toast
-          mainText="입력 정보를 전부 확인해주세요!"
+          mainText="항해를 시작할 수 없습니다!"
           subText="입력 정보 확인"
           color="red"
         />,
