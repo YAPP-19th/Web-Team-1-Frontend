@@ -60,7 +60,7 @@ export interface RoadmapListItem {
 }
 
 export interface UsersProfile {
-  writer: Writer;
+  userInfo: Writer;
   abilityList: {
     position: string;
     point: number;

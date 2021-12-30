@@ -1,4 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   Text,
   ProgressBar,
@@ -16,52 +22,120 @@ import {
 import cn from 'classnames';
 import './style.scss';
 import { POSITION_LIST } from '@src/constants/dropdown';
+import { useGetUsersProfileQuery } from '@src/services/giljob';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  profileSelector,
+  setUserMe,
+  setUserInfo,
+  setUserInfoIntro,
+} from '@src/slices/profileSlice';
+import { DropdownListType } from '@src/components/atoms/Dropdown';
 
 const Mypage: React.FC = () => {
-  const [isIntroduceEditMode, setIsIntroduceEditMode] = useState(false);
-  const [isPrivacyEditMode, setIsPrivacyEditMode] = useState(false);
+  const dispatch = useDispatch();
+  const profileState = useSelector(profileSelector);
+  const { data: profile, isSuccess } = useGetUsersProfileQuery({
+    userId: profileState.userInfo.id,
+  });
 
-  const [nickname, setNickname] = useState('호랑이형님');
-  const [level, setLevel] = useState<1 | 2 | 3 | 4 | 5>(4);
-  const [position, setPosition] = useState<string | number>('FRONTEND');
-  const [introduce, setIntroduce] = useState(
-    '안녕하세요, 저는 프론트앤드 개발자입니다. 제이쿼리, 자바스크립트 등에 관심이 많습니다. 현재 IT 업계 ABC회사에서 근무하고 있습니다 or 안녕하세요 저는 대학교 4학년 컴퓨터공학과 가나다라마바사입니다.',
+  // local state
+  const [isIntroduceEditMode, setIsIntroduceEditMode] =
+    useState<boolean>(false);
+  const [isPrivacyEditMode, setIsPrivacyEditMode] = useState<boolean>(false);
+  const [nickname, setNickname] = useState<string>(
+    profileState.userInfo.nickname,
+  );
+  const [position, setPosition] = useState<DropdownListType>({
+    type: 'position',
+    value: profileState.userInfo.position,
+  });
+  const [intro, setIntro] = useState<string>(profileState.userInfo.intro);
+
+  // TODO: level type 변경하기
+  let level: 1 | 2 | 3 | 4 | 5 = 1;
+  // level = profile?.data?.userInfo?.point
+  //   ? ((profile?.data?.userInfo?.point / 100) % 5) + 1
+  //   : 1;
+
+  // 능력치 업적 index
+  let pointAchieveIdx: number = useMemo(
+    () =>
+      profile?.data?.achieve.pointAchieve
+        ? profile?.data?.achieve?.pointAchieve - 1
+        : 0,
+    [profile],
+  );
+  // 퀘스트 업적 index
+  let questAchieveIdx: number = useMemo(
+    () =>
+      profile?.data?.achieve.questAchieve
+        ? profile?.data?.achieve?.questAchieve - 1
+        : 0,
+    [profile],
+  );
+  // 직군별 경험치 포인트 합계
+  let totalPoints: number = useMemo(
+    () =>
+      profile?.data?.abilityList.reduce(
+        (prev, current) => prev + current.point,
+        0,
+      ) ?? 0,
+    [profile],
   );
 
   const handlePrivacyEditClick = () => {
     setIsPrivacyEditMode((state) => !state);
   };
 
-  const handlePrivacyEditCancelClick = () => {
+  const handlePrivacyEditCancelClick = useCallback(() => {
     setIsPrivacyEditMode((state) => !state);
-  };
+    setNickname(profileState.userInfo.nickname);
+    setPosition({ type: 'position', value: profileState.userInfo.position });
+  }, [profileState.userInfo.nickname, profileState.userInfo.position]);
 
   const handlePrivacyEditCompleteClick = () => {
+    // TODO: PATCH api/users/me (유저 정보 수정)
+
     setIsPrivacyEditMode((state) => !state);
+    dispatch(setUserMe({ nickname, position: position.value }));
   };
 
   const handleIntroEditClick = () => {
     setIsIntroduceEditMode((state) => !state);
   };
 
-  const handleIntroEditCancelClick = () => {
+  const handleIntroEditCancelClick = useCallback(() => {
     setIsIntroduceEditMode((state) => !state);
-  };
+    setIntro(profileState.userInfo.intro);
+  }, [profileState.userInfo.intro]);
 
-  const handleIntroEditCompleteClick = () => {
+  const handleIntroEditCompleteClick = useCallback(() => {
+    // TODO: PATCH api/users/me/intro (유저 자기소개 수정)
+
     setIsIntroduceEditMode((state) => !state);
-  };
+    dispatch(setUserInfoIntro(intro));
+  }, [intro]);
 
-  const handlePositionChange = useCallback(
-    (type: string, value: string | number) => {
-      setPosition(value);
-    },
-    [],
-  );
-
-  const handleNicknameChange = useCallback((e: any) => {
+  const handleNicknameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
-  }, []);
+  };
+
+  const handlePositionChange = (name: string, value: string | number) => {
+    setPosition({ type: 'position', value });
+  };
+
+  useEffect(() => {
+    if (profile) {
+      dispatch(setUserInfo(profile?.data?.userInfo));
+      setNickname(profile?.data?.userInfo?.nickname);
+      setPosition({
+        type: 'position',
+        value: profile?.data?.userInfo?.position,
+      });
+      setIntro(profile?.data?.userInfo?.intro);
+    }
+  }, [profile]);
 
   return (
     <div className="_PROFILE_">
@@ -83,7 +157,7 @@ const Mypage: React.FC = () => {
             )}
             type="text"
             placeholder=""
-            defaultValue={nickname}
+            value={nickname}
             maxLength={7}
             readOnly={!isPrivacyEditMode}
             onChange={handleNicknameChange}
@@ -114,15 +188,15 @@ const Mypage: React.FC = () => {
           {isPrivacyEditMode ? (
             <Dropdown
               fontColor="white"
-              placeholder={String(position)}
+              placeholder={String(position.value)}
               hasBorder={false}
               list={POSITION_LIST}
-              selected={position}
+              selected={position.value}
               onDispatch={handlePositionChange}
             />
           ) : (
             <Text fontColor="white" align="center" fontSize="medium">
-              {position}
+              {position.value}
             </Text>
           )}
         </div>
@@ -196,21 +270,22 @@ const Mypage: React.FC = () => {
         <Textarea
           hasLimit={isIntroduceEditMode}
           readOnly={!isIntroduceEditMode}
-          defaultValue={introduce}
+          value={intro}
+          onDispatch={setIntro}
         />
       </Box>
       <Box className="achievement-box">
         <AchievementBadge
-          id={exp_achievement?.list[0]?.id}
-          title={exp_achievement?.list[0]?.title}
-          description={exp_achievement?.list[0]?.description}
+          id={exp_achievement?.list[pointAchieveIdx]?.id}
+          title={exp_achievement?.list[pointAchieveIdx]?.title}
+          description={exp_achievement?.list[pointAchieveIdx]?.description}
         />
       </Box>
       <Box className="achievement-box">
         <AchievementBadge
-          id={quest_achievement?.list[0]?.id}
-          title={quest_achievement?.list[0]?.title}
-          description={quest_achievement?.list[0]?.description}
+          id={quest_achievement?.list[questAchieveIdx]?.id}
+          title={quest_achievement?.list[questAchieveIdx]?.title}
+          description={quest_achievement?.list[questAchieveIdx]?.description}
         />
       </Box>
       <Box className="progress-bar-box">
@@ -218,9 +293,15 @@ const Mypage: React.FC = () => {
           경험치 포인트
         </Text>
         <div className="progress-bar-container">
-          {/* TODO: 더미 데이터 삭제 */}
-          <ProgressBar title="Backend" value={60} />
-          <ProgressBar title="Frontend" value={12} />
+          {isSuccess &&
+            profile?.data?.abilityList.map(({ position, point }) => (
+              <ProgressBar
+                key={position}
+                title={position}
+                value={point}
+                totalValue={totalPoints}
+              />
+            ))}
         </div>
       </Box>
     </div>
