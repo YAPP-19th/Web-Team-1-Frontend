@@ -1,9 +1,10 @@
 export { default as Author } from './Author';
 export { default as Card } from './Card';
 export { default as Content } from './Content';
+export { default as DragDrop } from './DragDrop';
+export { default as Hashtag } from './Hashtag';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
+export { default as InfoCount } from './InfoCount';
 export { default as Paper } from './Paper';
-import { default as ProfileQuestCard } from './ProfileQuestCard';
-export { default as Hashtag } from './Hashtag';
-export { default as DragDrop } from './DragDrop';
+export { default as ProfileQuestCard } from './ProfileQuestCard';
