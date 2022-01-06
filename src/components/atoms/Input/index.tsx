@@ -11,7 +11,7 @@ export interface InputProps {
   placeholder?: string;
   placeholderColor?: 'gray' | 'blue';
   onDispatch?: (value: string) => void; // redux 저장 함수
-  onSubmit?: (value: string | number) => void;
+  onSubmit?: (value: string) => void;
 }
 
 const Input: React.FC<InputProps> = ({
