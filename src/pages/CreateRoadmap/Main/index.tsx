@@ -1,16 +1,22 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, Board, Input, Dropdown } from '@src/components/atoms';
-import { setTitle, setDropdown } from '@src/slices/createRoadmapSlice';
+import {
+  setName,
+  setDropdown,
+  createRoadmapSelector,
+} from '@src/slices/createRoadmapSlice';
 import { roadmapTitle } from '@src/pages/CreateRoadmap/roadmap_data.json';
 import { POSITION_LIST } from '@src/constants/dropdown';
 import './style.scss';
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();
+  const createRoadmapState = useSelector(createRoadmapSelector);
+
   const handleTitle = useCallback(
     (value: string) => {
-      dispatch(setTitle(value));
+      dispatch(setName(value));
     },
     [dispatch],
   );
@@ -32,6 +38,7 @@ const Main: React.FC = () => {
           <Input hasCount onDispatch={handleTitle} />
           <Dropdown
             placeholder="카테고리 설정"
+            selected={createRoadmapState.position}
             type="position"
             list={POSITION_LIST}
             onDispatch={handleDropdown}
