@@ -10,6 +10,7 @@ import {
   GetQuestsSearch,
   GetUsersQuests,
   GetUsersQuestsParticipation,
+  GetUsersRoadmaps,
 } from './types/request';
 import {
   Response,
@@ -116,9 +117,16 @@ export const giljobApi = createApi({
     // 유저가 스크랩한 로드맵 리스트 조회: GET /users/{userId}/roadmaps/scrap
     getUsersRoadmapsScrap: builder.query<
       Response<RoadmapListItem[]>,
-      ProvideUserId
+      GetUsersRoadmaps
     >({
-      query: ({ userId }) => `users/${userId}/roadmaps/scrap`,
+      query: ({ userId, cursor, size }) => `users/${userId}/roadmaps/scrap?cursor=${cursor ?? ''}&size=${size ?? ''}`,
+    }),
+    // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
+    getUsersRoadmaps: builder.query<
+      Response<RoadmapListItem[]>,
+      GetUsersRoadmaps
+    >({
+      query: ({ userId, cursor, size }) => `users/${userId}/roadmaps?cursor=${cursor ?? ''}&size=${size ?? ''}`,
     }),
     // 회원가입: POST /sign-up
     // TODO
@@ -159,6 +167,7 @@ export const {
   useGetRoadmapsQuery,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
+  useGetUsersRoadmapsQuery,
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
   usePatchUsersMeIntroMutation,

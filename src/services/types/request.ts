@@ -53,3 +53,9 @@ export interface GetUsersQuests {
 export interface GetUsersQuestsParticipation extends GetUsersQuests {
   completed?: boolean;
 }
+
+export interface GetUsersRoadmaps {
+  userId: number;
+  cursor?: number;
+  size?: number;
+}
