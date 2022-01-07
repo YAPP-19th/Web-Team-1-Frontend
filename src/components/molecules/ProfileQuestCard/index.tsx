@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import { Badge, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
 import { QuestFiltering } from '@src/pages/Profile/QuestList';
+import { Writer } from '@src/services/types/response';
 import './style.scss';
 
 export interface ProfileQuestCardProps {
-  step: '입문' | '초급' | '중급' | '고급' | '통달';
-  category: string;
-  name: string;
-  exp: number;
-  participant: number;
-  author: string;
-  level: 1 | 2 | 3 | 4 | 5;
-  progress: number;
   status: QuestFiltering;
+  step: '입문' | '초급' | '중급' | '고급' | '통달';
+  difficulty: number;
+  position: string;
+  name: string;
+  // exp: number;
+  participantCount: number;
+  progress?: number;
+  writer: Writer;
 }
 
 interface DegreeProps {
@@ -30,13 +31,11 @@ const Degree = styled.div`
 
 const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
   step,
-  category,
+  position,
   name,
-  exp,
-  participant,
-  author,
-  level,
+  participantCount,
   progress,
+  writer,
   status,
 }) => {
   return (
@@ -50,7 +49,7 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
           fontSize="x-large"
           fontWeight="bold"
         >
-          {category}
+          {position}
         </Text>
         <Text
           align="start"
@@ -71,7 +70,8 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
           퀘스트 진행률
         </Text>
         <div className="progress">
-          <Degree value={progress} />
+          {/* TODO: progress null이나 undefiend일 때 사용할 값 변경 */}
+          <Degree value={progress ?? 0} />
         </div>
         <div className="more-info-wrapper">
           <Text
@@ -80,7 +80,8 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="large"
             fontWeight="regular"
           >
-            {exp} Exp
+            {/* TODO: exp 추가하기*/}
+            ??? EXP
           </Text>
           <Text
             align="start"
@@ -88,13 +89,13 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="small"
             fontWeight="medium"
           >
-            {participant}명 참여 중
+            {participantCount}명 참여 중
           </Text>
         </div>
       </div>
       <span className="divider"></span>
       <div className="card-last-info">
-        <Author authorName={author} iconSize="small" iconLevel={level} />
+        <Author authorName={writer.nickname} iconSize="small" iconLevel={1} />
         {status === QuestFiltering.Proceeding && (
           // TODO: 클릭 시 해당 퀘스트 삭제
           <button className="delete-button" type="button">

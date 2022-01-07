@@ -19,6 +19,7 @@ export interface Quest {
   writer: Writer;
   difficulty: number;
   thumbnail: string;
+  progress?: number;
 }
 
 export interface QuestsCount {
