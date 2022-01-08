@@ -108,7 +108,7 @@ export const giljobApi = createApi({
         method: 'POST',
       }),
     }),
-    // 로그맵 등록: POST /roadmaps
+    // 로드맵 등록: POST /roadmaps
     postRoadmaps: builder.mutation<Response<null>, PostRoadmaps>({
       query: (body) => ({
         url: 'roadmaps',
