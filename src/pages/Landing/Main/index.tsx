@@ -27,10 +27,8 @@ const Main: React.FC = () => {
               취업의 바다에서{'\n'}길잡이가 되어주다
             </Text>
             <Text className="sub-text" fontSize="x-large" fontWeight="regular">
-              취업의 바다에서 길잡이가 되어주다.{'\n'}
-              취업의 바다에서 길잡이가 되어주다.{'\n'}
-              취업의 바다에서 길잡이가 되어주다.{'\n'}
-              취업의 바다에서 길잡이가 되어주다.
+              취업에 성공하려면 어떤 커리어를 만들어야 할까?{'\n'}
+              취업의 길을 인도하는 커리어 로드맵 서비스
             </Text>
           </article>
           <article className="image-wrapper">
