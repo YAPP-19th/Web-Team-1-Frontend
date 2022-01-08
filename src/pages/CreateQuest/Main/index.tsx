@@ -17,6 +17,7 @@ import './style.scss';
 const Main: React.FC = () => {
   const dispatch = useDispatch();
   const createQuestState = useSelector(createQuestSelector);
+
   const handleTitle = useCallback(
     (value: string) => {
       dispatch(setName(value));

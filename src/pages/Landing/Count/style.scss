@@ -1,44 +1,7 @@
 @import '/src/styles/';
 
 .count-background {
-  min-width: 1024px;
+  min-width: 102.4rem;
   height: 40rem;
   background-color: $gil-blue;
-}
-
-.count-wrapper {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 10rem;
-  width: 90rem;
-  height: 100%;
-  margin: auto;
-}
-
-.count {
-  width: 18rem;
-  list-style: none;
-
-  .upper-wrapper {
-    margin-bottom: 5rem;
-    > ._TEXT_ {
-      width: 100%;
-    }
-  }
-
-  .lower-wrapper {
-    display: flex;
-    align-items: flex-end;
-
-    > .number-text {
-      font-size: 8rem;
-      line-height: 6rem;
-      width: 70%;
-    }
-
-    > .unit-text {
-      line-height: 3.6rem;
-      width: 30%;
-    }
-  }
 }

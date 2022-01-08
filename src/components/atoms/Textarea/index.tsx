@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { Text } from '@src/components/atoms';
 import cn from 'classnames';
 import './style.scss';
@@ -9,6 +9,7 @@ export interface TextareaProps {
   limit?: number;
   readOnly?: boolean;
   defaultValue?: string;
+  onDispatch?: (value: string) => void;
 }
 
 const Textarea: React.FC<TextareaProps> = ({
@@ -17,7 +18,13 @@ const Textarea: React.FC<TextareaProps> = ({
   limit = 120,
   readOnly = false,
   defaultValue = '',
+  onDispatch,
 }) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const input = e.target.value;
+    if (onDispatch) onDispatch(input);
+  };
+
   return (
     <div className={cn('_TEXTAREA_', className)}>
       <textarea
@@ -25,6 +32,7 @@ const Textarea: React.FC<TextareaProps> = ({
         maxLength={hasLimit ? limit : undefined}
         readOnly={readOnly}
         defaultValue={defaultValue}
+        onChange={handleChange}
       />
       {hasLimit && (
         <div className="limit-count">

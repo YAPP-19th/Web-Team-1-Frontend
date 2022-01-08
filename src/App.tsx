@@ -1,6 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { Header, Footer } from '@src/components/molecules';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import PrivateRoute from '@src/utils/PrivateRoute';
+import { Loading } from './components/atoms';
 
 const Landing = lazy(() => import('@src/pages/Landing'));
 const Quest = lazy(() => import('@src/pages/Quest'));
@@ -15,14 +18,17 @@ const App: React.FC = () => {
     <>
       <Router>
         <Header />
-        <Suspense fallback={null}>
+        <Toaster />
+        <Suspense fallback={Loading}>
           <Switch>
             <Route exact path="/" component={Landing} />
+            <Route path="/login" component={Login} />
             <Route exact path="/quest" component={Quest} />
+            {/* 밑에 Route 들은 <PrivateRoute /> 입니다.
+            개발 시에는 불편할 듯 해서 지정을 따로 안했습니다. */}
             <Route path="/create-quest" component={CreateQuest} />
             <Route path="/create-roadmap" component={CreateRoadmap} />
             <Route path="/profile" component={Profile} />
-            <Route path="/login" component={Login} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
