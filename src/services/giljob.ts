@@ -13,6 +13,7 @@ import {
   GetUsersQuests,
   GetUsersQuestsParticipation,
   PostUpload,
+  PostRoadmaps,
 } from './types/request';
 import {
   Response,
@@ -56,7 +57,10 @@ export const giljobApi = createApi({
     // 퀘스트 검색: GET /quests/search
     getQuestsSearch: builder.query<Response<Quest[]>, GetQuestsSearch>({
       query: ({ keyword, position, cursor, size }) =>
-        `quests/search?keyword=${keyword}&position=${position}&size=${size}&cursor=${cursor}`,
+        `quests/search?keyword=${keyword}
+          ${position ? `&position=${position}` : ''}
+          ${size ? `&size=${size}` : ''}
+          ${cursor ? `&cursor=${cursor}` : ''}`,
     }),
     // 랜딩 페이지 퀘스트 수 조회: GET /quests/count
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
@@ -102,6 +106,14 @@ export const giljobApi = createApi({
       query: ({ subQuestId }) => ({
         url: `subquests/${subQuestId}`,
         method: 'POST',
+      }),
+    }),
+    // 로드맵 등록: POST /roadmaps
+    postRoadmaps: builder.mutation<Response<null>, PostRoadmaps>({
+      query: (body) => ({
+        url: 'roadmaps',
+        method: 'POST',
+        body,
       }),
     }),
     // 로드맵 조회: GET /roadmaps/{roadmapId}
@@ -179,6 +191,7 @@ export const {
   useGetUsersQuestsParticipationQuery,
   usePostSubquestsMutation,
   useGetRoadmapsQuery,
+  usePostRoadmapsMutation,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
   useGetUsersMeQuery,

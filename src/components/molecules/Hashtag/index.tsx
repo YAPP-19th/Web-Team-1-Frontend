@@ -11,11 +11,9 @@ const Hashtag: React.FC<HashtagProps> = ({ onDispatch }) => {
 
   const handleSubmit = useCallback(
     (newTag) => {
-      if (newTag) {
-        const newHashtag = new Set([...hashtag, newTag]);
-        onDispatch([...newHashtag]);
-        setHashtag([...newHashtag]);
-      }
+      const newHashtag = new Set([...hashtag, newTag]);
+      onDispatch([...newHashtag]);
+      setHashtag([...newHashtag]);
     },
     [hashtag, onDispatch],
   );

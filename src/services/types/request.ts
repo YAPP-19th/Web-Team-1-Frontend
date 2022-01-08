@@ -42,6 +42,12 @@ export interface PostQuests {
   }[];
 }
 
+export interface PostRoadmaps {
+  name: string;
+  position: string;
+  questList: { questId: number | null; name: string | null }[];
+}
+
 export interface GetQuests {
   cursor?: number;
   size?: number;

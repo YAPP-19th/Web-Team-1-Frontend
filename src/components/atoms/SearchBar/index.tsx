@@ -4,7 +4,7 @@ import './style.scss';
 
 export interface SearchBarProps {
   placeholder: string;
-  onSubmit: () => void;
+  onSubmit: (keyword: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
@@ -14,14 +14,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
     setKeyword(e.target.value);
   }, []);
 
-  const handleEnter = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        onSubmit();
-      }
-    },
-    [onSubmit],
-  );
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onSubmit(keyword);
+    }
+  };
 
   return (
     <section className="search" role="form">
@@ -36,8 +33,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSubmit }) => {
         className="search-button"
         role="button"
         tabIndex={0}
-        onClick={onSubmit}
-        onKeyPress={onSubmit}
+        onClick={() => onSubmit(keyword)}
+        onKeyPress={() => onSubmit(keyword)}
       >
         <img src={searchIcon} alt="searchIcon" />
       </div>

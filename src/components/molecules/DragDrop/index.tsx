@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { Input, Text } from '@src/components/atoms';
 import {
   DragDropContext,
@@ -6,63 +6,50 @@ import {
   Draggable,
   DropResult,
 } from 'react-beautiful-dnd';
+import { RoadmapQuestListType } from '@src/slices/createRoadmapSlice';
+import { ListType } from '@src/slices/createQuestSlice';
 import './style.scss';
 
-export interface DragDropListType {
-  id: string;
-  name: string;
-}
+export type DragDropListType = (ListType | RoadmapQuestListType)[];
 
 export interface DragDropProps {
-  onDispatch: (value: DragDropListType[]) => void;
+  hasInput: boolean;
+  list: DragDropListType;
+  onDispatch: (value: DragDropListType) => void;
 }
 
-const DragDrop: React.FC<DragDropProps> = ({ onDispatch }) => {
-  const [list, setlist] = useState<DragDropListType[]>([]);
-
-  const handleSubmit = useCallback(
-    (value: string | number) => {
-      if (value) {
-        const newList = {
-          id: (list.length + 1).toString(),
+const DragDrop: React.FC<DragDropProps> = ({ hasInput, list, onDispatch }) => {
+  const handleSubmit = (value: string | number) => {
+    if (value) {
+      onDispatch([
+        ...list,
+        {
           name: value as string,
-        };
+        },
+      ]);
+    }
+  };
 
-        onDispatch([...list, newList]);
-        setlist([...list, newList]);
-      }
-    },
-    [list, onDispatch],
-  );
+  const handleChange = (result: DropResult) => {
+    // 아이템이 가진 인덱스를 계산해서 새로운 배열을 생성합니다.
+    if (!result.destination) return;
+    const newList = [...list];
+    const [temp] = newList.splice(result.source.index, 1);
+    newList.splice(result.destination.index, 0, temp);
 
-  const handleChange = useCallback(
-    (result: DropResult) => {
-      // 아이템이 가진 인덱스를 계산해서 새로운 배열을 생성합니다.
-      if (!result.destination) return;
-      const newList = [...list];
-      const [temp] = newList.splice(result.source.index, 1);
-      newList.splice(result.destination.index, 0, temp);
+    onDispatch(newList);
+  };
 
-      onDispatch(newList);
-      setlist(newList);
-    },
-    [list, onDispatch],
-  );
+  const handleDelete = (index: number) => {
+    const restList = [...list];
+    restList.splice(index, 1);
 
-  const handleDelete = useCallback(
-    (index: number) => {
-      const restList = [...list];
-      restList.splice(index, 1);
-
-      onDispatch(restList);
-      setlist(restList);
-    },
-    [list, onDispatch],
-  );
+    onDispatch(restList);
+  };
 
   return (
     <section className="_DRAGDROP_">
-      <Input hasCount={false} onSubmit={handleSubmit} />
+      {hasInput && <Input hasCount={false} onSubmit={handleSubmit} />}
       <DragDropContext onDragEnd={handleChange}>
         <Droppable droppableId="list">
           {(provided) => (
@@ -71,8 +58,8 @@ const DragDrop: React.FC<DragDropProps> = ({ onDispatch }) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {list.map(({ id, name }, index) => (
-                <Draggable key={id} draggableId={id} index={index}>
+              {list.map(({ name }, index) => (
+                <Draggable key={name} draggableId={name} index={index}>
                   {(provided) => (
                     <div
                       className="item-wrapper"
