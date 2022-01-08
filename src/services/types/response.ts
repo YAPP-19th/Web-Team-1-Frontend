@@ -17,7 +17,7 @@ export interface Quest {
   position: string;
   participantCount: number;
   writer: Writer;
-  difficulty: number;
+  difficulty: 1 | 2 | 3 | 4 | 5;
   thumbnail: string;
   progress?: number;
 }
@@ -26,6 +26,11 @@ export interface QuestsCount {
   totalQuestCount: number;
   onProgressQuestCount: number;
   totalParticipantCount: number;
+}
+
+export interface QuestsPositionsCount {
+  position: string;
+  questCount: number;
 }
 
 export interface QuestsInfo {
@@ -39,6 +44,28 @@ export interface QuestsInfo {
   detail: string;
   participantCount: number;
   writer: Writer;
+}
+
+export interface SubquestProgress {
+  subQuestId: number;
+  subQuestName: string;
+  isCompleted: boolean;
+}
+
+export interface QuestsSubquest {
+  progress: number;
+  subQuestProgressList: SubquestProgress[];
+}
+
+export interface Review {
+  review: string;
+  reviewCreatedAt: string;
+  reviewWriter: Writer;
+}
+
+export interface QuestsReviews {
+  totalReviewCount: number;
+  reviewList: Review[];
 }
 
 export interface Roadmap {
@@ -70,4 +97,13 @@ export interface UsersProfile {
     pointAchieve: number;
     questAchieve: number;
   };
+}
+
+export interface Auth {
+  isSignedUp?: boolean;
+  accessToken: string;
+}
+
+export interface Upload {
+  fileUrl: string;
 }

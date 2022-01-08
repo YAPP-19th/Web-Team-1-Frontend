@@ -1,3 +1,13 @@
+export interface PostLogin {
+  kakaoAccessToken: string;
+}
+
+export interface PostRegister extends PostLogin {
+  position: string;
+  nickname: string;
+  intro: string;
+}
+
 export interface ProvideQuestId {
   questId: number;
 }
@@ -32,6 +42,12 @@ export interface PostQuests {
   }[];
 }
 
+export interface PostRoadmaps {
+  name: string;
+  position: string;
+  questList: { questId: number | null; name: string | null }[];
+}
+
 export interface GetQuests {
   cursor?: number;
   size?: number;
@@ -53,9 +69,10 @@ export interface GetUsersQuests {
 export interface GetUsersQuestsParticipation extends GetUsersQuests {
   completed?: boolean;
 }
-
 export interface GetUsersRoadmaps {
   userId: number;
   cursor?: number;
   size?: number;
 }
+
+export type PostUpload = FormData;

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import Header, { HeaderProps } from '@src/components/molecules/Header';
+import Header from '@src/components/molecules/Header';
 
 export default {
   title: 'Design System/Molecules/Header',
@@ -13,14 +13,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<HeaderProps> = (args) => <Header {...args} />;
+const Template: Story = (args) => <Header {...args} />;
 
 export const DefaultHeader = Template.bind({});
-DefaultHeader.args = {
-  isLogin: false,
-};
-
-export const LoginHeader = Template.bind({});
-LoginHeader.args = {
-  isLogin: true,
-};

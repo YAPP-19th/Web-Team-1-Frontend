@@ -1,17 +1,17 @@
-import React from 'react';
-import LoginBox from './LoginBox';
-import SettingBox from './SettingBox';
+import React, { lazy } from 'react';
+import { Redirect, Route } from 'react-router-dom';
 import './style.scss';
 
-export interface LoginProps {
-  isLogin: boolean;
-}
+const LoginBox = lazy(() => import('./LoginBox'));
+const RegisterBox = lazy(() => import('./RegisterBox'));
 
-const Login: React.FC<LoginProps> = ({ isLogin = false }) => {
+const Login: React.FC = () => {
   return (
     <section className="login">
       <div className="login-wrapper">
-        {!isLogin ? <LoginBox /> : <SettingBox />}
+        <Route exact path="/login" component={LoginBox} />
+        <Route exact path="/login/signup" component={RegisterBox} />
+        <Redirect to="/login" />
       </div>
       <div className="login-background" />
     </section>
