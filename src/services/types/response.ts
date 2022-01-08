@@ -27,6 +27,11 @@ export interface QuestsCount {
   totalParticipantCount: number;
 }
 
+export interface QuestsPositionsCount {
+  position: string;
+  questCount: number;
+}
+
 export interface QuestsInfo {
   id: number;
   name: string;
@@ -38,6 +43,28 @@ export interface QuestsInfo {
   detail: string;
   participantCount: number;
   writer: Writer;
+}
+
+export interface SubquestProgress {
+  subQuestId: number;
+  subQuestName: string;
+  isCompleted: boolean;
+}
+
+export interface QuestsSubquest {
+  progress: number;
+  subQuestProgressList: SubquestProgress[];
+}
+
+export interface Review {
+  review: string;
+  reviewCreatedAt: string;
+  reviewWriter: Writer;
+}
+
+export interface QuestsReviews {
+  totalReviewCount: number;
+  reviewList: Review[];
 }
 
 export interface Roadmap {

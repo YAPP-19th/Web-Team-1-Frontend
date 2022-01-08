@@ -20,6 +20,9 @@ import {
   Roadmap,
   RoadmapListItem,
   UsersProfile,
+  QuestsPositionsCount,
+  QuestsSubquest,
+  QuestsReviews,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -57,6 +60,13 @@ export const giljobApi = createApi({
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
       query: () => `quests/count`,
     }),
+    // 포지션 별 퀘스트 수 조회: GET /quests/positions/count
+    getQuestsPositionsCount: builder.query<
+      Response<QuestsPositionsCount[]>,
+      void
+    >({
+      query: () => `quests/positions/count`,
+    }),
     // 퀘스트 상세 페이지 정보 조회: GET /quests/{questId}/info/
     getQuestsInfo: builder.query<Response<QuestsInfo>, ProvideQuestId>({
       query: ({ questId }) => `quests/${questId}/info`,
@@ -68,12 +78,26 @@ export const giljobApi = createApi({
     >({
       query: ({ questId }) => `quests/${questId}/participation/status`,
     }),
+    // 퀘스트의 서브 퀘스트 진행 현황 조회: GET /quests/{questId}/subquest
+    getQuestsSubquest: builder.query<Response<QuestsSubquest>, ProvideQuestId>({
+      query: ({ questId }) => `quests/${questId}/subquest`,
+    }),
     // 퀘스트 참여: POST /quests/{questId}/participation
     // TODO
     // 퀘스트 완료: PATCH /quests/{questId}/complete
     // TODO
     // 퀘스트 한줄 후기 작성: POST /quests/{questId}/review
     // TODO
+    // 퀘스트 한줄 후기 리스트 조회: GET /quests/{questId}/reviews
+    getQuestsReviews: builder.query<
+      Response<QuestsReviews>,
+      ProvideQuestId & Partial<GetQuests>
+    >({
+      query: ({ questId, cursor, size }) =>
+        `quests/${questId}/reviews${size ? `&size=${size}` : ''}${
+          cursor ? `&cursor=${cursor}` : ''
+        }`,
+    }),
     // 유저가 생성한 퀘스트 리스트 조회: GET /users/{userId}/quests
     getUsersQuests: builder.query<Response<Quest[]>, GetUsersQuests>({
       query: ({ userId, cursor, size }) =>
@@ -89,20 +113,38 @@ export const giljobApi = createApi({
           cursor ?? ''
         }&completed=${completed ? 'true' : 'false'}&size=${size ?? ''}`,
     }),
-    // 서브퀘스트 완료: POST /subquests/{subQuestId}
-    postSubquests: builder.mutation<
+    // 서브퀘스트 완료: POST /subquests/{subQuestId}/complete
+    postSubquestsComplete: builder.mutation<
       ProvideSubQuestId,
       Partial<ProvideSubQuestId>
     >({
       query: ({ subQuestId }) => ({
-        url: `subquests/${subQuestId}`,
+        url: `subquests/${subQuestId}/complete`,
         method: 'POST',
+      }),
+    }),
+    // 서브퀘스트 취소: PATCH /subquests/{subQuestId}/cancel
+    postSubquestsCancel: builder.mutation<
+      ProvideSubQuestId,
+      Partial<ProvideSubQuestId>
+    >({
+      query: ({ subQuestId }) => ({
+        url: `subquests/${subQuestId}/cancel`,
+        method: 'PATCH',
       }),
     }),
     // 로드맵 조회: GET /roadmaps/{roadmapId}
     getRoadmaps: builder.query<Response<Roadmap>, ProvideRoadmapId>({
       query: ({ roadmapId }) => `roadmaps/${roadmapId}`,
     }),
+    // 최근 등록한 로드맵 리스트 조회: GET /roadmaps
+    getRoadmapsRecent: builder.query<Response<Roadmap>, Partial<GetQuests>>({
+      query: ({ size }) => `roadmaps?${size ? `&size=${size}` : ''}`,
+    }),
+    // 로드맵 등록: POST /roadmaps
+    // TODO
+    // 로드맵 삭제: DELETE /roadmaps/{roadmapId}
+    // TODO
     // 로드맵 스크랩: POST /roadmaps/{roadmapId}/scrap
     postRoadmapsScrap: builder.mutation<
       ProvideRoadmapId,
@@ -120,6 +162,8 @@ export const giljobApi = createApi({
     >({
       query: ({ userId }) => `users/${userId}/roadmaps/scrap`,
     }),
+    // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
+    // TODO
     // 회원가입: POST /sign-up
     // TODO
     // 로그인: POST /sign-in
@@ -133,6 +177,10 @@ export const giljobApi = createApi({
     }),
     // 유저 정보 수정: PATCH /users/me
     // TODO: 500 Error
+    // 유저 프로필 조회: GET /users/{userId}/profile
+    // TODO
+    // 유저 정보 수정: PATCH /users/me
+    // TODO
     // 유저 자기소개 수정: PATCH /users/me/intro
     patchUsersMeIntro: builder.mutation<ProvideIntro, Partial<ProvideIntro>>({
       query: (body) => ({
@@ -151,12 +199,17 @@ export const {
   useGetQuestsQuery,
   useGetQuestsSearchQuery,
   useGetQuestsCountQuery,
+  useGetQuestsPositionsCountQuery,
   useGetQuestsInfoQuery,
   useGetQuestsParticipationStatusQuery,
+  useGetQuestsSubquestQuery,
+  useGetQuestsReviewsQuery,
   useGetUsersQuestsQuery,
   useGetUsersQuestsParticipationQuery,
-  usePostSubquestsMutation,
+  usePostSubquestsCompleteMutation,
+  usePostSubquestsCancelMutation,
   useGetRoadmapsQuery,
+  useGetRoadmapsRecentQuery,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
   useGetUsersMeQuery,
