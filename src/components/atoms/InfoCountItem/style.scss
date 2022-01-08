@@ -1,0 +1,29 @@
+@import '/src/styles/';
+
+.count {
+  width: 18rem;
+  list-style: none;
+
+  .upper-wrapper {
+    margin-bottom: 3.4rem;
+    > ._TEXT_ {
+      width: 100%;
+    }
+  }
+
+  .lower-wrapper {
+    display: flex;
+    align-items: flex-end;
+
+    > .number-text {
+      font-size: 8rem;
+      line-height: 6rem;
+      width: 70%;
+    }
+
+    > .unit-text {
+      line-height: 3.6rem;
+      width: 30%;
+    }
+  }
+}
