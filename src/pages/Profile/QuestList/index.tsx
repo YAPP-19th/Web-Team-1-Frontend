@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import ProfileQuestCard from '@src/components/molecules/ProfileQuestCard';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
@@ -9,6 +9,7 @@ import {
 import { Quest } from '@src/services/types/response';
 import { step } from '../list';
 import './style.scss';
+import { useHistory } from 'react-router-dom';
 
 const tabList = [
   {
@@ -32,6 +33,7 @@ export enum QuestFiltering {
 }
 
 const QuestList: React.FC = () => {
+  const history = useHistory();
   // 필터링 기준
   const [filtering, setFiltering] = useState(QuestFiltering.Proceeding);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
@@ -49,6 +51,17 @@ const QuestList: React.FC = () => {
     completed: isCompleted,
     size: LIST_SIZE,
   });
+
+  const handleCardClick = useCallback((id) => {
+    history.push(`/detail/${id}`);
+  }, []);
+
+  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (window.confirm('삭제하시겠습니까?')) {
+      // TODO: 해당 퀘스트 삭제
+    }
+  };
 
   useEffect(() => {
     if (filtering === QuestFiltering.Proceeding) {
@@ -98,6 +111,8 @@ const QuestList: React.FC = () => {
                   progress={progress}
                   status={filtering}
                   writer={writer}
+                  handleCardClick={() => handleCardClick(id)}
+                  handleButtonClick={handleDeleteClick}
                 />
               ),
             )}

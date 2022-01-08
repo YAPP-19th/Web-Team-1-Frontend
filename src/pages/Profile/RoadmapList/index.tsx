@@ -43,6 +43,11 @@ const RoadmapList: React.FC = () => {
     size: LIST_SIZE,
   });
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log('프로필 로드맵 선택');
+    // TODO: 모달 띄우기
+  };
+
   return (
     <div className="quest-page-roadmap-list">
       <TabBar
@@ -69,6 +74,7 @@ const RoadmapList: React.FC = () => {
                 name={name}
                 level={1}
                 author={writer.nickname}
+                // handleClick={handleClick}
               />
             ))}
           </div>

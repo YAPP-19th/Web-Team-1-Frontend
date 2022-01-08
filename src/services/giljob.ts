@@ -185,8 +185,6 @@ export const giljobApi = createApi({
     >({
       query: ({ userId, cursor, size }) => `users/${userId}/roadmaps?cursor=${cursor ?? ''}&size=${size ?? ''}`,
     }),
-    // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
-    // TODO
     // 회원가입: POST /sign-up
     postRegister: builder.mutation<Response<Auth>, PostRegister>({
       query: (body) => ({

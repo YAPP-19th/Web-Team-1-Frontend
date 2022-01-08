@@ -16,6 +16,8 @@ export interface ProfileQuestCardProps {
   participantCount: number;
   progress?: number;
   writer: Writer;
+  handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface DegreeProps {
@@ -37,10 +39,11 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
   progress,
   writer,
   status,
+  handleCardClick,
+  handleButtonClick,
 }) => {
   return (
-    // TODO: 클릭 시 해당 퀘스트로 이동
-    <div className="_PROFILE_QUEST_CARD_">
+    <div className="_PROFILE_QUEST_CARD_" onClick={handleCardClick}>
       <div className="card-main-info">
         <Badge step={step} align="end" />
         <Text
@@ -97,8 +100,11 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
       <div className="card-last-info">
         <Author authorName={writer.nickname} iconSize="small" iconLevel={1} />
         {status === QuestFiltering.Proceeding && (
-          // TODO: 클릭 시 해당 퀘스트 삭제
-          <button className="delete-button" type="button">
+          <button
+            className="delete-button"
+            type="button"
+            onClick={handleButtonClick}
+          >
             <span className="line" />
           </button>
         )}
