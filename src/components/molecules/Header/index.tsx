@@ -1,23 +1,23 @@
 import React from 'react';
 import { useLocation, NavLink, Link } from 'react-router-dom';
-import { Button, Icon, Text } from '@src/components/atoms';
+import { useSelector } from 'react-redux';
+import { Button, Text } from '@src/components/atoms';
+import { HeaderDropdown } from '@src/components/molecules';
+import { authSelector } from '@src/slices/authSlice';
 import logo from '@src/assets/images/logo.svg';
-import headerList from './list';
+import HEADER_LIST from '@src/constants/header';
 import './style.scss';
 
-export interface HeaderProps {
-  isLogin?: boolean;
-}
-
-export interface HeaderItems {
+export interface HeaderList {
   name: string;
   route: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
+const Header: React.FC = () => {
   const { pathname } = useLocation();
+  const { isAuth } = useSelector(authSelector);
 
-  return pathname !== '/login' ? (
+  return !pathname.includes('/login') ? (
     <header className="header">
       <div className="header-wrapper">
         <div className="logo-wrapper">
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
         </div>
         <div className="button-container">
           <ul className="button-list">
-            {headerList.map(({ name, route }: HeaderItems) => (
+            {HEADER_LIST.map(({ name, route }: HeaderList) => (
               <NavLink className="link-button" key={name} to={route}>
                 <Text align="center" fontSize="x-large">
                   {name}
@@ -36,13 +36,10 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
             ))}
           </ul>
           <div className="auth-wrapper">
-            <NavLink
-              className="link-button"
-              to={isLogin ? '/profile' : '/login'}
-            >
-              {isLogin ? (
-                <Icon size="large" level={1} />
-              ) : (
+            {isAuth ? (
+              <HeaderDropdown />
+            ) : (
+              <Link to="/login">
                 <Button
                   innerText="로그인 / 회원가입"
                   buttonColor="gil-blue"
@@ -50,8 +47,8 @@ const Header: React.FC<HeaderProps> = ({ isLogin = false }) => {
                   textSize="small"
                   hasBorder
                 />
-              )}
-            </NavLink>
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -1,14 +1,30 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createQusetReducer from '@src/slices/createQuestSlice';
 import createRoadmapReducer from '@src/slices/createRoadmapSlice';
+import registerReducer from '@src/slices/registerSlice';
+import authReducer from '@src/slices/authSlice';
 import { giljobApi } from '@src/services/giljob';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['auth'], // auth Reducer를 Local Storage에 저장합니다.
+};
+
 export const store = configureStore({
-  reducer: {
-    createQuest: createQusetReducer,
-    createRoadmap: createRoadmapReducer,
-    [giljobApi.reducerPath]: giljobApi.reducer,
-  },
+  reducer: persistReducer(
+    persistConfig,
+    combineReducers({
+      auth: authReducer,
+      register: registerReducer,
+      createQuest: createQusetReducer,
+      createRoadmap: createRoadmapReducer,
+      [giljobApi.reducerPath]: giljobApi.reducer,
+    }),
+  ),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

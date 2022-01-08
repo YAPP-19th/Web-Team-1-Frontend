@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from '@src/store';
@@ -18,9 +18,11 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <Provider store={store}>
-      <Router>
-        <Story />
-      </Router>
+      <Suspense fallback={null}>
+        <Router>
+          <Story />
+        </Router>
+      </Suspense>
     </Provider>
   ),
 ];

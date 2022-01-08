@@ -1,20 +1,22 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSubQuest } from '@src/slices/createQuestSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  createQuestSelector,
+  setSubQuest,
+  ListType,
+} from '@src/slices/createQuestSlice';
 import { Text, Board, List } from '@src/components/atoms';
 import { DragDrop } from '@src/components/molecules';
+import { DragDropListType } from '@src/components/molecules/DragDrop';
 import { questSub } from '@src/pages/CreateQuest/quest_data.json';
-
-export interface SubQuestType {
-  id: string;
-  name: string;
-}
 
 const Sub: React.FC = () => {
   const dispatch = useDispatch();
+  const { subQuestList } = useSelector(createQuestSelector);
+
   const handleSubQuest = useCallback(
-    (value: SubQuestType[]) => {
-      dispatch(setSubQuest(value));
+    (value: DragDropListType) => {
+      dispatch(setSubQuest(value as ListType[]));
     },
     [dispatch],
   );
@@ -29,7 +31,7 @@ const Sub: React.FC = () => {
         <List listData={questSub.list} />
 
         <div className="contents">
-          <DragDrop onDispatch={handleSubQuest} />
+          <DragDrop hasInput list={subQuestList} onDispatch={handleSubQuest} />
         </div>
       </article>
     </Board>

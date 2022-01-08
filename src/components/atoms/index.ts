@@ -10,6 +10,7 @@ export { default as Icon } from './Icon';
 export { default as InfoCountItem } from './InfoCountItem';
 export { default as Input } from './Input';
 export { default as List } from './List';
+export { default as Loading } from './Loading';
 export { default as MenuBar } from './MenuBar';
 export { default as Pagination } from './Pagination';
 export { default as ProgressBar } from './ProgressBar';

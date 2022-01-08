@@ -5,11 +5,15 @@ import {
   ProvideRoadmapId,
   ProvideUserId,
   ProvideIntro,
+  PostLogin,
+  PostRegister,
   PostQuests,
   GetQuests,
   GetQuestsSearch,
   GetUsersQuests,
   GetUsersQuestsParticipation,
+  PostUpload,
+  PostRoadmaps,
 } from './types/request';
 import {
   Response,
@@ -20,6 +24,8 @@ import {
   Roadmap,
   RoadmapListItem,
   UsersProfile,
+  Auth,
+  Upload,
   QuestsPositionsCount,
   QuestsSubquest,
   QuestsReviews,
@@ -33,7 +39,7 @@ export const giljobApi = createApi({
       // TODO: 현재 테스트를 위해서 임시 access token을 항상 header에 담아서 request를 하는 중
       // 추후 redux store에 저장된 access token으로 대체해야 함
       headers.set('Authorization', process.env.REACT_APP_API_KEY ?? '');
-      headers.set('Content-Type', 'application/json');
+      // headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
@@ -54,7 +60,10 @@ export const giljobApi = createApi({
     // 퀘스트 검색: GET /quests/search
     getQuestsSearch: builder.query<Response<Quest[]>, GetQuestsSearch>({
       query: ({ keyword, position, cursor, size }) =>
-        `quests/search?keyword=${keyword}&position=${position}&size=${size}&cursor=${cursor}`,
+        `quests/search?keyword=${keyword}
+          ${position ? `&position=${position}` : ''}
+          ${size ? `&size=${size}` : ''}
+          ${cursor ? `&cursor=${cursor}` : ''}`,
     }),
     // 랜딩 페이지 퀘스트 수 조회: GET /quests/count
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
@@ -142,7 +151,13 @@ export const giljobApi = createApi({
       query: ({ size }) => `roadmaps?${size ? `&size=${size}` : ''}`,
     }),
     // 로드맵 등록: POST /roadmaps
-    // TODO
+    postRoadmaps: builder.mutation<Response<null>, PostRoadmaps>({
+      query: (body) => ({
+        url: 'roadmaps',
+        method: 'POST',
+        body,
+      }),
+    }),
     // 로드맵 삭제: DELETE /roadmaps/{roadmapId}
     // TODO
     // 로드맵 스크랩: POST /roadmaps/{roadmapId}/scrap
@@ -165,9 +180,21 @@ export const giljobApi = createApi({
     // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
     // TODO
     // 회원가입: POST /sign-up
-    // TODO
+    postRegister: builder.mutation<Response<Auth>, PostRegister>({
+      query: (body) => ({
+        url: 'sign-up',
+        method: 'POST',
+        body,
+      }),
+    }),
     // 로그인: POST /sign-in
-    // TODO
+    postLogin: builder.mutation<Response<Auth>, PostLogin>({
+      query: (body) => ({
+        url: 'sign-in',
+        method: 'POST',
+        body,
+      }),
+    }),
     // 인증된 유저 정보 조회: GET /users/me
     getUsersMe: builder.query<Response<Writer>, void>({
       query: () => `users/me`,
@@ -186,11 +213,16 @@ export const giljobApi = createApi({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',
-        body,
       }),
     }),
     // 업로드: POST /upload
-    // TODO
+    postUpload: builder.mutation<Response<Upload>, PostUpload>({
+      query: (body) => ({
+        url: 'upload',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -210,9 +242,13 @@ export const {
   usePostSubquestsCancelMutation,
   useGetRoadmapsQuery,
   useGetRoadmapsRecentQuery,
+  usePostRoadmapsMutation,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
   usePatchUsersMeIntroMutation,
+  usePostLoginMutation,
+  usePostRegisterMutation,
+  usePostUploadMutation,
 } = giljobApi;

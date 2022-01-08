@@ -1,3 +1,7 @@
+interface Window {
+  Kakao: Record<string, string>;
+}
+
 declare module '*.svg' {
   const content: any;
   export default content;

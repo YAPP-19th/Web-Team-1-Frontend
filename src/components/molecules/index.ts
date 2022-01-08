@@ -4,6 +4,7 @@ export { default as Content } from './Content';
 export { default as DragDrop } from './DragDrop';
 export { default as Hashtag } from './Hashtag';
 export { default as Header } from './Header';
+export { default as HeaderDropdown } from './HeaderDropdown';
 export { default as Footer } from './Footer';
 export { default as InfoCount } from './InfoCount';
 export { default as Paper } from './Paper';

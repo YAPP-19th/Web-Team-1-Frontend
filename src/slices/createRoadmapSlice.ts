@@ -1,34 +1,43 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DropdownListType } from '@src/components/atoms/Dropdown';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@src/store';
 
+export interface RoadmapQuestListType {
+  questId: number;
+  name: string;
+}
 export interface createRoadmapState {
-  title: string;
+  name: string;
   position: string;
+  questList: RoadmapQuestListType[];
 }
 
 const initialState: createRoadmapState = {
-  title: '',
+  name: '',
   position: '',
+  questList: [],
 };
 
 export const createRoadmapSlice = createSlice({
   name: 'createRoadmap',
   initialState,
   reducers: {
-    setTitle: (state, action: PayloadAction<string>) => {
-      state.title = action.payload;
+    setName: (state, action) => {
+      state.name = action.payload;
     },
-    setDropdown: (state, action: PayloadAction<DropdownListType>) => {
+    setDropdown: (state, action) => {
       const { type, value } = action.payload;
       return {
         ...state,
         [type as string]: value,
       };
     },
+    setQuestList: (state, action) => {
+      state.questList = action.payload;
+    },
   },
 });
 
 export const createRoadmapSelector = (state: RootState) => state.createRoadmap;
-export const { setTitle, setDropdown } = createRoadmapSlice.actions;
+export const { setName, setDropdown, setQuestList } =
+  createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;
