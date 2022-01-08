@@ -1,5 +1,6 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Text } from '@src/components/atoms';
+import React, { useRef, useCallback } from 'react';
+import { Text, Loading } from '@src/components/atoms';
+import { usePostUploadMutation } from '@src/services/giljob';
 import './style.scss';
 
 export interface UploaderProps {
@@ -7,25 +8,22 @@ export interface UploaderProps {
 }
 
 const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
-  const [previewImage, setPreviewImage] = useState(''); // RTK Query 연동시 삭제
-  const [loadImage, setLoadImage] = useState(false);
+  const [upload, { data, isLoading }] = usePostUploadMutation();
   const imgInput = useRef<HTMLInputElement>(null);
 
   const handleImageChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setLoadImage(true);
-
       const formData = new FormData();
       const image = (e.target.files as FileList)[0];
-      formData.append('file', image); // formData 형식으로 저장
+      formData.append('file', image);
 
-      // 서버로 부터 이미지 전환 API
-
-      onDispatch('서버로 부터 받은 이미지 url');
-      setPreviewImage('서버로 부터 받은 이미지 url');
-      setLoadImage(false);
+      upload(formData)
+        .unwrap()
+        .then(({ data }) => {
+          onDispatch(data.fileUrl);
+        });
     },
-    [onDispatch],
+    [upload, onDispatch],
   );
 
   const handleImageClick = useCallback(
@@ -40,22 +38,21 @@ const Uploader: React.FC<UploaderProps> = ({ onDispatch }) => {
 
   return (
     <div className="_UPLOADER_">
-      {loadImage ? (
-        <div>loading...</div>
-      ) : (
-        <div
-          className="preview"
-          role="button"
-          onClick={handleImageClick}
-          aria-hidden="true"
-        >
-          {previewImage ? (
-            <img alt="preview" src={previewImage} />
-          ) : (
+      {isLoading && <Loading />}
+      <div
+        role="button"
+        onClick={handleImageClick}
+        aria-hidden="true"
+        className="uploader-wrapper"
+      >
+        {data?.data.fileUrl ? (
+          <img alt="preview" src={data.data.fileUrl} />
+        ) : (
+          <div className="preview">
             <Text>이미지 업로드</Text>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
       <input
         className="uploader"
         type="file"

@@ -1,8 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Text, Input, Dropdown, Textarea } from '@src/components/atoms';
+import { toast } from 'react-hot-toast';
+import {
+  Button,
+  Text,
+  Input,
+  Dropdown,
+  Textarea,
+  Loading,
+  Toast,
+} from '@src/components/atoms';
 import { usePostRegisterMutation } from '@src/services/giljob';
+import useCheckState from '@src/hooks/useCheckState';
 import { setAuth, setAccessToken, authSelector } from '@src/slices/authSlice';
 import {
   registerSelector,
@@ -16,34 +26,58 @@ import './style.scss';
 
 const RegisterBox: React.FC = () => {
   const [register, { isLoading }] = usePostRegisterMutation();
-  const { kakaoAccessToken } = useSelector(authSelector);
+  const authState = useSelector(authSelector);
   const registerState = useSelector(registerSelector);
   const dispatch = useDispatch();
   const history = useHistory();
+  const handleCheckState = useCheckState();
 
   useEffect(() => {
     /* Redux에 카카오 oauth 토큰을 통해 
     로그인을 안한 사람을 되돌립니다. */
-    if (!kakaoAccessToken) history.push('/login');
-  }, [kakaoAccessToken, history]);
+    if (!authState.kakaoAccessToken) history.push('/login');
+  }, [authState.kakaoAccessToken, history]);
 
-  const handleRegister = useCallback(() => {
-    register({
-      kakaoAccessToken,
-      ...registerState,
-    })
-      .unwrap()
-      .then(({ data }) => {
-        const { accessToken } = data;
+  const handleToast = useCallback(
+    () =>
+      toast(
+        <Toast
+          mainText="항해를 시작할 수 없습니다!"
+          subText="입력 정보 확인"
+          color="red"
+        />,
+        {
+          duration: 2000,
+          position: 'bottom-center',
+          style: {
+            background: 'transparent',
+            boxShadow: 'none',
+          },
+        },
+      ),
+    [],
+  );
 
-        dispatch(setAccessToken(accessToken));
-        dispatch(setAuth(true));
+  const handleRegister = () => {
+    if (handleCheckState(registerState)) handleToast();
+    else {
+      register({
+        kakaoAccessToken: authState.kakaoAccessToken,
+        ...registerState,
+      })
+        .unwrap()
+        .then(({ data }) => {
+          const { accessToken } = data;
 
-        dispatch(resetRegister());
+          dispatch(setAccessToken(accessToken));
+          dispatch(setAuth(true));
 
-        history.push('/quest');
-      });
-  }, [register, kakaoAccessToken, registerState, dispatch, history]);
+          dispatch(resetRegister());
+
+          history.push('/quest');
+        });
+    }
+  };
 
   const handleNickname = useCallback(
     (value: string) => {
@@ -68,7 +102,7 @@ const RegisterBox: React.FC = () => {
 
   return (
     <article className="profile-setting">
-      {isLoading && <div className="loading">loading...</div>}
+      {isLoading && <Loading />}
       <Text
         className="title"
         align="start"

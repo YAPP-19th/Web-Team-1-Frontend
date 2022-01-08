@@ -1,6 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Text, List, Button } from '@src/components/atoms';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { Text, List, Button, Loading, Toast } from '@src/components/atoms';
+import { createQuestSelector } from '@src/slices/createQuestSlice';
+import { usePostQuestsMutation } from '@src/services/giljob';
+import useCheckState from '@src/hooks/useCheckState';
 import { questMain } from '@src/pages/CreateQuest/quest_data.json';
 import lighthouse from '@src/assets/images/lighthouse.svg';
 import Main from './Main';
@@ -9,34 +14,70 @@ import Sub from './Sub';
 import './style.scss';
 
 const QuestCreate: React.FC = () => {
+  const [postQuest, { isLoading }] = usePostQuestsMutation();
+  const questState = useSelector(createQuestSelector);
+  const history = useHistory();
+  const handleCheckState = useCheckState();
+
+  const handleToast = useCallback(
+    () =>
+      toast(
+        <Toast
+          mainText="입력 정보를 전부 확인해주세요!"
+          subText="입력 정보 확인"
+          color="red"
+        />,
+        {
+          duration: 2000,
+          position: 'bottom-center',
+          style: {
+            background: 'transparent',
+            boxShadow: 'none',
+          },
+        },
+      ),
+    [],
+  );
+
+  const handleRegisterQuest = () => {
+    if (handleCheckState(questState)) handleToast();
+    else {
+      postQuest(questState)
+        .unwrap()
+        .then(() => history.push('/quest'));
+    }
+  };
+
   return (
-    <div className="quest-background">
-      <section className="quest-wrapper">
-        <div className="quest-header">
-          <div className="title">
-            <Text className="title-text" fontWeight="bold">
-              퀘스트 생성
-            </Text>
-            <List listData={questMain.list} />
+    <>
+      {isLoading && <Loading />}
+      <div className="quest-background">
+        <section className="quest-wrapper">
+          <div className="quest-header">
+            <div className="title">
+              <Text className="title-text" fontWeight="bold">
+                퀘스트 생성
+              </Text>
+              <List listData={questMain.list} />
+            </div>
+            <img src={lighthouse} alt="lighthouse" />
           </div>
-          <img src={lighthouse} alt="lighthouse" />
-        </div>
-        <Main />
-        <Sub />
-        <Detail />
-        <div className="quest-footer">
-          <Link to="/create-roadmap">
+          <Main />
+          <Sub />
+          <Detail />
+          <div className="quest-footer">
             <Button
               innerText="등록"
               buttonColor="white"
               textColor="gil-blue"
               textSize="medium"
               hasShadow
+              handleClick={handleRegisterQuest}
             />
-          </Link>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

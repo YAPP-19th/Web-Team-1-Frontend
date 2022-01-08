@@ -12,6 +12,8 @@ import {
   GetQuestsSearch,
   GetUsersQuests,
   GetUsersQuestsParticipation,
+  PostUpload,
+  PostRoadmaps,
 } from './types/request';
 import {
   Response,
@@ -23,6 +25,7 @@ import {
   RoadmapListItem,
   UsersProfile,
   Auth,
+  Upload,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -33,7 +36,7 @@ export const giljobApi = createApi({
       // TODO: 현재 테스트를 위해서 임시 access token을 항상 header에 담아서 request를 하는 중
       // 추후 redux store에 저장된 access token으로 대체해야 함
       headers.set('Authorization', process.env.REACT_APP_API_KEY ?? '');
-      headers.set('Content-Type', 'application/json');
+      // headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
@@ -54,7 +57,10 @@ export const giljobApi = createApi({
     // 퀘스트 검색: GET /quests/search
     getQuestsSearch: builder.query<Response<Quest[]>, GetQuestsSearch>({
       query: ({ keyword, position, cursor, size }) =>
-        `quests/search?keyword=${keyword}&position=${position}&size=${size}&cursor=${cursor}`,
+        `quests/search?keyword=${keyword}
+          ${position ? `&position=${position}` : ''}
+          ${size ? `&size=${size}` : ''}
+          ${cursor ? `&cursor=${cursor}` : ''}`,
     }),
     // 랜딩 페이지 퀘스트 수 조회: GET /quests/count
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
@@ -100,6 +106,14 @@ export const giljobApi = createApi({
       query: ({ subQuestId }) => ({
         url: `subquests/${subQuestId}`,
         method: 'POST',
+      }),
+    }),
+    // 로드맵 등록: POST /roadmaps
+    postRoadmaps: builder.mutation<Response<null>, PostRoadmaps>({
+      query: (body) => ({
+        url: 'roadmaps',
+        method: 'POST',
+        body,
       }),
     }),
     // 로드맵 조회: GET /roadmaps/{roadmapId}
@@ -156,7 +170,13 @@ export const giljobApi = createApi({
       }),
     }),
     // 업로드: POST /upload
-    // TODO
+    postUpload: builder.mutation<Response<Upload>, PostUpload>({
+      query: (body) => ({
+        url: 'upload',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -171,6 +191,7 @@ export const {
   useGetUsersQuestsParticipationQuery,
   usePostSubquestsMutation,
   useGetRoadmapsQuery,
+  usePostRoadmapsMutation,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
   useGetUsersMeQuery,
@@ -178,4 +199,5 @@ export const {
   usePatchUsersMeIntroMutation,
   usePostLoginMutation,
   usePostRegisterMutation,
+  usePostUploadMutation,
 } = giljobApi;

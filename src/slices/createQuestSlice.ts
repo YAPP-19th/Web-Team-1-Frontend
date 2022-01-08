@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DragDropListType } from '@src/components/molecules/DragDrop';
 import { DropdownListType } from '@src/components/atoms/Dropdown';
 import { RootState } from '@src/store';
 
-interface ListType {
+export interface ListType {
   name: string;
 }
 
@@ -23,6 +22,7 @@ const initialState: createQuestState = {
   position: '',
   difficulty: 0,
   detail: '',
+  thumbnail: '',
   subQuestList: [],
   tagList: [],
 };
@@ -47,12 +47,8 @@ export const createQuestSlice = createSlice({
     setThumbnail: (state, action: PayloadAction<string>) => {
       state.thumbnail = action.payload;
     },
-    setSubQuest: (state, action: PayloadAction<DragDropListType[]>) => {
-      const parsedData = action.payload.map(({ name }) => ({
-        name,
-      }));
-
-      state.subQuestList = parsedData;
+    setSubQuest: (state, action: PayloadAction<ListType[]>) => {
+      state.subQuestList = action.payload;
     },
     setTag: (state, action: PayloadAction<string[]>) => {
       const parsedData = action.payload.map((value) => ({

@@ -17,7 +17,7 @@ export interface Quest {
   position: string;
   participantCount: number;
   writer: Writer;
-  difficulty: number;
+  difficulty: 1 | 2 | 3 | 4 | 5;
   thumbnail: string;
 }
 
@@ -74,4 +74,8 @@ export interface UsersProfile {
 export interface Auth {
   isSignedUp?: boolean;
   accessToken: string;
+}
+
+export interface Upload {
+  fileUrl: string;
 }
