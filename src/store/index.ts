@@ -7,6 +7,7 @@ import createRoadmapReducer from '@src/slices/createRoadmapSlice';
 import registerReducer from '@src/slices/registerSlice';
 import authReducer from '@src/slices/authSlice';
 import questListReducer from '@src/slices/questListSlice';
+import modalReducer from '@src/slices/modalSlice';
 import { giljobApi } from '@src/services/giljob';
 
 const persistConfig = {
@@ -24,6 +25,7 @@ export const store = configureStore({
       createQuest: createQuestReducer,
       createRoadmap: createRoadmapReducer,
       questList: questListReducer,
+      modal: modalReducer,
       [giljobApi.reducerPath]: giljobApi.reducer,
     }),
   ),
