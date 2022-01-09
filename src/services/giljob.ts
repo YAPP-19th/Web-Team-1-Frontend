@@ -9,16 +9,15 @@ import {
   PostRegister,
   PostQuests,
   GetQuests,
-  GetQuestsSearch,
   GetUsersQuests,
   GetUsersQuestsParticipation,
   PostUpload,
   PostRoadmaps,
+  GetQuestsReviews,
 } from './types/request';
 import {
   Response,
   Quest,
-  Quests,
   QuestsCount,
   QuestsInfo,
   Writer,
@@ -30,6 +29,7 @@ import {
   QuestsPositionsCount,
   QuestsSubquest,
   QuestsReviews,
+  QuestsResponse,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -54,18 +54,11 @@ export const giljobApi = createApi({
       }),
     }),
     // 전체 퀘스트 리스트 조회: GET /quests
-    getQuests: builder.query<Response<Quest[]>, GetQuests | void>({
-      query: (argument) =>
-        `quests?cursor=${argument?.cursor ?? ''}&size=${argument?.size ?? ''}`,
-    }),
-    // 퀘스트 검색: GET /quests
-    getQuestsSearch: builder.query<Response<Quests>, GetQuestsSearch>({
+    getQuests: builder.query<Response<QuestsResponse>, GetQuests>({
       query: ({ keyword, position, size, page }) =>
-        `quests?
-          ${keyword ? `&keyword=${keyword}` : ''}
-          ${position ? `&position=${position}` : ''}
-          ${size ? `&size=${size}` : ''}
-          ${page ? `&page=${page}` : ''}`,
+        `quests?${keyword ? `&keyword=${keyword}` : ''}${
+          position ? `&position=${position}` : ''
+        }${size ? `&size=${size}` : ''}${page ? `&page=${page}` : ''}`,
     }),
     // 랜딩 페이지 퀘스트 수 조회: GET /quests/count
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
@@ -91,7 +84,7 @@ export const giljobApi = createApi({
     }),
     // 퀘스트의 서브 퀘스트 진행 현황 조회: GET /quests/{questId}/subquest
     getQuestsSubquest: builder.query<Response<QuestsSubquest>, ProvideQuestId>({
-      query: ({ questId }) => `quests/${questId}/subquest`,
+      query: ({ questId }) => `quests/${questId}/subquests`,
     }),
     // 퀘스트 참여: POST /quests/{questId}/participation
     // TODO
@@ -102,7 +95,7 @@ export const giljobApi = createApi({
     // 퀘스트 한줄 후기 리스트 조회: GET /quests/{questId}/reviews
     getQuestsReviews: builder.query<
       Response<QuestsReviews>,
-      ProvideQuestId & Partial<GetQuests>
+      ProvideQuestId & Partial<ProvideQuestId & GetQuestsReviews>
     >({
       query: ({ questId, cursor, size }) =>
         `quests/${questId}/reviews${size ? `&size=${size}` : ''}${
@@ -149,7 +142,10 @@ export const giljobApi = createApi({
       query: ({ roadmapId }) => `roadmaps/${roadmapId}`,
     }),
     // 최근 등록한 로드맵 리스트 조회: GET /roadmaps
-    getRoadmapsRecent: builder.query<Response<Roadmap>, Partial<GetQuests>>({
+    getRoadmapsRecent: builder.query<
+      Response<RoadmapListItem[]>,
+      Partial<GetQuests>
+    >({
       query: ({ size }) => `roadmaps?${size ? `&size=${size}` : ''}`,
     }),
     // 로드맵 등록: POST /roadmaps
@@ -215,6 +211,7 @@ export const giljobApi = createApi({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',
+        body,
       }),
     }),
     // 업로드: POST /upload
@@ -231,7 +228,6 @@ export const giljobApi = createApi({
 export const {
   usePostQuestsMutation,
   useGetQuestsQuery,
-  useGetQuestsSearchQuery,
   useGetQuestsCountQuery,
   useGetQuestsPositionsCountQuery,
   useGetQuestsInfoQuery,

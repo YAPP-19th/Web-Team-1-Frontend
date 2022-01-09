@@ -21,7 +21,7 @@ export interface Quest {
   thumbnail: string;
 }
 
-export interface Quests {
+export interface QuestsResponse {
   totalCount: number;
   questList: Quest[];
 }
