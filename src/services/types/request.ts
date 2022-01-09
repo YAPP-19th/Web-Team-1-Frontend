@@ -49,13 +49,20 @@ export interface PostRoadmaps {
 }
 
 export interface GetQuests {
-  cursor?: number;
+  keyword?: string;
+  position?: string;
   size?: number;
+  page?: number;
 }
 
 export interface GetQuestsSearch {
   keyword: string;
   position?: string;
+  cursor?: number;
+  size?: number;
+}
+
+export interface GetQuestsReviews {
   cursor?: number;
   size?: number;
 }
