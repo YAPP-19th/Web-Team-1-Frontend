@@ -30,7 +30,9 @@ import './style.scss';
 const Detail: React.FC = () => {
   const { questList } = useSelector(createRoadmapSelector);
   const [keyword, setKeyword] = useState('');
-  const { data: quests, isLoading } = useGetQuestsSearchQuery({ keyword });
+  const { data: rawQuestsData, isLoading } = useGetQuestsSearchQuery({
+    keyword,
+  });
   const dispatch = useDispatch();
 
   const handleToast = useCallback(
@@ -54,9 +56,7 @@ const Detail: React.FC = () => {
   );
 
   // 검색, 카드 이벤트
-  const handleSearch = useCallback((keyword) => {
-    setKeyword(keyword);
-  }, []);
+  const handleSearch = (keyword: string) => setKeyword(keyword);
 
   const handleCardClick = (questId: number, name: string) => {
     dispatch(setQuestList([...questList, { questId, name }]));
@@ -106,7 +106,7 @@ const Detail: React.FC = () => {
               />
             </div>
             <div className="roadmap-quest-list">
-              {quests?.data.map(
+              {rawQuestsData?.data.questList.map(
                 ({
                   id,
                   name,

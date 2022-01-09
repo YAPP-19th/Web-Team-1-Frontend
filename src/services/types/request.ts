@@ -54,10 +54,10 @@ export interface GetQuests {
 }
 
 export interface GetQuestsSearch {
-  keyword: string;
+  keyword?: string;
   position?: string;
-  cursor?: number;
   size?: number;
+  page?: number;
 }
 
 export interface GetUsersQuests {

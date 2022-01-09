@@ -1,0 +1,22 @@
+@import '/src/styles';
+
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 102.4rem;
+  height: calc(100vh - 16.8rem);
+  min-height: 72rem;
+}
+
+.notfound-wrapper {
+  text-align: center;
+
+  ._TEXT_ {
+    margin: 2rem 0;
+  }
+
+  ._BUTTON_ {
+    margin: 2rem;
+  }
+}

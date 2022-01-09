@@ -20,3 +20,4 @@ export { default as Text } from './Text';
 export { default as Textarea } from './Textarea';
 export { default as Toast } from './Toast';
 export { default as Uploader } from './Uploader';
+export { default as Floating } from './Floating';

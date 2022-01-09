@@ -18,6 +18,7 @@ import {
 import {
   Response,
   Quest,
+  Quests,
   QuestsCount,
   QuestsInfo,
   Writer,
@@ -57,13 +58,14 @@ export const giljobApi = createApi({
       query: (argument) =>
         `quests?cursor=${argument?.cursor ?? ''}&size=${argument?.size ?? ''}`,
     }),
-    // 퀘스트 검색: GET /quests/search
-    getQuestsSearch: builder.query<Response<Quest[]>, GetQuestsSearch>({
-      query: ({ keyword, position, cursor, size }) =>
-        `quests/search?keyword=${keyword}
+    // 퀘스트 검색: GET /quests
+    getQuestsSearch: builder.query<Response<Quests>, GetQuestsSearch>({
+      query: ({ keyword, position, size, page }) =>
+        `quests?
+          ${keyword ? `&keyword=${keyword}` : ''}
           ${position ? `&position=${position}` : ''}
           ${size ? `&size=${size}` : ''}
-          ${cursor ? `&cursor=${cursor}` : ''}`,
+          ${page ? `&page=${page}` : ''}`,
     }),
     // 랜딩 페이지 퀘스트 수 조회: GET /quests/count
     getQuestsCount: builder.query<Response<QuestsCount>, void>({
