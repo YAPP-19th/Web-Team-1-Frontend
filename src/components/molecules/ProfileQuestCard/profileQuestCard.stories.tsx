@@ -24,11 +24,9 @@ export const defaultProfileQuestCard = Template.bind({});
 
 defaultProfileQuestCard.args = {
   status: 0,
-  step: '입문',
   difficulty: 0,
   position: 'Front-End',
   name: 'React A to Z',
-  // exp: 100,
   participantCount: 123,
   progress: 100,
   writer: {

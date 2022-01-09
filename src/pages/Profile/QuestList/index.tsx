@@ -102,11 +102,9 @@ const QuestList: React.FC = () => {
               }: Quest) => (
                 <ProfileQuestCard
                   key={id}
-                  // TODO: undefined일 때 어떻게 처리할지 고민해보기
-                  step={step[difficulty] ?? '입문'}
+                  difficulty={difficulty}
                   position={position}
                   name={name}
-                  // exp={exp}
                   participantCount={participantCount}
                   progress={progress}
                   status={filtering}

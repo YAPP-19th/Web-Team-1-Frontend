@@ -5,14 +5,12 @@ import { Author } from '@src/components/molecules';
 import { QuestFiltering } from '@src/pages/Profile/QuestList';
 import { Writer } from '@src/services/types/response';
 import './style.scss';
-
+import { step } from '@src/pages/Profile/list';
 export interface ProfileQuestCardProps {
   status: QuestFiltering;
-  step: '입문' | '초급' | '중급' | '고급' | '통달';
   difficulty: number;
   position: string;
   name: string;
-  // exp: number;
   participantCount: number;
   progress?: number;
   writer: Writer;
@@ -32,20 +30,20 @@ const Degree = styled.div`
 `;
 
 const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
-  step,
+  status,
+  difficulty,
   position,
   name,
   participantCount,
   progress,
   writer,
-  status,
   handleCardClick,
   handleButtonClick,
 }) => {
   return (
     <div className="_PROFILE_QUEST_CARD_" onClick={handleCardClick}>
       <div className="card-main-info">
-        <Badge step={step} align="end" />
+        <Badge step={step[difficulty]} align="end" />
         <Text
           align="start"
           fontColor="gil-blue"
@@ -64,18 +62,22 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
         </Text>
       </div>
       <div className="card-more-info">
-        <Text
-          align="start"
-          fontColor="gil-blue"
-          fontSize="small"
-          fontWeight="bold"
-        >
-          퀘스트 진행률
-        </Text>
-        <div className="progress">
-          {/* TODO: progress null이나 undefiend일 때 사용할 값 변경 */}
-          <Degree value={progress ?? 0} />
-        </div>
+        {status !== QuestFiltering.Created && (
+          <>
+            <Text
+              align="start"
+              fontColor="gil-blue"
+              fontSize="small"
+              fontWeight="bold"
+            >
+              퀘스트 진행률
+            </Text>
+            <div className="progress">
+              <Degree value={progress ?? 0} />
+            </div>
+          </>
+        )}
+
         <div className="more-info-wrapper">
           <Text
             align="start"
@@ -83,8 +85,7 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="large"
             fontWeight="regular"
           >
-            {/* TODO: exp 추가하기*/}
-            ??? EXP
+            {10 + difficulty * 5} EXP
           </Text>
           <Text
             align="start"
