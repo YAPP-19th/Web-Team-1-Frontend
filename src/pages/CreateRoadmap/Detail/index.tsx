@@ -11,7 +11,7 @@ import {
   Loading,
 } from '@src/components/atoms';
 import { Card, DragDrop } from '@src/components/molecules';
-import { useGetQuestsSearchQuery } from '@src/services/giljob';
+import { useGetQuestsQuery } from '@src/services/giljob';
 import {
   createRoadmapSelector,
   setQuestList,
@@ -30,7 +30,7 @@ import './style.scss';
 const Detail: React.FC = () => {
   const { questList } = useSelector(createRoadmapSelector);
   const [keyword, setKeyword] = useState('');
-  const { data: rawQuestsData, isLoading } = useGetQuestsSearchQuery({
+  const { data: rawQuestsData, isLoading } = useGetQuestsQuery({
     keyword,
   });
   const dispatch = useDispatch();
@@ -56,7 +56,9 @@ const Detail: React.FC = () => {
   );
 
   // 검색, 카드 이벤트
-  const handleSearch = (keyword: string) => setKeyword(keyword);
+  const handleSearch = useCallback((keyword: string) => {
+    setKeyword(keyword);
+  }, []);
 
   const handleCardClick = (questId: number, name: string) => {
     dispatch(setQuestList([...questList, { questId, name }]));
@@ -116,6 +118,7 @@ const Detail: React.FC = () => {
                   difficulty,
                 }) => (
                   <Card
+                    id={id}
                     step="입문" // 백엔드에서 단계를 줘야함
                     category={position}
                     name={name}
@@ -126,7 +129,7 @@ const Detail: React.FC = () => {
                     key={id}
                     hasBorder={questList.includes(name)}
                     handleCardClick={() => handleCardClick(id, name)}
-                    handleButtonClick={handleCardButtonClick}
+                    isButtonModal
                   />
                 ),
               )}

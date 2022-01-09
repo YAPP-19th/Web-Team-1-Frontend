@@ -9,6 +9,7 @@ const Landing = lazy(() => import('@src/pages/Landing'));
 const Quest = lazy(() => import('@src/pages/Quest'));
 const CreateQuest = lazy(() => import('@src/pages/CreateQuest'));
 const CreateRoadmap = lazy(() => import('@src/pages/CreateRoadmap'));
+const Detail = lazy(() => import('@src/pages/Detail'));
 const Profile = lazy(() => import('@src/pages/Profile'));
 const Login = lazy(() => import('@src/pages/Login'));
 const NotFound = lazy(() => import('@src/pages/NotFound'));
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             개발 시에는 불편할 듯 해서 지정을 따로 안했습니다. */}
             <Route path="/create-quest" component={CreateQuest} />
             <Route path="/create-roadmap" component={CreateRoadmap} />
+            <Route path="/detail/:questId" component={Detail} />
             <Route path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
