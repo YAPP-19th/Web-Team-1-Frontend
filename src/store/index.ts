@@ -2,10 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import createQusetReducer from '@src/slices/createQuestSlice';
+import createQuestReducer from '@src/slices/createQuestSlice';
 import createRoadmapReducer from '@src/slices/createRoadmapSlice';
 import registerReducer from '@src/slices/registerSlice';
 import authReducer from '@src/slices/authSlice';
+import questListReducer from '@src/slices/questListSlice';
 import { giljobApi } from '@src/services/giljob';
 
 const persistConfig = {
@@ -20,8 +21,9 @@ export const store = configureStore({
     combineReducers({
       auth: authReducer,
       register: registerReducer,
-      createQuest: createQusetReducer,
+      createQuest: createQuestReducer,
       createRoadmap: createRoadmapReducer,
+      questList: questListReducer,
       [giljobApi.reducerPath]: giljobApi.reducer,
     }),
   ),
