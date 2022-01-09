@@ -9,7 +9,7 @@ import {
 import { RoadmapListItem } from '@src/services/types/response';
 import './style.scss';
 
-const tabList = [
+const TAB_LIST = [
   {
     name: '로드맵 스크랩',
   },
@@ -17,7 +17,6 @@ const tabList = [
     name: '등록한 로드맵',
   },
 ];
-
 const LIST_SIZE = 6;
 
 // 필터링 기준 열거형
@@ -26,19 +25,23 @@ export enum RoadmapFiltering {
   Registered,
 }
 
-const RoadmapList: React.FC = () => {
+interface RoadmapListProps {
+  userId: number;
+}
+
+const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
   // 필터링 기준
   const [filtering, setFiltering] = useState(RoadmapFiltering.Scraped);
 
-  // TODO: userId, cursor 값 변경
+  // TODO: cursor 값 변경
   const { data: roadmaps } = useGetUsersRoadmapsQuery({
-    userId: 1,
+    userId: userId,
     // cursor: 100,
     size: LIST_SIZE,
   });
   // TODO: userId, cursor 값 변경
   const { data: roadmapsScrap } = useGetUsersRoadmapsScrapQuery({
-    userId: 1,
+    userId: userId,
     // cursor: 100,
     size: LIST_SIZE,
   });
@@ -51,7 +54,7 @@ const RoadmapList: React.FC = () => {
   return (
     <div className="quest-page-roadmap-list">
       <TabBar
-        tabList={tabList}
+        tabList={TAB_LIST}
         hasDivider={false}
         align="start"
         selected={filtering}

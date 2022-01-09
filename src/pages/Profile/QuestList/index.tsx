@@ -7,11 +7,10 @@ import {
   useGetUsersQuestsQuery,
 } from '@src/services/giljob';
 import { Quest } from '@src/services/types/response';
-import { step } from '../list';
-import './style.scss';
 import { useHistory } from 'react-router-dom';
+import './style.scss';
 
-const tabList = [
+const TAB_LIST = [
   {
     name: '진행중 퀘스트',
   },
@@ -22,7 +21,6 @@ const tabList = [
     name: '생성한 퀘스트',
   },
 ];
-
 const LIST_SIZE = 6;
 
 // 필터링 기준 열거형
@@ -32,7 +30,11 @@ export enum QuestFiltering {
   Created,
 }
 
-const QuestList: React.FC = () => {
+interface QuestListProps {
+  userId: number;
+}
+
+const QuestList: React.FC<QuestListProps> = ({ userId }) => {
   const history = useHistory();
   // 필터링 기준
   const [filtering, setFiltering] = useState(QuestFiltering.Proceeding);
@@ -40,13 +42,13 @@ const QuestList: React.FC = () => {
 
   // TODO: userId, cursor 값 변경
   const { data: quests } = useGetUsersQuestsQuery({
-    userId: 1,
+    userId: userId,
     // cursor: 1,
     size: LIST_SIZE,
   });
   // TODO: userId, cursor 값 변경
   const { data: questsParticipation } = useGetUsersQuestsParticipationQuery({
-    userId: 1,
+    userId: userId,
     // cursor: 1,
     completed: isCompleted,
     size: LIST_SIZE,
@@ -74,7 +76,7 @@ const QuestList: React.FC = () => {
   return (
     <div className="profile-page-quest-list">
       <TabBar
-        tabList={tabList}
+        tabList={TAB_LIST}
         hasDivider={false}
         align="start"
         selected={filtering}

@@ -13,8 +13,7 @@ interface profileState {
 
 const initialState: profileState = {
 	userInfo : {
-		// TODO: id 초기값 변경하기
-		id : 1,
+		id : -1,
 		nickname : "",
 		position : "",
 		point : 0,
