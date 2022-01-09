@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import cn from 'classnames';
 import { Text } from '@src/components/atoms';
+import useDebounce from '@src/hooks/useDebounce';
+
 import './style.scss';
 
 export interface InputProps {
@@ -25,18 +27,17 @@ const Input: React.FC<InputProps> = ({
   onSubmit,
 }) => {
   const [input, setInput] = useState('');
+  const debouncedInput = useDebounce(input, 1000);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value;
-      setInput(inputValue);
+  // Debounce 적용
+  useEffect(() => {
+    if (onDispatch) onDispatch(debouncedInput);
+  }, [debouncedInput, onDispatch]);
 
-      if (onDispatch) {
-        onDispatch(inputValue);
-      }
-    },
-    [onDispatch],
-  );
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setInput(inputValue);
+  };
 
   // Redux에 Input 컴포넌트를 연결 하지 않을 경우에만 작동합니다.
   const handleEnter = useCallback(

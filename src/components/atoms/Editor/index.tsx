@@ -1,9 +1,16 @@
-import React, { useState, useRef, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize';
 import { usePostUploadMutation } from '@src/services/giljob';
+import { Loading } from '@src/components/atoms';
+import useDebounce from '@src/hooks/useDebounce';
 import 'react-quill/dist/quill.snow.css';
-import { Loading } from '..';
 
 // 이미지 크기 재조절 모듈
 Quill.register('modules/ImageResize', ImageResize);
@@ -17,6 +24,12 @@ const Editor: React.FC<EditorProps> = ({ height, onDispatch }) => {
   const quillRef = useRef<ReactQuill>(null);
   const [postImage, { isLoading }] = usePostUploadMutation();
   const [contents, setContents] = useState('');
+  const debouncedContents = useDebounce(contents, 500);
+
+  // Debounce 적용
+  useEffect(() => {
+    if (onDispatch) onDispatch(debouncedContents);
+  }, [debouncedContents, onDispatch]);
 
   const handleImage = useCallback(() => {
     const input = document.createElement('input');
@@ -44,13 +57,9 @@ const Editor: React.FC<EditorProps> = ({ height, onDispatch }) => {
     });
   }, [postImage, onDispatch]);
 
-  const handleChange = useCallback(
-    (value: string) => {
-      setContents(value);
-      onDispatch(value);
-    },
-    [onDispatch],
-  );
+  const handleChange = (value: string) => {
+    setContents(value);
+  };
 
   const modules = useMemo(
     () => ({
