@@ -6,6 +6,7 @@ import Mypage from './Mypage';
 import QuestList from './QuestList';
 import RoadmapList from './RoadmapList';
 import Achievement from './Achievement';
+import Loading from '@src/components/atoms/Loading';
 
 const pathname = '/profile';
 
@@ -45,7 +46,7 @@ const Profile: React.FC = () => {
           ))}
         </div>
         <div className="profile-content">
-          <Suspense fallback={null}>
+          <Suspense fallback={Loading}>
             <Switch>
               <Route path="/profile/mypage" component={Mypage} />
               <Route path="/profile/quest" component={QuestList} />
