@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Badge, Button, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
 import cn from 'classnames';
 import './style.scss';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setModalOn } from '@src/slices/modalSlice';
 
 export interface CardProps {
+  id: number;
   step: '입문' | '초급' | '중급' | '고급' | '통달';
   category: string;
   name: string;
@@ -14,10 +18,11 @@ export interface CardProps {
   level: 1 | 2 | 3 | 4 | 5;
   hasBorder?: boolean;
   handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  isButtonModal?: boolean;
 }
 
 const Card: React.FC<CardProps> = ({
+  id,
   step,
   category,
   name,
@@ -27,8 +32,18 @@ const Card: React.FC<CardProps> = ({
   level,
   hasBorder = false,
   handleCardClick,
-  handleButtonClick,
+  isButtonModal = false,
 }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const handleButtonClick = useCallback(() => {
+    if (isButtonModal) {
+      dispatch(setModalOn(id));
+      return;
+    }
+    history.push(`/detail/${id}`);
+  }, [dispatch, history, id, isButtonModal]);
+
   return (
     <div
       className={cn('_CARD_', { hasBorder })}
