@@ -29,7 +29,7 @@ import {
   QuestsPositionsCount,
   QuestsSubquest,
   QuestsReviews,
-  QuestResponse,
+  QuestsResponse,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -54,7 +54,7 @@ export const giljobApi = createApi({
       }),
     }),
     // 전체 퀘스트 리스트 조회: GET /quests
-    getQuests: builder.query<Response<QuestResponse>, GetQuests>({
+    getQuests: builder.query<Response<QuestsResponse>, GetQuests>({
       query: ({ keyword, position, size, page }) =>
         `quests?${keyword ? `&keyword=${keyword}` : ''}${
           position ? `&position=${position}` : ''
