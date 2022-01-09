@@ -36,20 +36,20 @@ interface QuestListProps {
 
 const QuestList: React.FC<QuestListProps> = ({ userId }) => {
   const history = useHistory();
-  // 필터링 기준
-  const [filtering, setFiltering] = useState(QuestFiltering.Proceeding);
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
-  // TODO: userId, cursor 값 변경
+  const [filtering, setFiltering] = useState(QuestFiltering.Proceeding); // 필터링 기준
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
+  const [participationPage, setParticipationPage] = useState<number>(0);
+
   const { data: quests } = useGetUsersQuestsQuery({
     userId: userId,
-    // cursor: 1,
+    page: page,
     size: LIST_SIZE,
   });
-  // TODO: userId, cursor 값 변경
   const { data: questsParticipation } = useGetUsersQuestsParticipationQuery({
     userId: userId,
-    // cursor: 1,
+    page: participationPage,
     completed: isCompleted,
     size: LIST_SIZE,
   });
@@ -68,8 +68,12 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
   useEffect(() => {
     if (filtering === QuestFiltering.Proceeding) {
       setIsCompleted(false);
+      setParticipationPage(0);
     } else if (filtering === QuestFiltering.Completed) {
       setIsCompleted(true);
+      setParticipationPage(0);
+    } else if (filtering === QuestFiltering.Created) {
+      setPage(0);
     }
   }, [filtering]);
 
@@ -83,14 +87,15 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
         setFiltering={setFiltering}
       />
       <section className="profile-page-list-wrapper">
-        {(filtering !== QuestFiltering.Created
-          ? questsParticipation?.data
-          : quests?.data
-        )?.length ? (
+        {(
+          filtering === QuestFiltering.Created
+            ? quests?.data.totalCount
+            : questsParticipation?.data.totalCount
+        ) ? (
           <div className="profile-page-card-wrapper">
-            {(filtering !== QuestFiltering.Created
-              ? questsParticipation?.data
-              : quests?.data
+            {(filtering === QuestFiltering.Created
+              ? quests?.data.questList
+              : questsParticipation?.data.questList
             )?.map(
               ({
                 id,
@@ -126,7 +131,21 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
           </div>
         )}
         <div className="profile-page-pagination-wrapper">
-          <Pagination pageSize={6} currentId={1} totalLength={65} />
+          {filtering === QuestFiltering.Created ? (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentId={page}
+              totalLength={quests?.data.totalCount ?? 0}
+              onDispatch={setPage}
+            />
+          ) : (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentId={participationPage}
+              totalLength={questsParticipation?.data.totalCount ?? 0}
+              onDispatch={setParticipationPage}
+            />
+          )}
         </div>
       </section>
     </div>

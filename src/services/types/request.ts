@@ -62,7 +62,7 @@ export interface GetQuestsSearch {
 
 export interface GetUsersQuests {
   userId: number;
-  cursor?: number;
+  page?: number;
   size?: number;
 }
 
@@ -71,7 +71,7 @@ export interface GetUsersQuestsParticipation extends GetUsersQuests {
 }
 export interface GetUsersRoadmaps {
   userId: number;
-  cursor?: number;
+  page?: number;
   size?: number;
 }
 

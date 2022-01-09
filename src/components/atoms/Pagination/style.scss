@@ -1,14 +1,18 @@
 @import '/src/styles/';
 
 ._PAGINATION_ {
-  .pagination-number {
-    cursor: pointer;
-    display: inline !important;
-    margin: 0rem 1rem;
-    transition: 0.5s;
+  .pagination-number-wrapper {
+    display: inline;
 
-    &:hover {
-      color: #333;
+    .pagination-number {
+      cursor: pointer;
+      display: inline !important;
+      margin: 0rem 1rem;
+      transition: 0.5s;
+
+      &:hover {
+        color: #333;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
@@ -30,19 +30,19 @@ interface RoadmapListProps {
 }
 
 const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
-  // 필터링 기준
-  const [filtering, setFiltering] = useState(RoadmapFiltering.Scraped);
+  const [filtering, setFiltering] = useState(RoadmapFiltering.Scraped); // 필터링 기준
+  const [page, setPage] = useState<number>(0);
+  const [scrapPage, setScrapPage] = useState<number>(0);
 
-  // TODO: cursor 값 변경
   const { data: roadmaps } = useGetUsersRoadmapsQuery({
     userId: userId,
-    // cursor: 100,
+    page: page,
     size: LIST_SIZE,
   });
-  // TODO: userId, cursor 값 변경
+
   const { data: roadmapsScrap } = useGetUsersRoadmapsScrapQuery({
     userId: userId,
-    // cursor: 100,
+    page: scrapPage,
     size: LIST_SIZE,
   });
 
@@ -50,6 +50,14 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
     console.log('프로필 로드맵 선택');
     // TODO: 모달 띄우기
   };
+
+  useEffect(() => {
+    if (filtering === RoadmapFiltering.Registered) {
+      setPage(0);
+    } else if (filtering === RoadmapFiltering.Scraped) {
+      setScrapPage(0);
+    }
+  }, [filtering]);
 
   return (
     <div className="quest-page-roadmap-list">
@@ -61,14 +69,15 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
         setFiltering={setFiltering}
       />
       <section className="quest-page-roadmap-list-wrapper">
-        {(filtering === RoadmapFiltering.Registered
-          ? roadmaps?.data
-          : roadmapsScrap?.data
-        )?.length ? (
+        {(
+          filtering === RoadmapFiltering.Registered
+            ? roadmaps?.data.totalCount
+            : roadmapsScrap?.data.totalCount
+        ) ? (
           <div className="quest-page-paper-wrapper">
             {(filtering === RoadmapFiltering.Registered
-              ? roadmaps?.data
-              : roadmapsScrap?.data
+              ? roadmaps?.data.roadmapList
+              : roadmapsScrap?.data.roadmapList
             )?.map(({ id, name, position, writer }: RoadmapListItem) => (
               // TODO: writer point에 맞게 level 변경하기
               <Paper
@@ -90,7 +99,21 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
           </div>
         )}
         <div className="quest-page-roadmap-pagination-wrapper">
-          <Pagination pageSize={6} currentId={1} totalLength={65} />
+          {filtering === RoadmapFiltering.Registered ? (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentId={page}
+              totalLength={roadmaps?.data.totalCount ?? 0}
+              onDispatch={setPage}
+            />
+          ) : (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentId={scrapPage}
+              totalLength={roadmaps?.data.totalCount ?? 0}
+              onDispatch={setScrapPage}
+            />
+          )}
         </div>
       </section>
     </div>

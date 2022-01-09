@@ -22,6 +22,11 @@ export interface Quest {
   progress?: number;
 }
 
+export interface UsersQuests {
+  totalCount: number;
+  questList: Quest[];
+}
+
 export interface QuestsCount {
   totalQuestCount: number;
   onProgressQuestCount: number;
@@ -85,6 +90,11 @@ export interface RoadmapListItem {
   name: string;
   position: string;
   writer: Writer;
+}
+
+export interface UsersRoadmaps {
+  totalCount: number;
+  roadmapList: RoadmapListItem[];
 }
 
 export interface UsersProfile {

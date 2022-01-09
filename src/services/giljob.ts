@@ -23,13 +23,14 @@ import {
   QuestsInfo,
   Writer,
   Roadmap,
-  RoadmapListItem,
   UsersProfile,
   Auth,
   Upload,
   QuestsPositionsCount,
   QuestsSubquest,
   QuestsReviews,
+  UsersQuests,
+  UsersRoadmaps,
 } from './types/response';
 
 export const giljobApi = createApi({
@@ -109,18 +110,18 @@ export const giljobApi = createApi({
         }`,
     }),
     // 유저가 생성한 퀘스트 리스트 조회: GET /users/{userId}/quests
-    getUsersQuests: builder.query<Response<Quest[]>, GetUsersQuests>({
-      query: ({ userId, cursor, size }) =>
-        `users/${userId}/quests?cursor=${cursor ?? ''}&size=${size ?? ''}`,
+    getUsersQuests: builder.query<Response<UsersQuests>, GetUsersQuests>({
+      query: ({ userId, page, size }) =>
+        `users/${userId}/quests?page=${page ?? ''}&size=${size ?? ''}`,
     }),
     // 유저가 참여한 퀘스트 리스트 조회: GET /users/{userId}/quests/participation
     getUsersQuestsParticipation: builder.query<
-      Response<Quest[]>,
+      Response<UsersQuests>,
       GetUsersQuestsParticipation
     >({
-      query: ({ userId, cursor, size, completed }) =>
-        `users/${userId}/quests/participation?cursor=${
-          cursor ?? ''
+      query: ({ userId, page, size, completed }) =>
+        `users/${userId}/quests/participation?page=${
+          page ?? ''
         }&completed=${completed ? 'true' : 'false'}&size=${size ?? ''}`,
     }),
     // 서브퀘스트 완료: POST /subquests/{subQuestId}/complete
@@ -173,17 +174,17 @@ export const giljobApi = createApi({
     }),
     // 유저가 스크랩한 로드맵 리스트 조회: GET /users/{userId}/roadmaps/scrap
     getUsersRoadmapsScrap: builder.query<
-      Response<RoadmapListItem[]>,
+      Response<UsersRoadmaps>,
       GetUsersRoadmaps
     >({
-      query: ({ userId, cursor, size }) => `users/${userId}/roadmaps/scrap?cursor=${cursor ?? ''}&size=${size ?? ''}`,
+      query: ({ userId, page, size }) => `users/${userId}/roadmaps/scrap?page=${page ?? ''}&size=${size ?? ''}`,
     }),
     // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
     getUsersRoadmaps: builder.query<
-      Response<RoadmapListItem[]>,
+      Response<UsersRoadmaps>,
       GetUsersRoadmaps
     >({
-      query: ({ userId, cursor, size }) => `users/${userId}/roadmaps?cursor=${cursor ?? ''}&size=${size ?? ''}`,
+      query: ({ userId, page, size }) => `users/${userId}/roadmaps?page=${page ?? ''}&size=${size ?? ''}`,
     }),
     // 회원가입: POST /sign-up
     postRegister: builder.mutation<Response<Auth>, PostRegister>({
