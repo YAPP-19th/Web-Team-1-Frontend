@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import './style.scss';
 import { Button, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
 import Carousel from '@src/components/organisms/Carousel';
+import { useHistory } from 'react-router-dom';
+import { useGetRoadmapsRecentQuery } from '@src/services/giljob';
 
 const SliderItem = styled.div`
   width: 100%;
@@ -13,20 +15,16 @@ const SliderItem = styled.div`
   }
 `;
 
-// 더미 데이터
-// TODO: 서버로부터 얻어온 데이터로 대체 예정
-const items = [
-  { key: 'a' },
-  { key: 'b' },
-  { key: 'c' },
-  { key: 'd' },
-  { key: 'e' },
-  { key: 'f' },
-  { key: 'g' },
-  { key: 'h' },
-];
-
 const RoadmapList: React.FC = () => {
+  const history = useHistory();
+  const handleButtonClick = useCallback(() => {
+    history.push('/create-roadmap');
+  }, [history]);
+
+  const { data: roadmapList, isSuccess } = useGetRoadmapsRecentQuery({
+    size: 12,
+  });
+
   return (
     <div className="quest-page-roadmap">
       <section className="quest-intro">
@@ -45,24 +43,27 @@ const RoadmapList: React.FC = () => {
               buttonColor="white"
               textColor="gil-blue"
               textSize="medium"
+              handleClick={handleButtonClick}
               hasShadow
             />
           </div>
         </div>
       </section>
       <section className="quest-wrapper">
-        <Carousel>
-          {items.map((item) => (
-            <SliderItem key={item.key}>
-              <Paper
-                category="Front-End"
-                name="프론트엔드 개발자가 되는 법"
-                level={1}
-                author="호랑이형님"
-              />
-            </SliderItem>
-          ))}
-        </Carousel>
+        {isSuccess && (
+          <Carousel>
+            {roadmapList?.data.map(({ id, name, position, writer }) => (
+              <SliderItem key={id}>
+                <Paper
+                  category={position}
+                  name={name}
+                  level={1}
+                  author={writer.nickname}
+                />
+              </SliderItem>
+            ))}
+          </Carousel>
+        )}
       </section>
     </div>
   );
