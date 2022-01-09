@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
-import { Header, Footer } from '@src/components/molecules';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { Header, Footer } from '@src/components/molecules';
+import { Loading, Floating } from '@src/components/atoms';
 import PrivateRoute from '@src/utils/PrivateRoute';
-import { Loading } from './components/atoms';
 
 const Landing = lazy(() => import('@src/pages/Landing'));
 const Quest = lazy(() => import('@src/pages/Quest'));
@@ -19,6 +19,7 @@ const App: React.FC = () => {
       <Router>
         <Header />
         <Toaster />
+        <Floating />
         <Suspense fallback={Loading}>
           <Switch>
             <Route exact path="/" component={Landing} />
