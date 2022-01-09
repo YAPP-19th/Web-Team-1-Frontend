@@ -18,6 +18,7 @@ import {
 import {
   Response,
   Quest,
+  Quests,
   QuestsCount,
   QuestsInfo,
   Writer,
