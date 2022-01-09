@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import NotFoundImage from '@src/assets/images/notfound.svg';
+import notFoundImage from '@src/assets/images/notfound.png';
 import { Text, Button } from '@src/components/atoms';
 import './style.scss';
 
@@ -15,7 +15,7 @@ const NotFound: FC = () => {
   return (
     <section className="notfound">
       <div className="notfound-wrapper">
-        <img src={NotFoundImage} alt="notFound" />
+        <img src={notFoundImage} alt="notFound" />
         <Text
           align="center"
           fontColor="gil-blue"
