@@ -27,6 +27,11 @@ export interface UsersQuests {
   questList: Quest[];
 }
 
+export interface QuestsResponse {
+  totalCount: number;
+  questList: Quest[];
+}
+
 export interface QuestsCount {
   totalQuestCount: number;
   onProgressQuestCount: number;

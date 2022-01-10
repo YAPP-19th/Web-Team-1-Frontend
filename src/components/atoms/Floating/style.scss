@@ -1,0 +1,10 @@
+@import '/src/styles/';
+
+._FLOATING_ {
+  all: unset;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 20;
+  cursor: pointer;
+}
