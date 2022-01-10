@@ -35,7 +35,17 @@ const TAB_LIST = [
 const Profile: React.FC = () => {
   const { data: me, isSuccess } = useGetUsersMeQuery();
   const dispatch = useDispatch();
-  const userId = useMemo(() => me?.data.id ?? -1, [me]);
+  const user = useMemo(
+    () =>
+      me?.data ?? {
+        id: -1,
+        nickname: '',
+        position: '',
+        point: 0,
+        intro: '',
+      },
+    [me],
+  ); // 유저 정보
 
   useEffect(() => {
     if (isSuccess) {
@@ -63,17 +73,18 @@ const Profile: React.FC = () => {
             <div className="profile-content">
               <Suspense fallback={Loading}>
                 <Switch>
-                  <Route path="/profile/mypage" component={Mypage} />
+                  <Route
+                    path="/profile/mypage"
+                    component={() => <Mypage user={user} />}
+                  />
                   <Route
                     path="/profile/quest"
-                    component={() => <QuestList userId={userId} />}
+                    component={() => <QuestList userId={user?.id ?? -1} />}
                   />
-                  {/* <Route path="/profile/quest" component={QuestList} /> */}
                   <Route
                     path="/profile/roadmap"
-                    component={() => <RoadmapList userId={userId} />}
+                    component={() => <RoadmapList userId={user?.id ?? -1} />}
                   />
-                  {/* <Route path="/profile/roadmap" component={RoadmapList} /> */}
                   <Route path="/profile/achievement" component={Achievement} />
                   <Redirect to="/profile/mypage" />
                 </Switch>

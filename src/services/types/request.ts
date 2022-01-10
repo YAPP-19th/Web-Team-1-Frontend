@@ -76,3 +76,8 @@ export interface GetUsersRoadmaps {
 }
 
 export type PostUpload = FormData;
+
+export interface ProvideMe {
+    nickname: string;
+    position: string;
+}

@@ -15,6 +15,7 @@ import {
   GetUsersRoadmaps,
   PostUpload,
   PostRoadmaps,
+  ProvideMe,
 } from './types/request';
 import {
   Response,
@@ -206,20 +207,24 @@ export const giljobApi = createApi({
     getUsersMe: builder.query<Response<Writer>, void>({
       query: () => `users/me`,
     }),
+    // 유저 프로필 조회: GET /users/{userId}/profile
     getUsersProfile: builder.query<Response<UsersProfile>, ProvideUserId>({
       query: ({ userId }) => `users/${userId}/profile`,
     }),
     // 유저 정보 수정: PATCH /users/me
-    // TODO: 500 Error
-    // 유저 프로필 조회: GET /users/{userId}/profile
-    // TODO
-    // 유저 정보 수정: PATCH /users/me
-    // TODO
+    patchUsersMe: builder.mutation<ProvideIntro, Partial<ProvideMe>>({
+      query: (body) => ({
+        url: `users/me`,
+        method: 'PATCH',
+        body
+      }),
+    }),
     // 유저 자기소개 수정: PATCH /users/me/intro
     patchUsersMeIntro: builder.mutation<ProvideIntro, Partial<ProvideIntro>>({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',
+        body
       }),
     }),
     // 업로드: POST /upload
@@ -255,6 +260,7 @@ export const {
   useGetUsersRoadmapsQuery,
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
+  usePatchUsersMeMutation,
   usePatchUsersMeIntroMutation,
   usePostLoginMutation,
   usePostRegisterMutation,
