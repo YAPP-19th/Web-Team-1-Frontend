@@ -23,7 +23,7 @@ export interface Quest {
 
 export interface QuestsResponse {
   totalCount: number;
-  questList: Quest[];
+  contentList: Quest[];
 }
 
 export interface QuestsCount {

@@ -1,6 +1,15 @@
-import { Icon, Text } from '@src/components/atoms';
 import React from 'react';
+import cn from 'classnames';
 import './style.scss';
+import shipIcon from '@src/assets/images/ship.svg';
+import destinationIcon from '@src/assets/images/destination.svg';
+import { Icon, Text } from '@src/components/atoms';
+
+interface RoadmapQuest {
+  id: number;
+  name: string;
+  isRealQuest: boolean;
+}
 
 export interface RoadmapProps {
   iconSize: 'small' | 'medium' | 'large' | 'profile';
@@ -8,7 +17,8 @@ export interface RoadmapProps {
   authorName: string;
   category: string;
   title: string;
-  questList: string[];
+  questList: RoadmapQuest[];
+  isScrap?: boolean;
 }
 
 const Roadmap: React.FC<RoadmapProps> = ({
@@ -18,6 +28,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
   category,
   title,
   questList,
+  isScrap = true,
 }) => {
   return (
     <div className="_ROADMAP_">
@@ -41,32 +52,75 @@ const Roadmap: React.FC<RoadmapProps> = ({
         >
           {title}
         </Text>
-        <div className="roadmap-scrap">
-          <Text fontColor="white" fontSize="small" fontWeight="medium">
-            스크랩
-          </Text>
-          <div className="star" />
-        </div>
+        {isScrap ? (
+          <div className="roadmap-scrap">
+            <Text fontColor="white" fontSize="small" fontWeight="medium">
+              스크랩
+            </Text>
+            <div className="star" />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
       <div className="roadmap-body">
-        <div className="ship" />
-        {questList.map((quest) => (
-          <div className="road-wrapper" key="quest">
-            <div className="road-left" />
+        <div className="ship">
+          <img src={shipIcon} alt="ship icon" />
+        </div>
+        {questList.map((quest, index) => (
+          <div className="road-wrapper" key={quest.id}>
+            <div className="road-left">
+              {index % 2 ? (
+                <div />
+              ) : (
+                <>
+                  <div className="item-line" />
+                  <div
+                    className={cn(
+                      quest.isRealQuest ? 'item' : 'non-quest-item',
+                    )}
+                  >
+                    <Text
+                      fontColor={quest.isRealQuest ? 'white' : 'gil-blue'}
+                      fontSize="small"
+                      fontWeight="light"
+                    >
+                      {quest.name}
+                    </Text>
+                  </div>
+                </>
+              )}
+            </div>
             <div className="road-middle">
               <div className="road-circle" />
             </div>
             <div className="road-right">
-              <div className="item-line" />
-              <div className="item">
-                <Text fontColor="white" fontSize="small" fontWeight="light">
-                  {quest}
-                </Text>
-              </div>
+              {index % 2 ? (
+                <>
+                  <div className="item-line" />
+                  <div
+                    className={cn(
+                      quest.isRealQuest ? 'item' : 'non-quest-item',
+                    )}
+                  >
+                    <Text
+                      fontColor={quest.isRealQuest ? 'white' : 'gil-blue'}
+                      fontSize="small"
+                      fontWeight="light"
+                    >
+                      {quest.name}
+                    </Text>
+                  </div>
+                </>
+              ) : (
+                <div />
+              )}
             </div>
           </div>
         ))}
-        <div className="destination" />
+        <div className="destination">
+          <img src={destinationIcon} alt="destination icon" />
+        </div>
       </div>
     </div>
   );

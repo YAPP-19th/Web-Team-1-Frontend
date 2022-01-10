@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import {
@@ -11,7 +11,8 @@ import {
   Loading,
 } from '@src/components/atoms';
 import { Card, DragDrop } from '@src/components/molecules';
-import { useGetQuestsSearchQuery } from '@src/services/giljob';
+import { Roadmap } from '@src/components/organisms';
+import { useGetQuestsQuery, useGetUsersMeQuery } from '@src/services/giljob';
 import {
   createRoadmapSelector,
   setQuestList,
@@ -28,12 +29,25 @@ import {
 import './style.scss';
 
 const Detail: React.FC = () => {
-  const { questList } = useSelector(createRoadmapSelector);
+  const { name, position, questList } = useSelector(createRoadmapSelector);
+  const [roadmapList, setRoadmapList] = useState([]);
   const [keyword, setKeyword] = useState('');
-  const { data: rawQuestsData, isLoading } = useGetQuestsSearchQuery({
+  const { data: rawQuestsData, isLoading } = useGetQuestsQuery({
     keyword,
   });
+  const { data: rawUserData } = useGetUsersMeQuery();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const parsedList = questList.map(
+      ({ name, isRealQuest }: RoadmapQuestListType, index: number) => ({
+        id: index,
+        name,
+        isRealQuest,
+      }),
+    );
+    setRoadmapList(parsedList);
+  }, [questList]);
 
   const handleToast = useCallback(
     () =>
@@ -59,7 +73,9 @@ const Detail: React.FC = () => {
   const handleSearch = (keyword: string) => setKeyword(keyword);
 
   const handleCardClick = (questId: number, name: string) => {
-    dispatch(setQuestList([...questList, { questId, name }]));
+    dispatch(
+      setQuestList([...questList, { questId, name, isRealQuest: true }]),
+    );
     handleToast();
   };
 
@@ -73,7 +89,9 @@ const Detail: React.FC = () => {
 
   // 텍스트 퀘스트 이벤트
   const handleTextQuest = (name: string) => {
-    dispatch(setQuestList([...questList, { questId: null, name }]));
+    dispatch(
+      setQuestList([...questList, { questId: null, name, isRealQuest: false }]),
+    );
   };
 
   const handleQuestList = useCallback(
@@ -106,7 +124,7 @@ const Detail: React.FC = () => {
               />
             </div>
             <div className="roadmap-quest-list">
-              {rawQuestsData?.data.questList.map(
+              {rawQuestsData?.data.contentList.map(
                 ({
                   id,
                   name,
@@ -157,12 +175,18 @@ const Detail: React.FC = () => {
             />
           </div>
         </article>
-
-        {/* 미리보기 임시 컴포넌트 */}
         <article className="roadmap-preview">
           <Text fontWeight="bold" fontSize="large">
             {roadmapPreview.main}
           </Text>
+          <Roadmap
+            title={name}
+            category={position}
+            iconSize="medium"
+            authorName={rawUserData?.data.nickname || ''}
+            questList={roadmapList}
+            isScrap={false}
+          />
         </article>
       </Board>
     </>
