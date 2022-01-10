@@ -94,8 +94,8 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
         ) ? (
           <div className="profile-page-card-wrapper">
             {(filtering === QuestFiltering.Created
-              ? quests?.data.questList
-              : questsParticipation?.data.questList
+              ? quests?.data.contentList
+              : questsParticipation?.data.contentList
             )?.map(
               ({
                 id,

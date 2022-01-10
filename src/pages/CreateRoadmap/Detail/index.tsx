@@ -11,7 +11,7 @@ import {
   Loading,
 } from '@src/components/atoms';
 import { Card, DragDrop } from '@src/components/molecules';
-import { useGetQuestsSearchQuery } from '@src/services/giljob';
+import { useGetQuestsQuery } from '@src/services/giljob';
 import {
   createRoadmapSelector,
   setQuestList,
@@ -30,7 +30,7 @@ import './style.scss';
 const Detail: React.FC = () => {
   const { questList } = useSelector(createRoadmapSelector);
   const [keyword, setKeyword] = useState('');
-  const { data: rawQuestsData, isLoading } = useGetQuestsSearchQuery({
+  const { data: rawQuestsData, isLoading } = useGetQuestsQuery({
     keyword,
   });
   const dispatch = useDispatch();
@@ -106,7 +106,7 @@ const Detail: React.FC = () => {
               />
             </div>
             <div className="roadmap-quest-list">
-              {rawQuestsData?.data.questList.map(
+              {rawQuestsData?.data.contentList.map(
                 ({
                   id,
                   name,

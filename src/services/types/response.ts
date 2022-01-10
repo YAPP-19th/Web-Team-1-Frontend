@@ -24,12 +24,12 @@ export interface Quest {
 
 export interface UsersQuests {
   totalCount: number;
-  questList: Quest[];
+  contentList: Quest[];
 }
 
 export interface QuestsResponse {
   totalCount: number;
-  questList: Quest[];
+  contentList: Quest[];
 }
 
 export interface QuestsCount {
@@ -99,7 +99,7 @@ export interface RoadmapListItem {
 
 export interface UsersRoadmaps {
   totalCount: number;
-  roadmapList: RoadmapListItem[];
+  contentList: RoadmapListItem[];
 }
 
 export interface UsersProfile {

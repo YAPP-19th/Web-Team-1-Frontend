@@ -76,8 +76,8 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
         ) ? (
           <div className="quest-page-paper-wrapper">
             {(filtering === RoadmapFiltering.Registered
-              ? roadmaps?.data.roadmapList
-              : roadmapsScrap?.data.roadmapList
+              ? roadmaps?.data.contentList
+              : roadmapsScrap?.data.contentList
             )?.map(({ id, name, position, writer }: RoadmapListItem) => (
               // TODO: writer point에 맞게 level 변경하기
               <Paper
