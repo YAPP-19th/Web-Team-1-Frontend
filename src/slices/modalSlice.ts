@@ -1,27 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@src/store';
 
-export interface ModalState {
+export interface modalState {
   isModalOn: boolean;
-  currentQuestId: number;
 }
 
-const initialState: ModalState = {
+const initialState: modalState = {
   isModalOn: false,
-  currentQuestId: 0,
 };
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    setModalOn: (state, action: PayloadAction<number>) => {
+    setModalOn: (state) => {
       state.isModalOn = true;
-      state.currentQuestId = action.payload;
     },
     setModalOff: (state) => {
       state.isModalOn = false;
-      state.currentQuestId = 0;
     },
   },
 });
