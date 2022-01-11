@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense, useEffect, useMemo } from 'react';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './style.scss';
 
@@ -6,10 +6,14 @@ import Mypage from './Mypage';
 import QuestList from './QuestList';
 import RoadmapList from './RoadmapList';
 import Achievement from './Achievement';
+import Loading from '@src/components/atoms/Loading';
+import { useGetUsersMeQuery } from '@src/services/giljob';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '@src/slices/profileSlice';
 
 const pathname = '/profile';
 
-const tabList = [
+const TAB_LIST = [
   {
     name: '프로필',
     route: `${pathname}/mypage`,
@@ -29,33 +33,66 @@ const tabList = [
 ];
 
 const Profile: React.FC = () => {
+  const { data: me, isSuccess } = useGetUsersMeQuery();
+  const dispatch = useDispatch();
+  const user = useMemo(
+    () =>
+      me?.data ?? {
+        id: -1,
+        nickname: '',
+        position: '',
+        point: 0,
+        intro: '',
+      },
+    [me],
+  ); // 유저 정보
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUserInfo(me?.data));
+    }
+  }, [me]);
+
   return (
     <section className="profile">
-      <div className="profile-content-wrapper">
-        <div className="profile-tab-bar">
-          {tabList.map((item) => (
-            <NavLink
-              className="profile-link-button"
-              key={item.name}
-              to={item.route}
-              activeClassName="profile-link-button-active"
-            >
-              {item.name}
-            </NavLink>
-          ))}
-        </div>
-        <div className="profile-content">
-          <Suspense fallback={null}>
-            <Switch>
-              <Route path="/profile/mypage" component={Mypage} />
-              <Route path="/profile/quest" component={QuestList} />
-              <Route path="/profile/roadmap" component={RoadmapList} />
-              <Route path="/profile/achievement" component={Achievement} />
-              <Redirect to="/profile/mypage" />
-            </Switch>
-          </Suspense>
-        </div>
-      </div>
+      {isSuccess && (
+        <>
+          <div className="profile-content-wrapper">
+            <div className="profile-tab-bar">
+              {TAB_LIST.map((item) => (
+                <NavLink
+                  className="profile-link-button"
+                  key={item.name}
+                  to={item.route}
+                  activeClassName="profile-link-button-active"
+                >
+                  {item.name}
+                </NavLink>
+              ))}
+            </div>
+            <div className="profile-content">
+              <Suspense fallback={Loading}>
+                <Switch>
+                  <Route
+                    path="/profile/mypage"
+                    component={() => <Mypage user={user} />}
+                  />
+                  <Route
+                    path="/profile/quest"
+                    component={() => <QuestList userId={user?.id ?? -1} />}
+                  />
+                  <Route
+                    path="/profile/roadmap"
+                    component={() => <RoadmapList userId={user?.id ?? -1} />}
+                  />
+                  <Route path="/profile/achievement" component={Achievement} />
+                  <Redirect to="/profile/mypage" />
+                </Switch>
+              </Suspense>
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 };

@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import ProfileQuestCard from '@src/components/molecules/ProfileQuestCard';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
+import {
+  useGetUsersQuestsParticipationQuery,
+  useGetUsersQuestsQuery,
+} from '@src/services/giljob';
+import { Quest } from '@src/services/types/response';
+import { useHistory } from 'react-router-dom';
 import './style.scss';
 
-const tabList = [
+const TAB_LIST = [
   {
     name: '진행중 퀘스트',
   },
@@ -16,127 +21,7 @@ const tabList = [
     name: '생성한 퀘스트',
   },
 ];
-
-interface QuestListItems {
-  step: '입문' | '초급' | '중급' | '고급' | '통달';
-  category: string;
-  name: string;
-  exp: number;
-  participant: number;
-  author: string;
-  level: 1 | 2 | 3 | 4 | 5;
-  progress: number;
-}
-
-// 더미 데이터
-// TODO: 서버로부터 얻어온 데이터로 대체 예정
-const proceedingQuestList: QuestListItems[] = [
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 10,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 20,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 30,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 40,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 50,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 60,
-  },
-];
-
-const completedQuestList: QuestListItems[] = [
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 100,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 100,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 100,
-  },
-  {
-    step: '입문',
-    category: 'Front-End',
-    name: 'React A to Z',
-    exp: 100,
-    participant: 123,
-    author: '호랑이형님',
-    level: 1,
-    progress: 60,
-  },
-];
-
-const createdQuestList: QuestListItems[] = [];
+const LIST_SIZE = 6;
 
 // 필터링 기준 열거형
 export enum QuestFiltering {
@@ -145,74 +30,122 @@ export enum QuestFiltering {
   Created,
 }
 
-const QuestList: React.FC = () => {
-  // 필터링 기준
-  const [filtering, setFiltering] = useState(QuestFiltering.Proceeding);
-  // 퀘스트 리스트
-  const [questList, setQuestList] = useState(proceedingQuestList);
+interface QuestListProps {
+  userId: number;
+}
+
+const QuestList: React.FC<QuestListProps> = ({ userId }) => {
+  const history = useHistory();
+
+  const [filtering, setFiltering] = useState(QuestFiltering.Proceeding); // 필터링 기준
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
+  const [participationPage, setParticipationPage] = useState<number>(0);
+
+  const { data: quests } = useGetUsersQuestsQuery({
+    userId: userId,
+    page: page,
+    size: LIST_SIZE,
+  });
+  const { data: questsParticipation } = useGetUsersQuestsParticipationQuery({
+    userId: userId,
+    page: participationPage,
+    completed: isCompleted,
+    size: LIST_SIZE,
+  });
+
+  const handleCardClick = useCallback((id) => {
+    history.push(`/detail/${id}`);
+  }, []);
+
+  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (window.confirm('삭제하시겠습니까?')) {
+      // TODO: 해당 퀘스트 삭제
+    }
+  };
 
   useEffect(() => {
     if (filtering === QuestFiltering.Proceeding) {
-      setQuestList(proceedingQuestList);
+      setIsCompleted(false);
+      setParticipationPage(0);
     } else if (filtering === QuestFiltering.Completed) {
-      setQuestList(completedQuestList);
+      setIsCompleted(true);
+      setParticipationPage(0);
     } else if (filtering === QuestFiltering.Created) {
-      setQuestList(createdQuestList);
+      setPage(0);
     }
   }, [filtering]);
 
   return (
     <div className="profile-page-quest-list">
       <TabBar
-        tabList={tabList}
+        tabList={TAB_LIST}
         hasDivider={false}
         align="start"
         selected={filtering}
         setFiltering={setFiltering}
       />
       <section className="profile-page-list-wrapper">
-        {questList.length === 0 ? (
+        {(
+          filtering === QuestFiltering.Created
+            ? quests?.data.totalCount
+            : questsParticipation?.data.totalCount
+        ) ? (
+          <div className="profile-page-card-wrapper">
+            {(filtering === QuestFiltering.Created
+              ? quests?.data.contentList
+              : questsParticipation?.data.contentList
+            )?.map(
+              ({
+                id,
+                name,
+                position,
+                participantCount,
+                writer,
+                difficulty,
+                thumbnail,
+                progress,
+              }: Quest) => (
+                <ProfileQuestCard
+                  key={id}
+                  difficulty={difficulty}
+                  position={position}
+                  name={name}
+                  participantCount={participantCount}
+                  progress={progress}
+                  status={filtering}
+                  writer={writer}
+                  handleCardClick={() => handleCardClick(id)}
+                  handleButtonClick={handleDeleteClick}
+                />
+              ),
+            )}
+          </div>
+        ) : (
           <div className="empty-list-wrapper">
             <img src={empty_quest_list} alt="empty_quest_list" loading="lazy" />
             <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
               퀘스트가 없습니다
             </Text>
           </div>
-        ) : (
-          <div className="profile-page-card-wrapper">
-            {questList.map(
-              (
-                {
-                  step,
-                  category,
-                  name,
-                  exp,
-                  participant,
-                  author,
-                  level,
-                  progress,
-                }: QuestListItems,
-                index,
-              ) => (
-                <ProfileQuestCard
-                  step={step}
-                  category={category}
-                  name={name}
-                  exp={exp}
-                  participant={participant}
-                  author={author}
-                  level={level}
-                  key={index}
-                  progress={progress}
-                  status={filtering}
-                />
-              ),
-            )}
-          </div>
         )}
         <div className="profile-page-pagination-wrapper">
-          {/* // TODO: 현재 Pagination이 업데이트되어 에러를 발생하기 때문에 주석 처리했습니다. */}
-          {/* <Pagination pageSize={6} currentId={1} totalLength={65} /> */}
+          {filtering === QuestFiltering.Created ? (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentPage={page}
+              totalLength={quests?.data.totalCount ?? 0}
+              onDispatch={setPage}
+            />
+          ) : (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentPage={participationPage}
+              totalLength={questsParticipation?.data.totalCount ?? 0}
+              onDispatch={setParticipationPage}
+            />
+          )}
         </div>
       </section>
     </div>

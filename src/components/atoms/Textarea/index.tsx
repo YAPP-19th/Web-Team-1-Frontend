@@ -8,7 +8,7 @@ export interface TextareaProps {
   hasLimit: boolean;
   limit?: number;
   readOnly?: boolean;
-  defaultValue?: string;
+  value?: string;
   onDispatch?: (value: string) => void;
 }
 
@@ -17,21 +17,20 @@ const Textarea: React.FC<TextareaProps> = ({
   hasLimit = true,
   limit = 120,
   readOnly = false,
-  defaultValue = '',
+  value = '',
   onDispatch,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
     if (onDispatch) onDispatch(input);
   };
-
   return (
     <div className={cn('_TEXTAREA_', className)}>
       <textarea
         className={readOnly ? 'readOnly' : 'readWrite'}
         maxLength={hasLimit ? limit : undefined}
         readOnly={readOnly}
-        defaultValue={defaultValue}
+        value={value}
         onChange={handleChange}
       />
       {hasLimit && (

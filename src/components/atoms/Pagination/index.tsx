@@ -31,6 +31,13 @@ const Pagination: React.FC<PaginationProps> = ({
     () => Math.ceil(totalLength / pageSize),
     [totalLength, pageSize],
   );
+
+  const handleChange = (page: number) => {
+    if (onDispatch) {
+      onDispatch(page);
+    }
+  };
+
   return (
     <div className={cn(`_PAGINATION_`, className)}>
       {[...Array(totalPage)].map((_, index) => (

@@ -11,8 +11,10 @@ import {
   GetQuests,
   GetUsersQuests,
   GetUsersQuestsParticipation,
+  GetUsersRoadmaps,
   PostUpload,
   PostRoadmaps,
+  ProvideMe,
   GetQuestsReviews,
 } from './types/request';
 import {
@@ -29,6 +31,8 @@ import {
   QuestsPositionsCount,
   QuestsSubquest,
   QuestsReviews,
+  UsersQuests,
+  UsersRoadmaps,
   QuestsResponse,
 } from './types/response';
 
@@ -104,18 +108,18 @@ export const giljobApi = createApi({
         }`,
     }),
     // 유저가 생성한 퀘스트 리스트 조회: GET /users/{userId}/quests
-    getUsersQuests: builder.query<Response<Quest[]>, GetUsersQuests>({
-      query: ({ userId, cursor, size }) =>
-        `users/${userId}/quests?cursor=${cursor ?? ''}&size=${size ?? ''}`,
+    getUsersQuests: builder.query<Response<UsersQuests>, GetUsersQuests>({
+      query: ({ userId, page, size }) =>
+        `users/${userId}/quests?page=${page ?? ''}&size=${size ?? ''}`,
     }),
     // 유저가 참여한 퀘스트 리스트 조회: GET /users/{userId}/quests/participation
     getUsersQuestsParticipation: builder.query<
-      Response<Quest[]>,
+      Response<UsersQuests>,
       GetUsersQuestsParticipation
     >({
-      query: ({ userId, cursor, size, completed }) =>
-        `users/${userId}/quests/participation?cursor=${
-          cursor ?? ''
+      query: ({ userId, page, size, completed }) =>
+        `users/${userId}/quests/participation?page=${
+          page ?? ''
         }&completed=${completed ? 'true' : 'false'}&size=${size ?? ''}`,
     }),
     // 서브퀘스트 완료: POST /subquests/{subQuestId}/complete
@@ -171,13 +175,18 @@ export const giljobApi = createApi({
     }),
     // 유저가 스크랩한 로드맵 리스트 조회: GET /users/{userId}/roadmaps/scrap
     getUsersRoadmapsScrap: builder.query<
-      Response<RoadmapListItem[]>,
-      ProvideUserId
+      Response<UsersRoadmaps>,
+      GetUsersRoadmaps
     >({
-      query: ({ userId }) => `users/${userId}/roadmaps/scrap`,
+      query: ({ userId, page, size }) => `users/${userId}/roadmaps/scrap?page=${page ?? ''}&size=${size ?? ''}`,
     }),
     // 유저가 등록한 로드맵 리스트 조회: GET /users/{userId}/roadmaps
-    // TODO
+    getUsersRoadmaps: builder.query<
+      Response<UsersRoadmaps>,
+      GetUsersRoadmaps
+    >({
+      query: ({ userId, page, size }) => `users/${userId}/roadmaps?page=${page ?? ''}&size=${size ?? ''}`,
+    }),
     // 회원가입: POST /sign-up
     postRegister: builder.mutation<Response<Auth>, PostRegister>({
       query: (body) => ({
@@ -198,21 +207,24 @@ export const giljobApi = createApi({
     getUsersMe: builder.query<Response<Writer>, void>({
       query: () => `users/me`,
     }),
+    // 유저 프로필 조회: GET /users/{userId}/profile
     getUsersProfile: builder.query<Response<UsersProfile>, ProvideUserId>({
       query: ({ userId }) => `users/${userId}/profile`,
     }),
     // 유저 정보 수정: PATCH /users/me
-    // TODO: 500 Error
-    // 유저 프로필 조회: GET /users/{userId}/profile
-    // TODO
-    // 유저 정보 수정: PATCH /users/me
-    // TODO
+    patchUsersMe: builder.mutation<ProvideIntro, Partial<ProvideMe>>({
+      query: (body) => ({
+        url: `users/me`,
+        method: 'PATCH',
+        body
+      }),
+    }),
     // 유저 자기소개 수정: PATCH /users/me/intro
     patchUsersMeIntro: builder.mutation<ProvideIntro, Partial<ProvideIntro>>({
       query: (body) => ({
         url: `users/me/intro`,
         method: 'PATCH',
-        body,
+        body
       }),
     }),
     // 업로드: POST /upload
@@ -244,8 +256,10 @@ export const {
   usePostRoadmapsMutation,
   usePostRoadmapsScrapMutation,
   useGetUsersRoadmapsScrapQuery,
+  useGetUsersRoadmapsQuery,
   useGetUsersMeQuery,
   useGetUsersProfileQuery,
+  usePatchUsersMeMutation,
   usePatchUsersMeIntroMutation,
   usePostLoginMutation,
   usePostRegisterMutation,

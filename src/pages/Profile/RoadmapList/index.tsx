@@ -1,21 +1,16 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import cn from 'classnames';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
+import {
+  useGetUsersRoadmapsQuery,
+  useGetUsersRoadmapsScrapQuery,
+} from '@src/services/giljob';
+import { RoadmapListItem } from '@src/services/types/response';
 import './style.scss';
 
-const SliderItem = styled.div`
-  width: 100%;
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-`;
-
-const tabList = [
+const TAB_LIST = [
   {
     name: '로드맵 스크랩',
   },
@@ -23,50 +18,7 @@ const tabList = [
     name: '등록한 로드맵',
   },
 ];
-
-interface RoadmapItems {
-  category: string;
-  name: string;
-  level: 1 | 2 | 3 | 4 | 5;
-  author: string;
-}
-
-// 더미 데이터
-// TODO: 서버로부터 얻어온 데이터로 대체 예정
-const scrapedRoadmapList: RoadmapItems[] = [
-  {
-    category: 'Frontend',
-    name: '프론트엔드 개발자가 되는 법',
-    level: 1,
-    author: '호랑이 형님',
-  },
-  {
-    category: 'Frontend',
-    name: '프론트엔드 개발자가 되는 법',
-    level: 2,
-    author: '호랑이 형님',
-  },
-  {
-    category: 'Frontend',
-    name: '프론트엔드 개발자가 되는 법',
-    level: 3,
-    author: '호랑이 형님',
-  },
-  {
-    category: 'Frontend',
-    name: '프론트엔드 개발자가 되는 법',
-    level: 4,
-    author: '호랑이 형님',
-  },
-  {
-    category: 'Frontend',
-    name: '프론트엔드 개발자가 되는 법',
-    level: 5,
-    author: '호랑이 형님',
-  },
-];
-
-const registeredRoadmapList: RoadmapItems[] = [];
+const LIST_SIZE = 6;
 
 // 필터링 기준 열거형
 export enum RoadmapFiltering {
@@ -74,54 +26,96 @@ export enum RoadmapFiltering {
   Registered,
 }
 
-const RoadmapList: React.FC = () => {
-  // 필터링 기준
-  const [filtering, setFiltering] = useState(RoadmapFiltering.Scraped);
-  // 로드맵 리스트
-  const [roadmapList, setRoadmapList] = useState(scrapedRoadmapList);
+interface RoadmapListProps {
+  userId: number;
+}
+
+const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
+  const [filtering, setFiltering] = useState(RoadmapFiltering.Scraped); // 필터링 기준
+  const [page, setPage] = useState<number>(0);
+  const [scrapPage, setScrapPage] = useState<number>(0);
+
+  const { data: roadmaps } = useGetUsersRoadmapsQuery({
+    userId: userId,
+    page: page,
+    size: LIST_SIZE,
+  });
+
+  const { data: roadmapsScrap } = useGetUsersRoadmapsScrapQuery({
+    userId: userId,
+    page: scrapPage,
+    size: LIST_SIZE,
+  });
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log('프로필 로드맵 선택');
+    // TODO: 모달 띄우기
+  };
 
   useEffect(() => {
-    if (filtering === RoadmapFiltering.Scraped) {
-      setRoadmapList(scrapedRoadmapList);
-    } else if (filtering === RoadmapFiltering.Registered) {
-      setRoadmapList(registeredRoadmapList);
+    if (filtering === RoadmapFiltering.Registered) {
+      setPage(0);
+    } else if (filtering === RoadmapFiltering.Scraped) {
+      setScrapPage(0);
     }
   }, [filtering]);
 
   return (
     <div className="quest-page-roadmap-list">
       <TabBar
-        tabList={tabList}
+        tabList={TAB_LIST}
         hasDivider={false}
         align="start"
         selected={filtering}
         setFiltering={setFiltering}
       />
       <section className="quest-page-roadmap-list-wrapper">
-        {roadmapList.length === 0 ? (
+        {(
+          filtering === RoadmapFiltering.Registered
+            ? roadmaps?.data.totalCount
+            : roadmapsScrap?.data.totalCount
+        ) ? (
+          <div className="quest-page-paper-wrapper">
+            {(filtering === RoadmapFiltering.Registered
+              ? roadmaps?.data.contentList
+              : roadmapsScrap?.data.contentList
+            )?.map(({ id, name, position, writer }: RoadmapListItem) => (
+              <Paper
+                key={id}
+                category={position}
+                name={name}
+                level={
+                  (Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5
+                }
+                author={writer.nickname}
+                // handleClick={handleClick}
+              />
+            ))}
+          </div>
+        ) : (
           <div className="empty-list-wrapper">
             <img src={empty_quest_list} alt="empty_quest_list" loading="lazy" />
             <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
               로드맵이 없습니다
             </Text>
           </div>
-        ) : (
-          <div className="quest-page-paper-wrapper">
-            {roadmapList.map(({ category, name, level, author }, index) => (
-              <Paper
-                category={category}
-                name={name}
-                level={level}
-                author={author}
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-              />
-            ))}
-          </div>
         )}
         <div className="quest-page-roadmap-pagination-wrapper">
-          {/* // TODO: 현재 Pagination이 업데이트되어 에러를 발생하기 때문에 주석 처리했습니다. */}
-          {/* <Pagination pageSize={6} currentId={1} totalLength={65} /> */}
+          {filtering === RoadmapFiltering.Registered ? (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentPage={page}
+              totalLength={roadmaps?.data.totalCount ?? 0}
+              onDispatch={setPage}
+            />
+          ) : (
+            <Pagination
+              pageSize={LIST_SIZE}
+              currentPage={scrapPage}
+              totalLength={roadmaps?.data.totalCount ?? 0}
+              onDispatch={setScrapPage}
+            />
+          )}
         </div>
       </section>
     </div>
