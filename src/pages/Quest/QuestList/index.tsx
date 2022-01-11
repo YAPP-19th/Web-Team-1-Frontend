@@ -206,7 +206,7 @@ const QuestList: React.FC = () => {
           )}
         </div>
         <div className="quest-pagination-wrapper">
-          <Pagination pageSize={16} currentId={1} totalLength={65} />{' '}
+          <Pagination pageSize={16} currentPage={1} totalLength={65} />
         </div>
       </section>
     </div>
