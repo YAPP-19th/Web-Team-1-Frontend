@@ -4,6 +4,7 @@ import { RootState } from '@src/store';
 export interface RoadmapQuestListType {
   questId: number;
   name: string;
+  isRealQuest: boolean;
 }
 export interface createRoadmapState {
   name: string;

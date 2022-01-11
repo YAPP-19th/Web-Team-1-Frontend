@@ -30,7 +30,7 @@ const Main: React.FC = () => {
 
   return (
     <Board height={16}>
-      <article className="roadmap-title">
+      <article className="roadmap-name">
         <Text fontWeight="bold" fontSize="large">
           {roadmapTitle.main} <span className="blue-star">*</span>
         </Text>

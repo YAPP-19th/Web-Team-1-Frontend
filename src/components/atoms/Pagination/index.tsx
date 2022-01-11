@@ -1,7 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import './style.scss';
 import { Text } from '@src/components/atoms';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 export interface PaginationProps {
   className?: string;
@@ -36,6 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({
           fontWeight="regular"
           // eslint-disable-next-line react/no-array-index-key
           key={index}
+          // handleClick={handleClick}
         >
           {index + 1}
         </Text>
