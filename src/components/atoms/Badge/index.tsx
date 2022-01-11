@@ -6,7 +6,7 @@ import { Text } from '@src/components/atoms';
 export type Step = '입문' | '초급' | '중급' | '고급' | '통달';
 export interface BadgeProps {
   className?: string;
-  step: Step;
+  step: string;
   align?: 'start' | 'center' | 'end';
 }
 

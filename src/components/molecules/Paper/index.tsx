@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import './style.scss';
 import { Text } from '@src/components/atoms';
@@ -8,11 +10,18 @@ export interface PaperProps {
   name: string;
   level: 1 | 2 | 3 | 4 | 5;
   author: string;
+  handleClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const Paper: React.FC<PaperProps> = ({ category, name, level, author }) => {
+const Paper: React.FC<PaperProps> = ({
+  category,
+  name,
+  level,
+  author,
+  handleClick,
+}) => {
   return (
-    <div className="_PAPER_">
+    <div className="_PAPER_" onClick={handleClick}>
       <div className="paper-contents">
         <Text
           className="paper-category"

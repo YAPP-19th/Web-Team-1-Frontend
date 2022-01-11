@@ -16,6 +16,18 @@ const StyledBoard = styled.section<BoardProps>`
       height: ${height}rem;
     `;
   }};
+
+  ${({ width }) => {
+    return css`
+      width: ${width}rem;
+    `;
+  }};
+
+  ${({ color }) => {
+    return css`
+      background-color: ${color};
+    `;
+  }};
 `;
 
 export default StyledBoard;

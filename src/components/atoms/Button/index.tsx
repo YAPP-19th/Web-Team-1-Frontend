@@ -5,7 +5,13 @@ import './style.scss';
 export interface ButtonProps {
   className?: string;
   innerText: string;
-  buttonColor: 'gil-blue' | 'job-navy' | 'main-gray' | 'white' | 'kakao';
+  buttonColor:
+    | 'gil-blue'
+    | 'job-navy'
+    | 'main-gray'
+    | 'white'
+    | 'kakao'
+    | 'dark-gray';
   textColor: 'main' | 'white' | 'gil-blue' | 'job-navy' | 'dark-gray';
   textSize?: 'small' | 'medium' | 'large';
   hasBorder?: boolean;

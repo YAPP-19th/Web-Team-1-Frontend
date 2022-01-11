@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import { Pagination, TabBar, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';

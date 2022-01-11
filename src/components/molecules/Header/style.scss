@@ -15,7 +15,7 @@
 }
 
 .header-wrapper {
-  min-width: 102.4rem;
+  min-width: 120rem;
   display: flex;
   justify-content: space-between;
 }
@@ -51,6 +51,14 @@
       &:first-child {
         margin-right: 4rem;
       }
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
+}
+
+.auth-wrapper {
+  margin-left: 5rem;
 }
