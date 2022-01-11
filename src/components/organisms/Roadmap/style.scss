@@ -30,6 +30,7 @@
 
     .roadmap-title {
       width: 26rem;
+      text-align: center;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -52,7 +53,7 @@
   }
 
   .roadmap-body {
-    margin: 4rem 0rem;
+    padding: 4rem 0rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,7 +68,7 @@
 
     &::-webkit-scrollbar-thumb {
       height: 17%;
-      background-color: rgba(33, 133, 133, 1);
+      background-color: $job-navy;
       border-radius: 10px;
     }
 
@@ -76,7 +77,6 @@
     }
 
     .ship {
-      background: url('@src/assets/images/ship.svg');
       width: 6.3rem;
       height: 8.4rem;
     }
@@ -109,28 +109,43 @@
         }
       }
 
+      .item-line {
+        width: 3rem;
+        height: 0.3rem;
+        background-color: $gil-blue;
+      }
+
+      .item {
+        background-color: $gil-blue;
+        border-radius: 10rem;
+        padding: 0.5rem 1.2rem;
+      }
+
+      .non-quest-item {
+        border: solid #0489ff;
+        border-width: 0.1rem;
+        border-radius: 10rem;
+        padding: 0.5rem 1.2rem;
+      }
+
+      .road-left {
+        display: flex;
+        align-items: center;
+        flex-flow: row-reverse;
+      }
+
       .road-right {
         display: flex;
         align-items: center;
-
-        .item-line {
-          width: 3rem;
-          height: 0.3rem;
-          background-color: $gil-blue;
-        }
-
-        .item {
-          background-color: $gil-blue;
-          border-radius: 10rem;
-          padding: 0.5rem 1.2rem;
-        }
       }
     }
 
     .destination {
-      background: url('@src/assets/images/destination.svg');
+      position: relative;
       width: 3.5rem;
-      height: 3.5rem;
+      height: 3.8rem;
+      top: -0.1rem;
+      right: 0.5rem;
     }
   }
 }
