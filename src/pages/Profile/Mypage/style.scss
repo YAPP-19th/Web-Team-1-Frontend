@@ -34,6 +34,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
+    height: 3.5rem;
   }
 
   .nickname-input {
@@ -43,6 +44,7 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0);
     width: 100%;
+    box-sizing: border-box;
 
     &.isPrivacyEditMode {
       border: 1px solid $line-gray;
@@ -57,6 +59,7 @@
 
   .button-wrapper {
     width: 100%;
+    height: 2.5rem;
     text-align: right;
   }
 }
@@ -96,6 +99,7 @@
 
 .button-item {
   width: 4.6rem;
+  height: 2.5rem !important;
   padding: 0rem;
   margin: 0rem 0.4rem;
 }

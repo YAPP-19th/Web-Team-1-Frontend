@@ -69,12 +69,22 @@ export interface GetQuestsReviews {
 
 export interface GetUsersQuests {
   userId: number;
-  cursor?: number;
+  page?: number;
   size?: number;
 }
 
 export interface GetUsersQuestsParticipation extends GetUsersQuests {
   completed?: boolean;
 }
+export interface GetUsersRoadmaps {
+  userId: number;
+  page?: number;
+  size?: number;
+}
 
 export type PostUpload = FormData;
+
+export interface ProvideMe {
+    nickname: string;
+    position: string;
+}

@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import { Badge, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
 import { QuestFiltering } from '@src/pages/Profile/QuestList';
+import { Writer } from '@src/services/types/response';
 import './style.scss';
-
+import { step } from '@src/pages/Profile/list';
 export interface ProfileQuestCardProps {
-  step: '입문' | '초급' | '중급' | '고급' | '통달';
-  category: string;
-  name: string;
-  exp: number;
-  participant: number;
-  author: string;
-  level: 1 | 2 | 3 | 4 | 5;
-  progress: number;
   status: QuestFiltering;
+  difficulty: number;
+  position: string;
+  name: string;
+  participantCount: number;
+  progress?: number;
+  writer: Writer;
+  handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface DegreeProps {
@@ -29,28 +30,27 @@ const Degree = styled.div`
 `;
 
 const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
-  step,
-  category,
-  name,
-  exp,
-  participant,
-  author,
-  level,
-  progress,
   status,
+  difficulty,
+  position,
+  name,
+  participantCount,
+  progress,
+  writer,
+  handleCardClick,
+  handleButtonClick,
 }) => {
   return (
-    // TODO: 클릭 시 해당 퀘스트로 이동
-    <div className="_PROFILE_QUEST_CARD_">
+    <div className="_PROFILE_QUEST_CARD_" onClick={handleCardClick}>
       <div className="card-main-info">
-        <Badge step={step} align="end" />
+        <Badge step={step[difficulty]} align="end" />
         <Text
           align="start"
           fontColor="gil-blue"
           fontSize="x-large"
           fontWeight="bold"
         >
-          {category}
+          {position}
         </Text>
         <Text
           align="start"
@@ -62,17 +62,22 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
         </Text>
       </div>
       <div className="card-more-info">
-        <Text
-          align="start"
-          fontColor="gil-blue"
-          fontSize="small"
-          fontWeight="bold"
-        >
-          퀘스트 진행률
-        </Text>
-        <div className="progress">
-          <Degree value={progress} />
-        </div>
+        {status !== QuestFiltering.Created && (
+          <>
+            <Text
+              align="start"
+              fontColor="gil-blue"
+              fontSize="small"
+              fontWeight="bold"
+            >
+              퀘스트 진행률
+            </Text>
+            <div className="progress">
+              <Degree value={progress ?? 0} />
+            </div>
+          </>
+        )}
+
         <div className="more-info-wrapper">
           <Text
             align="start"
@@ -80,7 +85,7 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="large"
             fontWeight="regular"
           >
-            {exp} Exp
+            {10 + difficulty * 5} EXP
           </Text>
           <Text
             align="start"
@@ -88,16 +93,23 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="small"
             fontWeight="medium"
           >
-            {participant}명 참여 중
+            {participantCount}명 참여 중
           </Text>
         </div>
       </div>
       <span className="divider"></span>
       <div className="card-last-info">
-        <Author authorName={author} iconSize="small" iconLevel={level} />
+        <Author
+          authorName={writer.nickname}
+          iconSize="small"
+          iconLevel={(Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5}
+        />
         {status === QuestFiltering.Proceeding && (
-          // TODO: 클릭 시 해당 퀘스트 삭제
-          <button className="delete-button" type="button">
+          <button
+            className="delete-button"
+            type="button"
+            onClick={handleButtonClick}
+          >
             <span className="line" />
           </button>
         )}

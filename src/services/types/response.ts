@@ -19,6 +19,12 @@ export interface Quest {
   writer: Writer;
   difficulty: 1 | 2 | 3 | 4 | 5;
   thumbnail: string;
+  progress?: number;
+}
+
+export interface UsersQuests {
+  totalCount: number;
+  contentList: Quest[];
 }
 
 export interface QuestsResponse {
@@ -69,14 +75,14 @@ export interface Review {
 
 export interface QuestsReviews {
   totalReviewCount: number;
-  reviewList: Review[];
+  contentList: Review[];
 }
 
 export interface Roadmap {
   name: string;
   writer: Writer;
   position: string;
-  questList: {
+  contentList: {
     id: number;
     name: string;
     isRealQuest: boolean;
@@ -91,8 +97,13 @@ export interface RoadmapListItem {
   writer: Writer;
 }
 
+export interface UsersRoadmaps {
+  totalCount: number;
+  contentList: RoadmapListItem[];
+}
+
 export interface UsersProfile {
-  writer: Writer;
+  userInfo: Writer;
   abilityList: {
     position: string;
     point: number;

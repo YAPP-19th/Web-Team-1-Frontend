@@ -20,6 +20,6 @@ export const defaultPagination = Template.bind({});
 
 defaultPagination.args = {
   pageSize: 16,
-  currentId: 1,
+  currentPage: 1,
   totalLength: 65,
 };

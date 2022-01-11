@@ -23,12 +23,17 @@ const Template: Story<ProfileQuestCardProps> = (props) => (
 export const defaultProfileQuestCard = Template.bind({});
 
 defaultProfileQuestCard.args = {
-  step: '입문',
-  category: 'Front-End',
+  status: 0,
+  difficulty: 0,
+  position: 'Front-End',
   name: 'React A to Z',
-  exp: 100,
-  participant: 123,
-  author: '호랑이형님',
-  level: 1,
+  participantCount: 123,
   progress: 100,
+  writer: {
+    id: 1,
+    nickname: '호랑이형님',
+    position: 'Back-end',
+    point: 300,
+    intro: '안녕하세요 호랑이형님입니다.',
+  },
 };

@@ -5,7 +5,7 @@ import shipIcon from '@src/assets/images/ship.svg';
 import destinationIcon from '@src/assets/images/destination.svg';
 import { Icon, Text } from '@src/components/atoms';
 
-interface RoadmapQuest {
+interface RoadmapContent {
   id: number;
   name: string;
   isRealQuest: boolean;
@@ -17,7 +17,7 @@ export interface RoadmapProps {
   authorName: string;
   category: string;
   title: string;
-  questList: RoadmapQuest[];
+  contentList: RoadmapContent[];
   isScrap?: boolean;
 }
 
@@ -27,7 +27,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
   authorName,
   category,
   title,
-  questList,
+  contentList,
   isScrap = true,
 }) => {
   return (
@@ -67,7 +67,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
         <div className="ship">
           <img src={shipIcon} alt="ship icon" />
         </div>
-        {questList.map((quest, index) => (
+        {contentList.map((quest, index) => (
           <div className="road-wrapper" key={quest.id}>
             <div className="road-left">
               {index % 2 ? (

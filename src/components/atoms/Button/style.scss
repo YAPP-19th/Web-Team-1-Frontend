@@ -64,6 +64,16 @@
         }
       }
     }
+    &-dark-gray {
+      background-color: $text-gray;
+      &.onHover {
+        &:hover {
+          border-color: $text-gray;
+          cursor: pointer;
+          color: $text-gray;
+        }
+      }
+    }
   }
 
   &.text-color {

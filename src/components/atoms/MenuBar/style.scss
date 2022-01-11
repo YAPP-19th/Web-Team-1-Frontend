@@ -12,7 +12,7 @@
 
   ._TEXT_ {
     cursor: pointer;
-    &:first-child {
+    &.clicked {
       color: $white;
     }
   }
