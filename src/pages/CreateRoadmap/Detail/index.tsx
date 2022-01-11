@@ -108,7 +108,7 @@ const Detail: React.FC = () => {
               />
             </div>
             <div className="roadmap-quest-list">
-              {rawQuestsData?.data.questList.map(
+              {rawQuestsData?.data.contentList.map(
                 ({
                   id,
                   name,
