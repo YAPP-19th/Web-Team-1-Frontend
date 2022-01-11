@@ -23,7 +23,7 @@ export interface Quest {
 
 export interface QuestsResponse {
   totalCount: number;
-  questList: Quest[];
+  contentList: Quest[];
 }
 
 export interface QuestsCount {
@@ -69,14 +69,14 @@ export interface Review {
 
 export interface QuestsReviews {
   totalReviewCount: number;
-  reviewList: Review[];
+  contentList: Review[];
 }
 
 export interface Roadmap {
   name: string;
   writer: Writer;
   position: string;
-  questList: {
+  contentList: {
     id: number;
     name: string;
     isRealQuest: boolean;
