@@ -134,14 +134,14 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
           {filtering === QuestFiltering.Created ? (
             <Pagination
               pageSize={LIST_SIZE}
-              currentId={page}
+              currentPage={page}
               totalLength={quests?.data.totalCount ?? 0}
               onDispatch={setPage}
             />
           ) : (
             <Pagination
               pageSize={LIST_SIZE}
-              currentId={participationPage}
+              currentPage={participationPage}
               totalLength={questsParticipation?.data.totalCount ?? 0}
               onDispatch={setParticipationPage}
             />

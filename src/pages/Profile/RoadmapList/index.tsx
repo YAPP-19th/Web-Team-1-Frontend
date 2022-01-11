@@ -102,14 +102,14 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
           {filtering === RoadmapFiltering.Registered ? (
             <Pagination
               pageSize={LIST_SIZE}
-              currentId={page}
+              currentPage={page}
               totalLength={roadmaps?.data.totalCount ?? 0}
               onDispatch={setPage}
             />
           ) : (
             <Pagination
               pageSize={LIST_SIZE}
-              currentId={scrapPage}
+              currentPage={scrapPage}
               totalLength={roadmaps?.data.totalCount ?? 0}
               onDispatch={setScrapPage}
             />
