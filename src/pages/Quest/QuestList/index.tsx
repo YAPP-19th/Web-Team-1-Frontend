@@ -1,10 +1,10 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './style.scss';
 import { Button, MenuBar, Pagination, SearchBar } from '@src/components/atoms';
 import { Card } from '@src/components/molecules';
-import { questListSelector } from '@src/slices/questListSlice';
+import { questListSelector, setPage } from '@src/slices/questListSlice';
 import {
   useGetQuestsQuery,
   useGetQuestsPositionsCountQuery,
@@ -34,6 +34,7 @@ const difficultyLabels: ('입문' | '초급' | '중급' | '고급' | '통달')[]
 
 const QuestList: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState('');
   const { position, page } = useSelector(questListSelector);
 
@@ -51,7 +52,7 @@ const QuestList: React.FC = () => {
     page,
   });
   const parsedQuestList = useMemo(() => {
-    return questList?.data.questList.map((quest) => {
+    return questList?.data.contentList.map((quest) => {
       // TODO: thumbnail이 적용될 예정
       const { id, difficulty, name, participantCount, position, writer } =
         quest;
@@ -93,9 +94,19 @@ const QuestList: React.FC = () => {
     history.push('/create-quest');
   }, [history]);
 
-  const handleSearchBarSubmit = useCallback((inputMessage: string) => {
-    setSearchInput(inputMessage);
-  }, []);
+  const handleSearchBarSubmit = useCallback(
+    (inputMessage: string) => {
+      setSearchInput(inputMessage);
+      dispatch(setPage(0));
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    return () => {
+      dispatch(setPage(0));
+    };
+  }, [dispatch]);
 
   return (
     <div className="quest-page-quest-list">
@@ -135,8 +146,9 @@ const QuestList: React.FC = () => {
         <div className="quest-pagination-wrapper">
           <Pagination
             pageSize={16}
-            totalLength={questList?.data.totalCount ?? 1}
-            currentPage={page ?? 1}
+            totalLength={questList?.data.totalCount ?? 0}
+            currentPage={page}
+            onDispatch={setPage}
           />
           &nbsp;
         </div>

@@ -1,11 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import './style.scss';
-import { Button, Text } from '@src/components/atoms';
+import { Button, Modal, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
-import Carousel from '@src/components/organisms/Carousel';
+import { Carousel, Roadmap } from '@src/components/organisms';
 import { useHistory } from 'react-router-dom';
 import { useGetRoadmapsRecentQuery } from '@src/services/giljob';
+import useRoadmapModal from '@src/hooks/useRoadmapModal';
+import { useSelector } from 'react-redux';
+import { modalSelector } from '@src/slices/modalSlice';
 
 const SliderItem = styled.div`
   width: 100%;
@@ -20,6 +23,16 @@ const RoadmapList: React.FC = () => {
   const handleButtonClick = useCallback(() => {
     history.push('/create-roadmap');
   }, [history]);
+  const { isModalOn } = useSelector(modalSelector);
+  const [clickedRoadmapId, setClickedRoadmapId] = useState(0);
+  const { roadmapModal, setRoadmapModal } = useRoadmapModal(clickedRoadmapId);
+  const handlePaperClick = useCallback(
+    (id: number) => {
+      setClickedRoadmapId(id);
+      setRoadmapModal();
+    },
+    [setRoadmapModal],
+  );
 
   const { data: roadmapList, isSuccess } = useGetRoadmapsRecentQuery({
     size: 12,
@@ -27,6 +40,11 @@ const RoadmapList: React.FC = () => {
 
   return (
     <div className="quest-page-roadmap">
+      {isModalOn && (
+        <Modal>
+          <Roadmap {...roadmapModal} iconSize="small" />
+        </Modal>
+      )}
       <section className="quest-intro">
         <div className="intro-wrapper">
           <div className="intro-text">
@@ -59,6 +77,7 @@ const RoadmapList: React.FC = () => {
                   name={name}
                   level={1}
                   author={writer.nickname}
+                  handleClick={() => handlePaperClick(id)}
                 />
               </SliderItem>
             ))}
