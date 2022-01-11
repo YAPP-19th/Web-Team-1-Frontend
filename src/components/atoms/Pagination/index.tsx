@@ -10,7 +10,7 @@ export interface PaginationProps {
   pageSize: number; // 한 페이지에 표시될 데이터의 개수
   totalLength: number; // 모든 데이터의 개수
   currentPage: number; // 현재 클릭된 page
-  onDispatch: ActionCreatorWithPayload<number, string>;
+  onDispatch?: (page: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -20,23 +20,10 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   onDispatch,
 }) => {
-  const dispatch = useDispatch();
-  const handleClick = useCallback(
-    ({ target }) => {
-      dispatch(onDispatch(parseInt(target.innerText, 10) - 1));
-    },
-    [dispatch, onDispatch],
-  );
   const totalPage = useMemo<number>(
     () => Math.ceil(totalLength / pageSize),
     [totalLength, pageSize],
   );
-
-  const handleChange = (page: number) => {
-    if (onDispatch) {
-      onDispatch(page);
-    }
-  };
 
   return (
     <div className={cn(`_PAGINATION_`, className)}>
@@ -51,7 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({
           fontWeight="regular"
           // eslint-disable-next-line react/no-array-index-key
           key={index}
-          handleClick={handleClick}
+          // handleClick={handleClick}
         >
           {index + 1}
         </Text>
