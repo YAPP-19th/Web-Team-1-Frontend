@@ -1,19 +1,14 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import './style.scss';
 import { Button, MenuBar, Pagination, SearchBar } from '@src/components/atoms';
 import { Card } from '@src/components/molecules';
-import { questListSelector, setPage } from '@src/slices/questListSlice';
 import {
   useGetQuestsQuery,
+  useGetQuestsCountQuery,
   useGetQuestsPositionsCountQuery,
 } from '@src/services/giljob';
-
-interface QuestListMenu {
-  position: string;
-  questCount: number;
-}
+import { MenuItem } from '@src/components/atoms/MenuBar';
 
 /* TODO: 현재 point로 레벨을 처리하기 때문에 TypeScript 처리를 위해 사용
  * 추후 레벨 처리 방법이 더 명확해지면 수정 예정
@@ -34,16 +29,10 @@ const difficultyLabels: ('입문' | '초급' | '중급' | '고급' | '통달')[]
 
 const QuestList: React.FC = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const [page, setPage] = useState(0);
+  const [position, setPosition] = useState('');
   const [searchInput, setSearchInput] = useState('');
-  const { position, page } = useSelector(questListSelector);
-
-  /* TODO: 서버에서 아래 객체를 담아주도록 쿼리가 개선될 예정
-   * {
-   *   "position" : "퀘스트 전체",
-   *   "questCount" : {모든 퀘스트 개수},
-   * }
-   */
+  const { data: questCount } = useGetQuestsCountQuery();
   const { data: questPositionCount } = useGetQuestsPositionsCountQuery();
   const { data: questList } = useGetQuestsQuery({
     keyword: searchInput,
@@ -72,46 +61,38 @@ const QuestList: React.FC = () => {
   }, [questList]);
 
   const menuList = useMemo(() => {
-    /* TODO: 서버에서 아래 객체를 담아주도록 쿼리가 개선될 예정
-     * {
-     *   "position" : "퀘스트 전체",
-     *   "questCount" : {모든 퀘스트 개수},
-     * }
-     */
-    const dummyList: QuestListMenu[] = [
+    const dummyList: MenuItem[] = [
       {
-        position: '퀘스트 전체',
-        questCount: 0,
+        index: 0,
+        value: '',
+        count: questCount?.data.totalQuestCount ?? 0,
       },
     ];
-    if (questPositionCount?.data) {
-      return dummyList.concat(questPositionCount?.data);
-    }
+    questPositionCount?.data.forEach(
+      ({ position: menuPosition, questCount: menuCount }, index) => {
+        dummyList.push({
+          index: index + 1,
+          value: menuPosition,
+          count: menuCount,
+        });
+      },
+    );
     return dummyList;
-  }, [questPositionCount]);
+  }, [questCount, questPositionCount]);
 
   const handleCreateQuestButtonClick = useCallback(() => {
     history.push('/create-quest');
   }, [history]);
 
-  const handleSearchBarSubmit = useCallback(
-    (inputMessage: string) => {
-      setSearchInput(inputMessage);
-      dispatch(setPage(0));
-    },
-    [dispatch],
-  );
-
-  useEffect(() => {
-    return () => {
-      dispatch(setPage(0));
-    };
-  }, [dispatch]);
+  const handleSearchBarSubmit = useCallback((inputMessage: string) => {
+    setSearchInput(inputMessage);
+    setPage(0);
+  }, []);
 
   return (
     <div className="quest-page-quest-list">
       <section className="quest-list-wrapper">
-        <MenuBar menuList={menuList} />
+        <MenuBar menuList={menuList} onDispatch={setPosition} />
         <div className="quest-list-tools">
           <SearchBar
             placeholder="내게 맞는 취업 퀘스트를 검색해 보세요"
