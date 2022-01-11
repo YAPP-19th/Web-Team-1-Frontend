@@ -75,12 +75,6 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
   });
   const [intro, setIntro] = useState<string>(user.intro);
 
-  // TODO: level type 변경하기
-  let level: 1 | 2 | 3 | 4 | 5 = 1;
-  // level = profile?.data?.userInfo?.point
-  //   ? ((profile?.data?.userInfo?.point / 100) % 5) + 1
-  //   : 1;
-
   const usersPositionList: DropdownListType[] = useMemo(
     () =>
       profile?.data?.abilityList.map(({ position }) => {
@@ -185,7 +179,17 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
       {(isIntroPatchLoading || isMePatchLoading) && <Loading />}
       <div className="_PROFILE_">
         <Box className="privacy-box" backgroundColor="gil-blue">
-          <Icon size="profile" level={level} />
+          <Icon
+            size="profile"
+            level={
+              (Math.floor(profileState.userInfo.point / 100) + 1) as
+                | 1
+                | 2
+                | 3
+                | 4
+                | 5
+            }
+          />
           <div className="privacy-wrapper">
             <Text
               fontColor="white"
@@ -218,7 +222,7 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
               레벨
             </Text>
             <Text fontColor="white" align="center" fontSize="medium">
-              Lv.{profileState.userInfo.point}
+              Lv.{Math.floor(profileState.userInfo.point / 100) + 1}
             </Text>
           </div>
           <div className="privacy-wrapper">

@@ -79,12 +79,13 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
               ? roadmaps?.data.contentList
               : roadmapsScrap?.data.contentList
             )?.map(({ id, name, position, writer }: RoadmapListItem) => (
-              // TODO: writer point에 맞게 level 변경하기
               <Paper
                 key={id}
                 category={position}
                 name={name}
-                level={1}
+                level={
+                  (Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5
+                }
                 author={writer.nickname}
                 // handleClick={handleClick}
               />

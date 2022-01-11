@@ -25,20 +25,11 @@
   }
 
   &.icon-level {
-    &-1 {
-      background: url('@src/assets/images/Lv1.svg');
-    }
-    &-2 {
-      background: url('@src/assets/images/Lv2.svg');
-    }
-    &-3 {
-      background: url('@src/assets/images/Lv3.svg');
-    }
-    &-4 {
-      background: url('@src/assets/images/Lv4.svg');
-    }
-    &-5 {
-      background: url('@src/assets/images/Lv5.svg');
+    @for $id from 1 through 5 {
+      &-#{$id} {
+        background: url('@src/assets/images/Lv#{$id}.svg');
+        background-size: cover;
+      }
     }
   }
 }

@@ -99,7 +99,11 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
       </div>
       <span className="divider"></span>
       <div className="card-last-info">
-        <Author authorName={writer.nickname} iconSize="small" iconLevel={1} />
+        <Author
+          authorName={writer.nickname}
+          iconSize="small"
+          iconLevel={(Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5}
+        />
         {status === QuestFiltering.Proceeding && (
           <button
             className="delete-button"
