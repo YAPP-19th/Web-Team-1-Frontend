@@ -15,6 +15,7 @@ export { default as Input } from './Input';
 export { default as List } from './List';
 export { default as Loading } from './Loading';
 export { default as MenuBar } from './MenuBar';
+export { default as Modal } from './Modal';
 export { default as Pagination } from './Pagination';
 export { default as ProgressBar } from './ProgressBar';
 export { default as SearchBar } from './SearchBar';
