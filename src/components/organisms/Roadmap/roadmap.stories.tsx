@@ -13,6 +13,29 @@ export default {
   },
 } as Meta;
 
+const contentList = [
+  {
+    id: 1,
+    name: '코딩 스터디',
+    isRealQuest: true,
+  },
+  {
+    id: 2,
+    name: 'OOO 자격증',
+    isRealQuest: false,
+  },
+  {
+    id: 3,
+    name: '연합 동아리',
+    isRealQuest: false,
+  },
+  {
+    id: 4,
+    name: 'javascript 스터디',
+    isRealQuest: true,
+  },
+];
+
 const Template: Story = () => (
   <Roadmap
     iconSize="medium"
@@ -20,7 +43,7 @@ const Template: Story = () => (
     authorName="호랑이형님"
     category="Front-End"
     title="프론트엔드 개발자가 되는 법"
-    questList={['코딩 스터디', '연합동아리', 'javascript 공부']}
+    contentList={contentList}
   />
 );
 

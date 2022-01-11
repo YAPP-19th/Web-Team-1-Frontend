@@ -5,7 +5,6 @@ import cn from 'classnames';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setModalOn } from '@src/slices/modalSlice';
 
 export interface CardProps {
   id: number;
@@ -38,7 +37,8 @@ const Card: React.FC<CardProps> = ({
   const dispatch = useDispatch();
   const handleButtonClick = useCallback(() => {
     if (isButtonModal) {
-      dispatch(setModalOn(id));
+      // TODO: 상세정보 보기 모달 띄울 예정
+      // dispatch(setQuestModalOn(id));
       return;
     }
     history.push(`/detail/${id}`);

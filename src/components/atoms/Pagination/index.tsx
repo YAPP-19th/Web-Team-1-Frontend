@@ -3,33 +3,36 @@ import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import './style.scss';
 import { Text } from '@src/components/atoms';
-import { setPage } from '@src/slices/questListSlice';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 export interface PaginationProps {
+  className?: string;
   pageSize: number; // 한 페이지에 표시될 데이터의 개수
   totalLength: number; // 모든 데이터의 개수
   currentPage: number; // 현재 클릭된 page
+  onDispatch: ActionCreatorWithPayload<number, string>;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
+  className,
   pageSize,
   totalLength,
   currentPage,
+  onDispatch,
 }) => {
   const dispatch = useDispatch();
   const handleClick = useCallback(
     ({ target }) => {
-      dispatch(setPage(parseInt(target.innerText, 10) - 1));
+      dispatch(onDispatch(parseInt(target.innerText, 10) - 1));
     },
-    [dispatch],
+    [dispatch, onDispatch],
   );
-
   const totalPage = useMemo<number>(
     () => Math.ceil(totalLength / pageSize),
     [totalLength, pageSize],
   );
   return (
-    <div className={cn(`_PAGINATION_`)}>
+    <div className={cn(`_PAGINATION_`, className)}>
       {[...Array(totalPage)].map((_, index) => (
         <Text
           className={cn(
