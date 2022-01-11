@@ -78,9 +78,10 @@ export const giljobApi = createApi({
     // 로그인한 유저에 대한 퀘스트의 상태 정보 조회: GET /quests/{questId}/participation/status
     getQuestsParticipationStatus: builder.query<
       Response<string>,
-      ProvideQuestId
+      ProvideQuestId & ProvideUserId
     >({
-      query: ({ questId }) => `quests/${questId}/participation/status`,
+      query: ({ questId, userId }) =>
+        `quests/${questId}/participation/status?userId=${userId}`,
     }),
     // 퀘스트의 서브 퀘스트 진행 현황 조회: GET /quests/{questId}/subquest
     getQuestsSubquest: builder.query<Response<QuestsSubquest>, ProvideQuestId>({

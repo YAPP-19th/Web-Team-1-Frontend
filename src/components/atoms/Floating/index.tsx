@@ -1,10 +1,9 @@
 import React from 'react';
-import type { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import floating from '@src/assets/images/floating.png';
 import './style.scss';
 
-const Floating: FC = () => {
+const Floating: React.FC = () => {
   const { pathname } = useLocation();
   const handleClick = () => {
     window.open('https://open.kakao.com/o/gu470qTd', '_blank');

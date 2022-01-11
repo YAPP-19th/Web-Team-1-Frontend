@@ -10,6 +10,9 @@ export interface TextProps {
   fontColor?: 'main' | 'gray' | 'white' | 'gil-blue' | 'job-navy';
   fontSize?: FontSize;
   fontWeight?: 'light' | 'regular' | 'medium' | 'bold';
+  role?: React.AriaRole;
+  handleClick?: React.MouseEventHandler<HTMLDivElement>;
+  handleKeyUp?: React.KeyboardEventHandler<HTMLDivElement>;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -19,6 +22,9 @@ const Text: React.FC<TextProps> = ({
   fontColor = 'main',
   fontSize = 'small',
   fontWeight = 'medium',
+  role,
+  handleClick,
+  handleKeyUp,
 }) => {
   return (
     <div
@@ -30,6 +36,9 @@ const Text: React.FC<TextProps> = ({
         `font-color-${fontColor}`,
         `font-weight-${fontWeight}`,
       )}
+      role={role}
+      onClick={handleClick}
+      onKeyUp={handleKeyUp}
     >
       {children}
     </div>

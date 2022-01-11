@@ -211,7 +211,8 @@ const QuestList: React.FC = () => {
           </div>
         )}
         <div className="profile-page-pagination-wrapper">
-          <Pagination pageSize={6} currentId={1} totalLength={65} />
+          {/* // TODO: 현재 Pagination이 업데이트되어 에러를 발생하기 때문에 주석 처리했습니다. */}
+          {/* <Pagination pageSize={6} currentId={1} totalLength={65} /> */}
         </div>
       </section>
     </div>
