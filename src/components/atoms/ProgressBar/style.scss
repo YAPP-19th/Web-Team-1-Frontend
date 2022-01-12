@@ -1,17 +1,15 @@
 @import '/src/styles/';
 
 ._PROGRESS_BAR_WRAPPER_ {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  gap: 2rem;
-  margin: 0 auto;
-  > * {
-    flex-basis: 7rem;
+  display: grid;
+  grid-template-columns: 2fr 12fr 1fr;
+
+  .text {
+    height: 2.5rem;
+    line-height: 3rem;
   }
 
   ._PROGRESS_BAR_ {
-    // max-width: 70rem;
     height: 2.5rem;
     background: $main-gray;
     border-radius: 2.5rem;
