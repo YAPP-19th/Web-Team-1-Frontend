@@ -49,7 +49,7 @@ const DragDrop: React.FC<DragDropProps> = ({ hasInput, list, onDispatch }) => {
 
   return (
     <section className="_DRAGDROP_">
-      {hasInput && <Input hasCount={false} onSubmit={handleSubmit} />}
+      {hasInput && <Input hasCount count={30} onSubmit={handleSubmit} />}
       <DragDropContext onDragEnd={handleChange}>
         <Droppable droppableId="list">
           {(provided) => (
