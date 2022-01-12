@@ -40,6 +40,7 @@ module.exports = merge(baseConfig, {
       minify: {
         removeComments: true,
       },
+      favicon: path.resolve(TEMPLATE_PATH, 'favicon.ico'),
     }),
   ],
 });
