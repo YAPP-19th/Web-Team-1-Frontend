@@ -26,12 +26,10 @@ const App: React.FC = () => {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route exact path="/quest" component={Quest} />
-            {/* 밑에 Route 들은 <PrivateRoute /> 입니다.
-            개발 시에는 불편할 듯 해서 지정을 따로 안했습니다. */}
-            <Route path="/create-quest" component={CreateQuest} />
-            <Route path="/create-roadmap" component={CreateRoadmap} />
+            <PrivateRoute path="/create-quest" component={CreateQuest} />
+            <PrivateRoute path="/create-roadmap" component={CreateRoadmap} />
             {/* <Route path="/detail/:questId" component={Detail} /> */}
-            <Route path="/profile" component={Profile} />
+            <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
