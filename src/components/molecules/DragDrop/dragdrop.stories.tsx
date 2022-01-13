@@ -18,5 +18,8 @@ const Template: Story<DragDropProps> = (args) => <DragDrop {...args} />;
 export const DefaultDragDrop = Template.bind({});
 DefaultDragDrop.args = {
   hasInput: true,
-  list: [{ name: '1' }, { name: '2' }],
+  list: [
+    { id: 0, name: '1' },
+    { id: 1, name: '2' },
+  ],
 };

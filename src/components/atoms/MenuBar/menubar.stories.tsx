@@ -20,16 +20,19 @@ export const defaultMenuBar = Template.bind({});
 defaultMenuBar.args = {
   menuList: [
     {
-      position: '퀘스트 전체',
-      questCount: 49,
+      index: 0,
+      value: '퀘스트 전체',
+      count: 49,
     },
     {
-      position: 'Front-End',
-      questCount: 49,
+      index: 1,
+      value: 'Front-End',
+      count: 49,
     },
     {
-      position: 'Back-End',
-      questCount: 49,
+      index: 2,
+      value: 'Back-End',
+      count: 49,
     },
   ],
 };

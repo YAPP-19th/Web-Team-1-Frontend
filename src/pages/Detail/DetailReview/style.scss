@@ -1,0 +1,56 @@
+@import '/src/styles/';
+
+.quest-detail-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.review-title-wrapper {
+  display: flex;
+  align-items: center;
+  width: 115rem;
+  height: 100%;
+  flex-direction: row;
+  margin-right: 5rem;
+  gap: 1.2rem;
+
+  .review-title {
+    font-size: 2.8rem;
+  }
+}
+
+.detail-review-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 115rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 5rem;
+  flex-direction: column;
+
+  .each-review-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-direction: column;
+
+    .review-author-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+
+.detail-review-pagination {
+  margin: 2rem 0;
+}
+
+.detail-review-input {
+  width: 114rem;
+  margin-right: 7rem;
+}

@@ -8,6 +8,7 @@ export { default as Checkbox } from './Checkbox';
 export { default as Dropdown } from './Dropdown';
 export { default as Editor } from './Editor';
 export { default as Floating } from './Floating';
+export { default as FloatingBar } from './FloatingBar';
 export { default as Graph } from './Graph';
 export { default as Icon } from './Icon';
 export { default as InfoCountItem } from './InfoCountItem';

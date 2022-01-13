@@ -8,7 +8,7 @@ import {
 import { Text, Board, List } from '@src/components/atoms';
 import { DragDrop } from '@src/components/molecules';
 import { DragDropListType } from '@src/components/molecules/DragDrop';
-import { questSub } from '@src/pages/CreateQuest/quest_data.json';
+import { questSub } from '@src/constants/createQuest/quest_data.json';
 
 const Sub: React.FC = () => {
   const dispatch = useDispatch();

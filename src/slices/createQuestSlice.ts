@@ -3,6 +3,7 @@ import { DropdownListType } from '@src/components/atoms/Dropdown';
 import { RootState } from '@src/store';
 
 export interface ListType {
+  id: number;
   name: string;
 }
 
@@ -13,7 +14,7 @@ export interface createQuestState {
   detail: string;
   thumbnail?: string;
   subQuestList: ListType[];
-  tagList: ListType[];
+  tagList: Pick<ListType, 'name'>[];
 }
 
 // giljob api 문서에 나와있는 형식으로 redux에 저장했습니다.
@@ -36,9 +37,11 @@ export const createQuestSlice = createSlice({
     },
     setDropdown: (state, action: PayloadAction<DropdownListType>) => {
       const { type, value } = action.payload;
+
       return {
         ...state,
-        [type as string]: value,
+        [type as string]:
+          type === 'difficulty' ? ((value as number) - 10) / 5 : value,
       };
     },
     setDetail: (state, action: PayloadAction<string>) => {
@@ -56,6 +59,7 @@ export const createQuestSlice = createSlice({
       }));
       state.tagList = parsedData;
     },
+    resetCreateQuest: () => initialState,
   },
 });
 
@@ -67,5 +71,6 @@ export const {
   setThumbnail,
   setSubQuest,
   setTag,
+  resetCreateQuest,
 } = createQuestSlice.actions;
 export default createQuestSlice.reducer;

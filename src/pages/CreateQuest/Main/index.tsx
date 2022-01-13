@@ -10,7 +10,7 @@ import {
 import {
   questTitle,
   questDetail,
-} from '@src/pages/CreateQuest/quest_data.json';
+} from '@src/constants/createQuest/quest_data.json';
 import { POSITION_LIST, DIFFICULTY_LIST } from '@src/constants/dropdown';
 import './style.scss';
 
