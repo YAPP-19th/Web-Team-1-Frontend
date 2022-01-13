@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import React, { useEffect, useState } from 'react';
-import { Pagination, TabBar, Text } from '@src/components/atoms';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Modal, Pagination, TabBar, Text } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
 import {
@@ -9,6 +9,10 @@ import {
 } from '@src/services/giljob';
 import { RoadmapListItem } from '@src/services/types/response';
 import './style.scss';
+import useRoadmapModal from '@src/hooks/useRoadmapModal';
+import { modalSelector } from '@src/slices/modalSlice';
+import { useSelector } from 'react-redux';
+import { Roadmap } from '@src/components/organisms';
 
 const TAB_LIST = [
   {
@@ -36,21 +40,27 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
   const [scrapPage, setScrapPage] = useState<number>(0);
 
   const { data: roadmaps } = useGetUsersRoadmapsQuery({
-    userId: userId,
-    page: page,
+    userId,
+    page,
     size: LIST_SIZE,
   });
 
   const { data: roadmapsScrap } = useGetUsersRoadmapsScrapQuery({
-    userId: userId,
+    userId,
     page: scrapPage,
     size: LIST_SIZE,
   });
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log('프로필 로드맵 선택');
-    // TODO: 모달 띄우기
-  };
+  const { isModalOn } = useSelector(modalSelector);
+  const [clickedRoadmapId, setClickedRoadmapId] = useState(0);
+  const { roadmapModal, setRoadmapModal } = useRoadmapModal(clickedRoadmapId);
+  const handlePaperClick = useCallback(
+    (id: number) => {
+      setClickedRoadmapId(id);
+      setRoadmapModal();
+    },
+    [setRoadmapModal],
+  );
 
   useEffect(() => {
     if (filtering === RoadmapFiltering.Registered) {
@@ -62,6 +72,11 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
 
   return (
     <div className="quest-page-roadmap-list">
+      {isModalOn && (
+        <Modal>
+          <Roadmap {...roadmapModal} iconSize="small" />
+        </Modal>
+      )}
       <TabBar
         tabList={TAB_LIST}
         hasDivider={false}
@@ -88,7 +103,7 @@ const RoadmapList: React.FC<RoadmapListProps> = ({ userId }) => {
                   (Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5
                 }
                 author={writer.nickname}
-                // handleClick={handleClick}
+                handleClick={() => handlePaperClick(id)}
               />
             ))}
           </div>

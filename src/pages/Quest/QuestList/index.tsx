@@ -43,8 +43,15 @@ const QuestList: React.FC = () => {
   const parsedQuestList = useMemo(() => {
     return questList?.data.contentList.map((quest) => {
       // TODO: thumbnail이 적용될 예정
-      const { id, difficulty, name, participantCount, position, writer } =
-        quest;
+      const {
+        id,
+        difficulty,
+        name,
+        participantCount,
+        position,
+        writer,
+        thumbnail,
+      } = quest;
       const { nickname, point } = writer;
       return {
         id,
