@@ -1,0 +1,30 @@
+@import '/src/styles/';
+
+.quest-detail-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0rem 2rem;
+}
+
+.detail-desc-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 115rem;
+  height: 100%;
+  flex-direction: column;
+  margin-right: 5rem;
+
+  > ._TEXT_ {
+    line-height: 3rem;
+  }
+}
+
+.detail-tag-wrapper {
+  margin-top: 10rem;
+  display: flex;
+  width: 120rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
+}
