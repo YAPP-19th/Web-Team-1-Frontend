@@ -17,7 +17,7 @@ import Detail from './Detail';
 import Sub from './Sub';
 import './style.scss';
 
-const QuestCreate: React.FC = () => {
+const CreateQuest: React.FC = () => {
   const [postQuest, { isLoading }] = usePostQuestsMutation();
   const questState = useSelector(createQuestSelector);
   const history = useHistory();
@@ -96,4 +96,4 @@ const QuestCreate: React.FC = () => {
   );
 };
 
-export default QuestCreate;
+export default CreateQuest;
