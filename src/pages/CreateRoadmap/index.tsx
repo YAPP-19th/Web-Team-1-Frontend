@@ -10,7 +10,7 @@ import {
   RoadmapQuestListType,
 } from '@src/slices/createRoadmapSlice';
 import { usePostRoadmapsMutation } from '@src/services/giljob';
-import { roadmapMain } from '@src/pages/CreateRoadmap/roadmap_data.json';
+import { roadmapMain } from '@src/constants/createRoadmap/roadmap_data.json';
 import map from '@src/assets/images/map.png';
 import Main from './Main';
 import Detail from './Detail';

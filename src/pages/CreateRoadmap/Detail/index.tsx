@@ -26,7 +26,7 @@ import {
   roadmapCreateText,
   roadmapCreateList,
   roadmapPreview,
-} from '@src/pages/CreateRoadmap/roadmap_data.json';
+} from '@src/constants/createRoadmap/roadmap_data.json';
 import './style.scss';
 
 const Detail: React.FC = () => {

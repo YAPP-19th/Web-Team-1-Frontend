@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
 import { Text } from '@src/components/atoms';
 import Wave from '@src/pages/Landing/Wave';
-import character from './character.json';
+import character from '@src/assets/lottie/character.json';
 import './style.scss';
 
 const Main: React.FC = () => {

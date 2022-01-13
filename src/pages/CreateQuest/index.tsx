@@ -10,7 +10,7 @@ import {
 } from '@src/slices/createQuestSlice';
 import { usePostQuestsMutation } from '@src/services/giljob';
 import useCheckState from '@src/hooks/useCheckState';
-import { questMain } from '@src/pages/CreateQuest/quest_data.json';
+import { questMain } from '@src/constants/createQuest/quest_data.json';
 import lighthouse from '@src/assets/images/lighthouse.svg';
 import Main from './Main';
 import Detail from './Detail';
