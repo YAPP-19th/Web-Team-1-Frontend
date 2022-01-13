@@ -57,7 +57,11 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
   const dispatch = useDispatch();
   const profileState = useSelector(profileSelector);
 
-  const { data: profile, isSuccess } = useGetUsersProfileQuery({
+  const {
+    data: profile,
+    isSuccess,
+    refetch,
+  } = useGetUsersProfileQuery({
     userId: user.id,
   });
   const [patchIntro, { isLoading: isIntroPatchLoading }] =
@@ -132,6 +136,7 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
             )?.point,
           }),
         );
+        refetch();
       });
   };
 
