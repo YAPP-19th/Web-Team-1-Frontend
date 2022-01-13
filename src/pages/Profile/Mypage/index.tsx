@@ -331,14 +331,14 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
         </Box>
         <Box className="achievement-box">
           <AchievementBadge
-            id={exp_achievement?.list[pointAchieveIdx]?.id}
+            id={exp_achievement?.list[pointAchieveIdx]?.id ?? 5}
             title={exp_achievement?.list[pointAchieveIdx]?.title}
             description={exp_achievement?.list[pointAchieveIdx]?.description}
           />
         </Box>
         <Box className="achievement-box">
           <AchievementBadge
-            id={quest_achievement?.list[questAchieveIdx]?.id}
+            id={quest_achievement?.list[questAchieveIdx]?.id ?? 10}
             title={quest_achievement?.list[questAchieveIdx]?.title}
             description={quest_achievement?.list[questAchieveIdx]?.description}
           />
