@@ -1,0 +1,10 @@
+@import '/src/styles/';
+
+.handle-quest-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding-right: 7rem;
+}

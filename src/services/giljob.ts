@@ -17,10 +17,10 @@ import {
   PostRoadmaps,
   ProvideMe,
   GetQuestsReviews,
+  ProvideReview,
 } from './types/request';
 import {
   Response,
-  Quest,
   QuestsCount,
   QuestsInfo,
   Writer,
@@ -92,19 +92,41 @@ export const giljobApi = createApi({
       query: ({ questId }) => `quests/${questId}/subquests`,
     }),
     // 퀘스트 참여: POST /quests/{questId}/participation
-    // TODO
+    postQuestsParticipation: builder.mutation<
+      ProvideQuestId,
+      Partial<ProvideQuestId>
+    >({
+      query: ({ questId }) => ({
+        url: `quests/${questId}/participation`,
+        method: 'POST',
+      }),
+    }),
     // 퀘스트 완료: PATCH /quests/{questId}/complete
-    // TODO
+    patchQuestsComplete: builder.mutation<
+      ProvideQuestId,
+      Partial<ProvideQuestId>
+    >({
+      query: ({ questId }) => ({
+        url: `quests/${questId}/complete`,
+        method: 'PATCH',
+      }),
+    }),
     // 퀘스트 한줄 후기 작성: POST /quests/{questId}/review
-    // TODO
+    patchQuestsReview: builder.mutation<ProvideReview, Partial<ProvideReview>>({
+      query: ({ questId, review }) => ({
+        url: `quests/${questId}/review`,
+        method: `PATCH`,
+        body: { review },
+      }),
+    }),
     // 퀘스트 한줄 후기 리스트 조회: GET /quests/{questId}/reviews
     getQuestsReviews: builder.query<
       Response<QuestsReviews>,
       ProvideQuestId & Partial<ProvideQuestId & GetQuestsReviews>
     >({
-      query: ({ questId, cursor, size }) =>
-        `quests/${questId}/reviews${size ? `&size=${size}` : ''}${
-          cursor ? `&cursor=${cursor}` : ''
+      query: ({ questId, page, size }) =>
+        `quests/${questId}/reviews?${size ? `&size=${size}` : ''}${
+          page ? `&page=${page}` : ''
         }`,
     }),
     // 유저가 생성한 퀘스트 리스트 조회: GET /users/{userId}/quests
@@ -245,6 +267,9 @@ export const {
   useGetQuestsInfoQuery,
   useGetQuestsParticipationStatusQuery,
   useGetQuestsSubquestQuery,
+  usePostQuestsParticipationMutation,
+  usePatchQuestsCompleteMutation,
+  usePatchQuestsReviewMutation,
   useGetQuestsReviewsQuery,
   useGetUsersQuestsQuery,
   useGetUsersQuestsParticipationQuery,

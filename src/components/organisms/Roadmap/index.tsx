@@ -53,14 +53,16 @@ const Roadmap: React.FC<RoadmapProps> = ({
           {title}
         </Text>
         {isScrap ? (
-          <div className="roadmap-scrap">
-            <Text fontColor="white" fontSize="small" fontWeight="medium">
-              스크랩
-            </Text>
-            <div className="star" />
+          <div className="roadmap-scrap-wrapper">
+            <div className="roadmap-scrap">
+              <Text fontColor="white" fontSize="small" fontWeight="medium">
+                스크랩
+              </Text>
+              <div className="star" />
+            </div>
           </div>
         ) : (
-          <div />
+          <div className="roadmap-dummy" />
         )}
       </div>
       <div className="roadmap-body">
