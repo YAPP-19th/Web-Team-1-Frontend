@@ -1,0 +1,14 @@
+@import '/src/styles/';
+
+._FLOATING_BAR_ {
+  all: unset;
+  position: fixed;
+  width: 100%;
+  height: 7.5rem;
+  bottom: 0rem;
+  right: 0rem;
+  z-index: 30;
+  background-color: $white;
+  border: solid $gray-3;
+  border-width: 0.2rem;
+}

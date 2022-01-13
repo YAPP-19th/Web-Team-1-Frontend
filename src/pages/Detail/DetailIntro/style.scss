@@ -1,0 +1,57 @@
+@import '/src/styles/';
+
+.quest-detail-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8rem 0rem 2rem;
+}
+
+.detail-intro-wrapper {
+  display: flex;
+  align-items: stretch;
+  min-width: 120rem;
+  height: 100%;
+  flex-direction: column;
+
+  .detail-badges {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .detail-title {
+    margin-top: 2.2rem;
+  }
+
+  .detail-base-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .detail-info-quest {
+    margin-top: 2.2rem;
+    display: flex;
+    gap: 2rem;
+
+    .participant-count {
+      display: flex;
+    }
+  }
+
+  .detail-info-author {
+    margin-right: 6rem;
+  }
+}
+
+.detail-hr {
+  color: $line-dark-gray;
+  width: 95%;
+  margin: 3rem 0rem;
+}
+
+.quest-detail-badge {
+  display: flex;
+}
