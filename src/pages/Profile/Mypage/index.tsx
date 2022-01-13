@@ -131,9 +131,10 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
           setUserMe({
             nickname,
             position: position.value,
-            point: profileState.abilityList.find(
-              (ability: AbilityType) => ability.position === position.value,
-            )?.point,
+            point:
+              profileState.abilityList.find(
+                (ability: AbilityType) => ability.position === position.value,
+              )?.point ?? 0,
           }),
         );
         refetch();
