@@ -28,13 +28,13 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   return (
     <div className="_PROGRESS_BAR_WRAPPER_">
-      <Text fontSize="medium" fontWeight="medium">
+      <Text className="text" fontSize="medium" fontWeight="medium">
         {title}
       </Text>
       <div className="_PROGRESS_BAR_">
         <Degree value={value} totalValue={totalValue} />
       </div>
-      <Text fontColor="gil-blue" fontWeight="bold">
+      <Text className="text" fontColor="gil-blue" fontWeight="bold" align="end">
         {value}
       </Text>
     </div>
