@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Text } from '@src/components/atoms';
 import {
   DragDropContext,
@@ -19,14 +19,18 @@ export interface DragDropProps {
 }
 
 const DragDrop: React.FC<DragDropProps> = ({ hasInput, list, onDispatch }) => {
+  const [dragDropId, setdragDropId] = useState(0);
+
   const handleSubmit = (value: string | number) => {
     if (value) {
       onDispatch([
         ...list,
         {
+          id: dragDropId,
           name: value as string,
         },
       ]);
+      setdragDropId(dragDropId + 1);
     }
   };
 
@@ -58,8 +62,8 @@ const DragDrop: React.FC<DragDropProps> = ({ hasInput, list, onDispatch }) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {list.map(({ name }, index) => (
-                <Draggable key={name} draggableId={name} index={index}>
+              {list.map(({ id, name }, index) => (
+                <Draggable key={id} draggableId={id.toString()} index={index}>
                   {(provided) => (
                     <div
                       className="item-wrapper"

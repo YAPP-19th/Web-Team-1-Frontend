@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { Text, List, Button, Toast, Loading } from '@src/components/atoms';
 import useCheckState from '@src/hooks/useCheckState';
 import {
   createRoadmapSelector,
+  resetCreateRoadmap,
   RoadmapQuestListType,
 } from '@src/slices/createRoadmapSlice';
 import { usePostRoadmapsMutation } from '@src/services/giljob';
@@ -19,7 +20,14 @@ const RoadmapCreate: React.FC = () => {
   const [postRoadmap, { isLoading }] = usePostRoadmapsMutation();
   const roadmapState = useSelector(createRoadmapSelector);
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleCheckState = useCheckState();
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCreateRoadmap());
+    };
+  }, []);
 
   const handleToast = useCallback(
     () =>

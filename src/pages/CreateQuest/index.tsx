@@ -1,9 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { Text, List, Button, Loading, Toast } from '@src/components/atoms';
-import { createQuestSelector } from '@src/slices/createQuestSlice';
+import {
+  createQuestSelector,
+  ListType,
+  resetCreateQuest,
+} from '@src/slices/createQuestSlice';
 import { usePostQuestsMutation } from '@src/services/giljob';
 import useCheckState from '@src/hooks/useCheckState';
 import { questMain } from '@src/pages/CreateQuest/quest_data.json';
@@ -17,7 +21,14 @@ const QuestCreate: React.FC = () => {
   const [postQuest, { isLoading }] = usePostQuestsMutation();
   const questState = useSelector(createQuestSelector);
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleCheckState = useCheckState();
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCreateQuest());
+    };
+  }, []);
 
   const handleToast = useCallback(
     () =>
@@ -42,7 +53,11 @@ const QuestCreate: React.FC = () => {
   const handleRegisterQuest = () => {
     if (handleCheckState(questState)) handleToast();
     else {
-      postQuest(questState)
+      const parsedList = questState.subQuestList.map(({ name }: ListType) => ({
+        name,
+      }));
+
+      postQuest({ ...questState, ...{ subQuestList: parsedList } })
         .unwrap()
         .then(() => history.push('/quest'));
     }

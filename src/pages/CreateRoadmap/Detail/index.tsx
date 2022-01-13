@@ -18,6 +18,7 @@ import {
   setQuestList,
   RoadmapQuestListType,
 } from '@src/slices/createRoadmapSlice';
+import handleDifficulty from '@src/utils/handleDifficulty';
 import { DragDropListType } from '@src/components/molecules/DragDrop';
 import {
   roadmapDetail,
@@ -31,6 +32,7 @@ import './style.scss';
 const Detail: React.FC = () => {
   const { name, position, questList } = useSelector(createRoadmapSelector);
   const [contentList, setContentList] = useState([]);
+  const [roadmapListId, setRoadmapListId] = useState(0);
   const [keyword, setKeyword] = useState('');
   const { data: rawQuestsData, isLoading } = useGetQuestsQuery({
     keyword,
@@ -69,18 +71,24 @@ const Detail: React.FC = () => {
     [],
   );
 
-  // 검색, 카드 이벤트
+  // 검색 이벤트
   const handleSearch = useCallback((keyword: string) => {
     setKeyword(keyword);
   }, []);
 
+  // 카트 클릭 이벤트
   const handleCardClick = (questId: number, name: string) => {
     dispatch(
-      setQuestList([...questList, { questId, name, isRealQuest: true }]),
+      setQuestList([
+        ...questList,
+        { id: roadmapListId, questId, name, isRealQuest: true },
+      ]),
     );
+    setRoadmapListId(roadmapListId + 1);
     handleToast();
   };
 
+  // 카트 상세보기 이벤트
   const handleCardButtonClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
@@ -89,13 +97,18 @@ const Detail: React.FC = () => {
     [],
   );
 
-  // 텍스트 퀘스트 이벤트
+  // 텍스트 퀘스트 등록 이벤트
   const handleTextQuest = (name: string) => {
     dispatch(
-      setQuestList([...questList, { questId: null, name, isRealQuest: false }]),
+      setQuestList([
+        ...questList,
+        { id: roadmapListId, questId: null, name, isRealQuest: false },
+      ]),
     );
+    setRoadmapListId(roadmapListId + 1);
   };
 
+  // DragDrop 내부 인풋 이벤트
   const handleQuestList = useCallback(
     (value: DragDropListType) => {
       dispatch(setQuestList(value as RoadmapQuestListType[]));
@@ -137,7 +150,7 @@ const Detail: React.FC = () => {
                 }) => (
                   <Card
                     id={id}
-                    step="입문" // 백엔드에서 단계를 줘야함
+                    step={handleDifficulty(difficulty)}
                     category={position}
                     name={name}
                     exp={writer.point}
@@ -160,7 +173,8 @@ const Detail: React.FC = () => {
           </Text>
           <div className="contents">
             <Input
-              hasCount={false}
+              hasCount
+              count={30}
               placeholder="기타 수행할 로드맵을 등록해주세요"
               onSubmit={handleTextQuest}
             />
