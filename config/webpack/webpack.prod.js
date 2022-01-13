@@ -33,6 +33,7 @@ module.exports = merge(baseConfig, {
     new HtmlWebPackPlugin({
       template: path.resolve(TEMPLATE_PATH, 'index.html'),
       minify: true,
+      favicon: path.resolve(TEMPLATE_PATH, 'favicon.ico'),
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
