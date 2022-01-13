@@ -1,7 +1,6 @@
 @import '/src/styles/';
 
 ._INPUT_ {
-  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -43,7 +42,7 @@
   }
 
   .input-count {
-    width: 4.5rem;
+    width: 5.5rem;
     color: $text-gray;
   }
 }

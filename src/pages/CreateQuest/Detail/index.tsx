@@ -6,7 +6,7 @@ import { setThumbnail, setTag } from '@src/slices/createQuestSlice';
 import {
   questThumbnail,
   questHashtag,
-} from '@src/pages/CreateQuest/quest_data.json';
+} from '@src/constants/createQuest/quest_data.json';
 
 const Detail: React.FC = () => {
   const dispatch = useDispatch();
