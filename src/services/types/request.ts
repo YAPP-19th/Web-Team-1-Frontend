@@ -28,6 +28,10 @@ export interface ProvideIntro {
   intro: string;
 }
 
+export interface ProvideReview extends ProvideQuestId {
+  review: string;
+}
+
 export interface PostQuests {
   name: string;
   difficulty: number;
@@ -63,7 +67,7 @@ export interface GetQuestsSearch {
 }
 
 export interface GetQuestsReviews {
-  cursor?: number;
+  page?: number;
   size?: number;
 }
 
@@ -85,6 +89,6 @@ export interface GetUsersRoadmaps {
 export type PostUpload = FormData;
 
 export interface ProvideMe {
-    nickname: string;
-    position: string;
+  nickname: string;
+  position: string;
 }

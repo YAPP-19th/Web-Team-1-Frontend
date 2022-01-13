@@ -74,7 +74,7 @@ export interface Review {
 }
 
 export interface QuestsReviews {
-  totalReviewCount: number;
+  totalCount: number;
   contentList: Review[];
 }
 
@@ -82,7 +82,7 @@ export interface Roadmap {
   name: string;
   writer: Writer;
   position: string;
-  contentList: {
+  questList: {
     id: number;
     name: string;
     isRealQuest: boolean;
