@@ -30,6 +30,10 @@
   height: 100%;
   justify-items: center;
   align-items: center;
+
+  > ._PROFILE_QUEST_CARD_ {
+    cursor: pointer;
+  }
 }
 
 .profile-page-pagination-wrapper {
