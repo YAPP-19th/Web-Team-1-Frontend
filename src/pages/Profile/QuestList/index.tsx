@@ -116,6 +116,7 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
                   progress={progress}
                   status={filtering}
                   writer={writer}
+                  thumbnail={thumbnail}
                   handleCardClick={() => handleCardClick(id)}
                   handleButtonClick={handleDeleteClick}
                 />
