@@ -84,7 +84,7 @@ const Card: React.FC<CardProps> = ({
           fontSize="small"
           fontWeight="medium"
         >
-          {participant} 참여 중
+          {participant}명 참여 중
         </Text>
       </div>
       <div className="card-last-info">
