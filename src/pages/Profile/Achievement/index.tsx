@@ -29,19 +29,21 @@ const Achievement: React.FC = () => {
           {exp_achievement.description}
         </Text>
         <div className="achievement-icon-wrapper">
-          {exp_achievement.list.map((achievement: AchievementItem) => (
-            <div className="achievement-icon" key={achievement.id}>
-              <AchievementIcon size="main" id={achievement.id} />
-              <Box className="tooltip">
-                <Text fontColor="gil-blue" align="center">
-                  {achievement.title}
-                </Text>
-                <Text fontSize="xx-small" align="center">
-                  {achievement.description}
-                </Text>
-              </Box>
-            </div>
-          ))}
+          {exp_achievement.list
+            .reverse()
+            .map((achievement: AchievementItem) => (
+              <div className="achievement-icon" key={achievement.id}>
+                <AchievementIcon size="main" id={achievement.id} />
+                <Box className="tooltip">
+                  <Text fontColor="gil-blue" align="center">
+                    {achievement.title}
+                  </Text>
+                  <Text fontSize="xx-small" align="center">
+                    {achievement.description}
+                  </Text>
+                </Box>
+              </div>
+            ))}
         </div>
       </section>
       <span className="divider" />
@@ -59,19 +61,21 @@ const Achievement: React.FC = () => {
           {quest_achievement.description}
         </Text>
         <div className="achievement-icon-wrapper">
-          {quest_achievement.list.map((achievement: AchievementItem) => (
-            <div className="achievement-icon" key={achievement.id}>
-              <AchievementIcon size="main" id={achievement.id} />
-              <Box className="tooltip">
-                <Text fontColor="gil-blue" align="center">
-                  {achievement.title}
-                </Text>
-                <Text fontSize="xx-small" align="center">
-                  {achievement.description}
-                </Text>
-              </Box>
-            </div>
-          ))}
+          {quest_achievement.list
+            .reverse()
+            .map((achievement: AchievementItem) => (
+              <div className="achievement-icon" key={achievement.id}>
+                <AchievementIcon size="main" id={achievement.id} />
+                <Box className="tooltip">
+                  <Text fontColor="gil-blue" align="center">
+                    {achievement.title}
+                  </Text>
+                  <Text fontSize="xx-small" align="center">
+                    {achievement.description}
+                  </Text>
+                </Box>
+              </div>
+            ))}
         </div>
       </section>
     </div>
