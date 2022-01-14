@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Pagination, TabBar, Text } from '@src/components/atoms';
+import { Pagination, TabBar, Text, Loading } from '@src/components/atoms';
 import ProfileQuestCard from '@src/components/molecules/ProfileQuestCard';
 import empty_quest_list from '@src/assets/images/empty_quest_list.svg';
 import {
   useGetUsersQuestsParticipationQuery,
   useGetUsersQuestsQuery,
+  usePatchQuestsCancelMutation,
 } from '@src/services/giljob';
 import { Quest } from '@src/services/types/response';
 import { useHistory } from 'react-router-dom';
@@ -47,21 +48,30 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
     page: page,
     size: LIST_SIZE,
   });
-  const { data: questsParticipation } = useGetUsersQuestsParticipationQuery({
-    userId: userId,
-    page: participationPage,
-    completed: isCompleted,
-    size: LIST_SIZE,
-  });
+  const { data: questsParticipation, refetch } =
+    useGetUsersQuestsParticipationQuery({
+      userId: userId,
+      page: participationPage,
+      completed: isCompleted,
+      size: LIST_SIZE,
+    });
+  const [patchQuestsCancel, { isLoading }] = usePatchQuestsCancelMutation();
 
   const handleCardClick = useCallback((id) => {
     history.push(`/detail/${id}`);
   }, []);
 
-  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleDeleteClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    questId: number,
+  ) => {
     e.stopPropagation();
     if (window.confirm('삭제하시겠습니까?')) {
-      // TODO: 해당 퀘스트 삭제
+      patchQuestsCancel({ questId })
+        .unwrap()
+        .then(() => {
+          refetch();
+        });
     }
   };
 
@@ -78,78 +88,85 @@ const QuestList: React.FC<QuestListProps> = ({ userId }) => {
   }, [filtering]);
 
   return (
-    <div className="profile-page-quest-list">
-      <TabBar
-        tabList={TAB_LIST}
-        hasDivider={false}
-        align="start"
-        selected={filtering}
-        setFiltering={setFiltering}
-      />
-      <section className="profile-page-list-wrapper">
-        {(
-          filtering === QuestFiltering.Created
-            ? quests?.data.totalCount
-            : questsParticipation?.data.totalCount
-        ) ? (
-          <div className="profile-page-card-wrapper">
-            {(filtering === QuestFiltering.Created
-              ? quests?.data.contentList
-              : questsParticipation?.data.contentList
-            )?.map(
-              ({
-                id,
-                name,
-                position,
-                participantCount,
-                writer,
-                difficulty,
-                thumbnail,
-                progress,
-              }: Quest) => (
-                <ProfileQuestCard
-                  key={id}
-                  difficulty={difficulty}
-                  position={position}
-                  name={name}
-                  participantCount={participantCount}
-                  progress={progress}
-                  status={filtering}
-                  writer={writer}
-                  thumbnail={thumbnail}
-                  handleCardClick={() => handleCardClick(id)}
-                  handleButtonClick={handleDeleteClick}
-                />
-              ),
+    <>
+      {isLoading && <Loading />}
+      <div className="profile-page-quest-list">
+        <TabBar
+          tabList={TAB_LIST}
+          hasDivider={false}
+          align="start"
+          selected={filtering}
+          setFiltering={setFiltering}
+        />
+        <section className="profile-page-list-wrapper">
+          {(
+            filtering === QuestFiltering.Created
+              ? quests?.data.totalCount
+              : questsParticipation?.data.totalCount
+          ) ? (
+            <div className="profile-page-card-wrapper">
+              {(filtering === QuestFiltering.Created
+                ? quests?.data.contentList
+                : questsParticipation?.data.contentList
+              )?.map(
+                ({
+                  id,
+                  name,
+                  position,
+                  participantCount,
+                  writer,
+                  difficulty,
+                  thumbnail,
+                  progress,
+                }: Quest) => (
+                  <ProfileQuestCard
+                    key={id}
+                    difficulty={difficulty}
+                    position={position}
+                    name={name}
+                    participantCount={participantCount}
+                    progress={progress}
+                    status={filtering}
+                    writer={writer}
+                    thumbnail={thumbnail}
+                    handleCardClick={() => handleCardClick(id)}
+                    handleButtonClick={(e) => handleDeleteClick(e, id)}
+                  />
+                ),
+              )}
+            </div>
+          ) : (
+            <div className="empty-list-wrapper">
+              <img
+                src={empty_quest_list}
+                alt="empty_quest_list"
+                loading="lazy"
+              />
+              <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
+                퀘스트가 없습니다
+              </Text>
+            </div>
+          )}
+          <div className="profile-page-pagination-wrapper">
+            {filtering === QuestFiltering.Created ? (
+              <Pagination
+                pageSize={LIST_SIZE}
+                currentPage={page}
+                totalLength={quests?.data.totalCount ?? 0}
+                onDispatch={setPage}
+              />
+            ) : (
+              <Pagination
+                pageSize={LIST_SIZE}
+                currentPage={participationPage}
+                totalLength={questsParticipation?.data.totalCount ?? 0}
+                onDispatch={setParticipationPage}
+              />
             )}
           </div>
-        ) : (
-          <div className="empty-list-wrapper">
-            <img src={empty_quest_list} alt="empty_quest_list" loading="lazy" />
-            <Text fontColor="gray" fontSize="x-large" fontWeight="bold">
-              퀘스트가 없습니다
-            </Text>
-          </div>
-        )}
-        <div className="profile-page-pagination-wrapper">
-          {filtering === QuestFiltering.Created ? (
-            <Pagination
-              pageSize={LIST_SIZE}
-              currentPage={page}
-              totalLength={quests?.data.totalCount ?? 0}
-              onDispatch={setPage}
-            />
-          ) : (
-            <Pagination
-              pageSize={LIST_SIZE}
-              currentPage={participationPage}
-              totalLength={questsParticipation?.data.totalCount ?? 0}
-              onDispatch={setParticipationPage}
-            />
-          )}
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

@@ -16,7 +16,10 @@ export interface ProfileQuestCardProps {
   writer: Writer;
   thumbnail: string;
   handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleButtonClick?: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    questId: number,
+  ) => void;
 }
 
 interface DegreeProps {

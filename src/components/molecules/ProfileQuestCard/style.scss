@@ -6,6 +6,7 @@
   border-radius: 2.5rem;
   box-shadow: $box-shadow;
   background-color: $white;
+
   .card-main-info {
     position: relative;
     display: flex;
@@ -21,11 +22,11 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      z-index: 199;
+      z-index: 10;
     }
 
     > ._BADGE_ {
-      z-index: 199;
+      z-index: 10;
     }
 
     &::after {
