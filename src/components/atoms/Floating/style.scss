@@ -3,8 +3,18 @@
 ._FLOATING_ {
   all: unset;
   position: fixed;
+  width: 6.5rem;
+  height: 6.5rem;
   bottom: 10rem;
   right: 3rem;
   z-index: 20;
   cursor: pointer;
+
+  background: url('@src/assets/images/floating_close.png');
+  background-size: cover;
+
+  &:hover {
+    background: url('@src/assets/images/floating_open.png');
+    background-size: cover;
+  }
 }
