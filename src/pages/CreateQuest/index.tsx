@@ -57,7 +57,13 @@ const CreateQuest: React.FC = () => {
         name,
       }));
 
-      postQuest({ ...questState, ...{ subQuestList: parsedList } })
+      postQuest({
+        ...questState,
+        ...{
+          subQuestList: parsedList,
+          difficulty: (questState.difficulty - 10) / 5,
+        },
+      })
         .unwrap()
         .then(() => history.push('/quest'));
     }
