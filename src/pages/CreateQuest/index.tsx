@@ -61,7 +61,6 @@ const CreateQuest: React.FC = () => {
         ...questState,
         ...{
           subQuestList: parsedList,
-          difficulty: (questState.difficulty - 10) / 5,
         },
       })
         .unwrap()
