@@ -64,6 +64,7 @@ const QuestList: React.FC = () => {
         // TODO: level 관련 계산식 수정 예정
         // level: parseType(Math.ceil(point / 100) % 5),
         level: (Math.floor(point / 100) + 1) as 1 | 2 | 3 | 4 | 5,
+        thumbnail,
       };
     });
   }, [questList]);
@@ -117,7 +118,17 @@ const QuestList: React.FC = () => {
         </div>
         <div className="quest-card-wrapper">
           {parsedQuestList?.map(
-            ({ id, step, category, name, exp, participant, author, level }) => (
+            ({
+              id,
+              step,
+              category,
+              name,
+              exp,
+              participant,
+              author,
+              level,
+              thumbnail,
+            }) => (
               <Card
                 id={id}
                 step={step}
@@ -128,6 +139,7 @@ const QuestList: React.FC = () => {
                 author={author}
                 level={level}
                 key={id}
+                thumbnail={thumbnail}
               />
             ),
           )}

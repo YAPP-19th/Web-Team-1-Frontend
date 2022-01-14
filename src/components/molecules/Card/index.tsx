@@ -5,6 +5,16 @@ import cn from 'classnames';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import bg_quest from '@src/assets/images/bg_quest.png';
+
+interface MainInfoProps {
+  thumbnail: string;
+}
+
+const MainInfo = styled.div<MainInfoProps>`
+  background: url(${({ thumbnail }) => thumbnail || bg_quest});
+`;
 
 export interface CardProps {
   id: number;
@@ -18,6 +28,7 @@ export interface CardProps {
   hasBorder?: boolean;
   handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   isButtonModal?: boolean;
+  thumbnail?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -32,6 +43,7 @@ const Card: React.FC<CardProps> = ({
   hasBorder = false,
   handleCardClick,
   isButtonModal = false,
+  thumbnail,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -50,7 +62,7 @@ const Card: React.FC<CardProps> = ({
       onClick={handleCardClick}
       aria-hidden="true"
     >
-      <div className="card-main-info">
+      <MainInfo className="card-main-info" thumbnail={thumbnail ?? ''}>
         <Badge step={step} align="end" />
         <Text
           align="start"
@@ -68,7 +80,7 @@ const Card: React.FC<CardProps> = ({
         >
           {name}
         </Text>
-      </div>
+      </MainInfo>
       <div className="card-more-info">
         <Text
           align="start"
