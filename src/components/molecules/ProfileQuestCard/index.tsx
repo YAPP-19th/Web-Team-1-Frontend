@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Badge, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
@@ -15,11 +15,8 @@ export interface ProfileQuestCardProps {
   progress?: number;
   writer: Writer;
   thumbnail: string;
-  handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  handleButtonClick?: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    questId: number,
-  ) => void;
+  handleCardClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface DegreeProps {
