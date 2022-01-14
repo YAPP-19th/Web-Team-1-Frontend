@@ -58,7 +58,7 @@ const QuestList: React.FC = () => {
         step: difficultyLabels[difficulty],
         category: position,
         name,
-        exp: point,
+        exp: 10 + difficulty * 5,
         participant: participantCount,
         author: nickname,
         // TODO: level 관련 계산식 수정 예정
