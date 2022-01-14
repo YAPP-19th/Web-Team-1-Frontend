@@ -240,7 +240,7 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
             >
               직군
             </Text>
-            {isPrivacyEditMode ? (
+            {isPrivacyEditMode && profile?.data?.abilityList.length ? (
               <Dropdown
                 fontColor="white"
                 placeholder={String(position.value)}
