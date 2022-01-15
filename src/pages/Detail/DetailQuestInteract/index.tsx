@@ -36,14 +36,16 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
 
   const acceptQuest = useCallback(() => {
     postQuestsParticipation({ questId });
-    generateToast('퀘스트를 수락했습니다!', '화이팅~');
     setParticipationStatus(true);
+    location.reload();
+    generateToast('퀘스트를 수락했습니다!', '화이팅~');
   }, [generateToast, postQuestsParticipation, questId]);
 
   const completeQuest = useCallback(() => {
     patchQuestsComplete({ questId });
     generateToast('퀘스트를 완료했습니다!', `퀘스트 완료 보상 획득`);
     setCompleteStatus(true);
+    location.reload();
   }, [generateToast, patchQuestsComplete, questId]);
 
   return (
