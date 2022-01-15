@@ -281,6 +281,7 @@ export const {
   usePatchQuestsCompleteMutation,
   usePatchQuestsCancelMutation,
   usePatchQuestsReviewMutation,
+  usePatchQuestsCancelMutation,
   useGetQuestsReviewsQuery,
   useGetUsersQuestsQuery,
   useGetUsersQuestsParticipationQuery,

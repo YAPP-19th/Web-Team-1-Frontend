@@ -28,7 +28,8 @@ const DetailInfo: React.FC<DetailInfoProps> = ({ info }) => {
             </Text>
             <Text fontSize="medium" fontColor="gil-blue" fontWeight="bold">
               {/* TODO: difficulty와 exp의 관계 파악 필요 */}
-              {`${info?.difficulty.toString()}00` ?? 0} Exp
+              {/* {`${info?.difficulty.toString()}00` ?? 0} Exp */}
+              {info?.difficulty ? info.difficulty * 5 + 10 : 0} Exp
             </Text>
             <Text fontSize="medium" fontColor="gray" fontWeight="light">
               |
@@ -50,7 +51,15 @@ const DetailInfo: React.FC<DetailInfoProps> = ({ info }) => {
               authorName={info?.writer.nickname ?? ''}
               iconSize="small"
               // TODO: iconLevel
-              iconLevel={1}
+              // iconLevel={1}
+              iconLevel={
+                (Math.floor((info?.writer.point ?? 0) / 100) + 1) as
+                  | 1
+                  | 2
+                  | 3
+                  | 4
+                  | 5
+              }
             />
           </div>
         </div>

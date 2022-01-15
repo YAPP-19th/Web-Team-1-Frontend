@@ -57,7 +57,11 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
   const dispatch = useDispatch();
   const profileState = useSelector(profileSelector);
 
-  const { data: profile, isSuccess } = useGetUsersProfileQuery({
+  const {
+    data: profile,
+    isSuccess,
+    refetch,
+  } = useGetUsersProfileQuery({
     userId: user.id,
   });
   const [patchIntro, { isLoading: isIntroPatchLoading }] =
@@ -127,11 +131,13 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
           setUserMe({
             nickname,
             position: position.value,
-            point: profileState.abilityList.find(
-              (ability: AbilityType) => ability.position === position.value,
-            )?.point,
+            point:
+              profileState.abilityList.find(
+                (ability: AbilityType) => ability.position === position.value,
+              )?.point ?? 0,
           }),
         );
+        refetch();
       });
   };
 
@@ -234,7 +240,7 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
             >
               직군
             </Text>
-            {isPrivacyEditMode ? (
+            {isPrivacyEditMode && profile?.data?.abilityList.length ? (
               <Dropdown
                 fontColor="white"
                 placeholder={String(position.value)}
@@ -325,14 +331,14 @@ const Mypage: React.FC<MypageProps> = ({ user }) => {
         </Box>
         <Box className="achievement-box">
           <AchievementBadge
-            id={exp_achievement?.list[pointAchieveIdx]?.id}
+            id={exp_achievement?.list[pointAchieveIdx]?.id ?? 5}
             title={exp_achievement?.list[pointAchieveIdx]?.title}
             description={exp_achievement?.list[pointAchieveIdx]?.description}
           />
         </Box>
         <Box className="achievement-box">
           <AchievementBadge
-            id={quest_achievement?.list[questAchieveIdx]?.id}
+            id={quest_achievement?.list[questAchieveIdx]?.id ?? 10}
             title={quest_achievement?.list[questAchieveIdx]?.title}
             description={quest_achievement?.list[questAchieveIdx]?.description}
           />

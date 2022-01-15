@@ -21,7 +21,11 @@ export default {
 
 const Template: Story<BoxProps> = (args) => (
   <Box {...args}>
-    <AchievementBadge title="5급 항해사" description="길잡 신규가입 시 달성" />
+    <AchievementBadge
+      id={5}
+      title="5급 항해사"
+      description="길잡 신규가입 시 달성"
+    />
   </Box>
 );
 
