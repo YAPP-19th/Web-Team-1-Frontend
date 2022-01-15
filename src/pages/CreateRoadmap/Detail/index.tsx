@@ -9,6 +9,8 @@ import {
   Input,
   Toast,
   Loading,
+  Modal,
+  Box,
 } from '@src/components/atoms';
 import { Card, DragDrop } from '@src/components/molecules';
 import { Roadmap } from '@src/components/organisms';
@@ -28,9 +30,15 @@ import {
   roadmapPreview,
 } from '@src/constants/createRoadmap/roadmap_data.json';
 import './style.scss';
+import useQuestModal from '@src/hooks/useQuestModal';
+import DetailInfo from '@src/pages/Detail/DetailIntro';
+import { modalSelector } from '@src/slices/modalSlice';
+import DetailDesc from '@src/pages/Detail/DetailDesc';
 
 const Detail: React.FC = () => {
+  const { isModalOn } = useSelector(modalSelector);
   const { name, position, questList } = useSelector(createRoadmapSelector);
+  const [currentQuestId, setCurrentQuestId] = useState(0);
   const [contentList, setContentList] = useState([]);
   const [roadmapListId, setRoadmapListId] = useState(0);
   const [keyword, setKeyword] = useState('');
@@ -39,6 +47,7 @@ const Detail: React.FC = () => {
   });
   const { data: rawUserData } = useGetUsersMeQuery();
   const dispatch = useDispatch();
+  const { questModal, setQuestModal } = useQuestModal(currentQuestId);
 
   useEffect(() => {
     const parsedList = questList.map(
@@ -76,7 +85,7 @@ const Detail: React.FC = () => {
     setKeyword(keyword);
   }, []);
 
-  // 카트 클릭 이벤트
+  // 카드 클릭 이벤트
   const handleCardClick = (questId: number, name: string) => {
     dispatch(
       setQuestList([
@@ -88,14 +97,10 @@ const Detail: React.FC = () => {
     handleToast();
   };
 
-  // 카트 상세보기 이벤트
-  const handleCardButtonClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      console.log('퀘스트 상세보기');
-    },
-    [],
-  );
+  // 버튼 클릭 이벤트
+  const handleButtonClick = (questId: number) => {
+    setCurrentQuestId(questId);
+  };
 
   // 텍스트 퀘스트 등록 이벤트
   const handleTextQuest = (name: string) => {
@@ -119,6 +124,14 @@ const Detail: React.FC = () => {
   return (
     <>
       {isLoading && <Loading />}
+      {isModalOn && (
+        <Modal>
+          <Box>
+            <DetailInfo info={{ ...questModal }} />
+            <DetailDesc info={{ ...questModal }} />
+          </Box>
+        </Modal>
+      )}
       <Board height={205}>
         <article className="roadmap-detail">
           <Text fontWeight="bold" fontSize="large">
@@ -160,6 +173,8 @@ const Detail: React.FC = () => {
                     key={id}
                     hasBorder={questList.includes(name)}
                     handleCardClick={() => handleCardClick(id, name)}
+                    handleButtonClick={() => handleButtonClick(id)}
+                    onDispatch={setQuestModal}
                     isButtonModal
                   />
                 ),

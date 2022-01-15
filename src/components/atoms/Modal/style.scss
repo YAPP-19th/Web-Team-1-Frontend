@@ -17,7 +17,9 @@
   }
 
   div._BOX_ {
+    height: 75rem;
     padding: 0;
+    justify-content: flex-start;
   }
 
   section.quest-detail-intro {
@@ -28,5 +30,11 @@
 
   section.quest-detail-desc {
     padding-left: 5rem;
+    max-height: 60rem;
+    overflow-y: auto;
+
+    div.detail-tag-wrapper {
+      display: none;
+    }
   }
 }
