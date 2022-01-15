@@ -36,4 +36,5 @@ defaultProfileQuestCard.args = {
     point: 300,
     intro: '안녕하세요 호랑이형님입니다.',
   },
+  thumbnail: '@src/assets/images/bg_quest.png',
 };

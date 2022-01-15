@@ -75,7 +75,9 @@ const RoadmapList: React.FC = () => {
                 <Paper
                   category={position}
                   name={name}
-                  level={1}
+                  level={
+                    (Math.floor(writer.point / 100) + 1) as 1 | 2 | 3 | 4 | 5
+                  }
                   author={writer.nickname}
                   handleClick={() => handlePaperClick(id)}
                 />
