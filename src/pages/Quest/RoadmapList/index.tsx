@@ -1,14 +1,18 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import './style.scss';
-import { Button, Modal, Text } from '@src/components/atoms';
+import { Button, Modal, Text, Toast } from '@src/components/atoms';
 import { Paper } from '@src/components/molecules';
 import { Carousel, Roadmap } from '@src/components/organisms';
 import { useHistory } from 'react-router-dom';
-import { useGetRoadmapsRecentQuery } from '@src/services/giljob';
+import {
+  useGetRoadmapsRecentQuery,
+  usePostRoadmapsScrapMutation,
+} from '@src/services/giljob';
 import useRoadmapModal from '@src/hooks/useRoadmapModal';
 import { useSelector } from 'react-redux';
 import { modalSelector } from '@src/slices/modalSlice';
+import toast from 'react-hot-toast';
 
 const SliderItem = styled.div`
   width: 100%;
@@ -26,6 +30,7 @@ const RoadmapList: React.FC = () => {
   const { isModalOn } = useSelector(modalSelector);
   const [clickedRoadmapId, setClickedRoadmapId] = useState(0);
   const { roadmapModal, setRoadmapModal } = useRoadmapModal(clickedRoadmapId);
+  const [postRoadmapsScrap] = usePostRoadmapsScrapMutation();
   const handlePaperClick = useCallback(
     (id: number) => {
       setClickedRoadmapId(id);
@@ -38,11 +43,37 @@ const RoadmapList: React.FC = () => {
     size: 12,
   });
 
+  const generateToast = useCallback(
+    (mainText: string, subText: string) =>
+      toast(<Toast mainText={mainText} subText={subText} color="blue" />, {
+        duration: 2000,
+        position: 'bottom-left',
+        style: {
+          background: 'transparent',
+          boxShadow: 'none',
+        },
+      }),
+    [],
+  );
+
+  const handleScrap = useCallback(
+    (roadmapId: number) => {
+      postRoadmapsScrap({ roadmapId });
+      generateToast('스크랩 성공!', '이 로드맵이 스크랩되었습니다.');
+    },
+    [generateToast, postRoadmapsScrap],
+  );
+
   return (
     <div className="quest-page-roadmap">
       {isModalOn && (
         <Modal>
-          <Roadmap {...roadmapModal} iconSize="small" />
+          <Roadmap
+            {...roadmapModal}
+            handleScrap={() => handleScrap(clickedRoadmapId)}
+            roadmapId={clickedRoadmapId}
+            iconSize="small"
+          />
         </Modal>
       )}
       <section className="quest-intro">

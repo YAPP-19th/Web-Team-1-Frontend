@@ -17,8 +17,10 @@ export interface RoadmapProps {
   authorName: string;
   category: string;
   title: string;
-  contentList: RoadmapContent[];
+  questList: RoadmapContent[];
   isScrap?: boolean;
+  handleScrap?: (roadmapId: number) => void;
+  roadmapId?: number;
 }
 
 const Roadmap: React.FC<RoadmapProps> = ({
@@ -27,8 +29,10 @@ const Roadmap: React.FC<RoadmapProps> = ({
   authorName,
   category,
   title,
-  contentList,
+  questList,
   isScrap = true,
+  handleScrap,
+  roadmapId,
 }) => {
   return (
     <div className="_ROADMAP_">
@@ -55,7 +59,12 @@ const Roadmap: React.FC<RoadmapProps> = ({
         {isScrap ? (
           <div className="roadmap-scrap-wrapper">
             <div className="roadmap-scrap">
-              <Text fontColor="white" fontSize="small" fontWeight="medium">
+              <Text
+                fontColor="white"
+                fontSize="small"
+                fontWeight="medium"
+                handleClick={() => handleScrap?.(roadmapId ?? 0)}
+              >
                 스크랩
               </Text>
               <div className="star" />
@@ -69,7 +78,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
         <div className="ship">
           <img src={shipIcon} alt="ship icon" />
         </div>
-        {contentList.map((quest, index) => (
+        {questList.map((quest, index) => (
           <div className="road-wrapper" key={quest.id}>
             <div className="road-left">
               {index % 2 ? (

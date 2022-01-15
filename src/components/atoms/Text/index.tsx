@@ -4,7 +4,7 @@ import './style.scss';
 import { FontSize } from '@src/utils';
 
 export interface TextProps {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   align?: 'start' | 'center' | 'end';
   fontColor?: 'main' | 'gray' | 'white' | 'gil-blue' | 'job-navy';

@@ -4,7 +4,6 @@ import { Author } from '@src/components/molecules';
 import cn from 'classnames';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 export interface CardProps {
   id: number;
@@ -17,6 +16,8 @@ export interface CardProps {
   level: 1 | 2 | 3 | 4 | 5;
   hasBorder?: boolean;
   handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick?: (questId: number) => void;
+  onDispatch?: () => void;
   isButtonModal?: boolean;
 }
 
@@ -31,18 +32,19 @@ const Card: React.FC<CardProps> = ({
   level,
   hasBorder = false,
   handleCardClick,
+  handleButtonClick,
+  onDispatch,
   isButtonModal = false,
 }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const handleButtonClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     if (isButtonModal) {
-      // TODO: 상세정보 보기 모달 띄울 예정
-      // dispatch(setQuestModalOn(id));
+      handleButtonClick?.(id);
+      onDispatch?.();
       return;
     }
     history.push(`/detail/${id}`);
-  }, [dispatch, history, id, isButtonModal]);
+  }, [handleButtonClick, history, id, isButtonModal, onDispatch]);
 
   return (
     <div
@@ -84,7 +86,7 @@ const Card: React.FC<CardProps> = ({
           fontSize="small"
           fontWeight="medium"
         >
-          {participant} 참여 중
+          {participant}명 참여 중
         </Text>
       </div>
       <div className="card-last-info">
@@ -95,7 +97,7 @@ const Card: React.FC<CardProps> = ({
           textColor="gil-blue"
           textSize="medium"
           hasBorder
-          handleClick={handleButtonClick}
+          handleClick={handleClick}
         />
       </div>
     </div>

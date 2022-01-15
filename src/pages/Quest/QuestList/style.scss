@@ -8,7 +8,11 @@
 .quest-list-tools {
   display: flex;
   justify-content: space-between;
-  min-width: 120rem;
+  min-width: 124rem;
+
+  button {
+    margin-right: 1.5rem;
+  }
 }
 
 .quest-list-wrapper {
