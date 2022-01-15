@@ -45,7 +45,7 @@ const HeaderDropdown: React.FC = () => {
               history.push('/profile');
             }}
           >
-            <Text fontSize="medium" fontColor="gray" align="center">
+            <Text fontSize="medium" fontColor="main" align="center">
               프로필
             </Text>
           </button>
@@ -55,7 +55,7 @@ const HeaderDropdown: React.FC = () => {
             type="button"
             onClick={handleLogout}
           >
-            <Text fontSize="medium" fontColor="gray" align="center">
+            <Text fontSize="medium" fontColor="main" align="center">
               로그아웃
             </Text>
           </button>

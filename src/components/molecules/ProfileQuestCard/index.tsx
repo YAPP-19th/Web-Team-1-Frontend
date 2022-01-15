@@ -6,6 +6,8 @@ import { QuestFiltering } from '@src/pages/Profile/QuestList';
 import { Writer } from '@src/services/types/response';
 import './style.scss';
 import { step } from '@src/pages/Profile/list';
+import bg_quest from '@src/assets/images/bg_quest.png';
+
 export interface ProfileQuestCardProps {
   status: QuestFiltering;
   difficulty: number;
@@ -34,9 +36,8 @@ interface MainInfoProps {
   thumbnail: string;
 }
 
-const MainInfo = styled.div`
-  background: url(${({ thumbnail }: MainInfoProps) =>
-    thumbnail ?? '@src/assets/images/bg_quest.png'});
+const MainInfo = styled.div<MainInfoProps>`
+  background: url(${({ thumbnail }) => thumbnail || bg_quest});
 `;
 
 const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
@@ -96,7 +97,7 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
             fontSize="large"
             fontWeight="regular"
           >
-            {10 + difficulty * 5} EXP
+            {10 + difficulty * 5} Exp
           </Text>
           <Text
             align="start"
