@@ -12,6 +12,7 @@ import {
   questDetail,
 } from '@src/constants/createQuest/quest_data.json';
 import { POSITION_LIST, DIFFICULTY_LIST } from '@src/constants/dropdown';
+import handleDifficulty from '@src/utils/handleDifficulty';
 import './style.scss';
 
 const Main: React.FC = () => {
@@ -47,7 +48,7 @@ const Main: React.FC = () => {
         </Text>
         <Text fontColor="gil-blue">{questTitle.sub}</Text>
         <div className="contents">
-          <Input hasCount count={10} onDispatch={handleTitle} />
+          <Input hasCount count={25} onDispatch={handleTitle} />
           <Dropdown
             placeholder="카테고리 설정"
             selected={createQuestState.position}
@@ -57,7 +58,7 @@ const Main: React.FC = () => {
           />
           <Dropdown
             placeholder="난이도 설정"
-            selected={createQuestState.difficulty}
+            selected={handleDifficulty(createQuestState.difficulty)}
             type="difficulty"
             list={DIFFICULTY_LIST}
             onDispatch={handleDropdown}

@@ -40,7 +40,8 @@ export const createQuestSlice = createSlice({
 
       return {
         ...state,
-        [type as string]: value,
+        [type as string]:
+          type === 'difficulty' ? ((value as number) - 10) / 5 : value,
       };
     },
     setDetail: (state, action: PayloadAction<string>) => {

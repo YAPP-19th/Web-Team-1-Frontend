@@ -1,14 +1,14 @@
 export const POSITION_LIST = [
   {
-    name: '프론트엔드',
+    name: 'FRONTEND',
     value: 'FRONTEND',
   },
   {
-    name: '백엔드',
+    name: 'BACKEND',
     value: 'BACKEND',
   },
   {
-    name: '디자이너',
+    name: 'DESIGNER',
     value: 'DESIGNER',
   },
 ];
