@@ -1,7 +1,10 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState, useCallback } from 'react';
 import './style.scss';
 import { FloatingBar, Button, Toast } from '@src/components/atoms';
 import {
+  useGetQuestsSubquestQuery,
+  usePatchQuestsCancelMutation,
   usePatchQuestsCompleteMutation,
   usePostQuestsParticipationMutation,
 } from '@src/services/giljob';
@@ -20,6 +23,8 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
   const [completeStatus, setCompleteStatus] = useState(false);
   const [postQuestsParticipation] = usePostQuestsParticipationMutation();
   const [patchQuestsComplete] = usePatchQuestsCompleteMutation();
+  const [patchQuestsCancel] = usePatchQuestsCancelMutation();
+  const { data } = useGetQuestsSubquestQuery({ questId });
 
   const generateToast = useCallback(
     (mainText: string, subText: string) =>
@@ -41,6 +46,12 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
     generateToast('퀘스트를 수락했습니다!', '화이팅~');
   }, [generateToast, postQuestsParticipation, questId]);
 
+  const cancelQuest = useCallback(() => {
+    patchQuestsCancel({ questId });
+    setParticipationStatus(false);
+    location.reload();
+  }, [patchQuestsCancel, questId]);
+
   const completeQuest = useCallback(() => {
     patchQuestsComplete({ questId });
     generateToast('퀘스트를 완료했습니다!', `퀘스트 완료 보상 획득`);
@@ -48,7 +59,7 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
     location.reload();
   }, [generateToast, patchQuestsComplete, questId]);
 
-  return (
+  return participationInfo !== '완료한 퀘스트입니다.' ? (
     <FloatingBar className="handle-quest-bar">
       {!participationStatus &&
         participationInfo === '아직 참여하지 않은 퀘스트입니다.' && (
@@ -63,7 +74,7 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
       {(participationStatus ||
         participationInfo === '참여중인 퀘스트입니다.') && (
         <>
-          {!completeStatus && (
+          {!completeStatus && data?.data.progress === 100 && (
             <Button
               innerText="퀘스트 완료"
               buttonColor="gil-blue"
@@ -73,15 +84,16 @@ const DetailQuestInteract: React.FC<DetailQuestInteractProps> = ({
             />
           )}
           <Button
-            innerText={completeStatus ? '완료한 퀘스트' : '퀘스트 포기'}
+            innerText="퀘스트 포기"
             buttonColor="dark-gray"
             textColor="white"
             hasBorder
+            handleClick={() => cancelQuest()}
           />
         </>
       )}
     </FloatingBar>
-  );
+  ) : null;
 };
 
 export default DetailQuestInteract;

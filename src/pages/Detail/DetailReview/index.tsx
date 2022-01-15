@@ -9,9 +9,13 @@ import {
 
 export interface DetailReviewProps {
   questId: number;
+  participationInfo?: string;
 }
 
-const DetailReview: React.FC<DetailReviewProps> = ({ questId }) => {
+const DetailReview: React.FC<DetailReviewProps> = ({
+  questId,
+  participationInfo,
+}) => {
   const [page, setPage] = useState(0);
   const [patchQuestsReview] = usePatchQuestsReviewMutation();
   const { data: reviewInfo } = useGetQuestsReviewsQuery({
@@ -29,6 +33,8 @@ const DetailReview: React.FC<DetailReviewProps> = ({ questId }) => {
   const handleSubmit = useCallback(
     (review: string) => {
       patchQuestsReview({ questId, review });
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     },
     [patchQuestsReview, questId],
   );
@@ -76,14 +82,16 @@ const DetailReview: React.FC<DetailReviewProps> = ({ questId }) => {
         currentPage={page}
         onDispatch={setPage}
       />
-      <Input
-        className="detail-review-input"
-        count={100}
-        inputHeight="wide"
-        placeholder="후기를 남겨주세요 (최대 100자)"
-        placeholderColor="gray"
-        onSubmit={handleSubmit}
-      />
+      {participationInfo === '완료한 퀘스트입니다.' && (
+        <Input
+          className="detail-review-input"
+          count={100}
+          inputHeight="wide"
+          placeholder="후기를 남겨주세요 (최대 100자)"
+          placeholderColor="gray"
+          onSubmit={handleSubmit}
+        />
+      )}
     </section>
   );
 };

@@ -12,7 +12,7 @@ const DetailDesc: React.FC<DetailDescProps> = ({ info }) => {
     <section className="quest-detail-desc">
       <div className="detail-desc-wrapper">
         <Text fontColor="main" fontSize="medium" fontWeight="regular">
-          {info?.detail}
+          {info?.detail.replace('<p>', '').replace('</p>', '')}
         </Text>
       </div>
       <div className="detail-tag-wrapper">

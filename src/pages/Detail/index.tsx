@@ -40,9 +40,14 @@ const Detail = () => {
   return (
     <>
       <DetailInfo info={questInfo?.data} />
-      <DetailContent info={subQuestInfo?.data} />
+      {participationInfo?.data === '참여중인 퀘스트입니다.' && (
+        <DetailContent info={subQuestInfo?.data} />
+      )}
       <DetailDesc info={questInfo?.data} />
-      <DetailReview questId={parsedQuestId} />
+      <DetailReview
+        questId={parsedQuestId}
+        participationInfo={participationInfo?.data}
+      />
       <DetailQuestInteract
         questId={parsedQuestId}
         participationInfo={participationInfo?.data}
