@@ -25,7 +25,7 @@
   }
 
   &.icon-level {
-    @for $id from 1 through 5 {
+    @for $id from 1 through 20 {
       &-#{$id} {
         background: url('@src/assets/images/Lv#{$id}.svg');
         background-size: cover;

@@ -6,7 +6,7 @@ import {
   setDropdown,
   createRoadmapSelector,
 } from '@src/slices/createRoadmapSlice';
-import { roadmapTitle } from '@src/pages/CreateRoadmap/roadmap_data.json';
+import { roadmapTitle } from '@src/constants/createRoadmap/roadmap_data.json';
 import { POSITION_LIST } from '@src/constants/dropdown';
 import './style.scss';
 

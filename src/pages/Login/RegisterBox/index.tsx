@@ -135,7 +135,11 @@ const RegisterBox: React.FC = () => {
         <Text fontSize="large" fontColor="main" fontWeight="bold">
           자기 소개 <span className="blue-star">*</span>
         </Text>
-        <Textarea hasLimit onDispatch={handleIntro} />
+        <Textarea
+          hasLimit
+          value={registerState.intro}
+          onDispatch={handleIntro}
+        />
       </div>
       <div className="button-wrapper">
         <Button

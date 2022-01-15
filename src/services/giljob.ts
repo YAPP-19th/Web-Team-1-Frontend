@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import store from '@src/store';
 import {
   ProvideQuestId,
   ProvideSubQuestId,
@@ -41,9 +42,8 @@ export const giljobApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_ENDPOINT,
     prepareHeaders: (headers) => {
-      // TODO: 현재 테스트를 위해서 임시 access token을 항상 header에 담아서 request를 하는 중
-      // 추후 redux store에 저장된 access token으로 대체해야 함
-      headers.set('Authorization', process.env.REACT_APP_API_KEY ?? '');
+      const { accessToken } = store.getState().auth;
+      headers.set('Authorization', accessToken ?? '');
       // headers.set('Content-Type', 'application/json');
       return headers;
     },

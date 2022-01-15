@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '@src/components/atoms';
 import { Content } from '@src/components/molecules';
-import contentsList from './list';
+import contentsList from '@src/constants/landing';
 import './style.scss';
 
 const Contents: React.FC = () => {
