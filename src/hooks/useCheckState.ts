@@ -7,11 +7,11 @@ const useCheckState = () => {
   const handleCheckState = useCallback((state) => {
     let isEmpty = false;
 
-    Object.values(state).forEach((value) => {
+    Object.entries(state).forEach(([key, value]) => {
       const valueType = typeof value;
       switch (valueType) {
         case 'string' || 'number':
-          if (!value) isEmpty = true;
+          if (key !== 'thumbnail' && !value) isEmpty = true;
           break;
         case 'object':
           if (!value) isEmpty = true;

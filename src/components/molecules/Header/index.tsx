@@ -34,10 +34,15 @@ const Header: React.FC = () => {
                 </Text>
               </NavLink>
             ))}
-          </ul>
-          <div className="auth-wrapper">
             {isAuth ? (
-              <HeaderDropdown />
+              <>
+                <NavLink className="link-button" to="/profile/quest">
+                  <Text align="center" fontSize="x-large">
+                    내 퀘스트
+                  </Text>
+                </NavLink>
+                <HeaderDropdown />
+              </>
             ) : (
               <Link to="/login">
                 <Button
@@ -49,7 +54,7 @@ const Header: React.FC = () => {
                 />
               </Link>
             )}
-          </div>
+          </ul>
         </div>
       </div>
     </header>

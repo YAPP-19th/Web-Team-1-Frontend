@@ -17,7 +17,7 @@ import Detail from './Detail';
 import Sub from './Sub';
 import './style.scss';
 
-const QuestCreate: React.FC = () => {
+const CreateQuest: React.FC = () => {
   const [postQuest, { isLoading }] = usePostQuestsMutation();
   const questState = useSelector(createQuestSelector);
   const history = useHistory();
@@ -57,7 +57,13 @@ const QuestCreate: React.FC = () => {
         name,
       }));
 
-      postQuest({ ...questState, ...{ subQuestList: parsedList } })
+      postQuest({
+        ...questState,
+        ...{
+          subQuestList: parsedList,
+          difficulty: (questState.difficulty - 10) / 5,
+        },
+      })
         .unwrap()
         .then(() => history.push('/quest'));
     }
@@ -96,4 +102,4 @@ const QuestCreate: React.FC = () => {
   );
 };
 
-export default QuestCreate;
+export default CreateQuest;
