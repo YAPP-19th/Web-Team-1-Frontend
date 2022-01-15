@@ -50,10 +50,12 @@ const RoadmapCreate: React.FC = () => {
             ? {
                 questId,
                 name: null,
+                isRealQuest: true,
               }
             : {
                 questId,
                 name,
+                isRealQuest: false,
               },
       );
 

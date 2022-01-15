@@ -17,7 +17,7 @@ export interface RoadmapProps {
   authorName: string;
   category: string;
   title: string;
-  contentList: RoadmapContent[];
+  questList: RoadmapContent[];
   isScrap?: boolean;
 }
 
@@ -27,7 +27,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
   authorName,
   category,
   title,
-  contentList,
+  questList,
   isScrap = true,
 }) => {
   return (
@@ -69,7 +69,7 @@ const Roadmap: React.FC<RoadmapProps> = ({
         <div className="ship">
           <img src={shipIcon} alt="ship icon" />
         </div>
-        {contentList.map((quest, index) => (
+        {questList.map((quest, index) => (
           <div className="road-wrapper" key={quest.id}>
             <div className="road-left">
               {index % 2 ? (

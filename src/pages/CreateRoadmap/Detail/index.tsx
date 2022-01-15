@@ -187,7 +187,7 @@ const Detail: React.FC = () => {
             category={position}
             iconSize="medium"
             authorName={rawUserData?.data.nickname || ''}
-            contentList={contentList}
+            questList={contentList}
             isScrap={false}
           />
         </article>
