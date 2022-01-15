@@ -16,7 +16,7 @@ import Main from './Main';
 import Detail from './Detail';
 import './style.scss';
 
-const RoadmapCreate: React.FC = () => {
+const CreateRoadmap: React.FC = () => {
   const [postRoadmap, { isLoading }] = usePostRoadmapsMutation();
   const roadmapState = useSelector(createRoadmapSelector);
   const history = useHistory();
@@ -58,10 +58,12 @@ const RoadmapCreate: React.FC = () => {
             ? {
                 questId,
                 name: null,
+                isRealQuest: true,
               }
             : {
                 questId,
                 name,
+                isRealQuest: false,
               },
       );
 
@@ -103,4 +105,4 @@ const RoadmapCreate: React.FC = () => {
   );
 };
 
-export default RoadmapCreate;
+export default CreateRoadmap;

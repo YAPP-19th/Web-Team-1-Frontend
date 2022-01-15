@@ -11,7 +11,7 @@ const useRoadmapModal = (roadmapId: number) => {
       title: data?.data.name ?? '',
       authorName: data?.data.writer.nickname ?? '',
       category: data?.data.position ?? '',
-      contentList: data?.data.questList ?? [],
+      questList: data?.data.questList ?? [],
     }),
     [data],
   );

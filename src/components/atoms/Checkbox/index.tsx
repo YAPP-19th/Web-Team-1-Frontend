@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import './style.scss';
@@ -52,11 +53,13 @@ const Checkbox: React.FC<CheckboxProps> = ({
       postSubquestsCancel({
         subQuestId: id,
       });
+      location.reload();
       return;
     }
     postSubquestsComplete({
       subQuestId: id,
     });
+    location.reload();
   }, [currentStatus, id, postSubquestsCancel, postSubquestsComplete]);
 
   return (

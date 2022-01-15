@@ -15,4 +15,26 @@
   * {
     z-index: 200;
   }
+
+  div._BOX_ {
+    height: 75rem;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  section.quest-detail-intro {
+    margin: 0;
+    padding-top: 3rem;
+    padding-left: 5rem;
+  }
+
+  section.quest-detail-desc {
+    padding-left: 5rem;
+    max-height: 60rem;
+    overflow-y: auto;
+
+    div.detail-tag-wrapper {
+      display: none;
+    }
+  }
 }

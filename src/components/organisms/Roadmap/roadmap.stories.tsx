@@ -43,7 +43,7 @@ const Template: Story = () => (
     authorName="호랑이형님"
     category="Front-End"
     title="프론트엔드 개발자가 되는 법"
-    contentList={contentList}
+    questList={contentList}
   />
 );
 

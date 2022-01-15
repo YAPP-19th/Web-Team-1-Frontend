@@ -111,12 +111,15 @@ export const giljobApi = createApi({
         method: 'PATCH',
       }),
     }),
-    // 퀘스트 취소: PATCH /quest/{questId}/cancel
-    patchQuestsCancel: builder.mutation<ProvideQuestId, Partial<ProvideQuestId>>({
-      query: ({questId}) => ({
+    // 퀘스트 포기: PATCH /quests/{questId}/cancel
+    patchQuestsCancel: builder.mutation<
+      ProvideQuestId,
+      Partial<ProvideQuestId>
+    >({
+      query: ({ questId }) => ({
         url: `quests/${questId}/cancel`,
         method: 'PATCH',
-      })
+      }),
     }),
     // 퀘스트 한줄 후기 작성: POST /quests/{questId}/review
     patchQuestsReview: builder.mutation<ProvideReview, Partial<ProvideReview>>({
@@ -276,8 +279,8 @@ export const {
   useGetQuestsSubquestQuery,
   usePostQuestsParticipationMutation,
   usePatchQuestsCompleteMutation,
-  usePatchQuestsReviewMutation,
   usePatchQuestsCancelMutation,
+  usePatchQuestsReviewMutation,
   useGetQuestsReviewsQuery,
   useGetUsersQuestsQuery,
   useGetUsersQuestsParticipationQuery,

@@ -35,34 +35,28 @@
 
 .button-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   width: 45%;
 
   .button-list {
-    list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
 
     .link-button {
-      float: left;
       cursor: pointer;
       text-decoration: none;
-
-      &:first-child {
-        margin-right: 4rem;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
+      margin: 1.5rem;
       *:hover {
         color: $gil-blue;
       }
     }
-  }
-}
 
-.auth-wrapper {
-  margin-left: 5rem;
+    ._HEADER_DROPDOWN_ {
+      margin-left: 1.5rem;
+    }
+  }
 }

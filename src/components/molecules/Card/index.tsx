@@ -27,6 +27,8 @@ export interface CardProps {
   level: 1 | 2 | 3 | 4 | 5;
   hasBorder?: boolean;
   handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick?: (questId: number) => void;
+  onDispatch?: () => void;
   isButtonModal?: boolean;
   thumbnail?: string;
 }
@@ -42,19 +44,20 @@ const Card: React.FC<CardProps> = ({
   level,
   hasBorder = false,
   handleCardClick,
+  handleButtonClick,
+  onDispatch,
   isButtonModal = false,
   thumbnail,
 }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const handleButtonClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     if (isButtonModal) {
-      // TODO: 상세정보 보기 모달 띄울 예정
-      // dispatch(setQuestModalOn(id));
+      handleButtonClick?.(id);
+      onDispatch?.();
       return;
     }
     history.push(`/detail/${id}`);
-  }, [dispatch, history, id, isButtonModal]);
+  }, [handleButtonClick, history, id, isButtonModal, onDispatch]);
 
   return (
     <div
@@ -107,7 +110,7 @@ const Card: React.FC<CardProps> = ({
           textColor="gil-blue"
           textSize="medium"
           hasBorder
-          handleClick={handleButtonClick}
+          handleClick={handleClick}
         />
       </div>
     </div>
