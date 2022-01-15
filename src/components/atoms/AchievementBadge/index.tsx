@@ -3,14 +3,14 @@ import './style.scss';
 import { AchievementIcon, Text } from '@src/components/atoms';
 
 export interface AchievementBadgeProps {
-  id?: number;
+  id: number;
   size?: 'profile' | 'main';
   title: string;
   description?: string;
 }
 
 const AchievementBadge: React.FC<AchievementBadgeProps> = ({
-  id = 1,
+  id,
   size = 'main',
   title,
   description = '',

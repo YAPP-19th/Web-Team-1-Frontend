@@ -57,7 +57,15 @@ const DetailReview: React.FC<DetailReviewProps> = ({ questId }) => {
                 authorName={review.reviewWriter.nickname}
                 iconSize="small"
                 // TODO: iconLevel과 point 간의 관계 로직 추가 필요
-                iconLevel={1}
+                // iconLevel={1}
+                iconLevel={
+                  (Math.floor(review.reviewWriter.point / 100) + 1) as
+                    | 1
+                    | 2
+                    | 3
+                    | 4
+                    | 5
+                }
               />
               <Text fontColor="gray" fontSize="small" fontWeight="medium">
                 |&nbsp;&nbsp;{parseDate(review.reviewCreatedAt)}

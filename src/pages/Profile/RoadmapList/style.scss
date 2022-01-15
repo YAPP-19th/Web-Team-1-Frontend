@@ -30,6 +30,10 @@
   height: 100%;
   justify-items: center;
   align-items: center;
+
+  > ._PAPER_ {
+    cursor: pointer;
+  }
 }
 
 .quest-page-roadmap-pagination-wrapper {

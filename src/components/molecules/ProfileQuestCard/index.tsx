@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Badge, Text } from '@src/components/atoms';
 import { Author } from '@src/components/molecules';
@@ -14,8 +14,9 @@ export interface ProfileQuestCardProps {
   participantCount: number;
   progress?: number;
   writer: Writer;
-  handleCardClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  handleButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  thumbnail: string;
+  handleCardClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleButtonClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface DegreeProps {
@@ -29,6 +30,15 @@ const Degree = styled.div`
   border-radius: 2.5rem;
 `;
 
+interface MainInfoProps {
+  thumbnail: string;
+}
+
+const MainInfo = styled.div`
+  background: url(${({ thumbnail }: MainInfoProps) =>
+    thumbnail ?? '@src/assets/images/bg_quest.png'});
+`;
+
 const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
   status,
   difficulty,
@@ -37,12 +47,13 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
   participantCount,
   progress,
   writer,
+  thumbnail,
   handleCardClick,
   handleButtonClick,
 }) => {
   return (
     <div className="_PROFILE_QUEST_CARD_" onClick={handleCardClick}>
-      <div className="card-main-info">
+      <MainInfo className="card-main-info" thumbnail={thumbnail}>
         <Badge step={step[difficulty]} align="end" />
         <Text
           align="start"
@@ -60,7 +71,7 @@ const ProfileQuestCard: React.FC<ProfileQuestCardProps> = ({
         >
           {name}
         </Text>
-      </div>
+      </MainInfo>
       <div className="card-more-info">
         {status !== QuestFiltering.Created && (
           <>
