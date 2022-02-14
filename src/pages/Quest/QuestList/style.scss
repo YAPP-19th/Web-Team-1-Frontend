@@ -3,12 +3,13 @@
   margin-top: 5rem;
   display: flex;
   justify-content: center;
+  min-width: 127rem;
 }
 
 .quest-list-tools {
   display: flex;
   justify-content: space-between;
-  min-width: 124rem;
+  min-width: 127rem;
 
   button {
     margin-right: 1.5rem;

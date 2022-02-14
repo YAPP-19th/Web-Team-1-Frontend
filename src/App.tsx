@@ -16,7 +16,7 @@ const NotFound = lazy(() => import('@src/pages/NotFound'));
 
 const App: React.FC = () => {
   return (
-    <>
+    <div style={{ overflow: 'auto' }}>
       <Router>
         <Header />
         <Toaster />
@@ -29,13 +29,13 @@ const App: React.FC = () => {
             <PrivateRoute path="/create-quest" component={CreateQuest} />
             <PrivateRoute path="/create-roadmap" component={CreateRoadmap} />
             <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute path="/detail/:questId" component={Detail} />
+            <Route path="/detail/:questId" component={Detail} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Router>
       <Footer />
-    </>
+    </div>
   );
 };
 
